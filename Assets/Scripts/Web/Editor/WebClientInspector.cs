@@ -26,7 +26,7 @@ public class WebClientInspector : Editor
         EditorGUILayout.BeginVertical("box");
         EditorGUILayout.LabelField("Test Request", EditorStyles.boldLabel);
         // Request status
-        EditorGUILayout.LabelField("Status", inspectorRequest.Status.ToString());
+        EditorGUILayout.LabelField("Status", inspectorRequest.Status.ToString() + " (" + inspectorRequest.Duration + "s)");
         // Configure request
         inspectorRequest.requestUri = EditorGUILayout.TextField("URI", inspectorRequest.requestUri);
         inspectorRequest.type = (WebRequest.RequestType)EditorGUILayout.EnumPopup("Type", inspectorRequest.type);
@@ -39,7 +39,7 @@ public class WebClientInspector : Editor
         if (inspectorRequest.type == WebRequest.RequestType.GET)
             EditorGUILayout.TextArea(inspectorRequest.ResponseBody);
         // Repaint UI as long as request is not completed
-        if (inspectorRequest.Status != System.Threading.Tasks.TaskStatus.RanToCompletion)
+        if (inspectorRequest.Status == WebRequest.RequestStatus.Running)
             EditorUtility.SetDirty(target);
 
     }
