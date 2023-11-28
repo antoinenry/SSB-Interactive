@@ -152,8 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9291e74afc07600478886db89973a4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonsRequestUri: /text
-  minimumRequestTime: 0.2
+  buttonsRequestUri: /buttons
+  minimumRequestTime: 0.5
+  maxRequestTime: 1
+  response: 
 --- !u!4 &328108288
 Transform:
   m_ObjectHideFlags: 0
