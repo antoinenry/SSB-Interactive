@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-// An enhanced WebClient inspector allowing to test requests directly form Unity Editor
+// An augmented WebClient inspector allowing to test requests directly form Unity Editor
 [CustomEditor(typeof(WebClient))]
 public class WebClientInspector : Editor
 {
@@ -33,8 +33,11 @@ public class WebClientInspector : Editor
         if (inspectorRequest.type == WebRequest.RequestType.POST)
             inspectorRequest.requestBody = EditorGUILayout.TextField("Body", inspectorRequest.requestBody);
         EditorGUILayout.EndVertical();
-        // Button to run request
+        // Buttons to run/cancel request
+        EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Send")) targetClient.SendRequest(inspectorRequest);
+        if (GUILayout.Button("Cancel")) inspectorRequest.Cancel();
+        EditorGUILayout.EndHorizontal();
         // Response
         if (inspectorRequest.type == WebRequest.RequestType.GET)
             EditorGUILayout.TextArea(inspectorRequest.ResponseBody);

@@ -3,6 +3,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
+using System.Threading;
 
 // Class representing a standard HTTP request
 // Allow to configure, run and track a request
@@ -11,15 +12,17 @@ using System.Text;
 public class WebRequest
 {
     public enum RequestType { GET, POST }
-    public enum RequestStatus { Created, Running, Success, Failed }
+    public enum RequestStatus { Created, Running, Success, Failed, Canceled }
 
     public RequestType type = RequestType.GET;
     public string requestUri = "";
     public string mediaType = "application/json";
     public string requestBody = "";
 
-    private Task task;
+    private Task<HttpResponseMessage> task;
     private HttpClient client;
+    private CancellationTokenSource cancelSource;
+    private CancellationToken cancelToken;
 
     public string FullUri { get; private set; }
     public float StartTime { get; private set; }
@@ -29,7 +32,10 @@ public class WebRequest
 
     public WebRequest()
     {
+        // Initialize thread
         task = null;
+        cancelSource = null;
+        // Initialize parameters
         client = null;
         StartTime = float.NaN;
         EndTime = float.NaN;
@@ -52,7 +58,14 @@ public class WebRequest
         client = httpClient;
         FullUri = serverUrl + requestUri;
         // Run request on a separate thread
+        cancelSource = new CancellationTokenSource();
+        cancelToken = cancelSource.Token;
         task = RequestAsync();
+    }
+
+    public void Cancel()
+    {
+        cancelSource.Cancel();
     }
 
     private async Task<HttpResponseMessage> RequestAsync()
@@ -68,12 +81,12 @@ public class WebRequest
             switch (type)
             {
                 case RequestType.GET:
-                    response = await client.GetAsync(FullUri); 
+                    response = await client.GetAsync(FullUri, cancelToken);
                     response.EnsureSuccessStatusCode();
                     ResponseBody = await response.Content.ReadAsStringAsync();
                     break;
                 case RequestType.POST:
-                    response = await client.PostAsync(FullUri, new StringContent(requestBody, Encoding.Default, mediaType));
+                    response = await client.PostAsync(FullUri, new StringContent(requestBody, Encoding.Default, mediaType), cancelToken);
                     response.EnsureSuccessStatusCode();
                     break;
             }
@@ -84,10 +97,14 @@ public class WebRequest
             Debug.LogWarning("Message : " + e.Message);
             Status = RequestStatus.Failed;
         }
+        catch (TaskCanceledException)
+        {
+            Status = RequestStatus.Canceled;
+        }
         finally
         {
             EndTime = Time.time;
-            if (Status != RequestStatus.Failed) Status = RequestStatus.Success;
+            if (Status == RequestStatus.Running) Status = RequestStatus.Success;
         }
         return response;
     }
