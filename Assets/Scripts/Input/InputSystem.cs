@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 // Behaviour to get input from the server and present it in a convenient way
 public class InputSystem : MonoBehaviour

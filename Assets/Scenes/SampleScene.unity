@@ -153,9 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonsRequestUri: /buttons
-  minimumRequestTime: 0.5
+  minimumRequestTime: 0.3
   maxRequestTime: 1
-  response: 
 --- !u!4 &328108288
 Transform:
   m_ObjectHideFlags: 0
