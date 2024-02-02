@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Text;
 
 // Class representing a standard HTTP request
 // Allow to configure, run and track a request
 // Will be instanciated by various Unity component (like the Input System), and run by the WebClient component
 [Serializable]
-public class WebRequest
+public class HttpRequest
 {
     public enum RequestType { GET, POST }
     public enum RequestStatus { Created, Running, Success, Failed, Canceled }
@@ -19,10 +19,9 @@ public class WebRequest
     public string mediaType = "application/json";
     public string requestBody = "";
 
-    private Task<HttpResponseMessage> task;
-    private HttpClient client;
+    private System.Net.Http.HttpClient client;
+    private Task<HttpResponseMessage> pendingTask;
     private CancellationTokenSource cancelSource;
-    private CancellationToken cancelToken;
 
     public string FullUri { get; private set; }
     public float StartTime { get; private set; }
@@ -30,10 +29,10 @@ public class WebRequest
     public string ResponseBody { get; private set; }
     public RequestStatus Status { get; private set; }
 
-    public WebRequest()
+    public HttpRequest()
     {
         // Initialize thread
-        task = null;
+        pendingTask = null;
         cancelSource = null;
         // Initialize parameters
         client = null;
@@ -52,15 +51,14 @@ public class WebRequest
         }
     }
 
-    public void SendFrom(HttpClient httpClient, string serverUrl = "")
+    public void SendFrom(System.Net.Http.HttpClient httpClient, string serverUrl = "")
     {
         // Set request parameters
         client = httpClient;
         FullUri = serverUrl + requestUri;
         // Run request on a separate thread
         cancelSource = new CancellationTokenSource();
-        cancelToken = cancelSource.Token;
-        task = RequestAsync();
+        pendingTask = RequestAsync(cancelSource.Token);
     }
 
     public void Cancel()
@@ -68,7 +66,7 @@ public class WebRequest
         cancelSource.Cancel();
     }
 
-    private async Task<HttpResponseMessage> RequestAsync()
+    private async Task<HttpResponseMessage> RequestAsync(CancellationToken cancelToken)
     {
         // Initialize status and response
         HttpResponseMessage response = null;
@@ -106,6 +104,7 @@ public class WebRequest
             EndTime = Time.time;
             if (Status == RequestStatus.Running) Status = RequestStatus.Success;
         }
+        pendingTask = null;
         return response;
     }
 }

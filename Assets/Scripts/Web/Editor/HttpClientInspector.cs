@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-// An augmented WebClient inspector allowing to test requests directly form Unity Editor
-[CustomEditor(typeof(WebClient))]
-public class WebClientInspector : Editor
+// An augmented inspector allowing to test requests directly from Unity Editor
+[CustomEditor(typeof(HttpClient))]
+public class HttpClientInspector : Editor
 {
-    private WebClient targetClient;
-    private WebRequest inspectorRequest;
+    private HttpClient targetClient;
+    private HttpRequest inspectorRequest;
 
     private void OnEnable()
     {
-        targetClient = target as WebClient;
+        targetClient = target as HttpClient;
     }
 
     public override void OnInspectorGUI()
@@ -18,19 +18,20 @@ public class WebClientInspector : Editor
         base.OnInspectorGUI();
         // Inspector for testing requests
         if (Application.isPlaying) RequestInspectorGUI();
+        else EditorGUILayout.HelpBox("Enter playmode to test connexion.", MessageType.Info);
     }
 
     private void RequestInspectorGUI()
     {
-        if (inspectorRequest == null) inspectorRequest = new WebRequest();
+        if (inspectorRequest == null) inspectorRequest = new HttpRequest();
         EditorGUILayout.BeginVertical("box");
         EditorGUILayout.LabelField("Test Request", EditorStyles.boldLabel);
         // Request status
         EditorGUILayout.LabelField("Status", inspectorRequest.Status.ToString() + " (" + inspectorRequest.Duration + "s)");
         // Configure request
         inspectorRequest.requestUri = EditorGUILayout.TextField("URI", inspectorRequest.requestUri);
-        inspectorRequest.type = (WebRequest.RequestType)EditorGUILayout.EnumPopup("Type", inspectorRequest.type);
-        if (inspectorRequest.type == WebRequest.RequestType.POST)
+        inspectorRequest.type = (HttpRequest.RequestType)EditorGUILayout.EnumPopup("Type", inspectorRequest.type);
+        if (inspectorRequest.type == HttpRequest.RequestType.POST)
             inspectorRequest.requestBody = EditorGUILayout.TextField("Body", inspectorRequest.requestBody);
         EditorGUILayout.EndVertical();
         // Buttons to run/cancel request
@@ -39,10 +40,10 @@ public class WebClientInspector : Editor
         if (GUILayout.Button("Cancel")) inspectorRequest.Cancel();
         EditorGUILayout.EndHorizontal();
         // Response
-        if (inspectorRequest.type == WebRequest.RequestType.GET)
+        if (inspectorRequest.type == HttpRequest.RequestType.GET)
             EditorGUILayout.TextArea(inspectorRequest.ResponseBody);
         // Repaint UI as long as request is not completed
-        if (inspectorRequest.Status == WebRequest.RequestStatus.Running)
+        if (inspectorRequest.Status == HttpRequest.RequestStatus.Running)
             EditorUtility.SetDirty(target);
 
     }

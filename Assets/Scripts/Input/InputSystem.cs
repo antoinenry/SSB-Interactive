@@ -8,14 +8,14 @@ public class InputSystem : MonoBehaviour
     public float minimumRequestTime = .2f;
     public float maxRequestTime = 1f;
 
-    private WebRequest buttonsRequest;
+    private HttpRequest buttonsRequest;
     private ButtonCountData[] buttonInputs;
 
     public float RequestTime { get; private set; }
 
     private void Awake()
     {
-        buttonsRequest = new WebRequest();
+        buttonsRequest = new HttpRequest();
     }
 
     private void Update()
@@ -27,17 +27,17 @@ public class InputSystem : MonoBehaviour
     {
         switch (buttonsRequest.Status)
         {
-            case WebRequest.RequestStatus.Created:
+            case HttpRequest.RequestStatus.Created:
                 // Launch request for the first time
                 SendButtonRequest();
                 break;
-            case WebRequest.RequestStatus.Failed:
+            case HttpRequest.RequestStatus.Failed:
                 // Failed: notify and relaunch
                 Debug.LogWarning("Button request timeout");
                 CancelButtonRequest();
                 SendButtonRequest();
                 break;
-            case WebRequest.RequestStatus.Running:
+            case HttpRequest.RequestStatus.Running:
                 // Request timeout: notify and relaunch
                 if (buttonsRequest.Duration > maxRequestTime)
                 {
@@ -47,7 +47,7 @@ public class InputSystem : MonoBehaviour
                     SendButtonRequest();
                 }
                 break;
-            case WebRequest.RequestStatus.Success:
+            case HttpRequest.RequestStatus.Success:
                 // Requess succest: get result, wait and relaunch
                 if (Time.time < buttonsRequest.StartTime + minimumRequestTime)
                 {
@@ -63,8 +63,8 @@ public class InputSystem : MonoBehaviour
     private void SendButtonRequest()
     {
         buttonsRequest.requestUri = buttonsRequestUri;
-        buttonsRequest.type = WebRequest.RequestType.GET;
-        if (WebClient.current != null) WebClient.current.SendRequest(buttonsRequest);
+        buttonsRequest.type = HttpRequest.RequestType.GET;
+        if (HttpClient.Current != null) HttpClient.Current.SendRequest(buttonsRequest);
     }
 
     private void CancelButtonRequest()
