@@ -19,7 +19,7 @@ public class HttpRequest
     public string mediaType = "application/json";
     public string requestBody = "";
 
-    private System.Net.Http.HttpClient client;
+    private HttpClient client;
     private Task<HttpResponseMessage> pendingTask;
     private CancellationTokenSource cancelSource;
 

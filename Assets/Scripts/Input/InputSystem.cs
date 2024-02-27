@@ -1,9 +1,9 @@
 using UnityEngine;
-using System;
 
 // Behaviour to get input from the server and present it in a convenient way
 public class InputSystem : MonoBehaviour
 {
+    public ScriptableHttpClient client;
     public string buttonsRequestUri = "/buttons";
     public float minimumRequestTime = .2f;
     public float maxRequestTime = 1f;
@@ -64,7 +64,7 @@ public class InputSystem : MonoBehaviour
     {
         buttonsRequest.requestUri = buttonsRequestUri;
         buttonsRequest.type = HttpRequest.RequestType.GET;
-        if (HttpClient.Current != null) HttpClient.Current.SendRequest(buttonsRequest);
+        if (client != null) client.SendRequest(buttonsRequest);
     }
 
     private void CancelButtonRequest()
