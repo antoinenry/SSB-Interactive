@@ -1,46 +1,86 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(ScriptableSocketIOClient_DogHappy))]
+[CustomEditor(typeof(SocketIOClientScriptable))]
 public class SocketClientIOInspector1 : Editor
 {
-    private ScriptableSocketIOClient_DogHappy targetClient;
-    private string inspectorRequest;
+    private SocketIOClientScriptable targetClient;
+    private string eventNameField;
+    private string responseField;
 
     private void OnEnable()
     {
-        targetClient = target as ScriptableSocketIOClient_DogHappy;
+        targetClient = target as SocketIOClientScriptable;
+        targetClient.onReceive.AddListener(OnClientReceive);
+    }
+
+    private void OnDisable()
+    {
+        targetClient.onReceive.RemoveListener(OnClientReceive);
     }
 
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        // Inspector for testing requests
-        if (Application.isPlaying) RequestInspectorGUI();
-        else EditorGUILayout.HelpBox("Enter playmode to test connexion.", MessageType.Info);
+        ConnectionGUI();
+        SubscriptionGUI();
+        ResponsesGUI();
     }
 
-    private void RequestInspectorGUI()
+    private void ConnectionGUI()
     {
-        // Connection
-        EditorGUILayout.BeginVertical("box");
-        switch(targetClient.CurrentState)
+        EditorGUILayout.LabelField("Connexion", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("State", targetClient.Connection.ToString()) ;
+        switch (targetClient.Connection)
         {
-            case ScriptableSocketIOClient_DogHappy.State.Disconneted:
-                if (GUILayout.Button("Connect")) targetClient.Connect();
+            case ConnectionState.Disconnected:
+                if (GUILayout.Button("Connect", EditorStyles.miniButtonRight)) targetClient.Connect();
                 break;
-            case ScriptableSocketIOClient_DogHappy.State.Connecting:
-                if (GUILayout.Button("Cancel connexion")) targetClient.Disconnect();
+            case ConnectionState.Connected:
+                if (GUILayout.Button("Disconnect", EditorStyles.miniButtonRight)) targetClient.Disconnect();
                 break;
-            case ScriptableSocketIOClient_DogHappy.State.Connected:
-                if (GUILayout.Button("Disconnect")) targetClient.Disconnect();
+            default:
+                EditorUtility.SetDirty(target);
+                if (GUILayout.Button("Dispose", EditorStyles.miniButtonRight)) targetClient.Dispose();
                 break;
-
         }
-        EditorGUILayout.LabelField("State", targetClient.CurrentState.ToString());
-        EditorGUILayout.EndVertical();
-        // Repaint UI as long as connexion is not completed
-        if (targetClient.CurrentState == ScriptableSocketIOClient_DogHappy.State.Connecting || targetClient.CurrentState == ScriptableSocketIOClient_DogHappy.State.Disconnecting)
-            EditorUtility.SetDirty(target);
+    }
+
+    private void SubscriptionGUI()
+    {
+        EditorGUILayout.LabelField("Subscriptions", EditorStyles.boldLabel);
+        foreach (string sub in targetClient.Subscriptions)
+        {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField(sub) ;
+            if (GUILayout.Button("X", EditorStyles.miniButtonRight)) targetClient.Unsubscribe(sub);
+            EditorGUILayout.EndHorizontal();
+        }
+        EditorGUILayout.BeginHorizontal();
+        eventNameField = EditorGUILayout.TextField(eventNameField);
+        if (GUILayout.Button("Subscribe"))
+        {
+            targetClient.Subscribe(eventNameField);
+            eventNameField = null;
+            GUI.FocusControl(null);
+        }
+        EditorGUILayout.EndHorizontal();
+    }
+
+    private void ResponsesGUI()
+    {
+        EditorGUILayout.LabelField("Responses", EditorStyles.boldLabel);
+        EditorGUILayout.TextArea(responseField);
+        if (GUILayout.Button("Clear")) responseField = "";
+    }
+
+    private void EmissionGUI()
+    {
+
+    }
+
+    private void OnClientReceive(string eventName)
+    {
+        responseField += eventName + "\n";
     }
 }

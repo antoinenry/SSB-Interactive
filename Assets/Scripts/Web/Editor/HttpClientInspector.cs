@@ -2,15 +2,15 @@
 using UnityEditor;
 
 // An augmented inspector allowing to test requests directly from Unity Editor
-[CustomEditor(typeof(ScriptableHttpClient))]
+[CustomEditor(typeof(HttpClientScriptable))]
 public class HttpClientInspector : Editor
 {
-    private ScriptableHttpClient targetClient;
+    private HttpClientScriptable targetClient;
     private HttpRequest inspectorRequest;
 
     private void OnEnable()
     {
-        targetClient = target as ScriptableHttpClient;
+        targetClient = target as HttpClientScriptable;
     }
 
     public override void OnInspectorGUI()

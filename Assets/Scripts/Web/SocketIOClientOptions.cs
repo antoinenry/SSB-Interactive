@@ -7,8 +7,7 @@ using SocketIOClient.Transport;
 [Serializable]
 public struct SocketIOClientOptions
 {
-    [Serializable]
-    public struct KeyValueCouple { public string key, value; }
+    [Serializable] public struct KeyValueCouple { public string key, value; }
 
     public string path;
     public bool reconnection;
@@ -41,17 +40,17 @@ public struct SocketIOClientOptions
 
     public static implicit operator SocketIOOptions(SocketIOClientOptions o) => new SocketIOOptions
     {
-        Path = o.path,
+        Path = o.path != "" ? o.path : null,
         Reconnection = o.reconnection,
         ReconnectionAttempts = o.reconnectionAttempts,
         ReconnectionDelay = o.reconnectionDelayMs,
         RandomizationFactor = o.reconnectionRandomFactor,
         ConnectionTimeout = new TimeSpan(0, 0, 0, 0, o.connectionTimeoutMs),
-        Query = o.query != null ? Array.ConvertAll(o.query, q => new KeyValuePair<string, string>(q.key, q.value)) : null,
+        Query = (o.query != null && o.query.Length > 0) ? Array.ConvertAll(o.query, q => new KeyValuePair<string, string>(q.key, q.value)) : null,
         EIO = o.engineVersion,
-        ExtraHeaders = new Dictionary<string, string>(o.extraHeaders != null ? Array.ConvertAll(o.extraHeaders, q => new KeyValuePair<string, string>(q.key, q.value)) : null),
+        ExtraHeaders = (o.extraHeaders != null && o.extraHeaders.Length > 0) ? new Dictionary<string, string>(Array.ConvertAll(o.extraHeaders, q => new KeyValuePair<string, string>(q.key, q.value))) : null,
         Transport = o.httpPolling ? TransportProtocol.Polling : TransportProtocol.WebSocket,
         AutoUpgrade = o.autoUpgradeToWs,
-        Auth = o.credentials
+        Auth = o.credentials != "" ? o.credentials : null
     };
 }

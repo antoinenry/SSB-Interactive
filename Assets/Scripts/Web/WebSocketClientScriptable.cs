@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Net.WebSockets;
 
 [CreateAssetMenu(fileName = "WebSocketClient", menuName = "Client/WebSocketClient")]
-public class ScriptableWebSocketClient : ScriptableObject
+public class WebSocketClientScriptable : ScriptableObject
 {
     public string serverUrl = "smash3000.ovh/socket.io";
 

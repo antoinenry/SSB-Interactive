@@ -1,15 +1,15 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(ScriptableWebSocketClient))]
+[CustomEditor(typeof(WebSocketClientScriptable))]
 public class WebSocketClientInspector : Editor
 {
-    private ScriptableWebSocketClient targetClient;
+    private WebSocketClientScriptable targetClient;
     private string inspectorRequest;
 
     private void OnEnable()
     {
-        targetClient = target as ScriptableWebSocketClient;
+        targetClient = target as WebSocketClientScriptable;
     }
 
     public override void OnInspectorGUI()

@@ -6,7 +6,7 @@ using System.Net.Http;
 // Manages the HTTP client (one per application is sufficient)
 // Used to send requests
 [CreateAssetMenu(fileName = "HttpClient", menuName = "Client/HttpClient")]
-public class ScriptableHttpClient : ScriptableObject
+public class HttpClientScriptable : ScriptableObject
 {
     public string defaultServerUrl = "https://smash3000.ovh/";
 

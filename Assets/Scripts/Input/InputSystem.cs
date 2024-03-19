@@ -3,7 +3,7 @@ using UnityEngine;
 // Behaviour to get input from the server and present it in a convenient way
 public class InputSystem : MonoBehaviour
 {
-    public ScriptableHttpClient client;
+    public HttpClientScriptable client;
     public string buttonsRequestUri = "/buttons";
     public float minimumRequestTime = .2f;
     public float maxRequestTime = 1f;

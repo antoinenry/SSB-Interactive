@@ -1,0 +1,1 @@
+public enum ConnectionState { Error, Disconnected, Connected, Connecting, Disconnecting }
