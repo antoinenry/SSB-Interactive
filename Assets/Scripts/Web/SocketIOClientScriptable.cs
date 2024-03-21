@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SocketIOClient;
-using UnityEngine.UIElements;
 
 [CreateAssetMenu(fileName = "SocketIOClient", menuName = "Client/SocketIOClient")]
 public class SocketIOClientScriptable : ScriptableObject
@@ -18,7 +17,7 @@ public class SocketIOClientScriptable : ScriptableObject
 
     public UnityEvent onConnected;
     public UnityEvent onDisconnected;
-    public Dictionary<string, UnityEvent<SocketIOResponse>> onReceived;
+    public Dictionary<string, SocketIOResponseEvent> onReceived;
 
     private void Reset() => Dispose();
 
@@ -132,28 +131,28 @@ public class SocketIOClientScriptable : ScriptableObject
         }
     }
 
-    public void Subscribe(string eventName, UnityAction<SocketIOResponse> onReception)
+    public void Subscribe(string eventName, UnityAction<string, SocketIOResponse> onReception)
     {
-        if (onReceived == null) onReceived = new Dictionary<string, UnityEvent<SocketIOResponse>>();
-        UnityEvent<SocketIOResponse> e;
+        if (onReceived == null) onReceived = new Dictionary<string, SocketIOResponseEvent>();
+        SocketIOResponseEvent e;
         if (onReceived.ContainsKey(eventName))
         {
             e = onReceived[eventName];
         }
         else
         {
-            e = new UnityEvent<SocketIOResponse>();
+            e = new SocketIOResponseEvent(eventName);
             onReceived.Add(eventName, e);
             if (Connection == ConnectionState.Connected) client.On(eventName, r => e.Invoke(r));
         }
         e.AddListener(onReception);
     }
 
-    public void Unsubscribe(string eventName)
+    public void Unsubscribe(string eventName, UnityAction<string, SocketIOResponse> onReception)
     {
         if (onReceived == null || onReceived.ContainsKey(eventName) == false) return;
-        UnityEvent<SocketIOResponse> e = onReceived[eventName];
-        e.RemoveAllListeners();
+        SocketIOResponseEvent e = onReceived[eventName];
+        e.RemoveListener(onReception);
         onReceived.Remove(eventName);
         if (Connection == ConnectionState.Connected) client.Off(eventName);
     }

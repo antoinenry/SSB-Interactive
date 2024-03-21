@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using SocketIOClient;
 
 
@@ -9,13 +10,15 @@ public class SocketClientIOInspector1 : Editor
     private SocketIOClientScriptable targetClient;
     private string eventNameField;
     private string responseLog;
+    private UnityAction<string, SocketIOResponse> showResponse;
 
     private void OnEnable()
     {
         targetClient = target as SocketIOClientScriptable;
+        if (showResponse == null) showResponse = new(ShowResponse);
         if (targetClient.Subscriptions != null)
             foreach(string sub in targetClient.Subscriptions)
-                targetClient.Subscribe(sub, r => ShowResponse(sub, r));
+                targetClient.Subscribe(sub, showResponse);
     }
 
     private void OnDisable()
@@ -57,7 +60,7 @@ public class SocketClientIOInspector1 : Editor
         {
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField(sub) ;
-            if (GUILayout.Button("X", EditorStyles.miniButton)) targetClient.Unsubscribe(sub);
+            if (GUILayout.Button("X", EditorStyles.miniButton)) targetClient.Unsubscribe(sub, showResponse);
             EditorGUILayout.EndHorizontal();
         }
         EditorGUILayout.BeginHorizontal();
@@ -65,7 +68,7 @@ public class SocketClientIOInspector1 : Editor
         if (GUILayout.Button("Subscribe"))
         {
             string eventName = new(eventNameField);
-            targetClient.Subscribe(eventNameField, r => ShowResponse(eventName, r));
+            targetClient.Subscribe(eventNameField, showResponse);
             eventNameField = null;
             GUI.FocusControl(null);
         }
