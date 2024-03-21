@@ -1,22 +1,26 @@
 using UnityEditor;
 using UnityEngine;
+using SocketIOClient;
+
 
 [CustomEditor(typeof(SocketIOClientScriptable))]
 public class SocketClientIOInspector1 : Editor
 {
     private SocketIOClientScriptable targetClient;
     private string eventNameField;
-    private string responseField;
+    private string responseLog;
 
     private void OnEnable()
     {
         targetClient = target as SocketIOClientScriptable;
-        targetClient.onReceive.AddListener(OnClientReceive);
+        if (targetClient.Subscriptions != null)
+            foreach(string sub in targetClient.Subscriptions)
+                targetClient.Subscribe(sub, r => ShowResponse(sub, r));
     }
 
     private void OnDisable()
     {
-        targetClient.onReceive.RemoveListener(OnClientReceive);
+
     }
 
     public override void OnInspectorGUI()
@@ -25,6 +29,7 @@ public class SocketClientIOInspector1 : Editor
         ConnectionGUI();
         SubscriptionGUI();
         ResponsesGUI();
+        EditorUtility.SetDirty(target);
     }
 
     private void ConnectionGUI()
@@ -40,7 +45,6 @@ public class SocketClientIOInspector1 : Editor
                 if (GUILayout.Button("Disconnect", EditorStyles.miniButtonRight)) targetClient.Disconnect();
                 break;
             default:
-                EditorUtility.SetDirty(target);
                 if (GUILayout.Button("Dispose", EditorStyles.miniButtonRight)) targetClient.Dispose();
                 break;
         }
@@ -53,14 +57,15 @@ public class SocketClientIOInspector1 : Editor
         {
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField(sub) ;
-            if (GUILayout.Button("X", EditorStyles.miniButtonRight)) targetClient.Unsubscribe(sub);
+            if (GUILayout.Button("X", EditorStyles.miniButton)) targetClient.Unsubscribe(sub);
             EditorGUILayout.EndHorizontal();
         }
         EditorGUILayout.BeginHorizontal();
         eventNameField = EditorGUILayout.TextField(eventNameField);
         if (GUILayout.Button("Subscribe"))
         {
-            targetClient.Subscribe(eventNameField);
+            string eventName = new(eventNameField);
+            targetClient.Subscribe(eventNameField, r => ShowResponse(eventName, r));
             eventNameField = null;
             GUI.FocusControl(null);
         }
@@ -69,18 +74,15 @@ public class SocketClientIOInspector1 : Editor
 
     private void ResponsesGUI()
     {
+        EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Responses", EditorStyles.boldLabel);
-        EditorGUILayout.TextArea(responseField);
-        if (GUILayout.Button("Clear")) responseField = "";
+        if (responseLog?.Length > 0 && GUILayout.Button("Clear", EditorStyles.miniButton)) responseLog = "";
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.HelpBox(responseLog, MessageType.None);
     }
 
-    private void EmissionGUI()
+    private void ShowResponse(string eventName, SocketIOResponse response)
     {
-
-    }
-
-    private void OnClientReceive(string eventName)
-    {
-        responseField += eventName + "\n";
+        responseLog += eventName + "\n";
     }
 }

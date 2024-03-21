@@ -2,25 +2,25 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using SocketIOClient;
+using UnityEngine.UIElements;
 
 [CreateAssetMenu(fileName = "SocketIOClient", menuName = "Client/SocketIOClient")]
 public class SocketIOClientScriptable : ScriptableObject
 {
-    public string serverUrl = "htpps://smash3000.ovh";
+    public string serverUrl = "https://smash3000.ovh";
     public SocketIOClientOptions options = SocketIOClientOptions.Default;
 
     private SocketIOClient.SocketIO client;
     private Task connectionTask;
     private string exceptionMessage;
-    private List<string> subscriptions;
-    private List<string> responses;
 
-    public UnityEvent<string> onReceive;
+    public UnityEvent onConnected;
+    public UnityEvent onDisconnected;
+    public Dictionary<string, UnityEvent<SocketIOResponse>> onReceived;
 
-    private void OnDisable() => Disconnect();
+    private void Reset() => Dispose();
 
     #region Start / End client
     public void Init()
@@ -68,7 +68,6 @@ public class SocketIOClientScriptable : ScriptableObject
     public void Connect()
     {
         connectionTask = ConnectAsync();
-        if (subscriptions != null) foreach (string s in subscriptions) AddListenner(s);
     }
 
     async private Task ConnectAsync()
@@ -87,12 +86,14 @@ public class SocketIOClientScriptable : ScriptableObject
 
     private void OnConnected(object sender, EventArgs e)
     {
-
+        onConnected.Invoke();
+        if (onReceived != null)
+            foreach (string eventName in onReceived.Keys)
+                client.On(eventName, r => onReceived[eventName].Invoke(r));
     }
 
     public void Disconnect()
     {
-        if (subscriptions != null) foreach (string s in subscriptions) RemoveListenner(s);
         connectionTask = DisconnectAsync();
     }
 
@@ -111,48 +112,50 @@ public class SocketIOClientScriptable : ScriptableObject
 
     private void OnDisconnected(object sender, string e)
     {
+        onDisconnected.Invoke();
+        if (onReceived != null)
+            foreach (string eventName in onReceived.Keys)
+                client.Off(eventName);
         Dispose();
     }
     #endregion
 
     #region Subscription / Reception
-    public string[] Subscriptions => subscriptions != null ? subscriptions.ToArray() : new string[0];
-    public string[] Responses => responses != null ? responses.ToArray() : new string[0];
-
-    public void Subscribe(string eventName)
+    public string[] Subscriptions
     {
-        if (subscriptions == null) subscriptions = new List<string>();
-        if (!subscriptions.Contains(eventName))
+        get
         {
-            subscriptions.Add(eventName);
-            if (Connection == ConnectionState.Connected) AddListenner(eventName);
+            if (onReceived == null) return new string[0];
+            string[] keys = new string[onReceived.Count];
+            onReceived.Keys.CopyTo(keys, 0);
+            return keys;
         }
+    }
+
+    public void Subscribe(string eventName, UnityAction<SocketIOResponse> onReception)
+    {
+        if (onReceived == null) onReceived = new Dictionary<string, UnityEvent<SocketIOResponse>>();
+        UnityEvent<SocketIOResponse> e;
+        if (onReceived.ContainsKey(eventName))
+        {
+            e = onReceived[eventName];
+        }
+        else
+        {
+            e = new UnityEvent<SocketIOResponse>();
+            onReceived.Add(eventName, e);
+            if (Connection == ConnectionState.Connected) client.On(eventName, r => e.Invoke(r));
+        }
+        e.AddListener(onReception);
     }
 
     public void Unsubscribe(string eventName)
     {
-        if (subscriptions == null) return;
-        if (subscriptions.Contains(eventName))
-        {
-            subscriptions.Remove(eventName);
-            if (Connection == ConnectionState.Connected) RemoveListenner(eventName);
-        }
-    }
-
-    private void AddListenner(string eventName)
-    {
-        if (eventName != null && client != null) client.On(eventName, socketResponse => OnReceive(eventName));
-    }
-
-    private void RemoveListenner(string eventName)
-    {
-        if (eventName != null && client != null) client.Off(eventName);
-    }
-
-    private void OnReceive(string eventName)
-    {
-        if (responses == null) responses = new List<string>();
-        onReceive.Invoke(eventName);
+        if (onReceived == null || onReceived.ContainsKey(eventName) == false) return;
+        UnityEvent<SocketIOResponse> e = onReceived[eventName];
+        e.RemoveAllListeners();
+        onReceived.Remove(eventName);
+        if (Connection == ConnectionState.Connected) client.Off(eventName);
     }
     #endregion
 }
