@@ -15,6 +15,8 @@ public class CurrentAssetsManager : ScriptableObject
 
     static public T GetCurrent<T>() where T : UnityEngine.Object => GetCurrent(typeof(T)) as T;
 
+    static public void GetCurrent<T>(ref T destination) where T : UnityEngine.Object => destination = GetCurrent(typeof(T)) as T;
+
     static public void SetCurrent<T>(T c) where T : UnityEngine.Object
     {
         SetSingleInstance();
