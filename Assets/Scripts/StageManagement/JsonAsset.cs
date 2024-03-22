@@ -7,7 +7,7 @@ public abstract class JsonAsset<T> : ScriptableObject where T : struct
     [CurrentToggle] public bool isCurrent;
     public string savePath;
 
-    [JsonAssetButtons("Save", "Load")] public string cmd;
+    public ObjectMethodCaller methodCaller = new ObjectMethodCaller("Save", "Load");
 
     public abstract T Data { get; set; }
 
@@ -28,14 +28,5 @@ public abstract class JsonAsset<T> : ScriptableObject where T : struct
         string dataString = File.ReadAllText(Application.dataPath + "/" + savePath);
         object dataObject = JsonSerializer.Deserialize(dataString, typeof(T), JsonOptions);
         if (dataObject != null && dataObject is T) Data = (T)dataObject;
-    }
-}
-
-public class JsonAssetButtonsAttribute : PropertyAttribute
-{
-    public string[] methods;
-    public JsonAssetButtonsAttribute(params string[] methodNames)
-    {
-        methods = methodNames;
     }
 }
