@@ -26,3 +26,9 @@ MonoBehaviour:
     httpPolling: 0
     autoUpgradeToWs: 1
     credentials: 
+  onConnected:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisconnected:
+    m_PersistentCalls:
+      m_Calls: []

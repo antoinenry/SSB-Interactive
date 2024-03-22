@@ -23,7 +23,10 @@ public class SocketClientIOInspector1 : Editor
 
     private void OnDisable()
     {
-
+        if (showResponse == null) return;
+        if (targetClient.Subscriptions != null)
+            foreach (string sub in targetClient.Subscriptions)
+                targetClient.Subscribe(sub, showResponse);
     }
 
     public override void OnInspectorGUI()
