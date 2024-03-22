@@ -8,6 +8,7 @@ using SocketIOClient;
 [CreateAssetMenu(fileName = "SocketIOClient", menuName = "Client/SocketIOClient")]
 public class SocketIOClientScriptable : ScriptableObject
 {
+    [CurrentToggle] public bool isCurrent;
     public string serverUrl = "https://smash3000.ovh";
     public SocketIOClientOptions options = SocketIOClientOptions.Default;
 

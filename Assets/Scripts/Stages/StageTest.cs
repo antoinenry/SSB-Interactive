@@ -1,12 +1,17 @@
 using SocketIOClient;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class StageTest : MonoBehaviour
 {
-    public SocketIOClientScriptable client;
     public string stageEvent = "stage";
     public string currentStage;
+
+    private SocketIOClientScriptable client;
+
+    private void Awake()
+    {
+        client = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
+    }
 
     private void OnEnable()
     {

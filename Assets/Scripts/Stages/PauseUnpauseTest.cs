@@ -3,16 +3,17 @@ using SocketIOClient;
 
 public class PauseUnpauseTest : MonoBehaviour
 {
-    public SocketIOClientScriptable client;
     public string pauseEvent = "pause";
     public string resumeEvent = "resume";
 
+    private SocketIOClientScriptable client;
     private SpriteRenderer s;
     private Color c;
 
     private void Awake()
     {
-        s = GetComponent<SpriteRenderer>();
+        s = GetComponent<SpriteRenderer>(); 
+        client = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
     }
 
     private void OnEnable()
