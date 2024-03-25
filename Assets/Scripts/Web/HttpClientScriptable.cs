@@ -1,5 +1,3 @@
-// STATUS: Tout est ok.
-
 using UnityEngine;
 using System.Net.Http;
 
@@ -8,13 +6,14 @@ using System.Net.Http;
 [CreateAssetMenu(fileName = "HttpClient", menuName = "Client/HttpClient")]
 public class HttpClientScriptable : ScriptableObject
 {
-    public string defaultServerUrl = "https://smash3000.ovh/";
+    [CurrentToggle] public bool isCurrent;
+    public string serverURL = "https://smash3000.ovh/";
 
     private HttpClient httpClient;
 
     public void SendRequest(HttpRequest request, bool useServerURL = true)
     {
-        if (useServerURL) request.SendFrom(httpClient, defaultServerUrl);
+        if (useServerURL) request.SendFrom(httpClient, serverURL);
         else request.SendFrom(httpClient);
     }
 

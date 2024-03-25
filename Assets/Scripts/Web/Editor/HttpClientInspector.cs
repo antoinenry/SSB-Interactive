@@ -17,8 +17,7 @@ public class HttpClientInspector : Editor
     {
         base.OnInspectorGUI();
         // Inspector for testing requests
-        if (Application.isPlaying) RequestInspectorGUI();
-        else EditorGUILayout.HelpBox("Enter playmode to test connexion.", MessageType.Info);
+        RequestInspectorGUI();
     }
 
     private void RequestInspectorGUI()

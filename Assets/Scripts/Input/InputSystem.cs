@@ -1,29 +1,33 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 // Behaviour to get input from the server and present it in a convenient way
 public class InputSystem : MonoBehaviour
 {
-    public HttpClientScriptable client;
     public string buttonsRequestUri = "/buttons";
     public float minimumRequestTime = .2f;
     public float maxRequestTime = 1f;
 
+    private HttpClientScriptable client;
     private HttpRequest buttonsRequest;
-    private ButtonCountData[] buttonInputs;
+    private ButtonCountData[] buttonTotals;
+
+    public UnityEvent<ButtonCountData[]> onInput;
 
     public float RequestTime { get; private set; }
 
     private void Awake()
     {
+        CurrentAssetsManager.GetCurrent(ref client);
         buttonsRequest = new HttpRequest();
     }
 
     private void Update()
     {
-        GetButtons();
+        RequestButtons();
     }
 
-    private void GetButtons()
+    private void RequestButtons()
     {
         switch (buttonsRequest.Status)
         {
@@ -75,6 +79,7 @@ public class InputSystem : MonoBehaviour
     private void ProcessButtonRequestResponse()
     {
         string response = buttonsRequest.ResponseBody;
-        buttonInputs = ButtonCountData.Deserialize(response);
+        buttonTotals = ButtonCountData.UpdateFromJSON(buttonTotals, response);
+        onInput.Invoke(buttonTotals);
     }
 }
