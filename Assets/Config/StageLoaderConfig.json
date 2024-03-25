@@ -1,12 +1,12 @@
 {
   "stageScenes": [
     {
-      "stageName": "TheStage2",
-      "sceneName": "TheScene2"
+      "stageName": "TheStage",
+      "sceneName": "TheScene"
     },
     {
-      "stageName": "TheStage2",
-      "sceneName": "TheScene2"
+      "stageName": "TheOtherStage",
+      "sceneName": "TheOtherScene"
     }
   ]
 }

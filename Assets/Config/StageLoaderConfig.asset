@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c8d46f26c525a49a02612dc6ae391d, type: 3}
   m_Name: StageLoaderConfig
   m_EditorClassIdentifier: 
-  isCurrent: 0
-  savePath: 
-  save: 0
-  load: 0
+  isCurrent: 1
+  savePath: Config/StageLoaderConfig.json
+  methodCaller:
+    methods:
+    - Save
+    - Load
   data:
-    stageScenes: []
+    stageScenes:
+    - stageName: TheStage1
+      sceneName: TheScene1
+    - stageName: TheStage2
+      sceneName: TheScene2
