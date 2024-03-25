@@ -155,7 +155,7 @@ public class SocketIOClientScriptable : ScriptableObject
         SocketIOResponseEvent e = onReceived[eventName];
         e.RemoveListener(onReception);
         onReceived.Remove(eventName);
-        if (Connection == ConnectionState.Connected) client.Off(eventName);
+        //if (Connection == ConnectionState.Connected) client.Off(eventName);
     }
     #endregion
 }

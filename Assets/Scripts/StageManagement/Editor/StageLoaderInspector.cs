@@ -15,13 +15,16 @@ public class StageLoaderInspector : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        if (Application.isPlaying)
+        if (Application.isPlaying && targetStageLoader.enabled)
         {
             EditorGUILayout.BeginHorizontal();
             stageField = EditorGUILayout.TextField("Stage", stageField);
             if (GUILayout.Button("Load"))
             {
                 targetStageLoader.Stage = stageField;
+            }
+            if (GUILayout.Button("Refresh"))
+            {
                 stageField = targetStageLoader.Stage;
             }
             EditorGUILayout.EndHorizontal();

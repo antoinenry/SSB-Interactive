@@ -20,7 +20,7 @@ MonoBehaviour:
     - Load
   data:
     stageScenes:
-    - stageName: TheStage1
-      sceneName: TheScene1
-    - stageName: TheStage2
-      sceneName: TheScene2
+    - stageName: MovingLogo
+      sceneName: TheScene
+    - stageName: TheOtherStage
+      sceneName: TheOtherScene

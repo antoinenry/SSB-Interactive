@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48bff8a6117497444bff619d3560a3b6, type: 3}
   m_Name: CurrentAssets
   m_EditorClassIdentifier: 
-  current: []
+  current:
+  - {fileID: 11400000, guid: fd7c5247b8ecc8542b7de202bd6f4117, type: 2}
+  - {fileID: 11400000, guid: 334956e2833778442be8a34651c0bb35, type: 2}

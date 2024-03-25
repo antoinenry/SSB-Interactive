@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b356c2fbf8251ca42bf34db5a90dc0cd, type: 3}
   m_Name: SocketIOClient
   m_EditorClassIdentifier: 
-  isCurrent: 1
+  isCurrent: 0
   serverUrl: https://smash3000.ovh
   options:
     path: /socket.io

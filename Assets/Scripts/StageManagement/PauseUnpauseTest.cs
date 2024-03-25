@@ -31,7 +31,7 @@ public class PauseUnpauseTest : MonoBehaviour
 
     private void Update()
     {
-        s.color = new(c.r, c.g, c.b, .5f + .5f * Mathf.Cos(Time.time));
+        s.color = new(c.r, c.g, c.b, .5f + .5f * Mathf.Cos(3f * Time.time));
         if (Input.GetKeyDown(KeyCode.P)) Pause();
         if (Input.GetKeyDown(KeyCode.R)) Resume();
     }

@@ -10,7 +10,7 @@ public class StageTest : MonoBehaviour
 
     private void Awake()
     {
-        client = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
+        CurrentAssetsManager.GetCurrent(ref client);
     }
 
     private void OnEnable()

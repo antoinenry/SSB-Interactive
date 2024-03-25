@@ -1,15 +1,38 @@
+using SocketIOClient;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StageLoader : MonoBehaviour
 {
+    public string stageEvent = "stage";
+
+    private SocketIOClientScriptable client;
     private StageLoaderConfig config;
     private StageLoaderConfigData.StageSceneInfo loaded;
+    [SerializeField] private string loadingStage;
 
     private void Awake()
     {
+        CurrentAssetsManager.GetCurrent(ref client);
         CurrentAssetsManager.GetCurrent(ref config);
     }
+
+    private void OnEnable()
+    {
+        client.Subscribe(stageEvent, OnClientRequestsStage);
+    }
+
+    private void OnDisable()
+    {
+        client.Unsubscribe(stageEvent, OnClientRequestsStage);
+    }
+
+    private void Update()
+    {
+        LoadStage(loadingStage);
+    }
+
+    private void OnClientRequestsStage(string eventName, SocketIOResponse response) => loadingStage = response.GetValue<string>();
 
     public string Stage
     {
