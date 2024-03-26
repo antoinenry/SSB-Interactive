@@ -10,9 +10,9 @@ public class InputSystem : MonoBehaviour
 
     private HttpClientScriptable client;
     private HttpRequest buttonsRequest;
-    private ButtonCountData[] buttonTotals;
+    private ButtonCounter buttonCounters;
 
-    public UnityEvent<ButtonCountData[]> onInput;
+    public UnityEvent<ButtonCounter> onInput;
 
     public float RequestTime { get; private set; }
 
@@ -20,6 +20,7 @@ public class InputSystem : MonoBehaviour
     {
         CurrentAssetsManager.GetCurrent(ref client);
         buttonsRequest = new HttpRequest();
+        buttonCounters = new ButtonCounter();
     }
 
     private void Update()
@@ -53,13 +54,12 @@ public class InputSystem : MonoBehaviour
                 break;
             case HttpRequest.RequestStatus.Success:
                 // Requess succest: get result, wait and relaunch
-                if (Time.time < buttonsRequest.StartTime + minimumRequestTime)
+                if (Time.time >= buttonsRequest.StartTime + minimumRequestTime)
                 {
                     RequestTime = buttonsRequest.Duration;
                     ProcessButtonRequestResponse();
-                }
-                else
                     SendButtonRequest();
+                }
                 break;
         }
     }
@@ -78,8 +78,9 @@ public class InputSystem : MonoBehaviour
 
     private void ProcessButtonRequestResponse()
     {
+        float time = Time.time;
         string response = buttonsRequest.ResponseBody;
-        buttonTotals = ButtonCountData.UpdateFromJSON(buttonTotals, response);
-        onInput.Invoke(buttonTotals);
+        buttonCounters.UpdateFromJSON(response, time);
+        onInput.Invoke(buttonCounters);
     }
 }
