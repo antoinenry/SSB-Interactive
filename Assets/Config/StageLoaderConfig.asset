@@ -14,10 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCurrent: 1
   savePath: Config/StageLoaderConfig.json
-  methodCaller:
-    methods:
-    - Save
-    - Load
   data:
     stageScenes:
     - stageName: MovingLogo
