@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 
 [CustomEditor(typeof(InputSystem))]
 public class InputSystemInspector : Editor
 {
     private InputSystem targetInputSystem;
-    private List<ButtonTimeSpawnData> window;
+    private ButtonTimeSpawnData[] window;
 
     private void OnEnable()
     {
@@ -18,7 +15,7 @@ public class InputSystemInspector : Editor
     {
         base.OnInspectorGUI();
         EditorGUILayout.LabelField("Inputs", "(last " + (targetInputSystem.timeWindow) + "s)");
-        window = targetInputSystem.GetWindow();
+        window = targetInputSystem.ButtonCounts;
         if (window != null)
             foreach (ButtonTimeSpawnData b in window)
             {

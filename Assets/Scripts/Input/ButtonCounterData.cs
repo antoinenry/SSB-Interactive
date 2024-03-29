@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -27,6 +26,7 @@ public struct ButtonTimeSpawnData
 
     public float DeltaTime => endTime - startTime;
     public int DeltaCount => maxCount - minCount;
+    public float Rate => DeltaTime != 0f ? DeltaCount / DeltaTime : 0f;
 
     public ButtonTimeSpawnData(string id, float timeStart, float timeEnd, int countStart, int countEnd)
     {

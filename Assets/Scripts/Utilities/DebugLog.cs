@@ -1,7 +1,6 @@
 using SocketIOClient;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -60,15 +59,14 @@ public class DebugLog : MonoBehaviour
         if (showInputSystemDebug)
         {
             logText += "Input System status: ";
-            List<ButtonTimeSpawnData> window = inputSystem?.GetWindow();
+            ButtonTimeSpawnData[] window = inputSystem?.ButtonCounts;
             if (window != null)
             {
-                logText += "\nTime window: " + inputSystem.timeWindow + "s";
-                logText += "\nRequest duration: " + inputSystem.RequestDuration + "s";
-                logText += "\nTime between requests: " + inputSystem.TimeBetweenRequests + "s";
+                logText += "\nTime window: " + inputSystem.timeWindow + "s (smooth " + inputSystem.smoothRates + "s)";
+                logText += "\nRequest duration: " + inputSystem.RequestDuration + "s (every " + inputSystem.TimeBetweenRequests + "s)";
                 logText += "\nButton counts:";
                 foreach (ButtonTimeSpawnData b in window)
-                    logText += "\n- " + b.buttonID + ": " + b.maxCount + " (+ " + b.DeltaCount + ")";
+                    logText += "\n- " + b.buttonID + ": " + b.maxCount + " (+ " + b.DeltaCount + ") ; " + inputSystem.GetButtonRateSmooth(b.buttonID).ToString("0.0") + "/s";
             }
         }
     }

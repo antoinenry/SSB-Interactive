@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,15 +8,20 @@ public class InputSystem : MonoBehaviour
     public float minimumRequestTime = .2f;
     public float maxRequestTime = 1f;
     public float timeWindow = 1f;
+    public float smoothRates = 1f;
 
     private HttpClientScriptable client;
     private HttpRequest buttonsRequest;
     private ButtonCounter buttonCounter;
+    private List<ButtonTimeSpawnData> buttonCounts;
+    private Dictionary<string, float> buttonRatesRaw;
+    private Dictionary<string, float> buttonRatesSmooth;
 
     public float UpdateTime { get; private set; }
     public float RequestDuration { get; private set; }
     public float TimeBetweenRequests { get; private set; }
     public List<string> ButtonIDs { get; private set; }
+    public ButtonTimeSpawnData[] ButtonCounts => buttonCounts != null ? buttonCounts.ToArray() : new ButtonTimeSpawnData[0];
 
     private void Awake()
     {
@@ -25,12 +29,17 @@ public class InputSystem : MonoBehaviour
         buttonsRequest = new HttpRequest();
         buttonCounter = new ButtonCounter();
         ButtonIDs = new List<string>();
+        buttonRatesRaw = new Dictionary<string, float>();
+        buttonRatesSmooth = new Dictionary<string, float>();
     }
 
     private void Update()
     {
         UpdateTime = Time.time;
         RequestButtons();
+        UpdateButtonsCounts();
+        UpdateButtonsRatesRaw();
+        UpdateButtonsRatesSmooth();
     }
 
     private void RequestButtons()
@@ -89,7 +98,47 @@ public class InputSystem : MonoBehaviour
         buttonCounter.ClearCapturesBefore(UpdateTime - timeWindow);
     }
 
-    public List<ButtonTimeSpawnData> GetWindow() => buttonCounter?.GetButtonCounts(UpdateTime - timeWindow, UpdateTime);
-
+    private void UpdateButtonsCounts() => buttonCounts = buttonCounter?.GetButtonCounts(UpdateTime - timeWindow, UpdateTime);
     
+    private void UpdateButtonsRatesRaw()
+    {
+        List<string> keys = new(buttonRatesRaw.Keys);
+        foreach (string buttonID in keys) buttonRatesRaw[buttonID] = 0f;
+        if (buttonCounts == null) return;
+        foreach (ButtonTimeSpawnData b in buttonCounts)
+        {
+            if (buttonRatesRaw.ContainsKey(b.buttonID)) buttonRatesRaw[b.buttonID] = b.Rate;
+            else buttonRatesRaw.Add(b.buttonID, b.Rate);
+        }
+    }
+
+    private void UpdateButtonsRatesSmooth()
+    {
+        if (buttonCounts == null) return;
+        List<string> keys = new(buttonRatesRaw.Keys);
+        foreach (string buttonID in keys)
+        {
+            if (smoothRates > 0f)
+            {
+                float currentRate = 0f;
+                if (buttonRatesSmooth.ContainsKey(buttonID)) currentRate = buttonRatesSmooth[buttonID];
+                else buttonRatesSmooth.Add(buttonID, 0f);
+                buttonRatesSmooth[buttonID] = Mathf.MoveTowards(currentRate, buttonRatesRaw[buttonID], Time.deltaTime / smoothRates);
+            }
+            else
+                buttonRatesSmooth[buttonID] = buttonRatesRaw[buttonID];
+        }
+    }    
+
+    public float GetButtonRateRaw(string buttonID)
+    {
+        if (buttonRatesRaw != null && buttonRatesRaw.ContainsKey(buttonID)) return buttonRatesRaw[buttonID];
+        else return 0f;
+    }
+
+    public float GetButtonRateSmooth(string buttonID)
+    {
+        if (buttonRatesSmooth != null && buttonRatesSmooth.ContainsKey(buttonID)) return buttonRatesSmooth[buttonID];
+        else return 0f;
+    }
 }

@@ -155,7 +155,8 @@ MonoBehaviour:
   buttonsRequestUri: buttons
   minimumRequestTime: 0.3
   maxRequestTime: 1
-  timeWindow: 0.5
+  timeWindow: 1
+  smoothRates: 0.25
 --- !u!4 &328108288
 Transform:
   m_ObjectHideFlags: 0
@@ -293,7 +294,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "SocketIO status: Disconnected\n\nInput System status: \nTime window: 1s
+    (smooth 0,25s)\nRequest duration: 0s (every 0s)\nButton counts:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -420,9 +422,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   field: {fileID: 863463672}
-  showSocketIODebug: 0
+  showSocketIODebug: 1
   socketIOEventQueueLength: 0
-  showInputSystemDebug: 0
+  showInputSystemDebug: 1
 --- !u!4 &904207214
 Transform:
   m_ObjectHideFlags: 0
