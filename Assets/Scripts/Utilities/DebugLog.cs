@@ -1,27 +1,31 @@
 using SocketIOClient;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 [ExecuteAlways]
 public class DebugLog : MonoBehaviour
 {
     public TMP_Text field;
-    public string logText = "coucou";
-    public int eventQueueLength;
+    public bool showSocketIODebug;
+    public int socketIOEventQueueLength;
+    public bool showInputSystemDebug;
 
+    private string logText;
     private SocketIOClientScriptable client;
-    private Queue<string> eventQueue;
+    private Queue<string> socketIOEventQueue;
+    private InputSystem inputSystem;
 
     private void Awake()
     {
-        logText = "";
-        eventQueue = new Queue<string>(eventQueueLength);
+        client = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
+        socketIOEventQueue = new Queue<string>(socketIOEventQueueLength);
+        inputSystem = FindObjectOfType<InputSystem>();
     }
 
     private void Start()
     {
-        client = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
         foreach (string sub in client.Subscriptions)
             client.Subscribe(sub, OnClientReceives);
 
@@ -29,8 +33,8 @@ public class DebugLog : MonoBehaviour
 
     private void OnClientReceives(string eventName, SocketIOResponse response)
     {
-        eventQueue.Enqueue (eventName);
-        if (eventQueue.Count > eventQueueLength) eventQueue.Dequeue();
+        socketIOEventQueue.Enqueue (eventName);
+        if (socketIOEventQueue.Count > socketIOEventQueueLength) socketIOEventQueue.Dequeue();
     }
 
     [ExecuteAlways]
@@ -42,11 +46,30 @@ public class DebugLog : MonoBehaviour
 
     private void SetLog()
     {
-        logText = "Client status: ";
-        if (client) logText += client.Connection;
-        else logText += "NULL";
-        if (eventQueue != null)
-            foreach(string s in eventQueue)
-                logText += "\n " + s;
+        logText = "";
+        if (showSocketIODebug)
+        {
+            logText += "SocketIO status: ";
+            if (client) logText += client.Connection;
+            else logText += "NULL";
+            if (socketIOEventQueue != null)
+                foreach (string s in socketIOEventQueue)
+                    logText += "\n " + s;
+            logText += "\n\n";
+        }
+        if (showInputSystemDebug)
+        {
+            logText += "Input System status: ";
+            List<ButtonCountDelta> window = inputSystem?.GetWindow();
+            if (window != null)
+            {
+                logText += "\nTime window: " + inputSystem.timeWindow + "s";
+                logText += "\nRequest duration: " + inputSystem.RequestDuration + "s";
+                logText += "\nTime between requests: " + inputSystem.TimeBetweenRequests + "s";
+                logText += "\nButton counts:";
+                foreach (ButtonCountDelta b in window)
+                    logText += "\n- " + b.buttonID + ": " + b.maxCount + " (+ " + b.DeltaCount + ")";
+            }
+        }
     }
 }

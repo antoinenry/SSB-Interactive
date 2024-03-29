@@ -1,5 +1,6 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 // Behaviour to get input from the server and present it in a convenient way
 public class InputSystem : MonoBehaviour
@@ -7,24 +8,28 @@ public class InputSystem : MonoBehaviour
     public string buttonsRequestUri = "/buttons";
     public float minimumRequestTime = .2f;
     public float maxRequestTime = 1f;
+    public float timeWindow = 1f;
 
     private HttpClientScriptable client;
     private HttpRequest buttonsRequest;
-    private ButtonCounter buttonCounters;
+    private ButtonCounter buttonCounter;
 
-    public UnityEvent<ButtonCounter> onInput;
-
-    public float RequestTime { get; private set; }
+    public float UpdateTime { get; private set; }
+    public float RequestDuration { get; private set; }
+    public float TimeBetweenRequests { get; private set; }
+    public List<string> ButtonIDs { get; private set; }
 
     private void Awake()
     {
         CurrentAssetsManager.GetCurrent(ref client);
         buttonsRequest = new HttpRequest();
-        buttonCounters = new ButtonCounter();
+        buttonCounter = new ButtonCounter();
+        ButtonIDs = new List<string>();
     }
 
     private void Update()
     {
+        UpdateTime = Time.time;
         RequestButtons();
     }
 
@@ -46,7 +51,7 @@ public class InputSystem : MonoBehaviour
                 // Request timeout: notify and relaunch
                 if (buttonsRequest.Duration > maxRequestTime)
                 {
-                    RequestTime = buttonsRequest.Duration;
+                    TimeBetweenRequests = buttonsRequest.Duration;
                     Debug.LogWarning("Button request timeout");
                     CancelButtonRequest();
                     SendButtonRequest();
@@ -54,9 +59,10 @@ public class InputSystem : MonoBehaviour
                 break;
             case HttpRequest.RequestStatus.Success:
                 // Requess succest: get result, wait and relaunch
-                if (Time.time >= buttonsRequest.StartTime + minimumRequestTime)
+                if (UpdateTime >= buttonsRequest.StartTime + minimumRequestTime)
                 {
-                    RequestTime = buttonsRequest.Duration;
+                    TimeBetweenRequests = UpdateTime - buttonsRequest.StartTime;
+                    RequestDuration = buttonsRequest.Duration;
                     ProcessButtonRequestResponse();
                     SendButtonRequest();
                 }
@@ -78,9 +84,13 @@ public class InputSystem : MonoBehaviour
 
     private void ProcessButtonRequestResponse()
     {
-        float time = Time.time;
         string response = buttonsRequest.ResponseBody;
-        buttonCounters.UpdateFromJSON(response, time);
-        onInput.Invoke(buttonCounters);
+        buttonCounter.AddFrame(UpdateTime, response);
+        buttonCounter.RemoveAllFramesBefore(UpdateTime - timeWindow);
+    }
+
+    public List<ButtonCountDelta> GetWindow()
+    {
+        return buttonCounter?.GetButtonCounts(UpdateTime - timeWindow, UpdateTime);
     }
 }

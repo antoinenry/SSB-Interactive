@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73996e41fd143af48bf2766783b3dd12, type: 3}
   m_Name: HttpClient
   m_EditorClassIdentifier: 
-  isCurrent: 0
+  isCurrent: 1
   serverURL: https://smash3000.ovh/

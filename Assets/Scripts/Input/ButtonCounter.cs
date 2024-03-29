@@ -1,57 +1,56 @@
 ﻿using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using System.Collections.Generic;
 
-[Serializable]
-public struct ButtonCountData
-{
-    public string buttonID;
-    public int totalPresses;
-    public int deltaPresses;
-    public float time;
-    public float deltaTime;
-
-    [JsonPropertyName("name")] public string ButtonID { get => buttonID; set => buttonID = value; }
-    [JsonPropertyName("count")] public int InputCount { get => totalPresses; set => totalPresses = value; }
-
-    public static ButtonCountData[] Deserialize(string json) => JsonSerializer.Deserialize<ButtonCountData[]>(json);
-    public void Update(int presses, float atTime)
-    {
-        deltaPresses = presses - totalPresses;
-        deltaTime = atTime - time;
-        totalPresses = presses;
-        time = atTime;
-    }
-}
-
-[Serializable]
+[Serializable] 
 public class ButtonCounter
 {
-    public ButtonCountData[] data;
+    private List<ButtonCountFrame> frames;
 
-    public int Buttons => data != null ? data.Length : 0;
-
-    public void UpdateFromJSON(string json, float time)
+    public void AddFrame(ButtonCountFrame frame)
     {
-        ButtonCountData[] jsonData = ButtonCountData.Deserialize(json);
-        if (data != null)
+        if (frames == null) frames = new List<ButtonCountFrame>();
+        int frameIndex = frames.FindIndex(f => f.time == frame.time);
+        if (frameIndex != -1)
         {
-            int newLength = jsonData != null ? jsonData.Length : 0;
-            for (int i = 0; i < newLength; i++)
+            frame.AddPresses(frames[frameIndex].totalPresses);
+            frames[frameIndex] = frame;
+        }
+        else
+        {
+            frames.Add(frame);
+            frames.Sort(ButtonCountFrame.CompareByAge);
+        }
+    }
+
+    public void AddFrame(float time, ButtonCountData[] data) => AddFrame(new(time, data));
+
+    public void AddFrame(float time, string json) => AddFrame(time, ButtonCountData.Deserialize(json));
+
+    public void RemoveAllFramesBefore(float time) => frames?.RemoveAll(f => f.time < time);
+
+    public List<ButtonCountDelta> GetButtonCounts(float fromTime, float toTime)
+    {
+        List<ButtonCountDelta> getButtonCounts = new List<ButtonCountDelta>();
+        if (frames == null) return getButtonCounts;
+        List<ButtonCountFrame> getFrames = frames.FindAll(f => f.time >= fromTime && f.time <= toTime);
+        foreach(ButtonCountFrame frame in getFrames)
+        {
+            if (frame.totalPresses == null) continue;
+            foreach(string buttonID in frame.totalPresses.Keys)
             {
-                ButtonCountData newData = jsonData[i];
-                ButtonCountData oldData = Array.Find(data, oldData => oldData.buttonID == newData.buttonID);
-                if (oldData.buttonID == newData.buttonID)
+                int buttonIndex = getButtonCounts.FindIndex(b => b.buttonID == buttonID);
+                if (buttonIndex == -1)
                 {
-                    oldData.Update(newData.totalPresses, time);
-                    jsonData[i] = oldData;
+                    getButtonCounts.Add(new(buttonID, frame.time, frame.totalPresses[buttonID]));
                 }
                 else
                 {
-                    jsonData[i] = newData;
+                    ButtonCountDelta delta = getButtonCounts[buttonIndex];
+                    delta.AddFrame(frame);
+                    getButtonCounts[buttonIndex] = delta;
                 }
             }
         }
-        data = jsonData;
+        return getButtonCounts;
     }
 }
