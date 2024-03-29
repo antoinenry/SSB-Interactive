@@ -60,14 +60,14 @@ public class DebugLog : MonoBehaviour
         if (showInputSystemDebug)
         {
             logText += "Input System status: ";
-            List<ButtonCountDelta> window = inputSystem?.GetWindow();
+            List<ButtonTimeSpawnData> window = inputSystem?.GetWindow();
             if (window != null)
             {
                 logText += "\nTime window: " + inputSystem.timeWindow + "s";
                 logText += "\nRequest duration: " + inputSystem.RequestDuration + "s";
                 logText += "\nTime between requests: " + inputSystem.TimeBetweenRequests + "s";
                 logText += "\nButton counts:";
-                foreach (ButtonCountDelta b in window)
+                foreach (ButtonTimeSpawnData b in window)
                     logText += "\n- " + b.buttonID + ": " + b.maxCount + " (+ " + b.DeltaCount + ")";
             }
         }

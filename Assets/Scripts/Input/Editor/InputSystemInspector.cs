@@ -7,7 +7,7 @@ using UnityEngine;
 public class InputSystemInspector : Editor
 {
     private InputSystem targetInputSystem;
-    private List<ButtonCountDelta> window;
+    private List<ButtonTimeSpawnData> window;
 
     private void OnEnable()
     {
@@ -20,7 +20,7 @@ public class InputSystemInspector : Editor
         EditorGUILayout.LabelField("Inputs", "(last " + (targetInputSystem.timeWindow) + "s)");
         window = targetInputSystem.GetWindow();
         if (window != null)
-            foreach (ButtonCountDelta b in window)
+            foreach (ButtonTimeSpawnData b in window)
             {
                 EditorGUILayout.LabelField(b.buttonID, b.maxCount + "(+" + b.DeltaCount + ")");
             }

@@ -85,12 +85,11 @@ public class InputSystem : MonoBehaviour
     private void ProcessButtonRequestResponse()
     {
         string response = buttonsRequest.ResponseBody;
-        buttonCounter.AddFrame(UpdateTime, response);
-        buttonCounter.RemoveAllFramesBefore(UpdateTime - timeWindow);
+        buttonCounter.Add(UpdateTime, response);
+        buttonCounter.ClearCapturesBefore(UpdateTime - timeWindow);
     }
 
-    public List<ButtonCountDelta> GetWindow()
-    {
-        return buttonCounter?.GetButtonCounts(UpdateTime - timeWindow, UpdateTime);
-    }
+    public List<ButtonTimeSpawnData> GetWindow() => buttonCounter?.GetButtonCounts(UpdateTime - timeWindow, UpdateTime);
+
+    
 }

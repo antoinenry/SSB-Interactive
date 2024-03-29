@@ -4,49 +4,85 @@ using System.Collections.Generic;
 [Serializable] 
 public class ButtonCounter
 {
-    private List<ButtonCountFrame> frames;
-
-    public void AddFrame(ButtonCountFrame frame)
+    private struct Capture
     {
-        if (frames == null) frames = new List<ButtonCountFrame>();
-        int frameIndex = frames.FindIndex(f => f.time == frame.time);
-        if (frameIndex != -1)
+        public float time;
+        public Dictionary<string, int> totalPresses;
+
+        public Capture(float time, ButtonCountData[] data)
         {
-            frame.AddPresses(frames[frameIndex].totalPresses);
-            frames[frameIndex] = frame;
+            this.time = time;
+            int dataCount = data != null ? data.Length : 0;
+            totalPresses = new Dictionary<string, int>(dataCount);
+            for (int i = 0; i < dataCount; i++)
+            {
+                ButtonCountData d = data[i];
+                if (totalPresses.ContainsKey(d.ButtonID)) totalPresses[d.ButtonID] += d.InputCount;
+                else totalPresses.Add(d.ButtonID, d.InputCount);
+            }
         }
-        else
+
+        static public int CompareByAge(Capture a, Capture b) => b.time.CompareTo(a.time);
+
+        public void AddPresses(Dictionary<string, int> presses)
         {
-            frames.Add(frame);
-            frames.Sort(ButtonCountFrame.CompareByAge);
+            if (presses == null) return;
+            if (totalPresses == null)
+            {
+                totalPresses = new(presses);
+                return;
+            }
+            foreach (string key in presses.Keys)
+            {
+                if (totalPresses.ContainsKey(key)) totalPresses[key] += presses[key];
+                else totalPresses.Add(key, presses[key]);
+            }
         }
     }
 
-    public void AddFrame(float time, ButtonCountData[] data) => AddFrame(new(time, data));
+    private List<Capture> captures;
 
-    public void AddFrame(float time, string json) => AddFrame(time, ButtonCountData.Deserialize(json));
-
-    public void RemoveAllFramesBefore(float time) => frames?.RemoveAll(f => f.time < time);
-
-    public List<ButtonCountDelta> GetButtonCounts(float fromTime, float toTime)
+    private void Add(Capture c)
     {
-        List<ButtonCountDelta> getButtonCounts = new List<ButtonCountDelta>();
-        if (frames == null) return getButtonCounts;
-        List<ButtonCountFrame> getFrames = frames.FindAll(f => f.time >= fromTime && f.time <= toTime);
-        foreach(ButtonCountFrame frame in getFrames)
+        if (captures == null) captures = new List<Capture>();
+        int frameIndex = captures.FindIndex(f => f.time == c.time);
+        if (frameIndex != -1)
         {
-            if (frame.totalPresses == null) continue;
-            foreach(string buttonID in frame.totalPresses.Keys)
+            c.AddPresses(captures[frameIndex].totalPresses);
+            captures[frameIndex] = c;
+        }
+        else
+        {
+            captures.Add(c);
+            captures.Sort(Capture.CompareByAge);
+        }
+    }
+
+    public void Add(float time, ButtonCountData[] data) => Add(new(time, data));
+
+    public void Add(float time, string json) => Add(time, ButtonCountData.Deserialize(json));
+
+    public void ClearCapturesBefore(float time) => captures?.RemoveAll(f => f.time < time);
+
+    public List<ButtonTimeSpawnData> GetButtonCounts(float fromTime, float toTime)
+    {
+        List<ButtonTimeSpawnData> getButtonCounts = new List<ButtonTimeSpawnData>();
+        if (captures == null) return getButtonCounts;
+        List<Capture> timedCaptures = captures.FindAll(f => f.time >= fromTime && f.time <= toTime);
+        foreach(Capture c in timedCaptures)
+        {
+            if (c.totalPresses == null) continue;
+            foreach(string buttonID in c.totalPresses.Keys)
             {
                 int buttonIndex = getButtonCounts.FindIndex(b => b.buttonID == buttonID);
                 if (buttonIndex == -1)
                 {
-                    getButtonCounts.Add(new(buttonID, frame.time, frame.totalPresses[buttonID]));
+                    getButtonCounts.Add(new(buttonID, c.time, c.totalPresses[buttonID]));
                 }
                 else
                 {
-                    ButtonCountDelta delta = getButtonCounts[buttonIndex];
-                    delta.AddFrame(frame);
+                    ButtonTimeSpawnData delta = getButtonCounts[buttonIndex];
+                    delta.AddCountAtTime(c.totalPresses[buttonID], c.time);
                     getButtonCounts[buttonIndex] = delta;
                 }
             }
