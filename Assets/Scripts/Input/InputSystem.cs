@@ -8,7 +8,8 @@ public class InputSystem : MonoBehaviour
     public float minimumRequestTime = .2f;
     public float maxRequestTime = 1f;
     public float timeWindow = 1f;
-    public float smoothRates = 1f;
+    public float smoothRateUp = 0f;
+    public float smoothRateDown = .5f;
 
     private HttpClientScriptable client;
     private HttpRequest buttonsRequest;
@@ -118,17 +119,24 @@ public class InputSystem : MonoBehaviour
         List<string> keys = new(buttonRatesRaw.Keys);
         foreach (string buttonID in keys)
         {
-            if (smoothRates > 0f)
-            {
-                float currentRate = 0f;
-                if (buttonRatesSmooth.ContainsKey(buttonID)) currentRate = buttonRatesSmooth[buttonID];
-                else buttonRatesSmooth.Add(buttonID, 0f);
-                buttonRatesSmooth[buttonID] = Mathf.MoveTowards(currentRate, buttonRatesRaw[buttonID], Time.deltaTime / smoothRates);
-            }
+            float currentRate = 0f;
+            if (buttonRatesSmooth.ContainsKey(buttonID)) currentRate = buttonRatesSmooth[buttonID];
+            else buttonRatesSmooth.Add(buttonID, 0f);
+            float newRate = buttonRatesRaw[buttonID];
+            if (newRate > currentRate && smoothRateUp > 0f)
+                buttonRatesSmooth[buttonID] = Mathf.MoveTowards(currentRate, buttonRatesRaw[buttonID], Time.deltaTime / smoothRateUp);
+            else if (newRate < currentRate && smoothRateDown > 0f)
+                buttonRatesSmooth[buttonID] = Mathf.MoveTowards(currentRate, buttonRatesRaw[buttonID], Time.deltaTime / smoothRateDown);
             else
                 buttonRatesSmooth[buttonID] = buttonRatesRaw[buttonID];
         }
     }    
+
+    public ButtonTimeSpawnData GetButtonData(string buttonID)
+    {
+        int buttonIndex = buttonCounts != null ? buttonCounts.FindIndex(b => b.buttonID == buttonID) : -1;
+        return buttonIndex != -1 ? buttonCounts[buttonIndex] : new ButtonTimeSpawnData();
+    }
 
     public float GetButtonRateRaw(string buttonID)
     {

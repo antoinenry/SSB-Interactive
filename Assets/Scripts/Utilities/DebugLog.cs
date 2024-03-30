@@ -62,7 +62,7 @@ public class DebugLog : MonoBehaviour
             ButtonTimeSpawnData[] window = inputSystem?.ButtonCounts;
             if (window != null)
             {
-                logText += "\nTime window: " + inputSystem.timeWindow + "s (smooth " + inputSystem.smoothRates + "s)";
+                logText += "\nTime window: " + inputSystem.timeWindow + "s (smoothing " + inputSystem.smoothRateUp + "s up, " + inputSystem.smoothRateDown + "s down)";
                 logText += "\nRequest duration: " + inputSystem.RequestDuration + "s (every " + inputSystem.TimeBetweenRequests + "s)";
                 logText += "\nButton counts:";
                 foreach (ButtonTimeSpawnData b in window)
