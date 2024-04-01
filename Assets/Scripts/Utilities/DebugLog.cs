@@ -14,13 +14,13 @@ public class DebugLog : MonoBehaviour
     private string logText;
     private SocketIOClientScriptable client;
     private Queue<string> socketIOEventQueue;
-    private InputSystem inputSystem;
+    private InputCounter inputSystem;
 
     private void Awake()
     {
         client = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
         socketIOEventQueue = new Queue<string>(socketIOEventQueueLength);
-        inputSystem = FindObjectOfType<InputSystem>();
+        inputSystem = FindObjectOfType<InputCounter>();
     }
 
     private void Start()

@@ -10,7 +10,7 @@ public class GUIButtonCountSlider : MonoBehaviour
     public bool adaptMaxValue = true;
 
     private Slider slider;
-    private InputSystem inputSystem;
+    private InputCounter inputSystem;
 
     public float MaxValue
     {
@@ -21,7 +21,7 @@ public class GUIButtonCountSlider : MonoBehaviour
     private void Awake()
     {
         slider = GetComponent<Slider>();
-        inputSystem = FindObjectOfType<InputSystem>(true);
+        inputSystem = FindObjectOfType<InputCounter>(true);
     }
 
     private void Update()

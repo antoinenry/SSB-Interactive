@@ -1,14 +1,14 @@
 using UnityEditor;
 
-[CustomEditor(typeof(InputSystem))]
+[CustomEditor(typeof(InputCounter))]
 public class InputSystemInspector : Editor
 {
-    private InputSystem targetInputSystem;
+    private InputCounter targetInputSystem;
     private ButtonTimeSpawnData[] window;
 
     private void OnEnable()
     {
-        targetInputSystem = target as InputSystem;
+        targetInputSystem = target as InputCounter;
     }
 
     public override void OnInspectorGUI()
