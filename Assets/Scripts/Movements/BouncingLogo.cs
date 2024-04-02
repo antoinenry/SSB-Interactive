@@ -6,11 +6,13 @@ public class BouncingLogo : MonoBehaviour
     public float bodyRadius;
     public float inputForce;
     public Vector2 startVelocity;
-    public float horizontalInput;
-    public float verticalInput;
+    public float minimumSpeed;
+    public float noInputDrag;
 
     private Rigidbody2D body;
     private Rect screenRect;
+    private float horizontalInput;
+    private float verticalInput;
 
     private void OnDrawGizmosSelected()
     {
@@ -37,9 +39,10 @@ public class BouncingLogo : MonoBehaviour
         screenRect.center = cam.transform.position;
         if (Application.isPlaying)
         {
-            
-            //horizontalInput = InputSystem.Current.rightNormalized - InputSystem.Current.leftNormalized;
-            //verticalInput = InputSystem.Current.upNormalized - InputSystem.Current.downNormalized;
+            horizontalInput = InputSource.GetAxis(InputSource.Axis.Direction.Horizontal, ButtonValueType.Acceleration, directionOnly:true);
+            if (horizontalInput != 0f) horizontalInput = Mathf.Sign(horizontalInput);
+            verticalInput = InputSource.GetAxis(InputSource.Axis.Direction.Vertical, ButtonValueType.Acceleration, directionOnly: true);
+            if (verticalInput != 0f) verticalInput = Mathf.Sign(verticalInput);
         }
     }
 
@@ -57,6 +60,8 @@ public class BouncingLogo : MonoBehaviour
             velocity.y = -body.velocity.y;
         }
         body.velocity = velocity;
-        body.AddForce(new Vector2(horizontalInput, verticalInput) * inputForce);
+        Vector2 movementForce = new Vector2(horizontalInput, verticalInput) * inputForce;
+        body.drag = (movementForce == Vector2.zero && velocity.magnitude > minimumSpeed) ? noInputDrag : 0f;
+        body.AddForce(movementForce);
     }
 }

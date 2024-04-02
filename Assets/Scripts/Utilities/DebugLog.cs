@@ -14,13 +14,13 @@ public class DebugLog : MonoBehaviour
     private string logText;
     private SocketIOClientScriptable client;
     private Queue<string> socketIOEventQueue;
-    private InputCounter inputSystem;
+    private InputSource inputSource;
 
     private void Awake()
     {
         client = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
         socketIOEventQueue = new Queue<string>(socketIOEventQueueLength);
-        inputSystem = FindObjectOfType<InputCounter>();
+        inputSource = FindObjectOfType<InputSource>();
     }
 
     private void Start()
@@ -59,15 +59,7 @@ public class DebugLog : MonoBehaviour
         if (showInputSystemDebug)
         {
             logText += "Input System status: ";
-            ButtonTimeSpawnData[] window = inputSystem?.ButtonCounts;
-            if (window != null)
-            {
-                logText += "\nTime window: " + inputSystem.timeWindow + "s (smoothing " + inputSystem.smoothRateUp + "s up, " + inputSystem.smoothRateDown + "s down)";
-                logText += "\nRequest duration: " + inputSystem.RequestDuration + "s (every " + inputSystem.TimeBetweenRequests + "s)";
-                logText += "\nButton counts:";
-                foreach (ButtonTimeSpawnData b in window)
-                    logText += "\n- " + b.buttonID + ": " + b.maxCount + " (+ " + b.DeltaCount + ") ; " + inputSystem.GetButtonRateSmooth(b.buttonID).ToString("0.0") + "/s";
-            }
+            logText += InputSource.GetLog();
         }
     }
 }

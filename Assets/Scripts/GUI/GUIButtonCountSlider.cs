@@ -3,14 +3,13 @@ using UnityEngine.UI;
 
 public class GUIButtonCountSlider : MonoBehaviour
 {
-    public enum ButtonCountValue { Total, Delta, RateRaw, RateSmooth }
-
     public string buttonID;
-    public ButtonCountValue value;
+    public ButtonValueType valueType;
     public bool adaptMaxValue = true;
+    public float accelerationScaleEffect = 1.5f;
+    public float accelerationScaleEffectCooldown = .5f;
 
     private Slider slider;
-    private InputCounter inputSystem;
 
     public float MaxValue
     {
@@ -21,26 +20,18 @@ public class GUIButtonCountSlider : MonoBehaviour
     private void Awake()
     {
         slider = GetComponent<Slider>();
-        inputSystem = FindObjectOfType<InputCounter>(true);
     }
 
     private void Update()
     {
-        if (inputSystem == null || slider == null) return;
-        float value = GetButtonValue();
-        if (adaptMaxValue) slider.maxValue = Mathf.Max(value, slider.maxValue);
-        slider.value = value;
-    }
-
-    private float GetButtonValue()
-    {
-        switch (value)
-        {
-            case ButtonCountValue.Total: return inputSystem.GetButtonData(buttonID).maxCount;
-            case ButtonCountValue.Delta: return inputSystem.GetButtonData(buttonID).DeltaCount;
-            case ButtonCountValue.RateRaw: return inputSystem.GetButtonRateRaw(buttonID);
-            case ButtonCountValue.RateSmooth: return inputSystem.GetButtonRateSmooth(buttonID);
-            default: return 0;
-        }
+        if (slider == null) return;
+        float buttonValue = InputSource.Get(buttonID, valueType);
+        if (adaptMaxValue) slider.maxValue = Mathf.Max(buttonValue, slider.maxValue);
+        slider.value = buttonValue;
+        float acceleration = InputSource.Get(buttonID, ButtonValueType.Acceleration);
+        float scale = slider.transform.localScale.x;
+        if (acceleration > 0f) scale = accelerationScaleEffect;
+        else scale = Mathf.MoveTowards(scale, 1f, Time.deltaTime / accelerationScaleEffectCooldown);
+        slider.transform.localScale = scale * Vector3.one;
     }
 }

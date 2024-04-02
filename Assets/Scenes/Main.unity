@@ -303,15 +303,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 328108286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9291e74afc07600478886db89973a4f5, type: 3}
+  m_Script: {fileID: 11500000, guid: c60309c205f18944aad3ef7ad561e565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonsRequestUri: buttons
-  minimumRequestTime: 0.3
-  maxRequestTime: 1
-  timeWindow: 1
+  clientInput:
+    buttonsRequestUri: buttons
+    minimumRequestTime: 0.2
+    maxRequestTime: 1
+    timeWindow: 1
+  buttonIDs:
+  - y
+  - x
+  - b
+  - a
+  horizontalAxis:
+    positiveButton: b
+    negativeButton: x
+  verticalAxis:
+    positiveButton: y
+    negativeButton: a
   smoothRateUp: 0.05
-  smoothRateDown: 0.2
+  smoothRateDown: 0.1
 --- !u!4 &328108288
 Transform:
   m_ObjectHideFlags: 0
@@ -411,7 +423,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 1
   m_MinValue: 0
-  m_MaxValue: 4.48
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 3.72
   m_OnValueChanged:
@@ -430,8 +442,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: a
-  value: 3
+  valueType: 2
   adaptMaxValue: 1
+  accelerationScaleEffect: 1.5
+  accelerationScaleEffectCooldown: 0.5
 --- !u!1 &407309711
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +677,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -943,8 +957,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "SocketIO status: Disconnected\n\nInput System status: \nTime window: 1s
-    (smoothing 0,05s up, 0,2s down)\nRequest duration: 0s (every 0s)\nButton counts:"
+  m_text: "SocketIO status: Disconnected\n\nInput System status: \nTime window: 1s\nRequest
+    duration: 0,1093292s (every 0,2015533s)\nButton counts:\n- a: 2750; 0,0/s; \n-
+    aayybbxx: 0; 0,0/s; \n- b: 5202; 0,0/s; \n- bayaya: 0; 0,0/s; \n- shake: 0; 0,0/s;
+    \n- x: 3099; 0,0/s; \n- y: 2276; 0,0/s; "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1465,7 +1481,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 4.48
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 4.48
   m_OnValueChanged:
@@ -1484,8 +1500,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: y
-  value: 3
+  valueType: 2
   adaptMaxValue: 1
+  accelerationScaleEffect: 1.5
+  accelerationScaleEffectCooldown: 0.5
 --- !u!1 &1193705997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,7 +1588,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 1
   m_MinValue: 0
-  m_MaxValue: 4.48
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 2.13
   m_OnValueChanged:
@@ -1589,8 +1607,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: x
-  value: 3
+  valueType: 2
   adaptMaxValue: 1
+  accelerationScaleEffect: 1.5
+  accelerationScaleEffectCooldown: 0.5
 --- !u!1 &1258209700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,7 +1695,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 4.48
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 4.48
   m_OnValueChanged:
@@ -1694,8 +1714,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: b
-  value: 3
+  valueType: 2
   adaptMaxValue: 1
+  accelerationScaleEffect: 1.5
+  accelerationScaleEffectCooldown: 0.5
 --- !u!1 &1274989194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,3 +2364,4 @@ MonoBehaviour:
   - {fileID: 1193705999}
   - {fileID: 393218109}
   normalizeMaxValues: 1
+  maxValuesFloor: 10

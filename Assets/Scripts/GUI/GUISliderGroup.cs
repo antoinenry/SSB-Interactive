@@ -7,6 +7,7 @@ public class GUISliderGroup : MonoBehaviour
 {
     public Slider[] sliders;
     public bool normalizeMaxValues = true;
+    public float maxValuesFloor = 10f;
 
     private void Reset()
     {
@@ -23,7 +24,7 @@ public class GUISliderGroup : MonoBehaviour
     {
         float[] values = Array.ConvertAll(sliders, s => s.value);
         float[] minValues = Array.ConvertAll(sliders, s => s.minValue);
-        float maxValue = Mathf.Max(values);
+        float maxValue = Mathf.Max(Mathf.Max(values), maxValuesFloor);
         float minValue = Mathf.Max(minValues);
         foreach (Slider s in sliders)
         {
