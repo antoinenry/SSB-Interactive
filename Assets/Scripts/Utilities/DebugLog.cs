@@ -10,28 +10,30 @@ public class DebugLog : MonoBehaviour
     public bool showSocketIODebug;
     public int socketIOEventQueueLength;
     public bool showInputSystemDebug;
+    public bool showStageLoaderDebug;
 
     private string logText;
     private SocketIOClientScriptable client;
     private Queue<string> socketIOEventQueue;
-    private InputSource inputSource;
+    private int socketIOEventCount;
+    private StageLoader stageLoader;
 
-    private void Awake()
+    private void OnEnable()
     {
         client = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
         socketIOEventQueue = new Queue<string>(socketIOEventQueueLength);
-        inputSource = FindObjectOfType<InputSource>();
+        stageLoader = FindObjectOfType<StageLoader>();
     }
 
     private void Start()
     {
         foreach (string sub in client.Subscriptions)
             client.Subscribe(sub, OnClientReceives);
-
     }
 
     private void OnClientReceives(string eventName, SocketIOResponse response)
     {
+        socketIOEventCount++;
         socketIOEventQueue.Enqueue (eventName);
         if (socketIOEventQueue.Count > socketIOEventQueueLength) socketIOEventQueue.Dequeue();
     }
@@ -52,14 +54,27 @@ public class DebugLog : MonoBehaviour
             if (client) logText += client.Connection;
             else logText += "NULL";
             if (socketIOEventQueue != null)
+            {
+                int i = socketIOEventCount;
                 foreach (string s in socketIOEventQueue)
-                    logText += "\n " + s;
+                {
+                    logText += "\n" + i + ". " + s;
+                    i--;
+                }
+            }
             logText += "\n\n";
         }
         if (showInputSystemDebug)
         {
             logText += "Input System status: ";
             logText += InputSource.GetLog();
+            logText += "\n\n";
+        }
+        if (showStageLoaderDebug)
+        {
+            logText += "Stage Loader status:\n";
+            logText += "stages: " + stageLoader.Config?.StageCount + "\n";
+            logText += "missing scenes: " + stageLoader.Config?.Data.missingStages?.Length;
         }
     }
 }

@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using SocketIOClient;
 
-
 [CustomEditor(typeof(SocketIOClientScriptable))]
 public class SocketClientIOInspector1 : Editor
 {

@@ -5,6 +5,29 @@ using UnityEngine;
 
 public class InputSource : MonoBehaviour
 {
+    // From PROTO
+    static public InputSource Current => instance;
+    static public bool IsRight => GetAxis(Axis.Direction.Horizontal, ButtonValueType.RateRaw, directionOnly: true) > 0;
+    static public bool IsLeft => GetAxis(Axis.Direction.Horizontal, ButtonValueType.RateRaw, directionOnly: true) < 0;
+    static public bool IsUp => GetAxis(Axis.Direction.Vertical, ButtonValueType.RateRaw, directionOnly: true) > 0;
+    static public bool IsDown => GetAxis(Axis.Direction.Vertical, ButtonValueType.RateRaw, directionOnly: true) < 0;
+
+    static public bool HasRight;
+    static public bool HasLeft;
+    static public bool HasUp;
+    static public bool HasDown;
+    static public int TotalRight;
+    static public int TotalLeft;
+    static public int TotalUp;
+    static public int TotalDown;
+
+    public float rightNormalized;
+    public float leftNormalized;
+    public float upNormalized;
+    public float downNormalized;
+    // ---
+
+
     private struct Button
     {
         static public int valueTypes => Enum.GetNames(typeof(ButtonValueType)).Length;

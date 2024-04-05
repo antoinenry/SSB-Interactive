@@ -9,6 +9,7 @@ using SocketIOClient;
 public class SocketIOClientScriptable : ScriptableObject
 {
     [CurrentToggle] public bool isCurrent;
+    public bool connectOnLoad = true;
     public string serverUrl = "https://smash3000.ovh";
     public SocketIOClientOptions options = SocketIOClientOptions.Default;
 
@@ -21,6 +22,11 @@ public class SocketIOClientScriptable : ScriptableObject
     public Dictionary<string, SocketIOResponseEvent> onReceived;
 
     private void Reset() => Dispose();
+
+    private void OnEnable()
+    {
+        if (connectOnLoad) Connect();
+    }
 
     #region Start / End client
     public void Init()

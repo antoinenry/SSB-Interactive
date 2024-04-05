@@ -12,11 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c8d46f26c525a49a02612dc6ae391d, type: 3}
   m_Name: StageLoaderConfig
   m_EditorClassIdentifier: 
-  isCurrent: 1
-  savePath: Config/StageLoaderConfig.json
+  savePath: Config/stage_loader.json
   data:
-    stageScenes:
-    - stageName: MovingLogo
-      sceneName: TheScene
-    - stageName: TheOtherStage
-      sceneName: TheOtherScene
+    stages:
+    - serverName: BlackScreen
+      localName: BlackScreen
+    - serverName: Logo
+      localName: Logo
+    - serverName: LevelSelect
+      localName: LevelSelect
+    - serverName: MovingLogo
+      localName: MovingLogo
+    - serverName: ShovelKnight
+      localName: ShovelKnight
+    - serverName: DonkeyKong
+      localName: DonkeyKong
+    - serverName: FloralFury
+      localName: FloralFury
+    - serverName: LuigisMansion
+      localName: LuigisMansion
+    - serverName: LoadingScreen
+      localName: LoadingScreen
+    - serverName: Rayman
+      localName: Rayman
+    - serverName: Sonic
+      localName: Sonic
+    - serverName: Quizz
+      localName: Quizz
+    missingStages: []
+    otherStages: []

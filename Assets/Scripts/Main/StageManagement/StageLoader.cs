@@ -1,65 +1,50 @@
-using SocketIOClient;
+using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class StageLoader : MonoBehaviour
 {
-    public string stageEvent = "stage";
+    public string defaultStage = "Logo";
+    public Stage[] stages;
 
-    private SocketIOClientScriptable client;
-    private StageLoaderConfig config;
-    private StageLoaderConfigData.StageSceneInfo loaded;
-    [SerializeField] private string loadingStage;
+    public Stage LoadedStage { get; private set; }
+    public StageLoaderConfig Config => CurrentAssetsManager.GetCurrent<StageLoaderConfig>();
 
-    private void Awake()
+    public string[] StageNames => stages != null ? Array.ConvertAll(stages, s => s?.name) : new string[0];
+       
+    public void LoadStage(string localStageName = null, string serverStageName = null)
     {
-        CurrentAssetsManager.GetCurrent(ref client);
-        CurrentAssetsManager.GetCurrent(ref config);
-    }
-
-    private void OnEnable()
-    {
-        client.Subscribe(stageEvent, OnClientRequestsStage);
-    }
-
-    private void OnDisable()
-    {
-        client.Unsubscribe(stageEvent, OnClientRequestsStage);
-    }
-
-    private void Update()
-    {
-        LoadStage(loadingStage);
-    }
-
-    private void OnClientRequestsStage(string eventName, SocketIOResponse response) => loadingStage = response.GetValue<string>();
-
-    public string Stage
-    {
-        get => loaded.stageName;
-        set => LoadStage(value);
-    }
-
-    public string Scene => loaded.sceneName;
-
-    private void LoadStage(string stageName)
-    {
-        string sceneName = config?.GetScene(stageName);
-        LoadScene(sceneName);
-        loaded.stageName = stageName;
-    }
-
-    private void LoadScene(string sceneName)
-    {
-        if (loaded.sceneName == sceneName) return;
-        if (SceneManager.GetSceneByName(loaded.sceneName).isLoaded)
-            SceneManager.UnloadSceneAsync(loaded.sceneName);
-        if (sceneName != null)
+        if (localStageName != null && serverStageName != null)
         {
-            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            loaded.sceneName = sceneName;
+            if (localStageName != Config.GetLocalName(serverStageName))
+            {
+                Debug.LogWarning("Stage name mismatch");
+                LoadStageFromLocalName(defaultStage);
+            }
         }
-        else
-            loaded.sceneName = null;
+        else if (serverStageName != null) LoadStageFromLocalName(Config?.GetLocalName(serverStageName));
+        else if (localStageName != null) LoadStageFromLocalName(localStageName);
+        else LoadStageFromLocalName(defaultStage);
+    }
+
+    private void LoadStageFromLocalName(string localStageName)
+    {
+        Stage[] stageInstances = GetComponentsInChildren<Stage>();
+        bool alreadyLoaded = false;
+        if (stageInstances != null)
+        {
+            foreach (Stage instance in stageInstances)
+            {
+                if (!alreadyLoaded && instance.name == localStageName)
+                {
+                    alreadyLoaded = true;
+                    continue;
+                }
+                DestroyImmediate(instance.gameObject);
+            }
+        }
+        if (alreadyLoaded) return;
+        Stage stagePrefab = stages != null ? Array.Find(stages, s => s?.name == localStageName) : null;
+        if (stagePrefab == null) stagePrefab = stages != null ? Array.Find(stages, s => s?.name == defaultStage) : null;
+        LoadedStage = stagePrefab != null ? Instantiate(stagePrefab, transform) : null;
     }
 }

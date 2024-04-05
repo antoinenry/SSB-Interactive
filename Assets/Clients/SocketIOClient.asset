@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SocketIOClient
   m_EditorClassIdentifier: 
   isCurrent: 0
+  connectOnLoad: 1
   serverUrl: https://smash3000.ovh
   options:
     path: /socket.io

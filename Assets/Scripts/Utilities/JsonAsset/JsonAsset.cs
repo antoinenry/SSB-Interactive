@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class JsonAsset : ScriptableObject
 {
-    [CurrentToggle] public bool isCurrent;
     public string savePath;
 
     static public JsonSerializerOptions JsonOptions => new JsonSerializerOptions()

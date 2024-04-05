@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CurrentAssets
   m_EditorClassIdentifier: 
   current:
-  - {fileID: 11400000, guid: fd7c5247b8ecc8542b7de202bd6f4117, type: 2}
-  - {fileID: 11400000, guid: 334956e2833778442be8a34651c0bb35, type: 2}
   - {fileID: 11400000, guid: 092cd8b228ad28d4c8cf4e0dcd2fccfc, type: 2}
+  - {fileID: 11400000, guid: 334956e2833778442be8a34651c0bb35, type: 2}
+  - {fileID: 11400000, guid: fd7c5247b8ecc8542b7de202bd6f4117, type: 2}
+  - {fileID: 11400000, guid: 248c78a537541404994eb9e910628aac, type: 2}
