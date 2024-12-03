@@ -20,39 +20,134 @@ MonoBehaviour:
       rotateSpeed: 90
       difficulty:
       - floorHeight: 4
-        floorWidth: 4
+        floorWidth: 6
         propChances: 000000000100000000000000000000000000000000000000000000000000000000000000
+        itemChance: 0
       - floorHeight: 6
         floorWidth: 6
-        propChances: 000000000400000002000000010000000000000000000000000000000000000000000000
+        propChances: 000000000000000001000000000000000000000000000000000000000000000000000000
+        itemChance: 0
+      - floorHeight: 5
+        floorWidth: 6
+        propChances: 000000000200000004000000000000000000000000000000000000000000000000000000
+        itemChance: 1
       - floorHeight: 8
         floorWidth: 4
+        propChances: 000000000400000002000000000000000000000001000000000000000000000000000000
+        itemChance: 0
+      - floorHeight: 6
+        floorWidth: 6
+        propChances: 000000000000000000000000000000000000000001000000000000000000000000000000
+        itemChance: 1
+      - floorHeight: 6
+        floorWidth: 4
+        propChances: 000000000000000004000000010000000000000000000000000000000000000000000000
+        itemChance: 0
+      - floorHeight: 6
+        floorWidth: 8
+        propChances: 000000000000000000000000010000000100000000000000000000000000000000000000
+        itemChance: 1
+      - floorHeight: 8
+        floorWidth: 8
+        propChances: 000000000000000000000000010000000200000000000000000000000000000004000000
+        itemChance: 1
+      - floorHeight: 8
+        floorWidth: 6
+        propChances: 000000000000000000000000010000000100000001000000010000000100000001000000
+        itemChance: 1
+      - floorHeight: 8
+        floorWidth: 6
         propChances: 000000000100000001000000010000000100000001000000010000000100000001000000
+        itemChance: 1
+      - floorHeight: 20
+        floorWidth: 20
+        propChances: 000000000000000000000000000000000000000000000000000000000100000000000000
+        itemChance: 1
     luigisMansion:
       luigiSpeed: 2
-      torchSpeed: 90
-      fallFloors: 4
+      torchSpeed: 120
+      fallFloors: 1
       difficulty:
       - floorCount: 2
         minFloorWidth: 20
         maxFloorWidth: 40
         ghostCount: 0
         ghostSpeed: 0
+        minCoinsPerFloor: 0
+        maxCoinsPerFloor: 0
       - floorCount: 2
         minFloorWidth: 30
         maxFloorWidth: 50
         ghostCount: 1
         ghostSpeed: 1
+        minCoinsPerFloor: 2
+        maxCoinsPerFloor: 2
+      - floorCount: 2
+        minFloorWidth: 30
+        maxFloorWidth: 50
+        ghostCount: 1
+        ghostSpeed: 2
+        minCoinsPerFloor: 1
+        maxCoinsPerFloor: 1
+      - floorCount: 2
+        minFloorWidth: 40
+        maxFloorWidth: 60
+        ghostCount: 2
+        ghostSpeed: 2
+        minCoinsPerFloor: 0
+        maxCoinsPerFloor: 0
+      - floorCount: 2
+        minFloorWidth: 50
+        maxFloorWidth: 70
+        ghostCount: 3
+        ghostSpeed: 2
+        minCoinsPerFloor: 1
+        maxCoinsPerFloor: 3
+      - floorCount: 2
+        minFloorWidth: 40
+        maxFloorWidth: 70
+        ghostCount: 4
+        ghostSpeed: 1
+        minCoinsPerFloor: 1
+        maxCoinsPerFloor: 3
+      - floorCount: 2
+        minFloorWidth: 30
+        maxFloorWidth: 80
+        ghostCount: 5
+        ghostSpeed: 1
+        minCoinsPerFloor: 4
+        maxCoinsPerFloor: 4
+      - floorCount: 2
+        minFloorWidth: 30
+        maxFloorWidth: 80
+        ghostCount: 5
+        ghostSpeed: 2
+        minCoinsPerFloor: 0
+        maxCoinsPerFloor: 0
+      - floorCount: 2
+        minFloorWidth: 30
+        maxFloorWidth: 80
+        ghostCount: 6
+        ghostSpeed: 2
+        minCoinsPerFloor: 3
+        maxCoinsPerFloor: 6
+      - floorCount: 2
+        minFloorWidth: 30
+        maxFloorWidth: 80
+        ghostCount: 20
+        ghostSpeed: 1
+        minCoinsPerFloor: 3
+        maxCoinsPerFloor: 6
     rayman:
-      horizontalSpeed: 2
+      horizontalSpeed: 3
       jumpForce: 35
-      flyForce: 5
-      fallGravity: 5
+      flyForce: 2
+      fallGravity: 8
       glideGravity: 0.5
       difficultyStepLength: 40
       difficulty:
-      - minimumPassageHeight: 3
-        maximumPassageHeight: 5
+      - minimumPassageHeight: 1
+        maximumPassageHeight: 1
         stalagtiteChance: 0
         stalagmiteChance: 0.5
         itemChance: 0.5
@@ -73,62 +168,69 @@ MonoBehaviour:
         itemChance: 1
     shovelKnight:
       bounceForce: 15
-      moveForce: 40
+      moveForce: 10
       difficultyStepHeight: 30
       difficulty:
+      - minimumPlatformWidth: 5
+        maximumPlatformWidth: 6
+        movingChance: 0
+        movingSpeed: 0
+        blinkingChance: 0
+        blinkingRate: 0
+        itemChance: 0.2
+      - minimumPlatformWidth: 5
+        maximumPlatformWidth: 5
+        movingChance: 0.1
+        movingSpeed: 1
+        blinkingChance: 0
+        blinkingRate: 0
+        itemChance: 0.2
       - minimumPlatformWidth: 4
-        maximumPlatformWidth: 4
-        movingChance: 0
-        movingSpeed: 0
-        blinkingChance: 0
-        blinkingRate: 0
-        itemChance: 0.2
-      - minimumPlatformWidth: 2
-        maximumPlatformWidth: 4
-        movingChance: 0
-        movingSpeed: 0
-        blinkingChance: 0
-        blinkingRate: 0
-        itemChance: 0.2
-      - minimumPlatformWidth: 2
-        maximumPlatformWidth: 4
+        maximumPlatformWidth: 5
         movingChance: 0.2
+        movingSpeed: 0.2
+        blinkingChance: 0
+        blinkingRate: 0
+        itemChance: 0.3
+      - minimumPlatformWidth: 3
+        maximumPlatformWidth: 4
+        movingChance: 0
+        movingSpeed: 0
+        blinkingChance: 0
+        blinkingRate: 0
+        itemChance: 0.3
+      - minimumPlatformWidth: 3
+        maximumPlatformWidth: 4
+        movingChance: 1
         movingSpeed: 1
         blinkingChance: 0
         blinkingRate: 0
         itemChance: 0.3
-      - minimumPlatformWidth: 1
-        maximumPlatformWidth: 2
-        movingChance: 0
-        movingSpeed: 0
-        blinkingChance: 0
-        blinkingRate: 0
-        itemChance: 0.3
       - minimumPlatformWidth: 2
-        maximumPlatformWidth: 4
-        movingChance: 0
-        movingSpeed: 0
-        blinkingChance: 0.5
-        blinkingRate: 2
-        itemChance: 0.3
-      - minimumPlatformWidth: 1
-        maximumPlatformWidth: 4
-        movingChance: 0.2
+        maximumPlatformWidth: 3
+        movingChance: 0.3
         movingSpeed: 2
         blinkingChance: 0
         blinkingRate: 0
         itemChance: 0.4
-      - minimumPlatformWidth: 1
+      - minimumPlatformWidth: 4
         maximumPlatformWidth: 4
-        movingChance: 0.2
-        movingSpeed: 2
-        blinkingChance: 0
+        movingChance: 0
+        movingSpeed: 0
+        blinkingChance: 0.7
+        blinkingRate: 3
+        itemChance: 0.5
+      - minimumPlatformWidth: 3
+        maximumPlatformWidth: 3
+        movingChance: 0.5
+        movingSpeed: 0
+        blinkingChance: 0.3
         blinkingRate: 3
         itemChance: 0.5
     sonic:
       walkSpeed: 2
-      walkDuration: 0.3
-      verticalStep: 0.2
+      invicibleWalkSpeed: 4
+      verticalStep: 0.05
       difficultyStepLength: 10
       difficulty:
       - checkpointDistance: 10
@@ -140,3 +242,74 @@ MonoBehaviour:
           max: 20
         minGapDuration: 3
         reverseChance: 0
+        itemChance: 0
+      - checkpointDistance: 10
+        carSpeed:
+          min: 3
+          max: 4
+        carSpacing:
+          min: 7
+          max: 19
+        minGapDuration: 3
+        reverseChance: 0.1
+        itemChance: 0.5
+      - checkpointDistance: 10
+        carSpeed:
+          min: 4
+          max: 5
+        carSpacing:
+          min: 6
+          max: 18
+        minGapDuration: 3
+        reverseChance: 0.2
+        itemChance: 0
+      - checkpointDistance: 10
+        carSpeed:
+          min: 5
+          max: 6
+        carSpacing:
+          min: 6
+          max: 16
+        minGapDuration: 2.5
+        reverseChance: 0.3
+        itemChance: 0.5
+      - checkpointDistance: 10
+        carSpeed:
+          min: 6
+          max: 7
+        carSpacing:
+          min: 6
+          max: 14
+        minGapDuration: 2.5
+        reverseChance: 0.4
+        itemChance: 0.3
+      - checkpointDistance: 10
+        carSpeed:
+          min: 7
+          max: 8
+        carSpacing:
+          min: 6
+          max: 12
+        minGapDuration: 2
+        reverseChance: 0.5
+        itemChance: 0.3
+      - checkpointDistance: 10
+        carSpeed:
+          min: 8
+          max: 9
+        carSpacing:
+          min: 6
+          max: 10
+        minGapDuration: 2
+        reverseChance: 0.5
+        itemChance: 0
+      - checkpointDistance: 10
+        carSpeed:
+          min: 9
+          max: 10
+        carSpacing:
+          min: 5
+          max: 9
+        minGapDuration: 2
+        reverseChance: 0.5
+        itemChance: 1

@@ -9,7 +9,8 @@ public abstract class JsonAsset : ScriptableObject
     static public JsonSerializerOptions JsonOptions => new JsonSerializerOptions()
     {
         WriteIndented = true,
-        IncludeFields = true
+        IncludeFields = true,
+        AllowTrailingCommas = true
     };
 
     public abstract void Save();

@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Floor
+  - Checkpoint
+  - Weapon
+  - Hazard
   layers:
   - Default
   - TransparentFX
@@ -12,12 +16,12 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerAoE
+  - EnemyAoE
+  - PlayerHitbox
+  - EnemyHitbox
+  - PlayerAllPurpose
+  - EnemyAllPurpose
   - 
   - 
   - 

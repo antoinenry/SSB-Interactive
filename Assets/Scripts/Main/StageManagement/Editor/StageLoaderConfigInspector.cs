@@ -2,14 +2,14 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(StageLoaderConfig))]
+[CustomEditor(typeof(StageNamingConfig))]
 public class StageLoaderConfigInspector : Editor
 {
-    private StageLoaderConfig targetConfig;
+    private StageNamingConfig targetConfig;
 
     private void OnEnable()
     {
-        targetConfig = target as StageLoaderConfig;
+        targetConfig = target as StageNamingConfig;
         targetConfig.FindMissingStages();
     }
 
@@ -36,7 +36,17 @@ public class StageLoaderConfigInspector : Editor
         else
         {
             EditorGUILayout.BeginVertical("box");
-            foreach (string other in otherStages) EditorGUILayout.LabelField(other);
+            foreach (string other in otherStages)
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField(other);
+                if (GUILayout.Button("Add"))
+                {
+                    targetConfig.AddStage(other, other);
+                    targetConfig.FindMissingStages();
+                }
+                EditorGUILayout.EndHorizontal();
+            }
             EditorGUILayout.EndVertical();
         }
         if (GUILayout.Button("Refresh")) targetConfig.FindMissingStages();

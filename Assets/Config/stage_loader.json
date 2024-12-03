@@ -47,8 +47,14 @@
     {
       "serverName": "Quizz",
       "localName": "Quizz"
+    },
+    {
+      "serverName": "Megalovania",
+      "localName": "Megalovania"
     }
   ],
   "missingStages": [],
-  "otherStages": []
+  "otherStages": [
+    "EmptyScene"
+  ]
 }

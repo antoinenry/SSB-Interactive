@@ -41,8 +41,17 @@ public class DebugLog : MonoBehaviour
     [ExecuteAlways]
     private void Update()
     {
+        if (Input.anyKeyDown) ToggleVisibility();
         SetLog();
         if (field) field.text = logText;
+    }
+
+    private void ToggleVisibility()
+    {
+        bool visible = !showSocketIODebug;
+        showSocketIODebug = visible;
+        showInputSystemDebug = visible;
+        showStageLoaderDebug = visible;
     }
 
     private void SetLog()

@@ -1,0 +1,203 @@
+{
+  "donkeyKong": {
+    "horizontalSpeed": 1,
+    "rotateSpeed": 90,
+    "difficulty": [
+      {
+        "floorHeight": 4,
+        "floorWidth": 4,
+        "propChances": [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "floorHeight": 6,
+        "floorWidth": 6,
+        "propChances": [
+          0,
+          4,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "floorHeight": 8,
+        "floorWidth": 4,
+        "propChances": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "luigisMansion": {
+    "luigiSpeed": 2,
+    "torchSpeed": 90,
+    "fallFloors": 4,
+    "difficulty": [
+      {
+        "floorCount": 2,
+        "minFloorWidth": 20,
+        "maxFloorWidth": 40,
+        "ghostCount": 0,
+        "ghostSpeed": 0
+      },
+      {
+        "floorCount": 2,
+        "minFloorWidth": 30,
+        "maxFloorWidth": 50,
+        "ghostCount": 1,
+        "ghostSpeed": 1
+      }
+    ]
+  },
+  "rayman": {
+    "horizontalSpeed": 2,
+    "jumpForce": 35,
+    "flyForce": 5,
+    "fallGravity": 5,
+    "glideGravity": 0.5,
+    "difficultyStepLength": 40,
+    "difficulty": [
+      {
+        "minimumPassageHeight": 3,
+        "maximumPassageHeight": 5,
+        "stalagtiteChance": 0,
+        "stalagmiteChance": 0.5,
+        "itemChance": 0.5
+      },
+      {
+        "minimumPassageHeight": 3,
+        "maximumPassageHeight": 5,
+        "stalagtiteChance": 0,
+        "stalagmiteChance": 0.699999988,
+        "itemChance": 0.5
+      },
+      {
+        "minimumPassageHeight": 3,
+        "maximumPassageHeight": 5,
+        "stalagtiteChance": 0.5,
+        "stalagmiteChance": 0.5,
+        "itemChance": 0.699999988
+      },
+      {
+        "minimumPassageHeight": 2,
+        "maximumPassageHeight": 4,
+        "stalagtiteChance": 0.699999988,
+        "stalagmiteChance": 0.699999988,
+        "itemChance": 1
+      }
+    ]
+  },
+  "shovelKnight": {
+    "bounceForce": 15,
+    "moveForce": 40,
+    "difficultyStepHeight": 30,
+    "difficulty": [
+      {
+        "minimumPlatformWidth": 4,
+        "maximumPlatformWidth": 4,
+        "movingChance": 0,
+        "movingSpeed": 0,
+        "blinkingChance": 0,
+        "blinkingRate": 0,
+        "itemChance": 0.200000003
+      },
+      {
+        "minimumPlatformWidth": 2,
+        "maximumPlatformWidth": 4,
+        "movingChance": 0,
+        "movingSpeed": 0,
+        "blinkingChance": 0,
+        "blinkingRate": 0,
+        "itemChance": 0.200000003
+      },
+      {
+        "minimumPlatformWidth": 2,
+        "maximumPlatformWidth": 4,
+        "movingChance": 0.200000003,
+        "movingSpeed": 1,
+        "blinkingChance": 0,
+        "blinkingRate": 0,
+        "itemChance": 0.300000012
+      },
+      {
+        "minimumPlatformWidth": 1,
+        "maximumPlatformWidth": 2,
+        "movingChance": 0,
+        "movingSpeed": 0,
+        "blinkingChance": 0,
+        "blinkingRate": 0,
+        "itemChance": 0.300000012
+      },
+      {
+        "minimumPlatformWidth": 2,
+        "maximumPlatformWidth": 4,
+        "movingChance": 0,
+        "movingSpeed": 0,
+        "blinkingChance": 0.5,
+        "blinkingRate": 2,
+        "itemChance": 0.300000012
+      },
+      {
+        "minimumPlatformWidth": 1,
+        "maximumPlatformWidth": 4,
+        "movingChance": 0.200000003,
+        "movingSpeed": 2,
+        "blinkingChance": 0,
+        "blinkingRate": 0,
+        "itemChance": 0.400000006
+      },
+      {
+        "minimumPlatformWidth": 1,
+        "maximumPlatformWidth": 4,
+        "movingChance": 0.200000003,
+        "movingSpeed": 2,
+        "blinkingChance": 0,
+        "blinkingRate": 3,
+        "itemChance": 0.5
+      }
+    ]
+  },
+  "sonic": {
+    "walkSpeed": 2,
+    "walkDuration": 0.300000012,
+    "verticalStep": 0.200000003,
+    "difficultyStepLength": 10,
+    "difficulty": [
+      {
+        "checkpointDistance": 10,
+        "carSpeed": {
+          "min": 2,
+          "max": 3
+        },
+        "carSpacing": {
+          "min": 8,
+          "max": 20
+        },
+        "minGapDuration": 3,
+        "reverseChance": 0
+      }
+    ]
+  }
+}

@@ -9,13 +9,14 @@ using SocketIOClient;
 public class SocketIOClientScriptable : ScriptableObject
 {
     [CurrentToggle] public bool isCurrent;
-    public bool connectOnLoad = true;
     public string serverUrl = "https://smash3000.ovh";
     public SocketIOClientOptions options = SocketIOClientOptions.Default;
 
     private SocketIOClient.SocketIO client;
     private Task connectionTask;
-    private string exceptionMessage;
+    private List<Task> emissionTasks;
+    private string connectionError;
+    private string emissionError;
 
     public UnityEvent onConnected;
     public UnityEvent onDisconnected;
@@ -23,14 +24,11 @@ public class SocketIOClientScriptable : ScriptableObject
 
     private void Reset() => Dispose();
 
-    private void OnEnable()
-    {
-        if (connectOnLoad) Connect();
-    }
-
     #region Start / End client
     public void Init()
     {
+        connectionError = null;
+        emissionError = null;
         client = new SocketIOClient.SocketIO(serverUrl, options);
         client.OnConnected += OnConnected;
         client.OnDisconnected += OnDisconnected;
@@ -46,6 +44,8 @@ public class SocketIOClientScriptable : ScriptableObject
             client.OnError -= OnError;
             client.Dispose();
             client = null;
+            connectionError = null;
+            emissionError = null;
         }
     }
 
@@ -60,7 +60,7 @@ public class SocketIOClientScriptable : ScriptableObject
     {
         get
         {
-            if (exceptionMessage != null && exceptionMessage.Length > 0) return ConnectionState.Error;
+            if (connectionError != null && connectionError.Length > 0) return ConnectionState.Error;
             if (client != null)
             {
                 if (connectionTask == null || connectionTask.IsCompleted) return client.Connected ? ConnectionState.Connected : ConnectionState.Disconnected;
@@ -81,12 +81,12 @@ public class SocketIOClientScriptable : ScriptableObject
         try
         {
             Init();
-            exceptionMessage = null;
+            connectionError = null;
             await client.ConnectAsync();
         }
         catch (Exception e)
         { 
-            exceptionMessage = e.Message;
+            connectionError = e.Message;
         }
     }
 
@@ -107,12 +107,12 @@ public class SocketIOClientScriptable : ScriptableObject
     {
         try
         {
-            exceptionMessage = null;
+            connectionError = null;
             if (client != null) await client.DisconnectAsync();
         }
         catch (Exception e)
         {
-            exceptionMessage = e.Message;
+            connectionError = e.Message;
         }
     }
 
@@ -123,6 +123,25 @@ public class SocketIOClientScriptable : ScriptableObject
             foreach (string eventName in onReceived.Keys)
                 client.Off(eventName);
         Dispose();
+    }
+
+    public void ResetConnection()
+    {
+        connectionTask = ResetConnectionAsync();
+    }
+
+    async private Task ResetConnectionAsync()
+    {
+        try
+        {
+            connectionError = null;
+            await DisconnectAsync();
+            await ConnectAsync();
+        }
+        catch (Exception e)
+        {
+            connectionError = e.Message;
+        }
     }
     #endregion
 
@@ -162,6 +181,32 @@ public class SocketIOClientScriptable : ScriptableObject
         e.RemoveListener(onReception);
         onReceived.Remove(eventName);
         //if (Connection == ConnectionState.Connected) client.Off(eventName);
+    }
+    #endregion
+
+    #region Emission
+    public void Emit(string eventName, params object[] parameters)
+    {
+        if (emissionTasks == null) emissionTasks = new();
+        Task newTask = EmitAsync(emissionTasks.Count, eventName, parameters);
+        emissionTasks.Add(newTask);
+    }
+
+    async private Task EmitAsync(int taskIndex, string eventName, params object[] parameters)
+    {
+        try
+        {
+            await client.EmitAsync(eventName, parameters);
+        }
+        catch (Exception e)
+        {
+            emissionError = e.Message;
+            emissionTasks.RemoveAt(taskIndex);
+        }
+        finally
+        {
+            emissionTasks.RemoveAt(taskIndex);
+        }
     }
     #endregion
 }

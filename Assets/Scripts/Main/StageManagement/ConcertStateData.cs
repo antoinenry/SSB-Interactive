@@ -5,7 +5,8 @@ using System.Text.Json.Serialization;
 [Serializable] 
 public struct ConcertStateData
 {
-    [JsonPropertyName("setlistSong")] public SetlistSongData SetlistSong { get => setlistSong; set => setlistSong = value; }
+    //[JsonPropertyName("setlistSong")] public SetlistSongData SetlistSong { get => setlistSong; set => setlistSong = value; }
+    [JsonPropertyName("stageTitle")] public string Stage { get => stage; set => stage = value; }
     [JsonPropertyName("moment")] public int Moment { get => moment; set => moment = value; }
 
     static public ConcertStateData Deserialize(string dataString)
@@ -22,10 +23,11 @@ public struct ConcertStateData
         }
     }
 
-    public SetlistSongData setlistSong;
+    //public SetlistSongData setlistSong;
+    public string stage;
     public int moment;
 
-    public string StageName => setlistSong.song.stage.title;
+    //public string StageName => setlistSong.song.stage.title;
 
     [Serializable]
     public struct SetlistSongData

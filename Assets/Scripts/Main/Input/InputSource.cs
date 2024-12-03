@@ -5,29 +5,6 @@ using UnityEngine;
 
 public class InputSource : MonoBehaviour
 {
-    // From PROTO
-    static public InputSource Current => instance;
-    static public bool IsRight => GetAxis(Axis.Direction.Horizontal, ButtonValueType.RateRaw, directionOnly: true) > 0;
-    static public bool IsLeft => GetAxis(Axis.Direction.Horizontal, ButtonValueType.RateRaw, directionOnly: true) < 0;
-    static public bool IsUp => GetAxis(Axis.Direction.Vertical, ButtonValueType.RateRaw, directionOnly: true) > 0;
-    static public bool IsDown => GetAxis(Axis.Direction.Vertical, ButtonValueType.RateRaw, directionOnly: true) < 0;
-
-    static public bool HasRight;
-    static public bool HasLeft;
-    static public bool HasUp;
-    static public bool HasDown;
-    static public int TotalRight;
-    static public int TotalLeft;
-    static public int TotalUp;
-    static public int TotalDown;
-
-    public float rightNormalized;
-    public float leftNormalized;
-    public float upNormalized;
-    public float downNormalized;
-    // ---
-
-
     private struct Button
     {
         static public int valueTypes => Enum.GetNames(typeof(ButtonValueType)).Length;
@@ -45,6 +22,7 @@ public class InputSource : MonoBehaviour
         public enum Direction { Horizontal, Vertical }
         public string positiveButton;
         public string negativeButton;
+        [Range(0f, 1f)] public float deadZone;
     }
 
     public ClientInputCounter clientInput;
@@ -70,8 +48,7 @@ public class InputSource : MonoBehaviour
 
     private void Update()
     {
-        if (clientInput == null) return;
-        clientInput.UpdateCount();
+        clientInput?.UpdateCount();
         UpdateButtonIDs();
         buttonCounts = clientInput.GetCurrentButtonCounts(buttonIDs);
         UpdateValues();
@@ -138,8 +115,13 @@ public class InputSource : MonoBehaviour
             if (positive == negative) return 0f;
             else return Mathf.Sign(positive - negative);
         }
+        else if (positive + negative != 0f)
+        {
+            float value = (positive - negative) / (positive + negative);
+            return Mathf.Abs(value) >= a.deadZone ? value : 0f;
+        }
         else
-            return positive - negative;
+            return 0f;
     }
 
     static public string GetLog()

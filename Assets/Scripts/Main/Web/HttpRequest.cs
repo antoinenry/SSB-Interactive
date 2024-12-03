@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 
 // Class representing a standard HTTP request
 // Allow to configure, run and track a request
@@ -51,7 +52,7 @@ public class HttpRequest
         }
     }
 
-    public void SendFrom(System.Net.Http.HttpClient httpClient, string serverUrl = "")
+    public void SendFrom(HttpClient httpClient, string serverUrl = "")
     {
         // Set request parameters
         client = httpClient;
@@ -107,4 +108,21 @@ public class HttpRequest
         pendingTask = null;
         return response;
     }
+
+    public T DeserializeResponse<T>()
+    {
+        if (ResponseBody == null || ResponseBody.Length == 0) return default;
+        try 
+        {
+            return JsonSerializer.Deserialize<T>(ResponseBody);
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning("Deserialize exception: " + e);
+            Debug.Log("...when deserializing " + ResponseBody);
+            return default;
+        }
+    }
+
+    public void SerializeBody<T>(T data) => requestBody = JsonSerializer.Serialize(data);
 }

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3c8d46f26c525a49a02612dc6ae391d, type: 3}
+  m_Script: {fileID: 11500000, guid: 47bcd565c91426f41adba64ed1d9b32c, type: 3}
   m_Name: StageLoaderConfig
   m_EditorClassIdentifier: 
   savePath: Config/stage_loader.json
@@ -39,5 +39,9 @@ MonoBehaviour:
       localName: Sonic
     - serverName: Quizz
       localName: Quizz
+    - serverName: Megalovania
+      localName: Megalovania
     missingStages: []
-    otherStages: []
+    otherStages:
+    - EmptyScene
+  isCurrent: 0

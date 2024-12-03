@@ -1,19 +1,17 @@
 using UnityEngine;
 using System;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
 [Serializable]
 public struct SingleButtonCount
 {
-    private string buttonID;
-    private int count;
-
     [JsonPropertyName("name")] public string ButtonID { get => buttonID; set => buttonID = value; }
     [JsonPropertyName("count")] public int InputCount { get => count; set => count = value; }
 
-    public static SingleButtonCount[] Deserialize(string json) => JsonSerializer.Deserialize<SingleButtonCount[]>(json);
+    private string buttonID;
+    private int count;
+
 }
 
 [Serializable]

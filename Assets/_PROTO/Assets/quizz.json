@@ -1,0 +1,14 @@
+[
+  {
+    "question": "Ca marche pas",
+    "a": "A",
+    "b": "B",
+    "x": "X",
+    "y": "Y",
+    "answer": [
+      "a"
+    ],
+    "right": "on est vraiment desoles dhabitude ca marche bien",
+    "wrong": "au moins la fanfare fonctionne avec un peu de chance"
+  }
+]

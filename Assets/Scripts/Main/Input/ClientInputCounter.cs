@@ -93,8 +93,7 @@ public class ClientInputCounter
 
     private void ProcessButtonRequestResponse()
     {
-        string response = buttonsRequest.ResponseBody;
-        SingleButtonCount[] data = SingleButtonCount.Deserialize(response);
+        SingleButtonCount[] data = buttonsRequest.DeserializeResponse<SingleButtonCount[]>();
         AddCountData(UpdateTime, data);
     }
 
