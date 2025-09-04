@@ -18,14 +18,19 @@ public class MainScore : MonoBehaviour
 
     private void Awake()
     {
-        scorePost = new();
-        scorePost.type = HttpRequest.RequestType.POST;
         httpClient = CurrentAssetsManager.GetCurrent<HttpClientScriptable>();
     }
 
     private void Start()
     {
         DisplayScore = false;
+    }
+
+    private void InitScorePostRequest()
+    {
+        scorePost = new();
+        scorePost.type = HttpRequest.RequestType.POST;
+        scorePost.requestUri = postScoreUri;
     }
 
     public void RegisterStageScore()
@@ -69,13 +74,12 @@ public class MainScore : MonoBehaviour
 
     public void PostStageScore(int score, string stageName)
     {
+        if (scorePost == null) InitScorePostRequest();
         ScoreData data = new()
         {
             stageScore = score,
             stage = stageName
         };
-        scorePost.requestUri = postScoreUri;
-        scorePost.type = HttpRequest.RequestType.POST;
         scorePost.SerializeBody(data);
         if (httpClient != null) httpClient.SendRequest(scorePost);
     }
