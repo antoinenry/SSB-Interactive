@@ -18,6 +18,7 @@ public class StageLoader : MonoBehaviour
 
     public void LoadStage(string localStageName = null, string serverStageName = null, int moment = 0)
     {
+        Debug.Log($"Setting the stage: local: {localStageName} - server: {serverStageName} - moment: {moment}");
         // Set stage
         if (localStageName != null && serverStageName != null)
         {
@@ -31,7 +32,10 @@ public class StageLoader : MonoBehaviour
         else if (localStageName != null) LoadStageFromLocalName(localStageName);
         else LoadStageFromLocalName(defaultStage);
         // Set moment
-        if (LoadedStage) LoadedStage.Moment = moment;
+        if (LoadedStage) {
+            Debug.Log($"Setting the moment to {moment}");
+            LoadedStage.Moment = moment;
+        }
     }
 
     public bool Pause
@@ -64,6 +68,7 @@ public class StageLoader : MonoBehaviour
                 DestroyImmediate(instance.gameObject);
             }
         }
+        Debug.Log($"stage {localStageName} is considered loaded: {alreadyLoaded}");
         if (alreadyLoaded) return;
         Stage stagePrefab = stages != null ? Array.Find(stages, s => s?.name == localStageName) : null;
         if (stagePrefab == null) stagePrefab = stages != null ? Array.Find(stages, s => s?.name == defaultStage) : null;

@@ -7,6 +7,7 @@ public class StageLoaderInspector : Editor
 {
     private StageLoader targetStageLoader;
     private string stageField;
+    private int momentField = 0;
     private string[] missingScenes;
     private int nullScenes;
 
@@ -14,14 +15,16 @@ public class StageLoaderInspector : Editor
     {
         targetStageLoader = target as StageLoader;
         stageField = targetStageLoader.LoadedStage?.name;
+        momentField = targetStageLoader.LoadedStage != null ? targetStageLoader.LoadedStage.Moment : 0;
     }
 
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        stageField = EditorGUILayout.TextField("Stage", targetStageLoader.LoadedStage != null ? targetStageLoader.LoadedStage.name : stageField);
+        stageField = EditorGUILayout.TextField("Stage", stageField);
+        momentField = EditorGUILayout.IntField("Moment", momentField);
         EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Load")) targetStageLoader.LoadStage(stageField);
+        if (GUILayout.Button("Load")) targetStageLoader.LoadStage(stageField, null, momentField);
         if (GUILayout.Button("Unload")) targetStageLoader.LoadStage(null);
         if (GUILayout.Button(targetStageLoader.Pause ? "Unpause" : "Pause")) targetStageLoader.Pause = !targetStageLoader.Pause;
         EditorGUILayout.EndHorizontal();
