@@ -1,6 +1,7 @@
 using SocketIOClient;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 [ExecuteAlways]
 public class ConcertClient : MonoBehaviour
@@ -12,6 +13,8 @@ public class ConcertClient : MonoBehaviour
     public string pauseEvent = "pause";
     public string resumeEvent = "resume";
     public ObjectMethodCaller editorButtons = new ObjectMethodCaller("GetConcertInfo", "ValidateConcertState");
+    public UnityEvent onClientConnected;
+    public UnityEvent onClientDisconnected;
 
     private StageLoader stageLoader;
     private HttpRequest infoRequest;
@@ -37,6 +40,8 @@ public class ConcertClient : MonoBehaviour
         SocketClient.Subscribe(stateChangeEvent, OnClientReponse);
         SocketClient.Subscribe(pauseEvent, OnClientPause);
         SocketClient.Subscribe(resumeEvent, OnClientResume);
+        SocketClient.onConnected.AddListener(OnClientConnected);
+        SocketClient.onDisconnected.AddListener(OnClientDisconnected);
     }
 
     private void OnDisable()
@@ -44,6 +49,8 @@ public class ConcertClient : MonoBehaviour
         SocketClient.Unsubscribe(stateChangeEvent, OnClientReponse);
         SocketClient.Unsubscribe(pauseEvent, OnClientPause);
         SocketClient.Unsubscribe(resumeEvent, OnClientResume);
+        SocketClient.onConnected.RemoveListener(OnClientConnected);
+        SocketClient.onDisconnected.RemoveListener(OnClientDisconnected);
     }
 
     private void Update()
@@ -74,6 +81,16 @@ public class ConcertClient : MonoBehaviour
     {
         paused = false;
         pendingPauseState = true;
+    }
+
+    private void OnClientConnected()
+    {
+        onClientConnected.Invoke();
+    }
+
+    private void OnClientDisconnected()
+    {
+        onClientDisconnected.Invoke();
     }
 
     private IEnumerator GetConcertInfoCoroutine()
