@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Behaviour to get audience input from the server and keep counts
+//
+//
+
 [Serializable]
 public class ClientInputCounter
 {   
@@ -24,9 +26,6 @@ public class ClientInputCounter
     {
         CurrentAssetsManager.GetCurrent(ref client);
         buttonsRequest = new HttpRequest();
-
-        //buttonRatesRaw = new Dictionary<string, float>();
-        //buttonRatesSmooth = new Dictionary<string, float>();
     }
 
     public void UpdateCount()
@@ -35,12 +34,11 @@ public class ClientInputCounter
         RequestButtons();
         updateButtonCounts = GetButtonCountsOverTime(UpdateTime - timeWindow, UpdateTime);
         responseButtonCounts?.RemoveAll(f => f.time < UpdateTime - timeWindow);
-        //UpdateButtonsRatesRaw();
-        //UpdateButtonsRatesSmooth();
     }
 
     #region Sending/Processing Requests
     private void RequestButtons()
+    // Update client request: start, continue or stop, and process the response when there is one.
     {
         if (client == null || buttonsRequest == null)
             InitClient();
@@ -52,7 +50,7 @@ public class ClientInputCounter
                 break;
             case HttpRequest.RequestStatus.Failed:
                 // Failed: notify and relaunch
-                Debug.LogWarning("Button request timeout");
+                Debug.LogWarning("Button request failure");
                 CancelButtonRequest();
                 SendButtonRequest();
                 break;

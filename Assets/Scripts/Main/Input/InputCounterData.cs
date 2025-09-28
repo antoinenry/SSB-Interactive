@@ -3,6 +3,7 @@ using System;
 using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
+// Counter for a single button with one ID: this is the format used on the http server. Used for response deserialization.
 [Serializable]
 public struct SingleButtonCount
 {
@@ -11,9 +12,46 @@ public struct SingleButtonCount
 
     private string buttonID;
     private int count;
-
 }
 
+// Counter for multiple buttons at one certain time. Used to store and process the response.
+public struct MultipleButtonsCount
+{
+    public float time;
+    public Dictionary<string, int> count;
+
+    public MultipleButtonsCount(float time, SingleButtonCount[] data)
+    {
+        this.time = time;
+        int dataCount = data != null ? data.Length : 0;
+        count = new Dictionary<string, int>(dataCount);
+        for (int i = 0; i < dataCount; i++)
+        {
+            SingleButtonCount d = data[i];
+            if (count.ContainsKey(d.ButtonID)) count[d.ButtonID] += d.InputCount;
+            else count.Add(d.ButtonID, d.InputCount);
+        }
+    }
+
+    static public int CompareByAge(MultipleButtonsCount a, MultipleButtonsCount b) => b.time.CompareTo(a.time);
+
+    public void AddPresses(Dictionary<string, int> presses)
+    {
+        if (presses == null) return;
+        if (count == null)
+        {
+            count = new(presses);
+            return;
+        }
+        foreach (string key in presses.Keys)
+        {
+            if (count.ContainsKey(key)) count[key] += presses[key];
+            else count.Add(key, presses[key]);
+        }
+    }
+}
+
+// Counter for a single button over a period of time. Used to simulate a real-time input system.
 [Serializable]
 public struct SingleButtonCountOverTime
 {
@@ -51,41 +89,5 @@ public struct SingleButtonCountOverTime
         endTime = Mathf.Max(time, endTime);
         minCount = Mathf.Min(count, minCount);
         maxCount = Mathf.Max(count, maxCount);
-    }
-}
-
-public struct MultipleButtonsCount
-{
-    public float time;
-    public Dictionary<string, int> count;
-
-    public MultipleButtonsCount(float time, SingleButtonCount[] data)
-    {
-        this.time = time;
-        int dataCount = data != null ? data.Length : 0;
-        count = new Dictionary<string, int>(dataCount);
-        for (int i = 0; i < dataCount; i++)
-        {
-            SingleButtonCount d = data[i];
-            if (count.ContainsKey(d.ButtonID)) count[d.ButtonID] += d.InputCount;
-            else count.Add(d.ButtonID, d.InputCount);
-        }
-    }
-
-    static public int CompareByAge(MultipleButtonsCount a, MultipleButtonsCount b) => b.time.CompareTo(a.time);
-
-    public void AddPresses(Dictionary<string, int> presses)
-    {
-        if (presses == null) return;
-        if (count == null)
-        {
-            count = new(presses);
-            return;
-        }
-        foreach (string key in presses.Keys)
-        {
-            if (count.ContainsKey(key)) count[key] += presses[key];
-            else count.Add(key, presses[key]);
-        }
     }
 }

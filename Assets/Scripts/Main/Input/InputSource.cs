@@ -130,11 +130,12 @@ public class InputSource : MonoBehaviour
         SingleButtonCountOverTime[] window = instance?.clientInput.GetCurrentButtonCounts();
         if (window != null)
         {
-            logText += "\nTime window: " + instance.clientInput.timeWindow + "s";
-            logText += "\nRequest duration: " + instance.clientInput.RequestDuration + "s (every " + instance.clientInput.TimeBetweenRequests + "s)";
-            logText += "\nButton counts:";
+            logText += "\nFrame : " + (Time.deltaTime).ToString("0.000") + "s";
+            logText += "\nTime window : " + instance.clientInput.timeWindow + "s";
+            logText += "\nRequest duration : " + instance.clientInput.RequestDuration.ToString("0.000") + "s (every " + instance.clientInput.TimeBetweenRequests.ToString("0.000") + "s)";
+            logText += "\nButton counts :";
             foreach (SingleButtonCountOverTime b in window)
-                logText += "\n- " + b.buttonID + ": " + b.maxCount + "; " + b.Rate.ToString("0.0") + "/s; ";
+                logText += "\n- " + b.buttonID + ": " + b.maxCount + "; " + b.Rate.ToString("0.000") + "/s; ";
         }
         else
             logText = "NULL";
