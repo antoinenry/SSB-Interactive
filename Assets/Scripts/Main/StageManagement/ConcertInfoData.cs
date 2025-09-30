@@ -11,4 +11,9 @@ public struct ConcertInfoData
     public string date;
     public string location;
     public string name;
+
+    public string GetLog()
+    {
+        return "date : " + date + " / location : " + location + " / name : " + name;
+    }
 }

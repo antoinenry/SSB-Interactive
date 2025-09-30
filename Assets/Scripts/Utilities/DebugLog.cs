@@ -7,28 +7,31 @@ using UnityEngine;
 public class DebugLog : MonoBehaviour
 {
     public TMP_Text field;
-    public bool showSocketIODebug;
+    public KeyCode toggleKey = KeyCode.L;
+    public bool visible = false;
     public int socketIOEventQueueLength;
-    public bool showInputSystemDebug;
-    public bool showStageLoaderDebug;
 
     private string logText;
-    private SocketIOClientScriptable client;
+    private ConcertClient concertClient;
+    private SocketIOClientScriptable socketClient;
     private Queue<string> socketIOEventQueue;
     private int socketIOEventCount;
     private StageLoader stageLoader;
+    private ClientButtonTracker buttonCounter;
 
     private void OnEnable()
     {
-        client = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
+        concertClient = FindObjectOfType<ConcertClient>();
+        socketClient = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
         socketIOEventQueue = new Queue<string>(socketIOEventQueueLength);
         stageLoader = FindObjectOfType<StageLoader>();
+        buttonCounter = FindObjectOfType<ClientButtonTracker>();
     }
 
     private void Start()
     {
-        foreach (string sub in client.Subscriptions)
-            client.Subscribe(sub, OnClientReceives);
+        foreach (string sub in socketClient.Subscriptions)
+            socketClient.Subscribe(sub, OnClientReceives);
     }
 
     private void OnClientReceives(string eventName, SocketIOResponse response)
@@ -41,26 +44,25 @@ public class DebugLog : MonoBehaviour
     [ExecuteAlways]
     private void Update()
     {
-        if (Input.anyKeyDown) ToggleVisibility();
+        if (Input.GetKeyDown(toggleKey)) ToggleVisibility();
         SetLog();
         if (field) field.text = logText;
     }
 
     private void ToggleVisibility()
     {
-        bool visible = !showSocketIODebug;
-        showSocketIODebug = visible;
-        showInputSystemDebug = visible;
-        showStageLoaderDebug = visible;
+        visible = !visible;
     }
 
     private void SetLog()
     {
         logText = "";
-        if (showSocketIODebug)
+        if (visible)
         {
-            logText += "SocketIO status: ";
-            if (client) logText += client.Connection;
+            logText += "Framerate : " + (1f / Time.deltaTime).ToString("0") + "\n";
+
+            logText += "SocketIO status : ";
+            if (socketClient) logText += socketClient.Connection;
             else logText += "NULL";
             if (socketIOEventQueue != null)
             {
@@ -71,19 +73,28 @@ public class DebugLog : MonoBehaviour
                     i--;
                 }
             }
+
             logText += "\n\n";
-        }
-        if (showInputSystemDebug)
-        {
-            logText += "Input System status: ";
-            logText += InputSource.GetLog();
+
+            logText += "Concert status : ";
+            if (concertClient)
+            {
+                logText += "\n- concert : " + concertClient.concertInfo.GetLog();
+                logText += "\n- state : " + concertClient.concertState.GetLog();
+                logText += "\n- crowd : " + concertClient.crowdSize;
+            }
+            else logText += "NULL";
+
             logText += "\n\n";
-        }
-        if (showStageLoaderDebug)
-        {
-            logText += "Stage Loader status:\n";
-            logText += "stages: " + stageLoader.Config?.StageCount + "\n";
-            logText += "missing scenes: " + stageLoader.Config?.Data.missingStages?.Length;
+
+            logText += "Input System status : ";
+            logText += buttonCounter ? "\n" + buttonCounter.GetLog() : "missing button counter";
+
+            logText += "\n\n";
+
+            logText += "Stage Loader status :";
+            logText += "\n- stages : " + stageLoader.Config?.StageCount;
+            logText += "\n- missing scenes : " + stageLoader.Config?.Data.missingStages?.Length;
         }
     }
 }

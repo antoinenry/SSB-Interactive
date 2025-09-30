@@ -1,145 +1,73 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using static ClientButtonTracker;
 
 public class InputSource : MonoBehaviour
 {
-    private struct Button
+    public struct ButtonInputDelta
     {
-        static public int valueTypes => Enum.GetNames(typeof(ButtonValueType)).Length;
-        static public Button New() => new() { valuesByType = new float[valueTypes] };
-
-        private float[] valuesByType;
-
-        public float Get(ButtonValueType type) => valuesByType[(int)type];
-        public float Set(ButtonValueType type, float value) => valuesByType[(int)type] = value;
+        public int totalPresses;
+        public int deltaPresses;
+        public float deltaTime;
     }
 
-    [Serializable]
     public struct Axis
+    { 
+        public enum Direction { Vertical,  Horizontal };
+    };
+
+    public ClientButtonTracker buttonCounter;
+
+    private Dictionary<string,ButtonInputDelta> buttonDeltas;
+
+    public ClientButtonTracker.MultipleButtonTimedCount CurrentFrame { get; private set; }
+
+    private void OnEnable() => AddButtonListeners();
+
+    private void OnDisable() => RemoveButtonListeners();
+
+    private void AddButtonListeners()
     {
-        public enum Direction { Horizontal, Vertical }
-        public string positiveButton;
-        public string negativeButton;
-        [Range(0f, 1f)] public float deadZone;
+        if (buttonCounter == null) return;
+        buttonCounter.onCountUpdate.AddListener(OnButtonCountUpdate);
+
     }
 
-    public ClientInputCounter clientInput;
-    public string[] buttonIDs;
-    public Axis horizontalAxis;
-    public Axis verticalAxis;
-    public float smoothRateUp = 0f;
-    public float smoothRateDown = .5f;
-
-    static private int instanceCount;
-    static private InputSource instance;
-    private Dictionary<string, Button> buttons;
-    private SingleButtonCountOverTime[] buttonCounts;
-
-    private void Awake()
+    private void RemoveButtonListeners()
     {
-        clientInput?.InitClient();
-        buttons = new();
-        instance = this;
-        instanceCount++;
-        if (instanceCount > 1) Debug.LogWarning("Multiple instances");
+        if (buttonCounter == null) return;
+        buttonCounter.onCountUpdate.RemoveListener(OnButtonCountUpdate);
     }
 
-    private void Update()
+    private void OnButtonCountUpdate(MultipleButtonTimedCount count)
     {
-        clientInput?.UpdateCount();
-        UpdateButtonIDs();
-        buttonCounts = clientInput.GetCurrentButtonCounts(buttonIDs);
-        UpdateValues();
-    }
-
-    private void UpdateButtonIDs()
-    {
-        List<string> keys = new(buttons.Keys);
-        foreach (string key in keys) if (buttonIDs.Contains(key) == false) buttons.Remove(key);
-        foreach (string id in buttonIDs) buttons.TryAdd(id, Button.New());
-    }
-
-    private void UpdateValues()
-    {
-        float deltaTime = Time.deltaTime;
-        foreach (SingleButtonCountOverTime b in buttonCounts)
+        if (buttonCounter == null) return;
+        MultipleButtonTimedCount previousFrame = CurrentFrame;
+        CurrentFrame = count;
+        float previousTime = previousFrame.time, currentTime = CurrentFrame.time;
+        foreach (KeyValuePair<string, int> b in buttonCounter.Current.counts)
         {
-            string id = b.buttonID;
-            if (buttons.ContainsKey(id) == false) continue;
-            int total = b.maxCount;
-            float rawRate = b.Rate;
-            float previousRawRate = buttons[id].Get(ButtonValueType.RateRaw);
-            float previousSmoothRate = buttons[id].Get(ButtonValueType.RateSmooth);
-            float smoothRate = SmoothValue(previousSmoothRate, rawRate, deltaTime);            
-            float acc = (rawRate - previousRawRate) / deltaTime;
-            buttons[id].Set(ButtonValueType.Total, total);
-            buttons[id].Set(ButtonValueType.Acceleration, acc);
-            buttons[id].Set(ButtonValueType.RateRaw, rawRate);
-            buttons[id].Set(ButtonValueType.RateSmooth, smoothRate);
+            UpdateButtonCount(b.Key, previousFrame[b.Key], b.Value, previousTime, currentTime);
         }
     }
 
-    private float SmoothValue(float current, float target, float deltaTime)
+    private void UpdateButtonCount(string id, int previousCount, int currentCount, float previousTime, float currentTime)
     {
-        float smooth;
-        if (target > current && smoothRateUp > 0f) smooth = Mathf.Lerp(current, target, deltaTime / smoothRateUp);
-        else if (target < current && smoothRateDown > 0f) smooth = Mathf.Lerp(current, target, deltaTime / smoothRateDown);
-        else smooth = target;
-        return smooth;
+        if (buttonDeltas == null) buttonDeltas = new();
+        ButtonInputDelta newInput = new ButtonInputDelta()
+        {
+            totalPresses = currentCount,
+            deltaPresses = currentCount - previousCount,
+            deltaTime = currentTime - previousTime
+        };
+        if (buttonDeltas.ContainsKey(id) == false) buttonDeltas.Add(id, newInput);
+        else buttonDeltas[id] = newInput;
     }
 
-    static public float Get(string buttonID, ButtonValueType type)
-        => (instance?.buttons != null && instance.buttons.ContainsKey(buttonID)) ? instance.buttons[buttonID].Get(type) : 0f;
-
-    static public float GetAxis(Axis.Direction axis, ButtonValueType type, bool directionOnly = false, bool avoidInversion = true)
+    static public float Get(string id, ButtonValueType type)
     {
-        if (instance == null) return 0f;
-        Axis a;
-        switch (axis)
-        {
-            case Axis.Direction.Horizontal: a = instance.horizontalAxis; break;
-            case Axis.Direction.Vertical: a = instance.verticalAxis; break;
-            default: return 0f;
-        }
-        float positive = Get(a.positiveButton, type);
-        float negative = Get(a.negativeButton, type);
-        if (avoidInversion)
-        {
-            positive = Mathf.Max(positive, 0f);
-            negative = Mathf.Max(negative, 0f);
-        }
-        if (directionOnly)
-        {
-            if (positive == negative) return 0f;
-            else return Mathf.Sign(positive - negative);
-        }
-        else if (positive + negative != 0f)
-        {
-            float value = (positive - negative) / (positive + negative);
-            return Mathf.Abs(value) >= a.deadZone ? value : 0f;
-        }
-        else
-            return 0f;
+        return float.NaN;
     }
 
-    static public string GetLog()
-    {
-        string logText = "";
-        SingleButtonCountOverTime[] window = instance?.clientInput.GetCurrentButtonCounts();
-        if (window != null)
-        {
-            logText += "\nFrame : " + (Time.deltaTime).ToString("0.000") + "s";
-            logText += "\nTime window : " + instance.clientInput.timeWindow + "s";
-            logText += "\nRequest duration : " + instance.clientInput.RequestDuration.ToString("0.000") + "s (every " + instance.clientInput.TimeBetweenRequests.ToString("0.000") + "s)";
-            logText += "\nButton counts :";
-            foreach (SingleButtonCountOverTime b in window)
-                logText += "\n- " + b.buttonID + ": " + b.maxCount + "; " + b.Rate.ToString("0.000") + "/s; ";
-        }
-        else
-            logText = "NULL";
-        if (instanceCount > 1) logText += "\nWarning: multiple input sources detected.";
-        return logText;
-    }
+    static public float GetAxis(Axis.Direction direction, ButtonValueType type, bool directionOnly = false) => float.NaN;
 }

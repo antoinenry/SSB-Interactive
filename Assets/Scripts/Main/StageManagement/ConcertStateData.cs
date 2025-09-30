@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using static UnityEditor.FilePathAttribute;
 
 [Serializable] 
 public struct ConcertStateData
@@ -52,7 +53,11 @@ public struct ConcertStateData
     {
         [JsonPropertyName("title")] public string Title { get => title; set => title = value; }
 
-        public string title;        
+        public string title;
+    }
+    public string GetLog()
+    {
+        return "stage : " + stage + " / moment : " + moment;
     }
 }
 
