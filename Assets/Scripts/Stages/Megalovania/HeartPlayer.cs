@@ -30,8 +30,8 @@ public class HeartPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float xInput = InputSource.GetAxis(InputSource.Axis.Direction.Horizontal, ButtonValueType.RateRaw);
-        float yInput = InputSource.GetAxis(InputSource.Axis.Direction.Vertical, ButtonValueType.RateRaw);
+        float xInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Horizontal);
+        float yInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Vertical);
         body.velocity = moveSpeed * new Vector2(xInput, yInput);
     }
 

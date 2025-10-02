@@ -40,8 +40,8 @@ public class PropDrop : MonoBehaviour
         }
         else
         {
-            float hInput = InputSource.GetAxis(InputSource.Axis.Direction.Horizontal, ButtonValueType.RateRaw, directionOnly:true);
-            float vInput = InputSource.GetAxis(InputSource.Axis.Direction.Vertical, ButtonValueType.RateRaw, directionOnly: true);
+            float hInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Horizontal);
+            float vInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Vertical);
             transform.position += hInput * deltaTime * horizontalSpeed * Vector3.right;
             if (vInput > 0f) loadedProp.transform.rotation *= Quaternion.AngleAxis(rotateSpeed, Vector3.forward);
             else if (vInput < 0f) DropProp();

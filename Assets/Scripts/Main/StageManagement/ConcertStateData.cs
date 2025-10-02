@@ -1,7 +1,6 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using static UnityEditor.FilePathAttribute;
 
 [Serializable] 
 public struct ConcertStateData

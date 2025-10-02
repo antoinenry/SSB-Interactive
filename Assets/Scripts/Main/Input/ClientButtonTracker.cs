@@ -74,7 +74,7 @@ public class ClientButtonTracker : MonoBehaviour
     public MultipleButtonTimedCount Current { get; private set; }
 
     private void Awake() => requestLoop?.Init();
-    private void OnEnable() => AddRequesListeners();
+    private void OnEnable() => AddRequestListeners();
     private void OnDisable() => RemoveRequestListeners();
     private void Update() => requestLoop?.Update();
 
@@ -86,7 +86,7 @@ public class ClientButtonTracker : MonoBehaviour
         return logText;
     }
     
-    private void AddRequesListeners()
+    private void AddRequestListeners()
     {
         if (requestLoop == null) return;
         requestLoop.onClientResponse.AddListener(OnRequestResponse);

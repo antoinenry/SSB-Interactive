@@ -68,8 +68,8 @@ public class Rayman : MonoBehaviour
             body.gravityScale = 0f;
             return;
         }
-        float horizontalInput = InputSource.GetAxis(InputSource.Axis.Direction.Horizontal, ButtonValueType.RateRaw);
-        float verticalInput = InputSource.GetAxis(InputSource.Axis.Direction.Vertical, ButtonValueType.RateRaw);
+        float horizontalInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Horizontal);
+        float verticalInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Vertical);
         if (onFloor)
         {
             if (verticalInput > 0f)

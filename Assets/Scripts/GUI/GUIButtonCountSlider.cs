@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class GUIButtonCountSlider : MonoBehaviour
 {
     public string buttonID;
-    public ButtonValueType valueType;
     public bool adaptMaxValue = true;
+    public ButtonValueType valueType;
     public float accelerationScaleEffect = 1.5f;
     public float accelerationScaleEffectCooldown = .5f;
 
@@ -25,12 +25,12 @@ public class GUIButtonCountSlider : MonoBehaviour
     private void Update()
     {
         if (slider == null) return;
-        float buttonValue = InputSource.Get(buttonID, valueType);
+        float buttonValue = AudienceInput.GetButton(buttonID, valueType);
         if (adaptMaxValue) slider.maxValue = Mathf.Max(buttonValue, slider.maxValue);
+        float delta = buttonValue - slider.value;
         slider.value = buttonValue;
-        float acceleration = InputSource.Get(buttonID, ButtonValueType.Acceleration);
         float scale = slider.transform.localScale.x;
-        if (acceleration > 0f) scale = accelerationScaleEffect;
+        if (delta > 0f) scale = accelerationScaleEffect;
         else scale = Mathf.MoveTowards(scale, 1f, Time.deltaTime / accelerationScaleEffectCooldown);
         slider.transform.localScale = scale * Vector3.one;
     }
