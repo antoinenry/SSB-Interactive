@@ -169,7 +169,7 @@ public class SocketIOClientScriptable : ScriptableObject
         {
             e = new SocketIOResponseEvent(eventName);
             onReceived.Add(eventName, e);
-            if (Connection == ConnectionState.Connected) client.On(eventName, r => e.Invoke(r));
+            client.On(eventName, r => e.Invoke(r));
         }
         e.AddListener(onReception);
     }
