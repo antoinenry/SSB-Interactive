@@ -90,8 +90,8 @@ public class AudienceInputSource : MonoBehaviour
 
     private float ComputeAxis(float negativeValue, float positiveValue)
     {
-        if (negativeValue < positiveValue) return negativeValue / (negativeValue + positiveValue);
-        else if (negativeValue > positiveValue) return positiveValue / (negativeValue + positiveValue);
+        if (negativeValue > positiveValue) return -negativeValue / (negativeValue + positiveValue);
+        else if (positiveValue > negativeValue) return positiveValue / (negativeValue + positiveValue);
         else return 0f;
     }
 
