@@ -85,7 +85,7 @@ public class AudienceInputSource : MonoBehaviour
         ButtonInput oldInputRaw = ButtonInput.None,
             newInputRaw = new ButtonInput(currentCount, currentCount - previousCount, currentTime - previousTime);
         buttonDeltasRaw[id] = newInputRaw;
-        buttonDeltasSmooth[id] = ButtonInput.Lerp(oldInputRaw, newInputRaw, .5f * (1f - smoothRate));
+        buttonDeltasSmooth[id] = ButtonInput.Lerp(oldInputRaw, newInputRaw, 1f - .5f * smoothRate);
     }
 
     private float ComputeAxis(float negativeValue, float positiveValue)
