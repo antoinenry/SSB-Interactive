@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static ClientButtonTracker;
 
@@ -63,13 +64,14 @@ public class AudienceInputSource : MonoBehaviour
         CurrentFrame = frame;        
         float previousTime = previousFrame.time, currentTime = CurrentFrame.time;
         // Clear button deltas
-        foreach (string k in buttonDeltasRaw.Keys)
-            buttonDeltasRaw[k] = ButtonInput.None;
-        foreach (string k in buttonDeltasSmooth.Keys)
-            buttonDeltasSmooth[k] = ButtonInput.None;
+        if (buttonDeltasRaw == null) buttonDeltasRaw = new();
+        foreach (string k in buttonDeltasRaw.Keys.ToList()) buttonDeltasRaw[k] = ButtonInput.None;
+        if (buttonDeltasSmooth == null) buttonDeltasSmooth = new();
+        foreach (string k in buttonDeltasSmooth.Keys.ToList()) buttonDeltasSmooth[k] = ButtonInput.None;
         // Set new button deltas
-        foreach (KeyValuePair<string, int> b in frame.counts)
-            SetButtonDeltas(b.Key, previousFrame[b.Key], b.Value, previousTime, currentTime); 
+        if (frame.counts != null)
+            foreach (KeyValuePair<string, int> b in frame.counts)
+                SetButtonDeltas(b.Key, previousFrame[b.Key], b.Value, previousTime, currentTime); 
     }
 
     private void SetButtonDeltas(string id, int previousCount, int currentCount, float previousTime, float currentTime)
