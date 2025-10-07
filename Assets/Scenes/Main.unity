@@ -555,10 +555,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 328108286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da5a54e252393545997b8c6d81c7b16, type: 3}
+  m_Script: {fileID: 11500000, guid: ef9a94468a1abd4469ffb9b1d7d42f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonCounter: {fileID: 328108289}
+  smoothRate: 1
+  inputConfiguration: {fileID: 11400000, guid: 82dada5e80858e64e8fb0443f0b9094a, type: 2}
 --- !u!1 &393218107
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,8 +664,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: a
-  valueType: 2
   adaptMaxValue: 1
+  valueType:
+    value: 2
+    smooth: 0
   accelerationScaleEffect: 1.5
   accelerationScaleEffectCooldown: 0.5
 --- !u!1 &407309711
@@ -1778,8 +1782,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: y
-  valueType: 2
   adaptMaxValue: 1
+  valueType:
+    value: 2
+    smooth: 0
   accelerationScaleEffect: 1.5
   accelerationScaleEffectCooldown: 0.5
 --- !u!1 &1193705997
@@ -1885,8 +1891,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: x
-  valueType: 2
   adaptMaxValue: 1
+  valueType:
+    value: 2
+    smooth: 0
   accelerationScaleEffect: 1.5
   accelerationScaleEffectCooldown: 0.5
 --- !u!1 &1258209700
@@ -1992,8 +2000,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: b
-  valueType: 2
   adaptMaxValue: 1
+  valueType:
+    value: 2
+    smooth: 0
   accelerationScaleEffect: 1.5
   accelerationScaleEffectCooldown: 0.5
 --- !u!1 &1274989194

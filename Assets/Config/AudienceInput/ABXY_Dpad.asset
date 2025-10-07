@@ -12,10 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b4bb65114dd1445b9799fe01a2cac0, type: 3}
   m_Name: ABXY_Dpad
   m_EditorClassIdentifier: 
-  buttons: []
+  buttons:
+  - id: a
+    position: 2
+    type:
+      value: 1
+      smooth: 1
+  - id: b
+    position: 4
+    type:
+      value: 1
+      smooth: 1
+  - id: x
+    position: 3
+    type:
+      value: 1
+      smooth: 1
+  - id: y
+    position: 1
+    type:
+      value: 1
+      smooth: 1
   horizontalAxis:
-    positiveButtonId: 
-    negativeButtonId: 
+    positiveButtonId: b
+    negativeButtonId: x
   verticallAxis:
-    positiveButtonId: 
-    negativeButtonId: 
+    positiveButtonId: y
+    negativeButtonId: a
