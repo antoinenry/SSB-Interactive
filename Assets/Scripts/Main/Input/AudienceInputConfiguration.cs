@@ -17,7 +17,7 @@ public class AudienceInputConfiguration : ScriptableObject
         {
             id = "",
             position = Position.Undefined,
-            type = ButtonValueType.Default
+            type = ButtonValueType.RawTotal
         };
     }
 
