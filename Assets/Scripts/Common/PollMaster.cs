@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PollMaster : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class PollMaster : MonoBehaviour
 
     public Candidate[] candidates;
     public int voteGoal = 100;
+    public UnityEvent<Candidate> onCandidateWins;
 
     private void Awake()
     {
@@ -50,6 +52,7 @@ public class PollMaster : MonoBehaviour
         {
             if (c == null) continue;
             c.UpdateGUI();
+            if (c.votes >= voteGoal) onCandidateWins.Invoke(c);
         }
     }
 
