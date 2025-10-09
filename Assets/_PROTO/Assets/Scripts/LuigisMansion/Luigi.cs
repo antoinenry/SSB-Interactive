@@ -77,7 +77,7 @@ public class Luigi : MonoBehaviour
         house.currentFloor = CurrentStageIndex;
         CurrentStage = house.GetFloor(CurrentStageIndex);
 
-        float horizontalInput = InputSource.GetAxis(InputSource.Axis.Direction.Horizontal, ButtonValueType.RateRaw);
+        float horizontalInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Horizontal);
         if (horizontalInput == 0f)
         {
             walkingDirection = 0;
@@ -113,7 +113,7 @@ public class Luigi : MonoBehaviour
         }
         torchAngle = torch.localRotation.eulerAngles.z - 90f;
 
-        float verticalInput = InputSource.GetAxis(InputSource.Axis.Direction.Vertical, ButtonValueType.RateRaw);
+        float verticalInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Vertical);
         if (torchAngle < torchAngleMax && verticalInput > 0f) torch.localRotation *= Quaternion.AngleAxis(torchRotationSpeed * Time.fixedDeltaTime, Vector3.forward);
         else if (torchAngle > -torchAngleMax && verticalInput < 0f) torch.localRotation *= Quaternion.AngleAxis(-torchRotationSpeed * Time.fixedDeltaTime, Vector3.forward);
     }

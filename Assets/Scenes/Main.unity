@@ -497,7 +497,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 328108288}
-  - component: {fileID: 328108287}
+  - component: {fileID: 328108289}
+  - component: {fileID: 328108290}
   m_Layer: 0
   m_Name: Input System
   m_TagString: Untagged
@@ -505,38 +506,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &328108287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328108286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c60309c205f18944aad3ef7ad561e565, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clientInput:
-    buttonsRequestUri: buttons
-    minimumRequestTime: 0.2
-    maxRequestTime: 10
-    timeWindow: 0.5
-  buttonIDs:
-  - y
-  - x
-  - b
-  - a
-  horizontalAxis:
-    positiveButton: b
-    negativeButton: x
-    deadZone: 0.25
-  verticalAxis:
-    positiveButton: y
-    negativeButton: a
-    deadZone: 0.25
-  smoothRateUp: 0.05
-  smoothRateDown: 0.1
 --- !u!4 &328108288
 Transform:
   m_ObjectHideFlags: 0
@@ -552,6 +521,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &328108289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328108286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4900e11dfd243dc4584221c4518bf696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requestLoop:
+    requestUri: buttons
+    minimumRequestTime: 0.2
+    maxRequestTime: 1
+    onSendRequest:
+      m_PersistentCalls:
+        m_Calls: []
+    onClientResponse:
+      m_PersistentCalls:
+        m_Calls: []
+  onCountUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &328108290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328108286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9a94468a1abd4469ffb9b1d7d42f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonCounter: {fileID: 328108289}
+  smoothRate: 1
+  inputConfiguration: {fileID: 11400000, guid: 82dada5e80858e64e8fb0443f0b9094a, type: 2}
 --- !u!1 &393218107
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,8 +664,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: a
-  valueType: 2
   adaptMaxValue: 1
+  valueType:
+    value: 2
+    smooth: 0
   accelerationScaleEffect: 1.5
   accelerationScaleEffectCooldown: 0.5
 --- !u!1 &407309711
@@ -832,7 +843,6 @@ RectTransform:
   - {fileID: 897969703}
   - {fileID: 863463674}
   - {fileID: 1554286697}
-  - {fileID: 1747122331}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1366,10 +1376,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   field: {fileID: 863463672}
-  showSocketIODebug: 0
+  toggleKey: 108
+  visible: 0
   socketIOEventQueueLength: 10
-  showInputSystemDebug: 0
-  showStageLoaderDebug: 0
 --- !u!1 &897969702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,8 +1782,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: y
-  valueType: 2
   adaptMaxValue: 1
+  valueType:
+    value: 2
+    smooth: 0
   accelerationScaleEffect: 1.5
   accelerationScaleEffectCooldown: 0.5
 --- !u!1 &1193705997
@@ -1880,8 +1891,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: x
-  valueType: 2
   adaptMaxValue: 1
+  valueType:
+    value: 2
+    smooth: 0
   accelerationScaleEffect: 1.5
   accelerationScaleEffectCooldown: 0.5
 --- !u!1 &1258209700
@@ -1987,8 +2000,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: b
-  valueType: 2
   adaptMaxValue: 1
+  valueType:
+    value: 2
+    smooth: 0
   accelerationScaleEffect: 1.5
   accelerationScaleEffectCooldown: 0.5
 --- !u!1 &1274989194
@@ -2737,14 +2752,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f18fc7dde695814b80480f3a919249a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoRequestUri: concert/today
-  info:
-    date: 2025-09-04
+  concertInfoRequestUri: concert/today
+  concertInfo:
+    date: 
     location: 
     name: 
+  crowdInfoRequestLoop:
+    requestUri: concert/crowd
+    minimumRequestTime: 0.2
+    maxRequestTime: 1
+    onSendRequest:
+      m_PersistentCalls:
+        m_Calls: []
+    onClientResponse:
+      m_PersistentCalls:
+        m_Calls: []
+  crowdSize: 0
   stateChangeEvent: concert_state
-  state:
-    stage: Sonic
+  concertState:
+    stage: 
     moment: 0
   pauseEvent: pause
   resumeEvent: resume
@@ -2755,7 +2781,7 @@ MonoBehaviour:
   onClientConnected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1747122332}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GUIAnimatedImage, Assembly-CSharp
         m_MethodName: Hide
         m_Mode: 1
@@ -2770,7 +2796,7 @@ MonoBehaviour:
   onClientDisconnected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1747122332}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GUIAnimatedImage, Assembly-CSharp
         m_MethodName: Show
         m_Mode: 1
@@ -2798,98 +2824,6 @@ MonoBehaviour:
   postScoreUri: concert/today/score
   publicName: 
   totalScore: 0
---- !u!1 &1747122330
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1747122331}
-  - component: {fileID: 1747122334}
-  - component: {fileID: 1747122333}
-  - component: {fileID: 1747122332}
-  m_Layer: 5
-  m_Name: connection_notif
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1747122331
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747122330}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 513190371}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 20}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0, y: 0}
---- !u!114 &1747122332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747122330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f71250d09db909745b41047b9b1341ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 1747122333}
-  hide: 1
-  blinkFrequency: 4
---- !u!114 &1747122333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747122330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.3882353}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a529b447036bc4445b2c1dd6c7aef75b, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1747122334
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747122330}
-  m_CullTransparentMesh: 1
 --- !u!1 &1777820721
 GameObject:
   m_ObjectHideFlags: 0

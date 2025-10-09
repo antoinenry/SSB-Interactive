@@ -52,7 +52,11 @@ public struct ConcertStateData
     {
         [JsonPropertyName("title")] public string Title { get => title; set => title = value; }
 
-        public string title;        
+        public string title;
+    }
+    public string GetLog()
+    {
+        return "stage : " + stage + " / moment : " + moment;
     }
 }
 

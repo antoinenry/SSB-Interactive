@@ -99,7 +99,7 @@ namespace Sonic
                 body.velocity = Vector2.zero;
                 return;
             }
-            walkDirection = InputSource.GetAxis(InputSource.Axis.Direction.Horizontal, ButtonValueType.RateRaw);
+            walkDirection = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Horizontal);
             if (walkDirection > 0f)
             {
                 transform.localScale = new Vector3(1f, 1f, 1f);
@@ -115,7 +115,7 @@ namespace Sonic
                 body.velocity = Vector2.zero;
             }
             float bodyY = body.position.y;
-            float verticalInput = InputSource.GetAxis(InputSource.Axis.Direction.Vertical, ButtonValueType.RateRaw);
+            float verticalInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Vertical);
             if (verticalInput > 0f) bodyY += yStep;
             else if (verticalInput < 0f) bodyY -= yStep;
             bodyY = Mathf.Clamp(bodyY, minY, maxY);

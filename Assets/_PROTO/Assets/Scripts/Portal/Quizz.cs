@@ -5,8 +5,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using TMPro;
 using UnityEngine.UI;
-using System.Collections;
-using static Quizz;
 
 [ExecuteAlways]
 public class Quizz : MonoBehaviour
@@ -104,10 +102,10 @@ public class Quizz : MonoBehaviour
 
     private void ResetAnswerCount()
     {
-        startingValueA = (int)InputSource.Get("a", ButtonValueType.Total);
-        startingValueB = (int)InputSource.Get("b", ButtonValueType.Total);
-        startingValueX = (int)InputSource.Get("x", ButtonValueType.Total);
-        startingValueY = (int)InputSource.Get("y", ButtonValueType.Total);
+        startingValueA = AudienceInput.GetButtonRaw("a").Total;
+        startingValueB = AudienceInput.GetButtonRaw("b").Total;
+        startingValueX = AudienceInput.GetButtonRaw("x").Total;
+        startingValueY = AudienceInput.GetButtonRaw("y").Total;
         aSlider.value = 0;
         bSlider.value = 0;
         xSlider.value = 0;
@@ -192,10 +190,10 @@ public class Quizz : MonoBehaviour
             answerDisplayY.text = question.answerY;
             answerDisplayY.color = normalColor;
         }
-        ySlider.value = (int)InputSource.Get("y", ButtonValueType.Total) - startingValueY;
-        xSlider.value = (int)InputSource.Get("x", ButtonValueType.Total) - startingValueX;
-        bSlider.value = (int)InputSource.Get("b", ButtonValueType.Total) - startingValueB;
-        aSlider.value = (int)InputSource.Get("a", ButtonValueType.Total) - startingValueA;
+        ySlider.value = AudienceInput.GetButtonRaw("y").Total - startingValueY;
+        xSlider.value = AudienceInput.GetButtonRaw("x").Total - startingValueX;
+        bSlider.value = AudienceInput.GetButtonRaw("b").Total - startingValueB;
+        aSlider.value = AudienceInput.GetButtonRaw("a").Total - startingValueA;
         SliderBalance();
 
         if (timerSlider != null)
