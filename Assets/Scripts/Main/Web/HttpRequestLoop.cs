@@ -7,12 +7,18 @@ using UnityEngine.Events;
 [Serializable]
 public class HttpRequestLoop
 {
+    [Flags]
+    public enum FailureFlag { NullClient = 1, RequestFailure = 2, Timeout = 4, MaxLoop = 8 }
+
     public string requestUri = "";
     public float minimumRequestTime = .2f;
     public float maxRequestTime = 1f;
+    public bool infiniteLoops = true;
+    public int maxLoops = 0;
 
     public UnityEvent<HttpRequest> onSendRequest;
     public UnityEvent<HttpRequest> onClientResponse;
+    public UnityEvent<HttpRequest,FailureFlag> onCancelRequest;
 
     private HttpClientScriptable client;
     private HttpRequest request;
@@ -20,16 +26,35 @@ public class HttpRequestLoop
 
     public float ResponseTime { get; private set; }
     public float RequestsPerSeconds { get; private set; }
+    public HttpRequest.RequestStatus RequestStatus { get; private set; }
+    public int LoopCount { get; private set; }
+    public FailureFlag FailureInfo { get; private set; }
+
 
     public HttpRequestLoop(string uri)
     {
         requestUri = uri;
     }
 
+    public string GetLog()
+    {
+        string logText = request.FullUri + " request status :";
+        logText += "\n- response time : " + ResponseTime.ToString("0.000");
+        logText += "\n- requests per seconds : " + RequestsPerSeconds.ToString("0.000");
+        return logText;
+    }
+
     public void Init()
     {
         CurrentAssetsManager.GetCurrent(ref client);
         request = new HttpRequest();
+        Reset();
+    }
+
+    public void Reset()
+    {
+        LoopCount = 0;
+        FailureInfo = 0;
     }
 
     public void Update()
@@ -45,6 +70,7 @@ public class HttpRequestLoop
             case HttpRequest.RequestStatus.Failed:
                 // Failed: notify and relaunch
                 Debug.LogWarning("Request failure");
+                FailureInfo |= FailureFlag.RequestFailure;
                 Cancel();
                 Send();
                 break;
@@ -53,6 +79,7 @@ public class HttpRequestLoop
                 if (request.Duration > maxRequestTime)
                 {
                     Debug.LogWarning("Request timeout");
+                    FailureInfo |= FailureFlag.Timeout;
                     Cancel();
                     Send();
                 }
@@ -63,19 +90,20 @@ public class HttpRequestLoop
                 if (Time.time >= request.StartTime + minimumRequestTime) Send();
                 break;
         }
+        RequestStatus = request.Status;
     }
 
-    public string GetLog()
-    {
-        string logText = request.FullUri + " request status :";
-        logText += "\n- response time : " + ResponseTime.ToString("0.000");
-        logText += "\n- requests per seconds : " + RequestsPerSeconds.ToString("0.000");
-        return logText;
-
-    }
+    public T DeserializeResponse<T>() => request != null ? request.DeserializeResponse<T>() : default(T);
 
     private void Send()
     {
+        if (!infiniteLoops && LoopCount >= maxLoops)
+        {
+            RequestStatus = HttpRequest.RequestStatus.Failed;
+            FailureInfo |= FailureFlag.MaxLoop;
+            Cancel();
+            return;
+        }
         RequestsPerSeconds = float.IsNaN(request.StartTime) ? 0f : 1f / (Time.time - request.StartTime);
         request.requestUri = requestUri;
         request.type = HttpRequest.RequestType.GET;
@@ -84,12 +112,18 @@ public class HttpRequestLoop
             client.SendRequest(request);
             onSendRequest.Invoke(request);
         }
+        else
+        {
+            FailureInfo |= FailureFlag.NullClient;
+        }
         hasProcessedLastResponse = false;
+        LoopCount += 1;
     }
 
     private void Cancel()
     {
         request.Cancel();
+        onCancelRequest.Invoke(request, FailureInfo);
     }
 
     private void Receive()
