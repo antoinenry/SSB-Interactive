@@ -3,11 +3,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ConcertClient : MonoBehaviour
+public class ConcertLoader : MonoBehaviour
 {
     [Header("Concert Info")]
     public string concertInfoRequestUri = "concert/today";
-    public ConcertInfoData concertInfo;
+    public ConcertInfo concertInfo;
     [Header("Crowd info")]
     public HttpRequestLoop crowdInfoRequestLoop = new("concert/crowd");
     public int crowdSize = 0;
@@ -130,7 +130,7 @@ public class ConcertClient : MonoBehaviour
         concertInfoRequest.type = HttpRequest.RequestType.GET;
         if (HttpClient != null) HttpClient.SendRequest(concertInfoRequest);
         yield return new WaitUntil(() => concertInfoRequest.Status == HttpRequest.RequestStatus.Success);
-        concertInfo = concertInfoRequest.DeserializeResponse<ConcertInfoData>();
+        concertInfo = concertInfoRequest.DeserializeResponse<ConcertInfo>();
         stageLoader.mainScore.publicName = concertInfo.Location;
     }
 
