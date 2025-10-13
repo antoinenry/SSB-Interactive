@@ -443,10 +443,10 @@ MonoBehaviour:
   - {fileID: 1605096765}
   songPoolRequest:
     requestUri: 
-    minimumRequestTime: 0
-    maxRequestTime: 0
+    requestTimeout: 0
     infiniteLoops: 0
     maxLoops: 0
+    minLoopDuration: 0
     onSendRequest:
       m_PersistentCalls:
         m_Calls: []
@@ -456,6 +456,10 @@ MonoBehaviour:
     onCancelRequest:
       m_PersistentCalls:
         m_Calls: []
+    status: 0
+    failureInfo: 0
+    responseTime: 0
+    loopCount: 0
 --- !u!1 &215013002
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,10 +660,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requestLoop:
     requestUri: buttons
-    minimumRequestTime: 0.2
-    maxRequestTime: 2
+    requestTimeout: 0
     infiniteLoops: 1
-    maxLoops: 0
+    maxLoops: 2147483647
+    minLoopDuration: 0
     onSendRequest:
       m_PersistentCalls:
         m_Calls: []
@@ -669,6 +673,10 @@ MonoBehaviour:
     onCancelRequest:
       m_PersistentCalls:
         m_Calls: []
+    status: 0
+    failureInfo: 0
+    responseTime: 0
+    loopCount: 0
   onCountUpdate:
     m_PersistentCalls:
       m_Calls: []
@@ -3582,18 +3590,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54de52bdee4a69f459717de0c01909ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  concertInfoRequestUri: concert/today
-  concertInfo:
-    id: 0
-    date: 
-    location: 
-    name: 
-  crowdInfoRequestLoop:
-    requestUri: concert/crowd
-    minimumRequestTime: 0.2
-    maxRequestTime: 1
-    infiniteLoops: 1
+  concertInfoRequest:
+    requestUri: concert/today
+    requestTimeout: 0
+    infiniteLoops: 0
     maxLoops: 0
+    minLoopDuration: 0
     onSendRequest:
       m_PersistentCalls:
         m_Calls: []
@@ -3603,6 +3605,38 @@ MonoBehaviour:
     onCancelRequest:
       m_PersistentCalls:
         m_Calls: []
+    status: 0
+    failureInfo: 0
+    responseTime: 0
+    loopCount: 0
+  concertInfo:
+    date: 
+    location: 
+    name: 
+    setlist:
+      id: 0
+      name: 
+      isTemplate: 0
+      songs: []
+  crowdInfoRequestLoop:
+    requestUri: concert/crowd
+    requestTimeout: 1
+    infiniteLoops: 0
+    maxLoops: 3
+    minLoopDuration: 1
+    onSendRequest:
+      m_PersistentCalls:
+        m_Calls: []
+    onClientResponse:
+      m_PersistentCalls:
+        m_Calls: []
+    onCancelRequest:
+      m_PersistentCalls:
+        m_Calls: []
+    status: 0
+    failureInfo: 0
+    responseTime: 0
+    loopCount: 0
   crowdSize: 0
   stateChangeEvent: concert_state
   concertState:

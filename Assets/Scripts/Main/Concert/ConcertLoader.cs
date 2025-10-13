@@ -5,8 +5,7 @@ using UnityEngine.Events;
 
 public class ConcertLoader : MonoBehaviour
 {
-    [Header("Concert Info")]
-    public string concertInfoRequestUri = "concert/today";
+    public HttpRequestLoop concertInfoRequest;
     public ConcertInfo concertInfo;
     [Header("Crowd info")]
     public HttpRequestLoop crowdInfoRequestLoop = new("concert/crowd");
@@ -23,7 +22,6 @@ public class ConcertLoader : MonoBehaviour
     public UnityEvent onClientDisconnected;
 
     private StageLoader stageLoader;
-    private HttpRequest concertInfoRequest;
     private bool pendingConcertState;
     private bool pendingPauseState;
     private bool paused;
@@ -35,7 +33,6 @@ public class ConcertLoader : MonoBehaviour
     {
         stageLoader = FindObjectOfType<StageLoader>(true);
         HttpClient = CurrentAssetsManager.GetCurrent<HttpClientScriptable>();
-        concertInfoRequest = new();
         crowdInfoRequestLoop?.Init();
         SocketClient = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
         SocketClient.Connect();
@@ -126,12 +123,7 @@ public class ConcertLoader : MonoBehaviour
 
     private IEnumerator GetConcertInfoCoroutine()
     {
-        concertInfoRequest.requestUri = concertInfoRequestUri;
-        concertInfoRequest.type = HttpRequest.RequestType.GET;
-        if (HttpClient != null) HttpClient.SendRequest(concertInfoRequest);
-        yield return new WaitUntil(() => concertInfoRequest.Status == HttpRequest.RequestStatus.Success);
-        concertInfo = concertInfoRequest.DeserializeResponse<ConcertInfo>();
-        stageLoader.mainScore.publicName = concertInfo.Location;
+        yield break;
     }
 
     public void GetConcertInfo()

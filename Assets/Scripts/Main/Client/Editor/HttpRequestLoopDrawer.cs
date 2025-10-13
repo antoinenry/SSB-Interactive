@@ -15,17 +15,19 @@ public class HttpRequestLoopDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
+        // Label with status
+        Rect labelRect = position;
+        //labelRect.y = position.y - .5f * (drawerLineCount - 1) * (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing);
+        labelRect.height = EditorGUIUtility.singleLineHeight;
+        HttpRequest.RequestStatus status = (HttpRequest.RequestStatus)property.FindPropertyRelative("status").enumValueIndex;
+        EditorGUI.LabelField(labelRect, label.text, "[" + status.ToString() + "]", EditorStyles.boldLabel);
+
+        // Drawer foldout
         Rect foldOutRect = position;
         foldOutRect.y = position.y - .5f * (drawerLineCount - 1) * (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing);
-        mainUnfold = EditorGUI.Foldout(foldOutRect, mainUnfold, label);
+        mainUnfold = EditorGUI.Foldout(foldOutRect, mainUnfold, "");
         drawerLineCount = 1;
-        if (mainUnfold) UnfoldGUI(position, property);
-    }
-
-    private void AddFieldLine(ref Rect lineRect)
-    {
-        lineRect.y += lineRect.height + EditorGUIUtility.standardVerticalSpacing;
-        drawerLineCount++;
+        if (mainUnfold == true) UnfoldGUI(position, property);
     }
 
     private void UnfoldGUI(Rect position, SerializedProperty property)
@@ -62,10 +64,7 @@ public class HttpRequestLoopDrawer : PropertyDrawer
         }
 
         AddFieldLine(ref fieldRect);
-        HttpRequest.RequestStatus status = (HttpRequest.RequestStatus)property.FindPropertyRelative("status").enumValueIndex;
-        statusUnfold = EditorGUI.Foldout(fieldRect, statusUnfold, "");
-        EditorGUI.LabelField(fieldRect, "Status :", status.ToString());
-
+        statusUnfold = EditorGUI.Foldout(fieldRect, statusUnfold, "Detail");
         if (statusUnfold)
         {
             EditorGUI.indentLevel++;
@@ -86,5 +85,11 @@ public class HttpRequestLoopDrawer : PropertyDrawer
         }        
 
         EditorGUI.indentLevel--;
+    }
+
+    private void AddFieldLine(ref Rect lineRect)
+    {
+        lineRect.y += lineRect.height + EditorGUIUtility.standardVerticalSpacing;
+        drawerLineCount++;
     }
 }
