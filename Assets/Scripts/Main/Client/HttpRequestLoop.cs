@@ -11,24 +11,29 @@ public class HttpRequestLoop
     public enum FailureFlag { NullClient = 1, RequestFailure = 2, Timeout = 4, MaxLoop = 8 }
 
     public string requestUri = "";
-    public float minimumRequestTime = .2f;
-    public float maxRequestTime = 1f;
+    public float requestTimeout = 1f;
     public bool infiniteLoops = true;
     public int maxLoops = 0;
+    public float minLoopDuration = .2f;
 
     public UnityEvent<HttpRequest> onSendRequest;
     public UnityEvent<HttpRequest> onClientResponse;
     public UnityEvent<HttpRequest,FailureFlag> onCancelRequest;
 
+    [SerializeField] private HttpRequest.RequestStatus status;
+    [SerializeField] private FailureFlag failureInfo;
+    [SerializeField] private float responseTime;
+    [SerializeField] private int loopCount;
+
     private HttpClientScriptable client;
     private HttpRequest request;
     private bool hasProcessedLastResponse;
 
-    public float ResponseTime { get; private set; }
+    public HttpRequest.RequestStatus RequestStatus => status;
+    public FailureFlag FailureInfo => failureInfo;
+    public float ResponseTime => responseTime;
+    public int LoopCount => loopCount;
     public float RequestsPerSeconds { get; private set; }
-    public HttpRequest.RequestStatus RequestStatus { get; private set; }
-    public int LoopCount { get; private set; }
-    public FailureFlag FailureInfo { get; private set; }
 
 
     public HttpRequestLoop(string uri)
@@ -53,8 +58,8 @@ public class HttpRequestLoop
 
     public void Reset()
     {
-        LoopCount = 0;
-        FailureInfo = 0;
+        loopCount = 0;
+        failureInfo = 0;
     }
 
     public void Update()
@@ -70,16 +75,16 @@ public class HttpRequestLoop
             case HttpRequest.RequestStatus.Failed:
                 // Failed: notify and relaunch
                 Debug.LogWarning("Request failure");
-                FailureInfo |= FailureFlag.RequestFailure;
+                failureInfo |= FailureFlag.RequestFailure;
                 Cancel();
                 Send();
                 break;
             case HttpRequest.RequestStatus.Running:
                 // Request timeout: notify and relaunch
-                if (request.Duration > maxRequestTime)
+                if (request.Duration > requestTimeout)
                 {
                     Debug.LogWarning("Request timeout");
-                    FailureInfo |= FailureFlag.Timeout;
+                    failureInfo |= FailureFlag.Timeout;
                     Cancel();
                     Send();
                 }
@@ -87,10 +92,10 @@ public class HttpRequestLoop
             case HttpRequest.RequestStatus.Success:
                 // Requess succest: get result, wait and relaunch
                 if (hasProcessedLastResponse == false) Receive();
-                if (Time.time >= request.StartTime + minimumRequestTime) Send();
+                if (Time.time >= request.StartTime + minLoopDuration) Send();
                 break;
         }
-        RequestStatus = request.Status;
+        status = request.Status;
     }
 
     public T DeserializeResponse<T>() => request != null ? request.DeserializeResponse<T>() : default(T);
@@ -99,8 +104,8 @@ public class HttpRequestLoop
     {
         if (!infiniteLoops && LoopCount >= maxLoops)
         {
-            RequestStatus = HttpRequest.RequestStatus.Failed;
-            FailureInfo |= FailureFlag.MaxLoop;
+            status = HttpRequest.RequestStatus.Failed;
+            failureInfo |= FailureFlag.MaxLoop;
             Cancel();
             return;
         }
@@ -114,10 +119,10 @@ public class HttpRequestLoop
         }
         else
         {
-            FailureInfo |= FailureFlag.NullClient;
+            failureInfo |= FailureFlag.NullClient;
         }
         hasProcessedLastResponse = false;
-        LoopCount += 1;
+        loopCount += 1;
     }
 
     private void Cancel()
@@ -128,7 +133,7 @@ public class HttpRequestLoop
 
     private void Receive()
     {
-        ResponseTime = request.Duration;
+        responseTime = request.Duration;
         hasProcessedLastResponse = true;
         onClientResponse.Invoke(request);
     }
