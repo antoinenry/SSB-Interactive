@@ -17,10 +17,11 @@ public class HttpRequestLoopDrawer : PropertyDrawer
     {
         // Label with status
         Rect labelRect = position;
-        //labelRect.y = position.y - .5f * (drawerLineCount - 1) * (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing);
         labelRect.height = EditorGUIUtility.singleLineHeight;
         HttpRequest.RequestStatus status = (HttpRequest.RequestStatus)property.FindPropertyRelative("status").enumValueIndex;
-        EditorGUI.LabelField(labelRect, label.text, "[" + status.ToString() + "]", EditorStyles.boldLabel);
+        GUIStyle labelStyle = new(EditorStyles.boldLabel);
+        labelStyle.normal.textColor = StatusColor(status);
+        EditorGUI.LabelField(labelRect, label.text, "[" + status.ToString() + "]", labelStyle);
 
         // Drawer foldout
         Rect foldOutRect = position;
@@ -28,6 +29,17 @@ public class HttpRequestLoopDrawer : PropertyDrawer
         mainUnfold = EditorGUI.Foldout(foldOutRect, mainUnfold, "");
         drawerLineCount = 1;
         if (mainUnfold == true) UnfoldGUI(position, property);
+    }
+
+    private Color StatusColor(HttpRequest.RequestStatus status)
+    {
+        switch (status)
+        {
+            case HttpRequest.RequestStatus.Success: return Color.gray * Color.green;
+            case HttpRequest.RequestStatus.Failed: return Color.gray * Color.red;
+            case HttpRequest.RequestStatus.Running: return Color.yellow;
+            default : return Color.white;
+        }
     }
 
     private void UnfoldGUI(Rect position, SerializedProperty property)
@@ -46,21 +58,26 @@ public class HttpRequestLoopDrawer : PropertyDrawer
         requestTimeoutProperty.floatValue = EditorGUI.FloatField(fieldRect, "Timeout", requestTimeoutProperty.floatValue);
 
         AddFieldLine(ref fieldRect);
-        SerializedProperty infiniteProperty = property.FindPropertyRelative("infiniteLoops");
-        infiniteProperty.boolValue = EditorGUI.Toggle(fieldRect, "Loop Always", infiniteProperty.boolValue);
+        SerializedProperty loopProperty = property.FindPropertyRelative("loop");
+        HttpRequestLoop.LoopBehaviour loopFlags = (HttpRequestLoop.LoopBehaviour)loopProperty.enumValueFlag;
+        loopFlags = (HttpRequestLoop.LoopBehaviour)EditorGUI.EnumFlagsField(fieldRect, "Loop", loopFlags);
+        loopProperty.enumValueFlag = (int)loopFlags;
 
-        SerializedProperty maxLoopsProperty = property.FindPropertyRelative("maxLoops");
-        if (infiniteProperty.boolValue == false)
+        if (loopFlags != 0)
         {
-            AddFieldLine(ref fieldRect);
-            maxLoopsProperty.intValue = EditorGUI.IntField(fieldRect, "Max loops", maxLoopsProperty.intValue);
-        }
+            SerializedProperty maxLoopsProperty = property.FindPropertyRelative("maxLoops");
+            if (loopFlags.HasFlag(HttpRequestLoop.LoopBehaviour.InfiniteLoop) == false)
+            {
+                AddFieldLine(ref fieldRect);
+                maxLoopsProperty.intValue = EditorGUI.IntField(fieldRect, "Max loops", maxLoopsProperty.intValue);
+            }
 
-        SerializedProperty minLoopDurationProperty = property.FindPropertyRelative("minLoopDuration");
-        if (maxLoopsProperty.intValue > 1)
-        {
-            AddFieldLine(ref fieldRect);
-            minLoopDurationProperty.floatValue = EditorGUI.FloatField(fieldRect, "Min Loop Duration", minLoopDurationProperty.floatValue);
+            SerializedProperty minLoopDurationProperty = property.FindPropertyRelative("minLoopDuration");
+            if (maxLoopsProperty.intValue > 1)
+            {
+                AddFieldLine(ref fieldRect);
+                minLoopDurationProperty.floatValue = EditorGUI.FloatField(fieldRect, "Min Loop Duration", minLoopDurationProperty.floatValue);
+            }
         }
 
         AddFieldLine(ref fieldRect);
@@ -71,7 +88,7 @@ public class HttpRequestLoopDrawer : PropertyDrawer
 
             AddFieldLine(ref fieldRect);
             float responseTime = property.FindPropertyRelative("responseTime").floatValue;
-            EditorGUI.LabelField(fieldRect, "Response time :", responseTime.ToString("0.00") + " s");
+            EditorGUI.LabelField(fieldRect, "Response time :", responseTime.ToString("0.000") + " s");
 
             AddFieldLine(ref fieldRect);
             int loopCount = property.FindPropertyRelative("loopCount").intValue;
@@ -82,7 +99,7 @@ public class HttpRequestLoopDrawer : PropertyDrawer
             EditorGUI.LabelField(fieldRect, "Failure info : ", failure.ToString());
 
             EditorGUI.indentLevel--;
-        }        
+        }
 
         EditorGUI.indentLevel--;
     }

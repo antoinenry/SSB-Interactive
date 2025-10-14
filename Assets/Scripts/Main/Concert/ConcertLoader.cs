@@ -16,12 +16,13 @@ public class ConcertLoader : MonoBehaviour
     public string pauseEvent = "pause";
     public string resumeEvent = "resume";
     [Header("Editor Tools")]
-    public ObjectMethodCaller editorButtons = new ObjectMethodCaller("GetConcertInfo", "ValidateConcertState");
+    public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshConcertInfo", "ValidateConcertState");
     [Header("Events")]
     public UnityEvent onClientConnected;
     public UnityEvent onClientDisconnected;
 
     private StageLoader stageLoader;
+
     private bool pendingConcertState;
     private bool pendingPauseState;
     private bool paused;
@@ -40,7 +41,7 @@ public class ConcertLoader : MonoBehaviour
 
     private void OnEnable()
     {
-        GetConcertInfo();
+        RefreshConcertInfo();
         AddClientListenners();
     }
 
@@ -121,14 +122,29 @@ public class ConcertLoader : MonoBehaviour
         pendingPauseState = true;
     }
 
-    private IEnumerator GetConcertInfoCoroutine()
+    public void RefreshConcertInfo()
     {
-        yield break;
+        StartCoroutine(RefreshConcertInfoCoroutine());
     }
 
-    public void GetConcertInfo()
+    private IEnumerator RefreshConcertInfoCoroutine()
     {
-        StartCoroutine(GetConcertInfoCoroutine());
+        if (concertInfoRequest == null)
+        {
+            concertInfo = new();
+            yield break;
+        }
+        if (concertInfoRequest.RequestStatus != HttpRequest.RequestStatus.Running)
+            concertInfoRequest.Init();
+
+        do
+        {
+            concertInfoRequest.Update();
+            yield return null;
+        }
+        while (concertInfoRequest.RequestStatus == HttpRequest.RequestStatus.Running);
+
+        concertInfo = concertInfoRequest.DeserializeResponse<ConcertInfo>();
     }
 
     public void ValidateConcertState()
