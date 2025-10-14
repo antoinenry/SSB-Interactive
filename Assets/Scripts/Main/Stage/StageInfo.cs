@@ -24,6 +24,6 @@ public struct StageInfo
 
     [JsonPropertyName("id")] public int ID { get => id; set => id = value; }
     [JsonPropertyName("title")] public string Title { get => title; set => title = value; }
-    [JsonPropertyName("hasScore")] public bool HasScore { get => hasScore; set => hasScore = value; }
+    [JsonPropertyName("hasScore")] public string HasScore { get => hasScore.ToString(); set => hasScore = value == true.ToString(); }
     [JsonPropertyName("stageMoments")] public MomentInfo[] Moments { get => moments; set => moments = value; }
 }

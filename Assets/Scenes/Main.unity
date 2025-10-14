@@ -444,7 +444,7 @@ MonoBehaviour:
   songPoolRequest:
     requestUri: 
     requestTimeout: 0
-    infiniteLoops: 0
+    loop: 0
     maxLoops: 0
     minLoopDuration: 0
     onSendRequest:
@@ -661,7 +661,7 @@ MonoBehaviour:
   requestLoop:
     requestUri: buttons
     requestTimeout: 0
-    infiniteLoops: 1
+    loop: 0
     maxLoops: 2147483647
     minLoopDuration: 0
     onSendRequest:
@@ -3592,10 +3592,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   concertInfoRequest:
     requestUri: concert/today
-    requestTimeout: 0
-    infiniteLoops: 0
-    maxLoops: 0
-    minLoopDuration: 0
+    requestTimeout: 5
+    loop: 0
+    maxLoops: 3
+    minLoopDuration: 2
     onSendRequest:
       m_PersistentCalls:
         m_Calls: []
@@ -3605,23 +3605,72 @@ MonoBehaviour:
     onCancelRequest:
       m_PersistentCalls:
         m_Calls: []
-    status: 0
+    status: 2
     failureInfo: 0
-    responseTime: 0
+    responseTime: 0.43798828
     loopCount: 0
   concertInfo:
-    date: 
-    location: 
-    name: 
+    date: 2025-10-14
+    location: Neuville-les-Dames
+    name: Test PasDe
     setlist:
-      id: 0
-      name: 
+      name: Set Interactif Template
       isTemplate: 0
-      songs: []
+      songs:
+      - title: Ultimate
+        duration: 0
+        bpm: 0
+        partyLevel: 0
+        hasMinigame: 0
+        linkedStage:
+          id: 0
+          title: 
+          hasScore: 0
+          moments: []
+      - title: Dovakhiin
+        duration: 0
+        bpm: 0
+        partyLevel: 0
+        hasMinigame: 0
+        linkedStage:
+          id: 0
+          title: 
+          hasScore: 0
+          moments: []
+      - title: Mii
+        duration: 0
+        bpm: 0
+        partyLevel: 0
+        hasMinigame: 0
+        linkedStage:
+          id: 0
+          title: 
+          hasScore: 0
+          moments: []
+      - title: AUDIENCE_CHOICE
+        duration: 0
+        bpm: 0
+        partyLevel: 0
+        hasMinigame: 0
+        linkedStage:
+          id: 0
+          title: 
+          hasScore: 0
+          moments: []
+      - title: Adibou
+        duration: 0
+        bpm: 0
+        partyLevel: 0
+        hasMinigame: 0
+        linkedStage:
+          id: 0
+          title: 
+          hasScore: 0
+          moments: []
   crowdInfoRequestLoop:
     requestUri: concert/crowd
     requestTimeout: 1
-    infiniteLoops: 0
+    loop: 0
     maxLoops: 3
     minLoopDuration: 1
     onSendRequest:
@@ -3646,8 +3695,7 @@ MonoBehaviour:
   resumeEvent: resume
   editorButtons:
     methods:
-    - GetConcertInfo
-    - ValidateConcertState
+    - RefreshConcertInfo
   onClientConnected:
     m_PersistentCalls:
       m_Calls: []
