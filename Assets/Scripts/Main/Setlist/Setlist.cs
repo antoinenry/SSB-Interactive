@@ -11,7 +11,7 @@ public class SetlistWebInstance
         private int id;
         private SongWebInstance song;
 
-        [JsonPropertyName("id")] public int ID { get => id; set => id = value; }
+        [JsonPropertyName("id")] public int? ID { get => id; set => id = value.HasValue ? value.Value : -1; }
         [JsonPropertyName("song")] public SongWebInstance Song { get => song; set => song = value; }
     }
 
@@ -19,9 +19,9 @@ public class SetlistWebInstance
     private SetlistInfo info;
     private SetlistSongWebInstance[] songInstances;
 
-    [JsonPropertyName("id")] public int ID { get => id; set => id = value; }
+    [JsonPropertyName("id")] public int? ID { get => id; set => id = value.HasValue ? value.Value : -1; }
     [JsonPropertyName("name")] public string Name { get => info.Name; set => info.Name = value; }
-    [JsonPropertyName("isTemplate")] public string IsTemplate { get => info.IsTemplate.ToString(); set => info.IsTemplate = value == true.ToString(); }
+    [JsonPropertyName("isTemplate")] public bool? IsTemplate { get => info.IsTemplate; set => info.IsTemplate = value.HasValue ? value.Value : false; }
     [JsonPropertyName("setlistSongs")] public SetlistSongWebInstance[] Songs
     { 
         get => songInstances;

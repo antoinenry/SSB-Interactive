@@ -9,7 +9,7 @@ public class ConcertWebInstance
     private ConcertInfo info;
     private SetlistWebInstance setlistInstance;
 
-    [JsonPropertyName("id")] public int ID {  get => id; set => id = value; }
+    [JsonPropertyName("id")] public int? ID { get => id; set => id = value.HasValue ? value.Value : -1; }
     [JsonPropertyName("date")] public string Date { get => info.Date; set => info.Date = value; }
     [JsonPropertyName("location")] public string Location { get => info.Location; set => info.Location = value; }
     [JsonPropertyName("name")] public string Name { get => info.Name; set => info.Name = value; }
