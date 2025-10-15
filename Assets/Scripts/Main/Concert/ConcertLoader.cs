@@ -144,7 +144,7 @@ public class ConcertLoader : MonoBehaviour
         }
         while (concertInfoRequest.RequestStatus == HttpRequest.RequestStatus.Running);
 
-        concertInfo = concertInfoRequest.DeserializeResponse<ConcertWebInstance>();
+        concertInfo = concertInfoRequest.DeserializeResponse<ConcertInfo>();
     }
 
     public void ValidateConcertState()
