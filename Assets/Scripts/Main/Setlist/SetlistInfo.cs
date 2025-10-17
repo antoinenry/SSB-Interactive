@@ -5,40 +5,60 @@ using UnityEngine;
 [Serializable]
 public struct SetlistInfo
 {
-    [Serializable]
-    public struct SetlistSongInfo
-    {
-        public SongInfo song;
-        [JsonPropertyName("song")] public SongInfo? Song { get => song; set => song = value.HasValue ? value.Value : SongInfo.None; }
+    public string name;
+    public SongInfo[] songs;
 
-        public SetlistSongInfo(SongInfo song) { this.song = song; }
+    public static SetlistInfo None => new SetlistInfo() { name = null, songs = null };
+
+    public int Length
+    {
+        get => songs != null ? songs.Length : 0;
+        set
+        {
+            int length = Mathf.Max(0, value);
+            if (songs == null) songs = new SongInfo[length];
+            else Array.Resize(ref songs, length);
+        }
     }
 
-    [SerializeField] private string name;
-    [SerializeField] private bool isTemplate;
-    [SerializeField] private SongInfo[] songs;
+    public void SetSongs(SongInfo[] setSongs)
+    {
+        Length = setSongs != null ? setSongs.Length : 0;
+        Array.Copy(setSongs, songs, Length);
+    }
 
-    public static SetlistInfo None => new SetlistInfo() { name = null, isTemplate = false, songs = null };
+    public SongInfo[] GetSongs()
+    {
+        SongInfo[] getSongs = new SongInfo[Length];
+        if (songs != null) Array.Copy(songs, getSongs, Length);
+        return getSongs;
+    }
+
+    public SongInfo GetSong(int index)
+    {
+        if (index < 0 || index >= Length) return SongInfo.None;
+        return songs[index];
+    }
 
     [JsonPropertyName("name")] public string Name { get => name; set => name = value; }
-    [JsonPropertyName("isTemplate")] public bool? IsTemplate { get => isTemplate; set => isTemplate = value.HasValue ? value.Value : false; }
-
-    [JsonPropertyName("setlistSongs")]
-    public SetlistSongInfo[] Songs
+    [JsonPropertyName("setlistSongs")] public SetlistState[] SetlistSongs
     {
-        get => songs != null ? Array.ConvertAll(songs, s => new SetlistSongInfo(s)) : null;
-        set => SetSongs(value != null ? Array.ConvertAll(value, s => s.song) : null);
-    }
-
-    public void SetSongs(SongInfo[] songs)
-    {
-        if (songs == null) this.songs = null;
-        else
+        get
         {
-            int songCount = songs.Length;
-            if (this.songs == null) this.songs = new SongInfo[songCount];
-            else Array.Resize(ref this.songs, songCount);
-            Array.Copy(songs, this.songs, songCount);
+            SetlistState[] getSongs = new SetlistState[Length];
+            for (int i = 0; i < Length; i++)
+            {
+                getSongs[i] = new SetlistState()
+                {
+                    Song = songs[i],
+                    Position = i
+                };
+            }
+            return getSongs;
+        }
+        set
+        {
+            SetSongs(value != null ? Array.ConvertAll(value, s => s.Song.Value) : null);
         }
     }
 }

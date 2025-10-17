@@ -4,9 +4,9 @@ using UnityEngine;
 [CustomPropertyDrawer(typeof(HttpRequestLoop))]
 public class HttpRequestLoopDrawer : PropertyDrawer
 {
-    private static bool mainUnfold;
-    private static bool statusUnfold;
-    private int drawerLineCount;
+    public bool mainUnfold;
+    public bool statusUnfold;
+    public int drawerLineCount;
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
@@ -97,6 +97,10 @@ public class HttpRequestLoopDrawer : PropertyDrawer
             AddFieldLine(ref fieldRect);
             HttpRequestLoop.FailureFlag failure = (HttpRequestLoop.FailureFlag)property.FindPropertyRelative("failureInfo").enumValueFlag;
             EditorGUI.LabelField(fieldRect, "Failure info : ", failure.ToString());
+
+            AddFieldLine(ref fieldRect);
+            string responseBody = property.FindPropertyRelative("responseBody").stringValue;
+            EditorGUI.TextField(fieldRect, "Response body :", responseBody);
 
             EditorGUI.indentLevel--;
         }

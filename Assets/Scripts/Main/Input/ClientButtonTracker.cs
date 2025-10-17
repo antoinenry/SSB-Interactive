@@ -89,16 +89,16 @@ public class ClientButtonTracker : MonoBehaviour
     private void AddRequestListeners()
     {
         if (requestLoop == null) return;
-        requestLoop.onClientResponse.AddListener(OnRequestResponse);
+        requestLoop.onRequestEnd.AddListener(OnRequestEnd);
     }
 
     private void RemoveRequestListeners()
     {
         if (requestLoop == null) return;
-        requestLoop.onClientResponse.RemoveListener(OnRequestResponse);
+        requestLoop.onRequestEnd.RemoveListener(OnRequestEnd);
     }
 
-    private void OnRequestResponse(HttpRequest buttonRequest)
+    private void OnRequestEnd(HttpRequest buttonRequest)
     {
         SingleButtonCount[] data = buttonRequest.DeserializeResponse<SingleButtonCount[]>();
         Current = new MultipleButtonTimedCount(buttonRequest.EndTime, data);

@@ -17,9 +17,11 @@ namespace Shop
         public ShopItem[] inventory;
         public ShopShelfDisplay[] shelfDisplays;
         public HttpRequestLoop songPoolRequest;
+        [Header("Editor Tools")]
+        public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshInventory");
 
         private PollMaster poll;
-        private Coroutine refreshInventoryCoroutine;
+        private Concert concertLoader;
 
         public HttpClientScriptable HttpClient { get; private set; }
 
@@ -27,6 +29,7 @@ namespace Shop
         {
             base.Awake();
             HttpClient = CurrentAssetsManager.GetCurrent<HttpClientScriptable>();
+            concertLoader = FindObjectOfType<Concert>(true);
         }
 
         protected override void OnEnable()
@@ -55,38 +58,26 @@ namespace Shop
 
         public void RefreshInventory()
         {
-            if (refreshInventoryCoroutine == null) refreshInventoryCoroutine = StartCoroutine(RequestAvailableSongsCoroutine());
+            inventory = new ShopItem[0];
+            if (songPoolRequest != null)
+            {
+                songPoolRequest.onRequestEnd.AddListener(OnSongPoolRequestEnd);
+                songPoolRequest.StartRequestCoroutine(this);
+            }
+
         }
 
-        public void CancelRefreshInventory()
+        private void OnSongPoolRequestEnd(HttpRequest request)
         {
-            StopCoroutine(refreshInventoryCoroutine);
-            refreshInventoryCoroutine = null;
-        }
-
-        public bool Refreshing => refreshInventoryCoroutine != null;
-
-        private IEnumerator RequestAvailableSongsCoroutine()
-        {
-            // Send request for available songs
-            if (songPoolRequest == null)
-            {
-                inventory = new ShopItem[0];
-                refreshInventoryCoroutine = null;
-                yield break;
-            }
-            songPoolRequest.Init();
-            while (songPoolRequest.RequestStatus == HttpRequest.RequestStatus.Running)
-            {
-                songPoolRequest.Update();
-                yield return null;
-            }
+            inventory = new ShopItem[0];
             // Process response
-            string[] availableSongs;
-            if (songPoolRequest.RequestStatus == HttpRequest.RequestStatus.Success)
-                availableSongs = songPoolRequest.DeserializeResponse<string[]>();
-            else
-                availableSongs = new string[0];
+            SongInfo[] availableSongs = null;
+            if (songPoolRequest != null)
+            {
+                songPoolRequest.onRequestEnd.RemoveListener(OnSongPoolRequestEnd);
+                if (songPoolRequest.RequestStatus != HttpRequest.RequestStatus.Success)
+                    availableSongs = songPoolRequest.DeserializeResponse<SongInfo[]>();
+            }
             // Convert available songs into shop items
             if (availableSongs != null)
                 inventory = Array.ConvertAll(availableSongs, s => CreateShopItem(s));
@@ -109,10 +100,10 @@ namespace Shop
             }
         }
 
-        private ShopItem CreateShopItem(string songTitle)
+        private ShopItem CreateShopItem(SongInfo song)
             => new ShopItem()
             {
-                name = songTitle,
+                name = song.Title,
                 icon = null,
                 price = 0
             };

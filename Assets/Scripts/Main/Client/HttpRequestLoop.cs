@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,18 +19,20 @@ public class HttpRequestLoop
     public int maxLoops = 0;
     public float minLoopDuration = .2f;
 
-    public UnityEvent<HttpRequest> onSendRequest;
-    public UnityEvent<HttpRequest> onClientResponse;
-    public UnityEvent<HttpRequest,FailureFlag> onCancelRequest;
+    public UnityEvent<HttpRequest> onRequestSend;
+    public UnityEvent<HttpRequest> onRequestEnd;
 
     [SerializeField] private HttpRequest.RequestStatus status;
     [SerializeField] private FailureFlag failureInfo;
     [SerializeField] private float responseTime;
     [SerializeField] private int loopCount;
+    [SerializeField] private string responseBody;
 
     private HttpClientScriptable client;
     private HttpRequest request;
     private bool hasProcessedResponse;
+    private Coroutine updateCoroutine;
+    private MonoBehaviour updateCoroutineHost;
 
     public HttpRequest.RequestStatus RequestStatus => status;
     public FailureFlag FailureInfo => failureInfo;
@@ -54,7 +57,6 @@ public class HttpRequestLoop
     public void Init()
     {
         CurrentAssetsManager.GetCurrent(ref client);
-        request = new HttpRequest();
         Reset();
     }
 
@@ -62,7 +64,8 @@ public class HttpRequestLoop
     {
         loopCount = 0;
         failureInfo = 0;
-        
+        request = new HttpRequest();
+        status = HttpRequest.RequestStatus.Created;
     }
 
     public void Update()
@@ -88,7 +91,7 @@ public class HttpRequestLoop
                 failureInfo |= FailureFlag.RequestFailure;
                 responseTime = request.Duration;
                 if (loop.HasFlag(LoopBehaviour.LoopOnFailure)) Loop();
-                else Cancel();
+                else Fail();
                 break;
             case HttpRequest.RequestStatus.Running:
                 // Request timeout: notify and relaunch
@@ -97,7 +100,7 @@ public class HttpRequestLoop
                 {
                     failureInfo |= FailureFlag.Timeout;
                     if (loop.HasFlag(LoopBehaviour.LoopOnTimeout)) Loop();
-                    else Cancel();
+                    else Fail();
                 }
                 break;
             case HttpRequest.RequestStatus.Canceled:
@@ -108,8 +111,6 @@ public class HttpRequestLoop
         }
     }
 
-    public T DeserializeResponse<T>() => request != null ? request.DeserializeResponse<T>() : default(T);
-
     private void Send()
     {
         RequestsPerSeconds = float.IsNaN(request.StartTime) ? 0f : 1f / (Time.time - request.StartTime);
@@ -118,13 +119,14 @@ public class HttpRequestLoop
         if (client != null)
         {
             client.SendRequest(request);
-            onSendRequest.Invoke(request);
+            onRequestSend.Invoke(request);
         }
         else
         {
             failureInfo |= FailureFlag.NullClient;
         }
         hasProcessedResponse = false;
+        responseBody = null;
     }
 
     private void Loop()
@@ -159,13 +161,65 @@ public class HttpRequestLoop
     {
         request.Cancel();
         status = HttpRequest.RequestStatus.Canceled;
-        onCancelRequest.Invoke(request, FailureInfo);
+        onRequestEnd.Invoke(request);
+    }
+
+    private void Fail()
+    {
+        status = HttpRequest.RequestStatus.Failed;
+        if (request != null)
+        {
+            if (request.Status == HttpRequest.RequestStatus.Running)
+                request.Cancel();
+            else
+                onRequestEnd.Invoke(request);
+        }
+        else
+            onRequestEnd.Invoke(null);
     }
 
     private void Receive()
     {
         responseTime = request.Duration;
         hasProcessedResponse = true;
-        onClientResponse.Invoke(request);
+        responseBody = request.ResponseBody;
+        onRequestEnd.Invoke(request);
+    }
+
+    public void StartRequestCoroutine(MonoBehaviour host, bool restart = false)
+    {
+        if (restart && updateCoroutine != null && updateCoroutineHost != null) updateCoroutineHost.StopCoroutine(updateCoroutine);
+        updateCoroutineHost = host;
+        updateCoroutine = host?.StartCoroutine(UpdateCoroutine());
+    }
+
+    public void StopRequestCoroutine()
+    {
+        if (updateCoroutine != null && updateCoroutineHost != null) updateCoroutineHost?.StopCoroutine(updateCoroutine);
+        updateCoroutineHost = null;
+        updateCoroutine = null;
+    }
+
+    private IEnumerator UpdateCoroutine()
+    {
+        if (RequestStatus != HttpRequest.RequestStatus.Running) Init();
+        do
+        {
+            Update();
+            yield return null;
+        }
+        while (RequestStatus == HttpRequest.RequestStatus.Running);
+    }
+
+    public T DeserializeResponse<T>()
+    {
+        if (request != null)
+        {
+            return request.DeserializeResponse<T>();
+        }
+        else
+        {
+            return default(T);
+        }
     }
 }

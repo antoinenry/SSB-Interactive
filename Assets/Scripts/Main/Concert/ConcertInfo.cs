@@ -5,18 +5,25 @@ using UnityEngine;
 [Serializable]
 public struct ConcertInfo
 {
-    [SerializeField] private string date;
-    [SerializeField] private string location;
-    [SerializeField] private string name;
-    [SerializeField] private SetlistInfo setlist;
+    public string name;
+    public string location;
+    public string date;
+    public SetlistInfo setlist;
 
-    [JsonPropertyName("date")] public string Date { get => date;  set => date = value; }
-    [JsonPropertyName("location")] public string Location { get => location; set => location = value; }
-    [JsonPropertyName("name")] public string Name { get => name; set => name = value; }
-    [JsonPropertyName("setlist")] public SetlistInfo? Setlist { get => setlist; set => setlist = value.HasValue ? value.Value : SetlistInfo.None; }
+    public static ConcertInfo None => new ConcertInfo()
+    {
+        date = null,
+        location = null,
+        name = null,
+    };
 
     public string GetLog()
     {
-        return "date : " + date + " / location : " + location + " / name : " + name;
+        return "name : " + name + " / date : " + date + " / location : " + location;
     }
+
+    [JsonPropertyName("name")] public string Name { get => name; set => name = value; }
+    [JsonPropertyName("location")] public string Location { get => location; set => location = value; }
+    [JsonPropertyName("date")] public string Date { get => date; set => date = value; }
+    [JsonPropertyName("setlist")] public SetlistInfo? Setlist { get => setlist; set => setlist = value.HasValue ? value.Value : SetlistInfo.None; }
 }

@@ -15,7 +15,7 @@ public class Stage : MonoBehaviour
     private int moment;
     private bool paused;
 
-    protected ConcertLoader concert;
+    protected Concert concert;
     protected Messenger adminMessenger;
 
     public MiniGameScore Score { get; private set; }
@@ -61,7 +61,7 @@ public class Stage : MonoBehaviour
     virtual protected bool HasAllComponents()
     {
         if (concert && adminMessenger) return true;
-        concert = FindObjectOfType<ConcertLoader>(true);
+        concert = FindObjectOfType<Concert>(true);
         adminMessenger = FindObjectOfType<Messenger>(true);
         return concert && adminMessenger;
     }
