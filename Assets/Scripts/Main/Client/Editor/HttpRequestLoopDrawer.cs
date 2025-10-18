@@ -54,6 +54,14 @@ public class HttpRequestLoopDrawer : PropertyDrawer
         uriProperty.stringValue = EditorGUI.TextField(fieldRect, "URI", uriProperty.stringValue);
 
         AddFieldLine(ref fieldRect);
+        SerializedProperty parametersProperty = property.FindPropertyRelative("parameters");
+        EditorGUI.PropertyField(fieldRect, parametersProperty, new("Parameters"), true);
+        if (parametersProperty.isExpanded)
+        {
+            for (int i = 0, iend = parametersProperty.arraySize + 2; i < iend; ++i) AddFieldLine(ref fieldRect);
+        }
+
+        AddFieldLine(ref fieldRect);
         SerializedProperty requestTimeoutProperty = property.FindPropertyRelative("requestTimeout");
         requestTimeoutProperty.floatValue = EditorGUI.FloatField(fieldRect, "Timeout", requestTimeoutProperty.floatValue);
 

@@ -13,7 +13,9 @@ public class HttpRequestLoop
     [Flags]
     public enum FailureFlag { NullClient = 1, RequestFailure = 2, Timeout = 4, MaxLoop = 8 }
 
+    public HttpRequest.RequestType requestType;
     public string requestUri = "";
+    public string[] parameters;
     public float requestTimeout = 1f;
     public LoopBehaviour loop;
     public int maxLoops = 0;
@@ -111,11 +113,42 @@ public class HttpRequestLoop
         }
     }
 
+    public string GetUriWithParameters()
+    {
+        int uriLength = requestUri != null ? requestUri.Length : 0;
+        if (uriLength == 0) return "";
+        int parameterCount = parameters != null ? parameters.Length : 0;
+        int parameterIndex = 0;
+        string fullUri = "";
+        for (int i = 0; i < uriLength; i++)
+        {
+            if (i < uriLength - 1 && requestUri[i + 1] == '{')
+            {
+                fullUri += "?";
+                for (i += 2; i < uriLength; i++)
+                {
+                    if (requestUri[i] == '}') break;
+                    fullUri += requestUri[i];
+                }
+                fullUri += "=";
+                if (parameterIndex < parameterCount) fullUri += parameters[parameterIndex];
+                else fullUri += "null";
+                parameterIndex++;
+            }
+            else
+            {
+                fullUri += requestUri[i];
+            }
+        }
+        return fullUri;
+    }
+
     private void Send()
     {
         RequestsPerSeconds = float.IsNaN(request.StartTime) ? 0f : 1f / (Time.time - request.StartTime);
-        request.requestUri = requestUri;
-        request.type = HttpRequest.RequestType.GET;
+        request.requestUri = GetUriWithParameters();
+        request.type = requestType;
+        Debug.Log(requestType + " " + request.FullUri);
         if (client != null)
         {
             client.SendRequest(request);
