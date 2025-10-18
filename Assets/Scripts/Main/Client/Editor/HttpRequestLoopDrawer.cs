@@ -49,10 +49,17 @@ public class HttpRequestLoopDrawer : PropertyDrawer
         Rect fieldRect = position;
         fieldRect.height = EditorGUIUtility.singleLineHeight;
 
+        // Request type popup
+        AddFieldLine(ref fieldRect);
+        SerializedProperty typeProperty = property.FindPropertyRelative("requestType");
+        typeProperty.enumValueIndex = (int)(HttpRequest.RequestType)EditorGUI.EnumPopup(fieldRect, "Format", (HttpRequest.RequestType)typeProperty.enumValueIndex);
+
+        // URI field
         AddFieldLine(ref fieldRect);
         SerializedProperty uriProperty = property.FindPropertyRelative("requestUri");
         uriProperty.stringValue = EditorGUI.TextField(fieldRect, "URI", uriProperty.stringValue);
 
+        // Parameter array
         AddFieldLine(ref fieldRect);
         SerializedProperty parametersProperty = property.FindPropertyRelative("parameters");
         EditorGUI.PropertyField(fieldRect, parametersProperty, new("Parameters"), true);
@@ -62,18 +69,32 @@ public class HttpRequestLoopDrawer : PropertyDrawer
             for (int i = 0, iend = parametersProperty.arraySize + 2; i < iend; ++i) AddFieldLine(ref fieldRect);
         }
 
+        // Parameter format popup
+        if (parametersProperty.arraySize > 0)
+        {
+            EditorGUI.indentLevel++;
+            AddFieldLine(ref fieldRect);
+            SerializedProperty formatProperty = property.FindPropertyRelative("parametersFormat");
+            formatProperty.enumValueIndex = (int)(HttpRequestLoop.ParameterFormat)EditorGUI.EnumPopup(fieldRect, "Format", (HttpRequestLoop.ParameterFormat)formatProperty.enumValueIndex);
+            EditorGUI.indentLevel--;
+        }
+
+        // Timeout field
         AddFieldLine(ref fieldRect);
         SerializedProperty requestTimeoutProperty = property.FindPropertyRelative("requestTimeout");
         requestTimeoutProperty.floatValue = EditorGUI.FloatField(fieldRect, "Timeout", requestTimeoutProperty.floatValue);
 
+        // Loop flags
         AddFieldLine(ref fieldRect);
         SerializedProperty loopProperty = property.FindPropertyRelative("loop");
         HttpRequestLoop.LoopBehaviour loopFlags = (HttpRequestLoop.LoopBehaviour)loopProperty.enumValueFlag;
         loopFlags = (HttpRequestLoop.LoopBehaviour)EditorGUI.EnumFlagsField(fieldRect, "Loop", loopFlags);
         loopProperty.enumValueFlag = (int)loopFlags;
 
+        // Loop parameters
         if (loopFlags != 0)
         {
+            // Max count
             SerializedProperty maxLoopsProperty = property.FindPropertyRelative("maxLoops");
             if (loopFlags.HasFlag(HttpRequestLoop.LoopBehaviour.InfiniteLoop) == false)
             {
@@ -81,6 +102,7 @@ public class HttpRequestLoopDrawer : PropertyDrawer
                 maxLoopsProperty.intValue = EditorGUI.IntField(fieldRect, "Max loops", maxLoopsProperty.intValue);
             }
 
+            // Duration
             SerializedProperty minLoopDurationProperty = property.FindPropertyRelative("minLoopDuration");
             if (maxLoopsProperty.intValue > 1)
             {
@@ -89,6 +111,7 @@ public class HttpRequestLoopDrawer : PropertyDrawer
             }
         }
 
+        // Detail log
         AddFieldLine(ref fieldRect);
         statusUnfold = EditorGUI.Foldout(fieldRect, statusUnfold, "Detail");
         if (statusUnfold)

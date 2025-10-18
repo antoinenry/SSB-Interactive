@@ -16,15 +16,15 @@ namespace Shop
 
         private void Update()
         {
-            if (labelField) labelField.text = item.name;
-            if (iconField) iconField.sprite = item.icon;
+            if (labelField) labelField.text = item.song.Title;
+            //if (iconField) iconField.sprite = item.icon;
             if (priceField) priceField.text = item.price.ToString();
         }
 
         public void EmptyShelf()
         {
             if (labelField) labelField.text = "";
-            if (iconField) iconField.sprite = null;
+            //if (iconField) iconField.sprite = null;
             if (priceField) priceField.text = "";
         }
     }

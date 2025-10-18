@@ -79,8 +79,8 @@ public class DebugLog : MonoBehaviour
             logText += "Concert status : ";
             if (concertClient)
             {
-                logText += "\n- concert : " + concertClient.concertInfo.GetLog();
-                logText += "\n- state : " + concertClient.concertState.GetLog();
+                logText += "\n- concert : " + concertClient.info.GetLog();
+                logText += "\n- state : " + concertClient.state.GetLog();
             }
             else logText += "NULL";
 

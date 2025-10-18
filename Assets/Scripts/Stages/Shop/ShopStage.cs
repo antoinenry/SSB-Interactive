@@ -1,36 +1,39 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 namespace Shop
 {
     [Serializable]
     public struct ShopItem
     {
-        public string name;
-        public Sprite icon;
+        public SongInfo song;
         public int price;
+
+        public static ShopItem None => new ShopItem() { song = SongInfo.None, price = 0 };
+        public bool IsEmpty => song == SongInfo.None;
     }
 
     public class ShopStage : Stage
     {
-        public ShopItem[] inventory;
+        [Header("Components")]
         public ShopShelfDisplay[] shelfDisplays;
+        [Header("Contents")]
+        public List<SongInfo> songPool;
+        public ShopItem[] inventory;
+        [Header("Patron")]
+        public int cartCapacity;
+        public int budget;
+        public bool canBuyMinigames;
+        public int minimumPartyLevel;
+        [Header("Web")]
         public HttpRequestLoop songPoolRequest;
+        public HttpRequestLoop addSongChoiceRequest;
         [Header("Editor Tools")]
-        public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshInventory");
+        public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshSongPool", "FillInventory", "Clear Inventory");
 
         private PollMaster poll;
-        private Concert concertLoader;
-
-        public HttpClientScriptable HttpClient { get; private set; }
-
-        protected override void Awake()
-        {
-            base.Awake();
-            HttpClient = CurrentAssetsManager.GetCurrent<HttpClientScriptable>();
-            concertLoader = FindObjectOfType<Concert>(true);
-        }
 
         protected override void OnEnable()
         {
@@ -56,33 +59,112 @@ namespace Shop
             return base.HasAllComponents() && poll;
         }
 
-        public void RefreshInventory()
+        public void RefreshSongPool()
         {
-            inventory = new ShopItem[0];
             if (songPoolRequest != null)
             {
+                int setlistId = concert != null ? concert.state.setlist.databaseID : -1;
+                songPoolRequest.parameters = new string[] { setlistId.ToString() };
                 songPoolRequest.onRequestEnd.AddListener(OnSongPoolRequestEnd);
                 songPoolRequest.StartRequestCoroutine(this);
             }
-
         }
 
         private void OnSongPoolRequestEnd(HttpRequest request)
         {
-            inventory = new ShopItem[0];
-            // Process response
-            SongInfo[] availableSongs = null;
+            songPool = null;
             if (songPoolRequest != null)
             {
                 songPoolRequest.onRequestEnd.RemoveListener(OnSongPoolRequestEnd);
                 if (songPoolRequest.RequestStatus != HttpRequest.RequestStatus.Success)
-                    availableSongs = songPoolRequest.DeserializeResponse<SongInfo[]>();
+                {
+                    SongInfo[] getSongs = songPoolRequest.DeserializeResponse<SongInfo[]>();
+                    songPool = getSongs != null ? new(getSongs) : new();
+                }
             }
-            // Convert available songs into shop items
-            if (availableSongs != null)
-                inventory = Array.ConvertAll(availableSongs, s => CreateShopItem(s));
+        }
+
+        public void RemoveSongFromPool(SongInfo song)
+        {
+            if (songPool == null) return;
+            songPool.Remove(song);
+        }
+
+        public int InventorySize
+        {
+            get => inventory != null ? inventory.Length : 0;
+            set
+            {
+                int size = Mathf.Max(0, value);
+                if (inventory != null) Array.Resize(ref inventory, size);
+                else inventory = new ShopItem[size];
+            }
+        }
+
+        public void ClearInventory()
+        {
+            if (InventorySize > 0) Array.Clear(inventory, 0, InventorySize);
+        }
+
+        public void RemoveItemFromInventory(int index)
+        {
+            if (index < 0 || index >= InventorySize) return;
+            inventory[index] = new ShopItem() { song = SongInfo.None, price = -1 };
+        }
+
+        public void RemoveItemFromInventory(ShopItem item)
+        {
+            if (InventorySize == 0) return;
+            RemoveItemFromInventory(Array.IndexOf(inventory, item));
+        }
+
+        public void FillInventory()
+        {
+            for (int i = 0, iend = InventorySize; i < iend; i++)
+            {
+                if (inventory[i].IsEmpty) inventory[i] = CreateShopItem();
+            }
+        }
+
+        private ShopItem CreateShopItem()
+        {
+            // Pick an available song from pool, that is not already in inventory
+            int songPoolSize = songPool != null ? songPool.Count : 0;
+            List<int> availableSongIndices = new List<int>(songPoolSize);
+            SongInfo song;
+            for (int i = 0; i < songPoolSize; i++)
+            {
+                song = songPool[i];
+                if (IsInInventory(song)) continue;
+                if (!canBuyMinigames && song.hasMinigame) continue;
+                if (song.partyLevel < minimumPartyLevel) continue;
+                availableSongIndices.Add(i);
+            }
+            if (availableSongIndices.Count == 0) return ShopItem.None;
+            song = songPool[availableSongIndices[UnityEngine.Random.Range(0, availableSongIndices.Count)]];
+            // Set a semi-random price
+            GetPriceRange(cartCapacity, budget, out int minPrice, out int maxPrice);
+            return new ShopItem() { song = song, price = UnityEngine.Random.Range(minPrice, maxPrice) };
+        }
+
+        private bool IsInInventory(SongInfo song)
+        {
+            if (inventory == null) return false;
+            return Array.FindIndex(inventory, item => item.song == song) != -1;
+        }
+
+        private void GetPriceRange(int buyableItems, int maxBudget, out int minPrice, out int maxPrice)
+        {
+            if (buyableItems > 0)
+            {
+                minPrice = Mathf.CeilToInt(maxBudget / (buyableItems + 1)) + 1;
+                maxPrice = Mathf.FloorToInt(maxBudget / buyableItems);
+            }
             else
-                inventory = new ShopItem[0];
+            {
+                minPrice = maxBudget + 1;
+                maxPrice = int.MaxValue;
+            }
         }
 
         private void UpdateShelves()
@@ -100,25 +182,40 @@ namespace Shop
             }
         }
 
-        private ShopItem CreateShopItem(SongInfo song)
-            => new ShopItem()
-            {
-                name = song.Title,
-                icon = null,
-                price = 0
-            };
-
         private void OnPollWinner(PollMaster.Candidate candidate)
         {
+            Debug.Log("Winner is " + candidate.buttonID);
+            poll?.ResetCandidateVotes(candidate);
             if (shelfDisplays == null) return;
             string buttonID = candidate?.buttonID;
             int shelfIndex = Array.FindIndex(shelfDisplays, s => s.buttonID == buttonID);
+            Debug.Log("On shelf #" + shelfIndex);
             if (shelfIndex != -1) BuyItem(shelfDisplays[shelfIndex].item);           
         }
 
         private void BuyItem(ShopItem item)
         {
-            Debug.Log("BOUGHT A " + item.name + " !");
+            Debug.Log("Buying " + item.song.title);
+            RemoveItemFromInventory(item);
+            RemoveSongFromPool(item.song);
+            FillInventory();
+            if (addSongChoiceRequest != null)
+            {
+                int setlistId = concert != null ? concert.state.setlist.databaseID : -1;
+                int songId = item.song.databaseID;
+                addSongChoiceRequest.parameters = new string[] { setlistId.ToString(), songId.ToString() };
+                addSongChoiceRequest.onRequestEnd.AddListener(OnAddSongChoiceRequestEnd);
+                addSongChoiceRequest.StartRequestCoroutine(this, restart:true);
+            }
+        }
+
+        private void OnAddSongChoiceRequestEnd(HttpRequest request)
+        {
+            if (addSongChoiceRequest != null)
+            {
+                Debug.Log("Added song choice - " + request.ResponseBody);
+                addSongChoiceRequest.onRequestEnd.RemoveListener(OnAddSongChoiceRequestEnd);
+            }
         }
     }
 }

@@ -12,10 +12,12 @@ public class HttpRequestLoop
     public enum LoopBehaviour { NoLoop = 0, LoopOnFailure  = 1, LoopOnTimeout = 2, LoopOnSuccess = 4, InfiniteLoop = 8 };
     [Flags]
     public enum FailureFlag { NullClient = 1, RequestFailure = 2, Timeout = 4, MaxLoop = 8 }
+    public enum ParameterFormat { Path, Query }
 
     public HttpRequest.RequestType requestType;
     public string requestUri = "";
     public string[] parameters;
+    public ParameterFormat parametersFormat;
     public float requestTimeout = 1f;
     public LoopBehaviour loop;
     public int maxLoops = 0;
@@ -113,6 +115,26 @@ public class HttpRequestLoop
         }
     }
 
+    public void SetParameter(int index, string value, bool trimExcess  = true)
+    {
+        if (index >= 0)
+        {
+            if (parameters == null) parameters = new string[index + 1];
+            else if (index >= parameters.Length) Array.Resize(ref parameters, index + 1);
+            parameters[index] = value;
+        }
+        if (trimExcess) TrimExcessParameters();
+    }
+
+    public void TrimExcessParameters()
+    {
+        if (parameters == null) return;
+        int parameterCount = parameters.Length;
+        for (; parameterCount > 0; parameterCount--)
+            if (parameters[parameterCount - 1] != null && parameters[parameterCount - 1].Length > 0) break;
+        Array.Resize(ref parameters, parameterCount);
+    }
+
     public string GetUriWithParameters()
     {
         int uriLength = requestUri != null ? requestUri.Length : 0;
@@ -121,38 +143,44 @@ public class HttpRequestLoop
         int parameterIndex = 0;
         string fullUri = "";
 
-        //for (int i = 0; i < uriLength; i++)
-        //{
-        //    if (i < uriLength - 1 && requestUri[i + 1] == '{')
-        //    {
-        //        fullUri += "?";
-        //        for (i += 2; i < uriLength; i++)
-        //        {
-        //            if (requestUri[i] == '}') break;
-        //            fullUri += requestUri[i];
-        //        }
-        //        fullUri += "=";
-        //        if (parameterIndex < parameterCount) fullUri += parameters[parameterIndex];
-        //        else fullUri += "null";
-        //        parameterIndex++;
-        //    }
-        //    else
-        //    {
-        //        fullUri += requestUri[i];
-        //    }
-        //}
-
-        for (int i = 0; i < uriLength; i++)
+        switch (parametersFormat)
         {
-            if (requestUri[i] == '{')
-            {
-                if (parameterIndex < parameterCount) fullUri += parameters[parameterIndex];
-                while (i < uriLength && requestUri[i] != '}') i++;
-            }
-            else
-            {
-                fullUri += requestUri[i];
-            }
+            case ParameterFormat.Path:
+                for (int i = 0; i < uriLength; i++)
+                {
+                    if (requestUri[i] == '{')
+                    {
+                        if (parameterIndex < parameterCount) fullUri += parameters[parameterIndex++];
+                        while (i < uriLength && requestUri[i] != '}') i++;
+                    }
+                    else
+                    {
+                        fullUri += requestUri[i];
+                    }
+                }
+                break;
+
+            case ParameterFormat.Query:
+                for (int i = 0; i < uriLength; i++)
+                {
+                    if (i < uriLength - 1 && requestUri[i + 1] == '{')
+                    {
+                        fullUri += "?";
+                        for (i += 2; i < uriLength; i++)
+                        {
+                            if (requestUri[i] == '}') break;
+                            fullUri += requestUri[i];
+                        }
+                        fullUri += "=";
+                        if (parameterIndex < parameterCount) fullUri += parameters[parameterIndex++];
+                        else fullUri += "null";
+                    }
+                    else
+                    {
+                        fullUri += requestUri[i];
+                    }
+                }
+                break;
         }
 
         return fullUri;

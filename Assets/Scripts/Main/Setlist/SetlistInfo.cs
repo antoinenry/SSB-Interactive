@@ -7,6 +7,7 @@ public struct SetlistInfo
 {
     public string name;
     public SongInfo[] songs;
+    public int databaseID;
 
     public static SetlistInfo None => new SetlistInfo() { name = null, songs = null };
 
@@ -61,4 +62,5 @@ public struct SetlistInfo
             SetSongs(value != null ? Array.ConvertAll(value, s => s.Song.Value) : null);
         }
     }
+    [JsonPropertyName("id")] public int? DatabaseID { get => databaseID; set => databaseID = value.HasValue ? value.Value : -1; }
 }

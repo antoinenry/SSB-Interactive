@@ -1109,12 +1109,12 @@ GameObject:
   - component: {fileID: 328108289}
   - component: {fileID: 328108290}
   m_Layer: 0
-  m_Name: Input System
+  m_Name: Audience
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &328108288
 Transform:
   m_ObjectHideFlags: 0
@@ -1128,7 +1128,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &328108289
 MonoBehaviour:
@@ -1142,12 +1142,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4900e11dfd243dc4584221c4518bf696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onSetEnabled:
+    m_PersistentCalls:
+      m_Calls: []
+  onCountUpdate:
+    m_PersistentCalls:
+      m_Calls: []
   requestLoop:
+    requestType: 0
     requestUri: buttons
-    requestTimeout: 0
-    loop: 0
+    parameters: []
+    parametersFormat: 0
+    requestTimeout: 1
+    loop: -1
     maxLoops: 2147483647
-    minLoopDuration: 0
+    minLoopDuration: 0.2
     onRequestSend:
       m_PersistentCalls:
         m_Calls: []
@@ -1159,9 +1168,6 @@ MonoBehaviour:
     responseTime: 0
     loopCount: 0
     responseBody: 
-  onCountUpdate:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &328108290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1174,7 +1180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9a94468a1abd4469ffb9b1d7d42f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonCounter: {fileID: 328108289}
+  buttonTracker: {fileID: 328108289}
   smoothRate: 1
   inputConfiguration: {fileID: 11400000, guid: 82dada5e80858e64e8fb0443f0b9094a, type: 2}
   onAudienceInput:
@@ -1966,7 +1972,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.448, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2319,7 +2325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &513190368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2442,7 +2448,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 0}
@@ -2551,7 +2557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Danse Macabre
+  m_text: Pokemon
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -2772,8 +2778,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 586072267}
-  - component: {fileID: 586072269}
   - component: {fileID: 586072266}
+  - component: {fileID: 586072269}
   m_Layer: 0
   m_Name: Admin
   m_TagString: Untagged
@@ -2793,12 +2799,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54de52bdee4a69f459717de0c01909ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  concertInfo:
+  info:
     name: PasDe-Test
-    location: Mon cul
-    date: 2025-10-17
+    location: "Cit\xE9 17"
+    date: 2025-10-18
     setlist:
-      name: Set Interactif Template
+      name: Set Interactif Template-1760801738736
       songs:
       - title: Ultimate
         duration: 150
@@ -2833,17 +2839,17 @@ MonoBehaviour:
           moments: []
           databaseID: 9197
         databaseID: 8359
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
+      - title: Gourmet
+        duration: 150
+        bpm: 180
+        partyLevel: 5
         hasMinigame: 0
         linkedStage:
-          title: BlackScreen
+          title: Logo
           hasScore: 0
           moments: []
-          databaseID: 8375
-        databaseID: 9202
+          databaseID: 8376
+        databaseID: 8352
       - title: Adibou
         duration: 180
         bpm: 160
@@ -2855,9 +2861,10 @@ MonoBehaviour:
           moments: []
           databaseID: 9198
         databaseID: 8960
-  concertState:
+      databaseID: 24
+  state:
     setlist:
-      name: Set Interactif Template
+      name: Set Interactif Template-1760804399915
       songs:
       - title: Ultimate
         duration: 150
@@ -2892,17 +2899,17 @@ MonoBehaviour:
           moments: []
           databaseID: 9197
         databaseID: 8359
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
+      - title: Pokemon
+        duration: 240
+        bpm: 180
+        partyLevel: 5
         hasMinigame: 0
         linkedStage:
-          title: BlackScreen
+          title: Logo
           hasScore: 0
           moments: []
-          databaseID: 8375
-        databaseID: 9202
+          databaseID: 8376
+        databaseID: 8692
       - title: Adibou
         duration: 180
         bpm: 160
@@ -2914,6 +2921,7 @@ MonoBehaviour:
           moments: []
           databaseID: 9198
         databaseID: 8960
+      databaseID: 25
     song:
       title: Ultimate
       duration: 150
@@ -2931,7 +2939,10 @@ MonoBehaviour:
     momentIndex: -1
     paused: 0
   concertInfoRequest:
+    requestType: 0
     requestUri: concert/today
+    parameters: []
+    parametersFormat: 0
     requestTimeout: 5
     loop: 0
     maxLoops: 0
@@ -2944,12 +2955,16 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0.3222046
+    responseTime: 0.15475464
     loopCount: 0
-    responseBody: '{"id":9210,"ips":["92.184.104.151"],"date":"2025-10-17","location":"Mon
-      cul","name":"PasDe-Test","setlist":{"id":21,"name":"Set Interactif Template","isTemplate":null,"setlistSongs":[{"id":224,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":225,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":226,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":227,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":3},{"id":228,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":null,"stageMoments":[]}},"position":4}]},"scores":[]}'
+    responseBody: "{\"id\":9211,\"ips\":[\"92.184.112.97\",\"92.184.112.174\",\"92.184.105.80\",\"92.184.112.187\",\"77.199.84.17\",\"92.184.104.106\"],\"date\":\"2025-10-18\",\"location\":\"Cit\xE9
+      17\",\"name\":\"PasDe-Test\",\"setlist\":{\"id\":24,\"name\":\"Set Interactif
+      Template-1760801738736\",\"isTemplate\":false,\"templateRef\":21,\"setlistSongs\":[{\"id\":239,\"song\":{\"id\":8365,\"title\":\"Ultimate\",\"duration\":150,\"bpm\":160,\"zgg\":5.0,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},\"position\":0},{\"id\":240,\"song\":{\"id\":8432,\"title\":\"Dovakhiin\",\"duration\":180,\"bpm\":75,\"zgg\":3.0,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},\"position\":1},{\"id\":241,\"song\":{\"id\":8359,\"title\":\"Mii\",\"duration\":120,\"bpm\":120,\"zgg\":1.0,\"minigame\":true,\"stage\":{\"id\":9197,\"title\":\"Map\",\"hasScore\":false,\"stageMoments\":[]}},\"position\":2},{\"id\":242,\"song\":{\"id\":8352,\"title\":\"Gourmet\",\"duration\":150,\"bpm\":180,\"zgg\":5.0,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},\"position\":3},{\"id\":243,\"song\":{\"id\":8960,\"title\":\"Adibou\",\"duration\":180,\"bpm\":160,\"zgg\":100.0,\"minigame\":true,\"stage\":{\"id\":9198,\"title\":\"Shop\",\"hasScore\":null,\"stageMoments\":[]}},\"position\":4}]},\"scores\":[]}"
   concertStateRequest:
+    requestType: 0
     requestUri: current
+    parameters: []
+    parametersFormat: 0
     requestTimeout: 5
     loop: 0
     maxLoops: 0
@@ -2962,12 +2977,15 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0
+    responseTime: 0.13974667
     loopCount: 0
-    responseBody: '{"id":0,"setlistSong":{"id":224,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},"setlist":{"id":21,"name":"Set
-      Interactif Template","isTemplate":null,"setlistSongs":[{"id":224,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":225,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":226,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":227,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":3},{"id":228,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":null,"stageMoments":[]}},"position":4}]},"moment":0,"momentIndex":null,"stageTitle":"LuigisMansion","numberOfMoments":0}'
+    responseBody: '{"id":0,"setlistSong":{"id":244,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},"setlist":{"id":25,"name":"Set
+      Interactif Template-1760804399915","isTemplate":false,"templateRef":21,"setlistSongs":[{"id":244,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":245,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":246,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":247,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":3},{"id":248,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":null,"stageMoments":[]}},"position":4}]},"moment":0,"momentIndex":null,"stageTitle":"Logo","numberOfMoments":0}'
   pauseStateRequest:
+    requestType: 0
     requestUri: pause
+    parameters: []
+    parametersFormat: 0
     requestTimeout: 5
     loop: 0
     maxLoops: 0
@@ -2980,7 +2998,7 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0
+    responseTime: 0.13974667
     loopCount: 0
     responseBody: '{"id":1,"pause":false}'
   pauseEvent: pause
@@ -3017,7 +3035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: text
-  text: hello
+  text: 
   methodCaller:
     methods:
     - SendText
@@ -3288,7 +3306,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -3482,8 +3500,8 @@ RectTransform:
   m_Father: {fileID: 1342208487}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.787, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3583,7 +3601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bamboo Boogaloo
+  m_text: Rock N Stone
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -3859,8 +3877,18 @@ MonoBehaviour:
   priceField: {fileID: 0}
   buttonID: a
   item:
-    name: 
-    icon: {fileID: 0}
+    song:
+      title: 
+      duration: 0
+      bpm: 0
+      partyLevel: 0
+      hasMinigame: 0
+      linkedStage:
+        title: 
+        hasScore: 0
+        moments: []
+        databaseID: 0
+      databaseID: 0
     price: 0
 --- !u!212 &829512469
 SpriteRenderer:
@@ -3931,9 +3959,19 @@ MonoBehaviour:
   priceField: {fileID: 665209867}
   buttonID: a
   item:
-    name: Bamboo Boogaloo
-    icon: {fileID: 0}
-    price: 0
+    song:
+      title: Rock N Stone
+      duration: 210
+      bpm: 180
+      partyLevel: 5
+      hasMinigame: 0
+      linkedStage:
+        title: Logo
+        hasScore: 0
+        moments: []
+        databaseID: 8376
+      databaseID: 8431
+    price: 9
 --- !u!1 &863204490
 GameObject:
   m_ObjectHideFlags: 0
@@ -4746,7 +4784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -4881,7 +4919,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Corneria
+  m_text: In the Blood
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -4992,7 +5030,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.3, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.000000026077032, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5157,8 +5195,8 @@ RectTransform:
   m_Father: {fileID: 1593084124}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.628, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5304,11 +5342,21 @@ MonoBehaviour:
   labelField: {fileID: 578708745}
   iconField: {fileID: 1118129021}
   priceField: {fileID: 998243532}
-  buttonID: a
+  buttonID: y
   item:
-    name: Danse Macabre
-    icon: {fileID: 0}
-    price: 0
+    song:
+      title: Pokemon
+      duration: 240
+      bpm: 180
+      partyLevel: 5
+      hasMinigame: 0
+      linkedStage:
+        title: Logo
+        hasScore: 0
+        moments: []
+        databaseID: 8376
+      databaseID: 8692
+    price: 8
 --- !u!1 &1118129019
 GameObject:
   m_ObjectHideFlags: 0
@@ -5497,11 +5545,21 @@ MonoBehaviour:
   labelField: {fileID: 1024049946}
   iconField: {fileID: 296906108}
   priceField: {fileID: 1877672342}
-  buttonID: a
+  buttonID: b
   item:
-    name: Corneria
-    icon: {fileID: 0}
-    price: 0
+    song:
+      title: In the Blood
+      duration: 240
+      bpm: 80
+      partyLevel: 1.5
+      hasMinigame: 0
+      linkedStage:
+        title: Logo
+        hasScore: 0
+        moments: []
+        databaseID: 8376
+      databaseID: 8355
+    price: 9
 --- !u!1 &1166135733
 GameObject:
   m_ObjectHideFlags: 0
@@ -6072,9 +6130,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -154.10008, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1274989196
 MonoBehaviour:
@@ -6641,11 +6699,21 @@ MonoBehaviour:
   labelField: {fileID: 1643182926}
   iconField: {fileID: 690756245}
   priceField: {fileID: 1388471680}
-  buttonID: a
+  buttonID: x
   item:
-    name: Crypteque
-    icon: {fileID: 0}
-    price: 0
+    song:
+      title: Gourmet
+      duration: 150
+      bpm: 180
+      partyLevel: 5
+      hasMinigame: 0
+      linkedStage:
+        title: Logo
+        hasScore: 0
+        moments: []
+        databaseID: 8376
+      databaseID: 8352
+    price: 9
 --- !u!1 &1367974768
 GameObject:
   m_ObjectHideFlags: 0
@@ -6859,7 +6927,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.3, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.000000026077032, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6959,7 +7027,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -7069,10 +7137,10 @@ RectTransform:
   m_Father: {fileID: 642509161}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 32.14, y: -40}
-  m_SizeDelta: {x: 64.28, y: 80}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1399555354
 MonoBehaviour:
@@ -7837,7 +7905,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Crypteque
+  m_text: Gourmet
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -8015,7 +8083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1649474560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8061,7 +8129,7 @@ Transform:
   m_Children:
   - {fileID: 1876348946}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1649474563
 MonoBehaviour:
@@ -8247,10 +8315,10 @@ RectTransform:
   m_Father: {fileID: 642509161}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 114.64, y: -40}
-  m_SizeDelta: {x: 100.72, y: 80}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1752824528
 MonoBehaviour:
@@ -8608,7 +8676,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.448, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8752,7 +8820,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.3, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.000000026077032, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9017,77 +9085,306 @@ MonoBehaviour:
   onStageEnd:
     m_PersistentCalls:
       m_Calls: []
-  inventory:
-  - name: Bamboo Boogaloo
-    icon: {fileID: 0}
-    price: 0
-  - name: Corneria
-    icon: {fileID: 0}
-    price: 0
-  - name: Crypteque
-    icon: {fileID: 0}
-    price: 0
-  - name: Danse Macabre
-    icon: {fileID: 0}
-    price: 0
-  - name: DK
-    icon: {fileID: 0}
-    price: 0
-  - name: Gourmet
-    icon: {fileID: 0}
-    price: 0
-  - name: Halo
-    icon: {fileID: 0}
-    price: 0
-  - name: Floral Fury
-    icon: {fileID: 0}
-    price: 0
-  - name: In the Blood
-    icon: {fileID: 0}
-    price: 0
-  - name: Kass theme
-    icon: {fileID: 0}
-    price: 0
-  - name: Luigi's
-    icon: {fileID: 0}
-    price: 0
-  - name: Megalovania
-    icon: {fileID: 0}
-    price: 0
-  - name: The Great Escape
-    icon: {fileID: 0}
-    price: 0
-  - name: the Man with the machine gun
-    icon: {fileID: 0}
-    price: 0
-  - name: Resurrections
-    icon: {fileID: 0}
-    price: 0
-  - name: Sonex
-    icon: {fileID: 0}
-    price: 0
-  - name: Still Alive
-    icon: {fileID: 0}
-    price: 0
-  - name: Vampire Killer
-    icon: {fileID: 0}
-    price: 0
-  - name: Rock N Stone
-    icon: {fileID: 0}
-    price: 0
-  - name: Pokemon
-    icon: {fileID: 0}
-    price: 0
-  - name: Fall Guys
-    icon: {fileID: 0}
-    price: 0
   shelfDisplays:
   - {fileID: 829512470}
   - {fileID: 1125539107}
   - {fileID: 1348684343}
   - {fileID: 1093329650}
+  songPool:
+  - title: Bamboo Boogaloo
+    duration: 210
+    bpm: 170
+    partyLevel: 4
+    hasMinigame: 0
+    linkedStage:
+      title: Logo
+      hasScore: 0
+      moments: []
+      databaseID: 8376
+    databaseID: 8345
+  - title: Corneria
+    duration: 180
+    bpm: 180
+    partyLevel: 5
+    hasMinigame: 0
+    linkedStage:
+      title: Logo
+      hasScore: 0
+      moments: []
+      databaseID: 8376
+    databaseID: 8347
+  - title: Crypteque
+    duration: 180
+    bpm: 132
+    partyLevel: 4.5
+    hasMinigame: 0
+    linkedStage:
+      title: Logo
+      hasScore: 0
+      moments: []
+      databaseID: 8376
+    databaseID: 8348
+  - title: Danse Macabre
+    duration: 210
+    bpm: 100
+    partyLevel: 4
+    hasMinigame: 1
+    linkedStage:
+      title: ShovelKnight
+      hasScore: 1
+      moments: []
+      databaseID: 8378
+    databaseID: 8349
+  - title: DK
+    duration: 180
+    bpm: 125
+    partyLevel: 3
+    hasMinigame: 1
+    linkedStage:
+      title: DonkeyKong
+      hasScore: 1
+      moments: []
+      databaseID: 8379
+    databaseID: 8350
+  - title: Gourmet
+    duration: 150
+    bpm: 180
+    partyLevel: 5
+    hasMinigame: 0
+    linkedStage:
+      title: Logo
+      hasScore: 0
+      moments: []
+      databaseID: 8376
+    databaseID: 8352
+  - title: Halo
+    duration: 170
+    bpm: 120
+    partyLevel: 2
+    hasMinigame: 0
+    linkedStage:
+      title: Logo
+      hasScore: 0
+      moments: []
+      databaseID: 8376
+    databaseID: 8353
+  - title: Floral Fury
+    duration: 240
+    bpm: 130
+    partyLevel: 3
+    hasMinigame: 1
+    linkedStage:
+      title: FloralFury
+      hasScore: 1
+      moments: []
+      databaseID: 8380
+    databaseID: 8354
+  - title: In the Blood
+    duration: 240
+    bpm: 80
+    partyLevel: 1.5
+    hasMinigame: 0
+    linkedStage:
+      title: Logo
+      hasScore: 0
+      moments: []
+      databaseID: 8376
+    databaseID: 8355
+  - title: Kass theme
+    duration: 210
+    bpm: 180
+    partyLevel: 4
+    hasMinigame: 0
+    linkedStage:
+      title: Logo
+      hasScore: 0
+      moments: []
+      databaseID: 8376
+    databaseID: 8356
+  - title: Luigi's
+    duration: 150
+    bpm: 110
+    partyLevel: 3
+    hasMinigame: 1
+    linkedStage:
+      title: LuigisMansion
+      hasScore: 1
+      moments: []
+      databaseID: 8381
+    databaseID: 8357
+  - title: Megalovania
+    duration: 300
+    bpm: 240
+    partyLevel: 5
+    hasMinigame: 1
+    linkedStage:
+      title: Megalovania
+      hasScore: 1
+      moments: []
+      databaseID: 8649
+    databaseID: 8358
+  - title: The Great Escape
+    duration: 210
+    bpm: 160
+    partyLevel: 4
+    hasMinigame: 1
+    linkedStage:
+      title: Rayman
+      hasScore: 1
+      moments: []
+      databaseID: 8383
+    databaseID: 8360
+  - title: the Man with the machine gun
+    duration: 205
+    bpm: 140
+    partyLevel: 3
+    hasMinigame: 0
+    linkedStage:
+      title: Logo
+      hasScore: 0
+      moments: []
+      databaseID: 8376
+    databaseID: 8361
+  - title: Resurrections
+    duration: 420
+    bpm: 70
+    partyLevel: 1
+    hasMinigame: 0
+    linkedStage:
+      title: Logo
+      hasScore: 0
+      moments: []
+      databaseID: 8376
+    databaseID: 8362
+  - title: Sonex
+    duration: 210
+    bpm: 140
+    partyLevel: 3
+    hasMinigame: 1
+    linkedStage:
+      title: Sonic
+      hasScore: 1
+      moments: []
+      databaseID: 8384
+    databaseID: 8363
+  - title: Still Alive
+    duration: 180
+    bpm: 120
+    partyLevel: 1.5
+    hasMinigame: 1
+    linkedStage:
+      title: Quizz
+      hasScore: 1
+      moments: []
+      databaseID: 8385
+    databaseID: 8364
+  - title: Vampire Killer
+    duration: 210
+    bpm: 128
+    partyLevel: 5
+    hasMinigame: 0
+    linkedStage:
+      title: Logo
+      hasScore: 0
+      moments: []
+      databaseID: 8376
+    databaseID: 8366
+  - title: Rock N Stone
+    duration: 210
+    bpm: 180
+    partyLevel: 5
+    hasMinigame: 0
+    linkedStage:
+      title: Logo
+      hasScore: 0
+      moments: []
+      databaseID: 8376
+    databaseID: 8431
+  - title: Pokemon
+    duration: 240
+    bpm: 180
+    partyLevel: 5
+    hasMinigame: 0
+    linkedStage:
+      title: Logo
+      hasScore: 0
+      moments: []
+      databaseID: 8376
+    databaseID: 8692
+  - title: Fall Guys
+    duration: 210
+    bpm: 148
+    partyLevel: 80
+    hasMinigame: 0
+    linkedStage:
+      title: MovingLogo
+      hasScore: 0
+      moments: []
+      databaseID: 8371
+    databaseID: 8961
+  inventory:
+  - song:
+      title: Rock N Stone
+      duration: 210
+      bpm: 180
+      partyLevel: 5
+      hasMinigame: 0
+      linkedStage:
+        title: Logo
+        hasScore: 0
+        moments: []
+        databaseID: 8376
+      databaseID: 8431
+    price: 9
+  - song:
+      title: In the Blood
+      duration: 240
+      bpm: 80
+      partyLevel: 1.5
+      hasMinigame: 0
+      linkedStage:
+        title: Logo
+        hasScore: 0
+        moments: []
+        databaseID: 8376
+      databaseID: 8355
+    price: 9
+  - song:
+      title: Gourmet
+      duration: 150
+      bpm: 180
+      partyLevel: 5
+      hasMinigame: 0
+      linkedStage:
+        title: Logo
+        hasScore: 0
+        moments: []
+        databaseID: 8376
+      databaseID: 8352
+    price: 9
+  - song:
+      title: Pokemon
+      duration: 240
+      bpm: 180
+      partyLevel: 5
+      hasMinigame: 0
+      linkedStage:
+        title: Logo
+        hasScore: 0
+        moments: []
+        databaseID: 8376
+      databaseID: 8692
+    price: 8
+  cartCapacity: 2
+  budget: 20
+  canBuyMinigames: 0
+  minimumPartyLevel: 0
   songPoolRequest:
-    requestUri: songs/available?setlist_id=21
+    requestType: 0
+    requestUri: songs/available/{setlist_id}
+    parameters:
+    - 25
+    parametersFormat: 1
     requestTimeout: 5
     loop: 0
     maxLoops: 0
@@ -9100,7 +9397,7 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 1.414856
+    responseTime: 0.28855515
     loopCount: 0
     responseBody: '[{"id":8345,"title":"Bamboo Boogaloo","duration":210,"bpm":170,"zgg":4.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8347,"title":"Corneria","duration":180,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8348,"title":"Crypteque","duration":180,"bpm":132,"zgg":4.5,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8349,"title":"Danse
       Macabre","duration":210,"bpm":100,"zgg":4.0,"minigame":true,"stage":{"id":8378,"title":"ShovelKnight","hasScore":true,"stageMoments":[]}},{"id":8350,"title":"DK","duration":180,"bpm":125,"zgg":3.0,"minigame":true,"stage":{"id":8379,"title":"DonkeyKong","hasScore":true,"stageMoments":[]}},{"id":8352,"title":"Gourmet","duration":150,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8353,"title":"Halo","duration":170,"bpm":120,"zgg":2.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8354,"title":"Floral
@@ -9113,9 +9410,33 @@ MonoBehaviour:
       Killer","duration":210,"bpm":128,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8431,"title":"Rock
       N Stone","duration":210,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8961,"title":"Fall
       Guys","duration":210,"bpm":148,"zgg":80.0,"minigame":false,"stage":{"id":8371,"title":"MovingLogo","hasScore":false,"stageMoments":[]}}]'
+  addSongChoiceRequest:
+    requestType: 1
+    requestUri: setlists/songs/{setlist_id}/chosen/{song_id}
+    parameters:
+    - 21
+    - 8348
+    parametersFormat: 0
+    requestTimeout: 3
+    loop: 3
+    maxLoops: 3
+    minLoopDuration: 3
+    onRequestSend:
+      m_PersistentCalls:
+        m_Calls: []
+    onRequestEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    status: 0
+    failureInfo: 0
+    responseTime: 0
+    loopCount: 0
+    responseBody: 
   editorButtons:
     methods:
-    - RefreshInventory
+    - RefreshSongPool
+    - FillInventory
+    - ClearInventory
 --- !u!1 &1877672340
 GameObject:
   m_ObjectHideFlags: 0
@@ -9174,7 +9495,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -9382,7 +9703,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.3, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.000000026077032, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

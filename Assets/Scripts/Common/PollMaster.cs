@@ -32,7 +32,7 @@ public class PollMaster : MonoBehaviour
 
     private void Awake()
     {
-        ResetVotes();
+        ResetAllVotes();
     }
 
     private void OnEnable()
@@ -56,14 +56,9 @@ public class PollMaster : MonoBehaviour
         }
     }
 
-    private void ResetVotes()
+    private void OnAudienceInput()
     {
-        if (candidates == null) return;
-        foreach (Candidate c in candidates)
-        {
-            if (c == null) continue;
-            c.SetVotes(0, voteGoal);
-        }
+        UpdateVotes();
     }
 
     private void UpdateVotes()
@@ -78,8 +73,11 @@ public class PollMaster : MonoBehaviour
         }
     }
 
-    private void OnAudienceInput()
+    public void ResetCandidateVotes(Candidate candidate) => candidate?.SetVotes(0, voteGoal);
+
+    public void ResetAllVotes()
     {
-        UpdateVotes();
+        if (candidates == null) return;
+        foreach (Candidate c in candidates) ResetCandidateVotes(c);
     }
 }
