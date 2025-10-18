@@ -32,9 +32,10 @@ public class AudienceInputSource : MonoBehaviour
         public float Velocity => deltaTime != 0f ? deltaPresses / deltaTime : 0f;
     }
 
-    public ClientButtonTracker buttonCounter;
+    public ClientButtonTracker buttonTracker;
     [Range(0f, 1f)] public float smoothRate = 1f;
     public AudienceInputConfiguration inputConfiguration;
+
     public UnityEvent onAudienceInput;
 
     private Dictionary<string,ButtonInput> buttonInputsRaw;
@@ -56,15 +57,26 @@ public class AudienceInputSource : MonoBehaviour
 
     private void AddButtonListeners()
     {
-        if (buttonCounter == null) return;
-        buttonCounter.onCountUpdate.AddListener(OnButtonCountUpdate);
+        if (buttonTracker == null) return;
+        buttonTracker.onSetEnabled.AddListener(OnSetButtonTrackerEnabled);
+        buttonTracker.onCountUpdate.AddListener(OnButtonCountUpdate);
 
     }
 
     private void RemoveButtonListeners()
     {
-        if (buttonCounter == null) return;
-        buttonCounter.onCountUpdate.RemoveListener(OnButtonCountUpdate);
+        if (buttonTracker == null) return;
+        buttonTracker.onSetEnabled.RemoveListener(OnSetButtonTrackerEnabled);
+        buttonTracker.onCountUpdate.RemoveListener(OnButtonCountUpdate);
+    }
+
+    private void OnSetButtonTrackerEnabled(bool buttonTrackerEnabled)
+    {
+        if (buttonTrackerEnabled == true)
+        {
+            CurrentFrame = buttonTracker.Current;
+            firstButtonCountUpdate = true;
+        }
     }
 
     private void OnButtonCountUpdate(MultipleButtonTimedCount frame)
@@ -157,5 +169,5 @@ public class AudienceInputSource : MonoBehaviour
 
     public float GetAxis(string negativeButtonId, string positiveButtonId) => ComputeAxis(GetButton(negativeButtonId), GetButton(positiveButtonId));
 
-    
+    public bool EnableButtonTracker { get => buttonTracker != null && buttonTracker.enabled; set { if (buttonTracker) buttonTracker.enabled = value; } }
 }

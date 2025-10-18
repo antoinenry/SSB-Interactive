@@ -148,7 +148,6 @@ public class HttpRequestLoop
         RequestsPerSeconds = float.IsNaN(request.StartTime) ? 0f : 1f / (Time.time - request.StartTime);
         request.requestUri = GetUriWithParameters();
         request.type = requestType;
-        Debug.Log(requestType + " " + request.FullUri);
         if (client != null)
         {
             client.SendRequest(request);
@@ -190,7 +189,7 @@ public class HttpRequestLoop
         }
     }
 
-    private void Cancel()
+    public void Cancel()
     {
         request.Cancel();
         status = HttpRequest.RequestStatus.Canceled;
