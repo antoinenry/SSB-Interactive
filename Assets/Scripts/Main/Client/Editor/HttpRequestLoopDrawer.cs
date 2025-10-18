@@ -58,6 +58,7 @@ public class HttpRequestLoopDrawer : PropertyDrawer
         EditorGUI.PropertyField(fieldRect, parametersProperty, new("Parameters"), true);
         if (parametersProperty.isExpanded)
         {
+            if (parametersProperty.arraySize == 0) AddFieldLine(ref fieldRect);
             for (int i = 0, iend = parametersProperty.arraySize + 2; i < iend; ++i) AddFieldLine(ref fieldRect);
         }
 

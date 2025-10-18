@@ -120,26 +120,41 @@ public class HttpRequestLoop
         int parameterCount = parameters != null ? parameters.Length : 0;
         int parameterIndex = 0;
         string fullUri = "";
+
+        //for (int i = 0; i < uriLength; i++)
+        //{
+        //    if (i < uriLength - 1 && requestUri[i + 1] == '{')
+        //    {
+        //        fullUri += "?";
+        //        for (i += 2; i < uriLength; i++)
+        //        {
+        //            if (requestUri[i] == '}') break;
+        //            fullUri += requestUri[i];
+        //        }
+        //        fullUri += "=";
+        //        if (parameterIndex < parameterCount) fullUri += parameters[parameterIndex];
+        //        else fullUri += "null";
+        //        parameterIndex++;
+        //    }
+        //    else
+        //    {
+        //        fullUri += requestUri[i];
+        //    }
+        //}
+
         for (int i = 0; i < uriLength; i++)
         {
-            if (i < uriLength - 1 && requestUri[i + 1] == '{')
+            if (requestUri[i] == '{')
             {
-                fullUri += "?";
-                for (i += 2; i < uriLength; i++)
-                {
-                    if (requestUri[i] == '}') break;
-                    fullUri += requestUri[i];
-                }
-                fullUri += "=";
                 if (parameterIndex < parameterCount) fullUri += parameters[parameterIndex];
-                else fullUri += "null";
-                parameterIndex++;
+                while (i < uriLength && requestUri[i] != '}') i++;
             }
             else
             {
                 fullUri += requestUri[i];
             }
         }
+
         return fullUri;
     }
 
