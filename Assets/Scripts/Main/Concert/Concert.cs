@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class Concert : MonoBehaviour
 {
-    public ConcertInfo concertInfo;
-    public ConcertState concertState;
+    [Header("Current concert")]
+    public ConcertInfo info;
+    public ConcertState state;
     [Header("Rest requests")]
     public HttpRequestLoop concertInfoRequest;
     public HttpRequestLoop concertStateRequest;
@@ -84,12 +85,12 @@ public class Concert : MonoBehaviour
 
     private void OnConcertInfoRequestEnd(HttpRequest request)
     {
-        concertInfo = ConcertInfo.None;
+        info = ConcertInfo.None;
         if (concertInfoRequest != null)
         {
             concertInfoRequest.onRequestEnd.RemoveListener(OnConcertInfoRequestEnd);
             if (concertInfoRequest.RequestStatus != HttpRequest.RequestStatus.Success)
-                concertInfo = concertInfoRequest.DeserializeResponse<ConcertInfo>();
+                info = concertInfoRequest.DeserializeResponse<ConcertInfo>();
         }
     }
 
@@ -110,15 +111,15 @@ public class Concert : MonoBehaviour
     private void OnConcertStateRequestEnd(HttpRequest request)
     {
         // Preserve pause state (refreshed on a different request for some reason)
-        bool paused = concertState.paused;
-        concertState = ConcertState.None;
-        concertState.Paused = paused;
+        bool paused = state.paused;
+        state = ConcertState.None;
+        state.Paused = paused;
         // Update rest or the concert state with response
         if (concertStateRequest != null)
         {
             concertStateRequest.onRequestEnd.RemoveListener(OnConcertStateRequestEnd);
             if (concertStateRequest.RequestStatus != HttpRequest.RequestStatus.Success)
-                concertState = concertStateRequest.DeserializeResponse<ConcertState>();
+                state = concertStateRequest.DeserializeResponse<ConcertState>();
         }
     }
 
@@ -128,7 +129,7 @@ public class Concert : MonoBehaviour
         {
             pauseStateRequest.onRequestEnd.RemoveListener(OnPauseStateRequestEnd);
             if (pauseStateRequest.RequestStatus != HttpRequest.RequestStatus.Success)
-                concertState.Paused = pauseStateRequest.DeserializeResponse<ConcertState.PauseState>().paused;
+                state.Paused = pauseStateRequest.DeserializeResponse<ConcertState.PauseState>().paused;
         }
     }
 
