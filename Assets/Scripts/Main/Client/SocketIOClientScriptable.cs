@@ -187,6 +187,15 @@ public class SocketIOClientScriptable : ScriptableObject
     #region Emission
     public void Emit(string eventName, params object[] parameters)
     {
+        if (client == null)
+        {
+            Init();
+            if (client == null) return;
+        }
+        if (client.Connected == false)
+        {
+            Connect();
+        }
         if (emissionTasks == null) emissionTasks = new();
         Task newTask = EmitAsync(emissionTasks.Count, eventName, parameters);
         emissionTasks.Add(newTask);
