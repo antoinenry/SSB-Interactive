@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Shop
 {
@@ -26,13 +27,18 @@ namespace Shop
         public int budget;
         public bool canBuyMinigames;
         public int minimumPartyLevel;
+        [Header("Setlist reading")]
+        public string emptySetlistSlotTitle = "AUDIENCE_CHOICE";
+        public string skipSlotsAfterTitle = "Mii";
         [Header("Web")]
         public HttpRequestLoop songPoolRequest = new(HttpRequest.RequestType.GET, "songs/available/{setlist_id}", HttpRequestLoop.ParameterFormat.Query);
         public HttpRequestLoop addSongChoiceRequest = new(HttpRequest.RequestType.POST, "setlists/songs/{setlist_id}/chosen/{song_id}", HttpRequestLoop.ParameterFormat.Path);
         public string cartContentMessagePrefix = "Panier : ";
         public string buyingMessage = "Achat en cours...";
+        [Header("Events")]
+        public UnityEvent<ShopItem> onBuyItem;
         [Header("Editor Tools")]
-        public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshSongPool", "FillInventory", "ClearInventory");
+        public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshSongPool", "FillInventory", "ClearInventory", "InitCart");
 
         private PollMaster poll;
         private List<ShopItem> cart;
@@ -44,24 +50,41 @@ namespace Shop
 
         protected void OnEnable()
         {
-            if (poll) poll.onCandidateWins.AddListener(OnPollWinner);
+            if (poll)
+            {
+                poll.ResetAllVotes();
+                poll.onCandidateWins.AddListener(OnPollWinner);
+            }
+            ClearInventory();
+            RefreshSongPool();
+            InitCart();
         }
 
         protected void OnDisable()
         {
-            if (poll) poll.onCandidateWins.RemoveListener(OnPollWinner);
-        }
-
-        private void Start()
-        {
-            ClearInventory();
-            RefreshSongPool();
+            if (poll)
+            {
+                poll.ResetAllVotes();
+                poll.onCandidateWins.RemoveListener(OnPollWinner);
+            }
         }
 
         private void Update()
         {
             FillInventory();
             UpdateShelves();
+        }
+
+        public void Open()
+        {
+            if (poll != null) poll.enabled = true;
+            if (shelfDisplays != null) foreach(ShopShelfDisplay shelf in shelfDisplays) shelf.gameObject.SetActive(true);
+        }
+
+        public void Close()
+        {
+            if (poll != null) poll.enabled = false;
+            if (shelfDisplays != null) foreach (ShopShelfDisplay shelf in shelfDisplays) shelf.gameObject.SetActive(false);
         }
 
         public void RefreshSongPool()
@@ -71,7 +94,7 @@ namespace Shop
                 int setlistId = Concert.Current != null ? Concert.Current.state.setlist.databaseID : -1;
                 songPoolRequest.parameters = new string[] { setlistId.ToString() };
                 songPoolRequest.onRequestEnd.AddListener(OnSongPoolRequestEnd);
-                songPoolRequest.StartRequestCoroutine(this);
+                songPoolRequest.StartRequestCoroutine(this, restart: true);
             }
         }
 
@@ -215,8 +238,8 @@ namespace Shop
                 addSongChoiceRequest.onRequestEnd.AddListener(OnAddSongChoiceRequestEnd);
                 addSongChoiceRequest.StartRequestCoroutine(this, restart: true);
             }
-            // Full cart ?
-            if (cart.Count >= cartCapacity) OnCartFull();
+            // Notify purchase
+            onBuyItem.Invoke(item);
         }
 
         private void OnAddSongChoiceRequestEnd(HttpRequest request)
@@ -242,9 +265,25 @@ namespace Shop
             }
         }
 
-        private void OnCartFull()
-        {
+        public bool CartIsFull => cart != null && cart.Count >= cartCapacity;
 
+        public void InitCart()
+        {
+            SetlistInfo currentSetlist = Concert.Current.state.setlist;
+            int currentPosition = Concert.Current.state.songPosition;
+            string shopSongTitle = currentSetlist.GetSong(currentPosition).title;
+            cartCapacity = 0;
+            SongInfo song;
+            bool skipSlots = false;
+            for (int i = currentPosition + 1; i < currentSetlist.Length; i++)
+            {
+                song = currentSetlist.GetSong(i);
+                if (song.title == shopSongTitle) break;
+                else if (song.title == skipSlotsAfterTitle) skipSlots = true;
+                else if (song.title == emptySetlistSlotTitle && skipSlots == false) cartCapacity++;
+                else skipSlots = false;
+            }
+            cart = new List<ShopItem>(cartCapacity);
         }
     }
 }

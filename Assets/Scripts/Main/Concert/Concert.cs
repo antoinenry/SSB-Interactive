@@ -16,7 +16,7 @@ public class Concert : MonoBehaviourSingleton<Concert>
     public string pauseEvent = "pause";
     public string resumeEvent = "resume";
     [Header("Editor Tools")]
-    public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshConcertInfo", "RefreshConcertState");
+    public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshConcertInfo", "RefreshConcertState", "ClearConcert");
     [Header("Events")]
     public UnityEvent<ConcertInfo> onInfoUpdate;
     public UnityEvent<ConcertState> onStateUpdate;
@@ -132,6 +132,14 @@ public class Concert : MonoBehaviourSingleton<Concert>
                 }
             }
         }
+    }
+
+    public void ClearConcert()
+    {
+        info = ConcertInfo.None;
+        state = ConcertState.None;
+        onInfoUpdate.Invoke(info);
+        onStateUpdate.Invoke(state);
     }
 
     private void OnPauseStateRequestEnd(HttpRequest request)

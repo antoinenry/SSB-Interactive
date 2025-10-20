@@ -123,6 +123,57 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &7971991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7971992}
+  - component: {fileID: 7971993}
+  m_Layer: 0
+  m_Name: stage_EmptyScene(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7971992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7971991}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1649474561}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7971993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7971991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06f8da9125e7e54dad1e0c672d5c69c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: EmptyScene
+  stageNameGUI: {fileID: 0}
+  showInputPanel: 0
+  loadMessage: vodka cornichon
+  onStageEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &66053362
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +771,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.448, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -880,58 +931,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputPanel: {fileID: 2107191765}
---- !u!1 &513447630
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 513447631}
-  - component: {fileID: 513447632}
-  m_Layer: 0
-  m_Name: stage_Logo(Clone)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &513447631
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513447630}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1993867872}
-  m_Father: {fileID: 1649474561}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &513447632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513447630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a06f8da9125e7e54dad1e0c672d5c69c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Logo
-  stageNameGUI: {fileID: 0}
-  showInputPanel: 0
-  loadMessage: t'as pas une playstation?
-  onStageEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,183 +1172,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info:
-    name: PasDe-Test
-    location: Kremlin-Bicetre
-    date: 2025-10-20
+    name: 
+    location: 
+    date: 
     setlist:
-      name: Set Interactif Template-1760966503711
-      songs:
-      - title: Ultimate
-        duration: 150
-        bpm: 160
-        partyLevel: 5
-        hasMinigame: 0
-        linkedStage:
-          name: Logo
-          hasScore: 0
-          moments: []
-          databaseID: 8376
-        databaseID: 8365
-      - title: Dovakhiin
-        duration: 180
-        bpm: 75
-        partyLevel: 3
-        hasMinigame: 0
-        linkedStage:
-          name: Logo
-          hasScore: 0
-          moments: []
-          databaseID: 8376
-        databaseID: 8432
-      - title: Adibou
-        duration: 180
-        bpm: 160
-        partyLevel: 100
-        hasMinigame: 1
-        linkedStage:
-          name: Shop
-          hasScore: 0
-          moments:
-          - name: 
-            moment: 0
-            index: 0
-          - name: 
-            moment: 1
-            index: 0
-          - name: 
-            moment: 2
-            index: 0
-          databaseID: 9198
-        databaseID: 8960
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
-        linkedStage:
-          name: BlackScreen
-          hasScore: 0
-          moments: []
-          databaseID: 8375
-        databaseID: 9202
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
-        linkedStage:
-          name: BlackScreen
-          hasScore: 0
-          moments: []
-          databaseID: 8375
-        databaseID: 9202
-      - title: Mii
-        duration: 120
-        bpm: 120
-        partyLevel: 1
-        hasMinigame: 1
-        linkedStage:
-          name: Map
-          hasScore: 0
-          moments: []
-          databaseID: 9197
-        databaseID: 8359
-      databaseID: 31
-    databaseID: 9213
+      name: 
+      songs: []
+      databaseID: 0
+    databaseID: 0
   state:
     setlist:
-      name: Set Interactif Template-1760966503711
-      songs:
-      - title: Ultimate
-        duration: 150
-        bpm: 160
-        partyLevel: 5
-        hasMinigame: 0
-        linkedStage:
-          name: Logo
-          hasScore: 0
-          moments: []
-          databaseID: 8376
-        databaseID: 8365
-      - title: Dovakhiin
-        duration: 180
-        bpm: 75
-        partyLevel: 3
-        hasMinigame: 0
-        linkedStage:
-          name: Logo
-          hasScore: 0
-          moments: []
-          databaseID: 8376
-        databaseID: 8432
-      - title: Adibou
-        duration: 180
-        bpm: 160
-        partyLevel: 100
-        hasMinigame: 1
-        linkedStage:
-          name: Shop
-          hasScore: 0
-          moments:
-          - name: 
-            moment: 0
-            index: 0
-          - name: 
-            moment: 1
-            index: 0
-          - name: 
-            moment: 2
-            index: 0
-          databaseID: 9198
-        databaseID: 8960
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
-        linkedStage:
-          name: BlackScreen
-          hasScore: 0
-          moments: []
-          databaseID: 8375
-        databaseID: 9202
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
-        linkedStage:
-          name: BlackScreen
-          hasScore: 0
-          moments: []
-          databaseID: 8375
-        databaseID: 9202
-      - title: Mii
-        duration: 120
-        bpm: 120
-        partyLevel: 1
-        hasMinigame: 1
-        linkedStage:
-          name: Map
-          hasScore: 0
-          moments: []
-          databaseID: 9197
-        databaseID: 8359
-      databaseID: 31
+      name: 
+      songs: []
+      databaseID: 0
     song:
-      title: Ultimate
-      duration: 150
-      bpm: 160
-      partyLevel: 5
+      title: 
+      duration: 0
+      bpm: 0
+      partyLevel: 0
       hasMinigame: 0
       linkedStage:
-        name: Logo
+        name: 
         hasScore: 0
         moments: []
-        databaseID: 8376
-      databaseID: 8365
-    songPosition: 0
-    moment: 0
+        databaseID: 0
+      databaseID: 0
+    songPosition: -1
+    moment: -1
     momentIndex: -1
     paused: 0
     databaseID: 0
@@ -1370,12 +1219,13 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0.020019531
+    responseTime: 0
     loopCount: 0
-    responseBody: '{"id":9213,"ips":["92.184.100.210","92.184.112.56","74.125.210.166","16.144.230.122","40.77.167.46","92.184.112.16","92.184.112.205","92.184.112.156","35.93.53.161"],"date":"2025-10-20","location":"Kremlin-Bicetre","name":"PasDe-Test","setlist":{"id":31,"name":"Set
-      Interactif Template-1760966503711","isTemplate":false,"templateRef":21,"setlistSongs":[{"id":280,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":281,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":282,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":3},{"id":283,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+    responseBody: '{"id":9213,"ips":["92.184.100.210","92.184.112.55","92.184.112.56","74.125.210.166","16.144.230.122","40.77.167.46","92.184.112.16","92.184.112.205","92.184.112.156","35.93.53.161"],"date":"2025-10-20","location":"Kremlin-Bicetre","name":"PasDe-Test","setlist":{"id":46,"name":"Template-PasDe-1760978709459","isTemplate":false,"templateRef":43,"setlistSongs":[{"id":451,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":452,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":453,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":454,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
       - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
-      - Au revoir"}]}},"position":2},{"id":284,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":4},{"id":285,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":5}]},"scores":[]}'
+      - Au revoir"}]}},"position":3},{"id":455,"song":{"id":8362,"title":"Resurrections","duration":420,"bpm":70,"zgg":1.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":4},{"id":456,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":5},{"id":457,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":6},{"id":458,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":7},{"id":459,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+      - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
+      - Au revoir"}]}},"position":8},{"id":460,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":9},{"id":461,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":10},{"id":462,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":11},{"id":463,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":12}]},"scores":[]}'
   concertStateRequest:
     requestType: 0
     requestUri: current
@@ -1393,12 +1243,15 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0.3178711
+    responseTime: 0.3015747
     loopCount: 0
-    responseBody: '{"id":0,"setlistSong":{"id":280,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},"setlist":{"id":31,"name":"Set
-      Interactif Template-1760966503711","isTemplate":false,"templateRef":21,"setlistSongs":[{"id":280,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":281,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":282,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":3},{"id":283,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+    responseBody: '{"id":0,"setlistSong":{"id":454,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
       - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
-      - Au revoir"}]}},"position":2},{"id":284,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":4},{"id":285,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":5}]},"moment":0,"momentIndex":null,"stageTitle":"Shop","numberOfMoments":0}'
+      - Au revoir"}]}},"position":3},"setlist":{"id":46,"name":"Template-PasDe-1760978709459","isTemplate":false,"templateRef":43,"setlistSongs":[{"id":451,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":452,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":453,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":454,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+      - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
+      - Au revoir"}]}},"position":3},{"id":455,"song":{"id":8362,"title":"Resurrections","duration":420,"bpm":70,"zgg":1.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":4},{"id":456,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":5},{"id":457,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":6},{"id":458,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":7},{"id":459,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+      - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
+      - Au revoir"}]}},"position":8},{"id":460,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":9},{"id":461,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":10},{"id":462,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":11},{"id":463,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":12}]},"moment":0,"momentIndex":0,"stageTitle":"Shop","numberOfMoments":3}'
   pauseStateRequest:
     requestType: 0
     requestUri: pause
@@ -1416,7 +1269,7 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0.3178711
+    responseTime: 0.3015747
     loopCount: 0
     responseBody: '{"id":1,"pause":false}'
   stateChangeEvent: concert_state
@@ -1426,6 +1279,7 @@ MonoBehaviour:
     methods:
     - RefreshConcertInfo
     - RefreshConcertState
+    - ClearConcert
   onInfoUpdate:
     m_PersistentCalls:
       m_Calls: []
@@ -1460,7 +1314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: text
-  text: 
+  text: vodka cornichon
   methodCaller:
     methods:
     - SendText
@@ -1497,8 +1351,8 @@ RectTransform:
   m_Father: {fileID: 1342208487}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.787, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1977,8 +1831,8 @@ RectTransform:
   m_Father: {fileID: 1593084124}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.628, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2386,9 +2240,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -162.2, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1274989196
 MonoBehaviour:
@@ -3077,7 +2931,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 513447631}
+  - {fileID: 7971992}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3266,7 +3120,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.448, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3307,79 +3161,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780973967}
-  m_CullTransparentMesh: 1
---- !u!1 &1783734699
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1783734700}
-  - component: {fileID: 1783734702}
-  - component: {fileID: 1783734701}
-  m_Layer: 0
-  m_Name: Background
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1783734700
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783734699}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1993867872}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1783734701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783734699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &1783734702
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783734699}
   m_CullTransparentMesh: 1
 --- !u!1 &1790379140
 GameObject:
@@ -3485,108 +3266,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1190, y: -137.19756}
   m_SizeDelta: {x: 0, y: 274.3951}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1993867871
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1993867872}
-  - component: {fileID: 1993867875}
-  - component: {fileID: 1993867874}
-  - component: {fileID: 1993867873}
-  m_Layer: 0
-  m_Name: Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1993867872
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993867871}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1783734700}
-  - {fileID: 2118338489}
-  m_Father: {fileID: 513447631}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
---- !u!114 &1993867873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993867871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1993867874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993867871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &1993867875
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993867871}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
 --- !u!1 &2035207385
 GameObject:
   m_ObjectHideFlags: 0
@@ -3642,7 +3321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2107191766
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3855,96 +3534,4 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114704186}
-  m_CullTransparentMesh: 1
---- !u!1 &2118338488
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2118338489}
-  - component: {fileID: 2118338492}
-  - component: {fileID: 2118338491}
-  - component: {fileID: 2118338490}
-  m_Layer: 0
-  m_Name: Logo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2118338489
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118338488}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1993867872}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: -20}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2118338490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118338488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e3fe871a80c70845a74d5d84e69a86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rate: 0.1
-  alphaMax: 0.5
-  alphaMin: 0.1
---- !u!114 &2118338491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118338488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a529b447036bc4445b2c1dd6c7aef75b, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &2118338492
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118338488}
   m_CullTransparentMesh: 1
