@@ -1,8 +1,19 @@
 using SocketIOClient;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Concert : MonoBehaviour
 {
+    private static Concert current;
+    public static Concert Current
+    {
+        get
+        {
+            if (current == null) current = FindObjectOfType<Concert>(true);
+            return current;
+        }
+    }
+
     [Header("Current concert")]
     public ConcertInfo info;
     public ConcertState state;
@@ -11,24 +22,24 @@ public class Concert : MonoBehaviour
     public HttpRequestLoop concertStateRequest;
     public HttpRequestLoop pauseStateRequest;
     [Header("Socket events")]
-    //public string stateChangeEvent = "concert_state";
+    public string stateChangeEvent = "concert_state";
     public string pauseEvent = "pause";
     public string resumeEvent = "resume";
     [Header("Editor Tools")]
     public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshConcertInfo", "RefreshConcertState");
-
-    private StageLoader stageLoader;
+    [Header("Events")]
+    public UnityEvent<ConcertInfo> onInfoUpdate;
+    public UnityEvent<ConcertState> onStateUpdate;
 
     private bool pendingConcertState;
-    private bool pendingPauseState;
-    private bool paused;
 
     public HttpClientScriptable HttpClient { get; private set; }
     public SocketIOClientScriptable SocketClient { get; private set; }
 
     private void Awake()
     {
-        stageLoader = FindObjectOfType<StageLoader>(true);
+        if (current == null) current = this;
+        else if (current != this) Debug.LogWarning("Multiple concert instances.");
         HttpClient = CurrentAssetsManager.GetCurrent<HttpClientScriptable>();
         SocketClient = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
         SocketClient.Connect();
@@ -48,30 +59,28 @@ public class Concert : MonoBehaviour
 
     private void Update()
     {
-        //if (stageLoader)
-        //{
-        //    if (pendingConcertState) ValidateConcertState();
-        //    if (pendingPauseState) stageLoader.Pause = paused;
-        //}
-        //pendingConcertState = false;
-        //pendingPauseState = false;
+        if (pendingConcertState)
+        {
+            pendingConcertState = false;
+            onStateUpdate.Invoke(state);
+        }
     }
 
     private void AddClientListenners()
     {
         // Socket
-        //SocketClient?.Subscribe(stateChangeEvent, OnConcertStateSocketEvent);
-        //SocketClient?.Subscribe(pauseEvent, OnClientPauseSocketEvent);
-        //SocketClient?.Subscribe(resumeEvent, OnClientResumeSocketEvent);
+        SocketClient?.Subscribe(stateChangeEvent, OnConcertStateSocketEvent);
+        SocketClient?.Subscribe(pauseEvent, OnClientPauseSocketEvent);
+        SocketClient?.Subscribe(resumeEvent, OnClientResumeSocketEvent);
 
     }
 
     private void RemoveClientListeners()
-    {        
+    {
         // Socket
-        //SocketClient.Unsubscribe(stateChangeEvent, OnConcertStateSocketEvent);
-        //SocketClient.Unsubscribe(pauseEvent, OnClientPauseSocketEvent);
-        //SocketClient.Unsubscribe(resumeEvent, OnClientResumeSocketEvent);
+        SocketClient.Unsubscribe(stateChangeEvent, OnConcertStateSocketEvent);
+        SocketClient.Unsubscribe(pauseEvent, OnClientPauseSocketEvent);
+        SocketClient.Unsubscribe(resumeEvent, OnClientResumeSocketEvent);
     }
 
     public void RefreshConcertInfo()
@@ -90,7 +99,14 @@ public class Concert : MonoBehaviour
         {
             concertInfoRequest.onRequestEnd.RemoveListener(OnConcertInfoRequestEnd);
             if (concertInfoRequest.RequestStatus != HttpRequest.RequestStatus.Success)
-                info = concertInfoRequest.DeserializeResponse<ConcertInfo>();
+            {
+                ConcertInfo newInfo = concertInfoRequest.DeserializeResponse<ConcertInfo>();
+                if (newInfo != info)
+                {
+                    info = newInfo;
+                    onInfoUpdate.Invoke(info);
+                }
+            }
         }
     }
 
@@ -119,7 +135,14 @@ public class Concert : MonoBehaviour
         {
             concertStateRequest.onRequestEnd.RemoveListener(OnConcertStateRequestEnd);
             if (concertStateRequest.RequestStatus != HttpRequest.RequestStatus.Success)
-                state = concertStateRequest.DeserializeResponse<ConcertState>();
+            {
+                ConcertState newState = concertStateRequest.DeserializeResponse<ConcertState>();
+                if (newState != state)
+                {
+                    state = newState;
+                    onStateUpdate.Invoke(state);
+                }
+            }
         }
     }
 
@@ -135,29 +158,24 @@ public class Concert : MonoBehaviour
 
     private void OnConcertStateSocketEvent(string eventName, SocketIOResponse response)
     {
-        //string dataString = response.GetValue<string>();
-        //concertState = ConcertStateData.Deserialize(dataString);
-        //pendingConcertState = true;
+        if (eventName != stateChangeEvent) return;
+        string dataString = response.GetValue<string>();
+        ConcertState stateUpdate = SocketIOResponseEvent.DeserializeResponse<ConcertState>(dataString);
+        if (stateUpdate != state)
+        {
+            state = stateUpdate;
+            //onStateUpdate.Invoke(stateUpdate);
+            pendingConcertState = true;
+        }
     }
 
     private void OnClientPauseSocketEvent(string eventName, SocketIOResponse response)
     {
-        paused = true;
-        pendingPauseState = true;
+        state.Paused = true;
     }
 
     private void OnClientResumeSocketEvent(string eventName, SocketIOResponse response)
     {
-        paused = false;
-        pendingPauseState = true;
-    }    
-
-    public void ValidateConcertState()
-    {
-        //if (stageLoader)
-        //{
-        //    stageLoader.LoadStage(serverStageName: concertState.stage, moment: concertState.Moment);
-        //    if (paused) stageLoader.Pause = true;
-        //}
+        state.Paused = false;
     }
 }

@@ -16,9 +16,31 @@ public class StageLoader : MonoBehaviour
     public string LoadedStageLocalName => LoadedStage?.name;
     public string LoadedStageServerName => Config?.GetServerName(LoadedStageLocalName);
 
+    private void OnEnable()
+    {
+        Concert currentConcert = Concert.Current;
+        if (currentConcert == null) Debug.LogWarning("Missing Concert instance");
+        else
+        {
+            LoadStage(serverStageName: currentConcert.state.Stage.name);
+            Concert.Current.onStateUpdate.AddListener(OnConcertStateUpdate);
+        }
+    }
+
+    private void OnDisable()
+    {
+        Concert.Current?.onStateUpdate?.RemoveListener(OnConcertStateUpdate);
+        LoadStage(null);
+    }
+
+    private void OnConcertStateUpdate(ConcertState state)
+    {
+        StageInfo stageUpdate = state.Stage;
+        if (LoadedStage == null || LoadedStage.name != stageUpdate.name) LoadStage(serverStageName: stageUpdate.name);
+    }
+
     public void LoadStage(string localStageName = null, string serverStageName = null, int moment = 0)
     {
-        Debug.Log($"Setting the stage: local: {localStageName} - server: {serverStageName} - moment: {moment}");
         // Set stage
         if (localStageName != null && serverStageName != null)
         {
@@ -32,10 +54,7 @@ public class StageLoader : MonoBehaviour
         else if (localStageName != null) LoadStageFromLocalName(localStageName);
         else LoadStageFromLocalName(defaultStage);
         // Set moment
-        if (LoadedStage) {
-            Debug.Log($"Setting the moment to {moment}");
-            LoadedStage.Moment = moment;
-        }
+        if (LoadedStage) LoadedStage.Moment = moment;
     }
 
     public bool Pause
@@ -68,7 +87,6 @@ public class StageLoader : MonoBehaviour
                 DestroyImmediate(instance.gameObject);
             }
         }
-        Debug.Log($"stage {localStageName} is considered loaded: {alreadyLoaded}");
         if (alreadyLoaded) return;
         Stage stagePrefab = stages != null ? Array.Find(stages, s => s?.name == localStageName) : null;
         if (stagePrefab == null) stagePrefab = stages != null ? Array.Find(stages, s => s?.name == defaultStage) : null;
