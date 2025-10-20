@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 namespace Shop
 {
@@ -184,18 +183,15 @@ namespace Shop
 
         private void OnPollWinner(PollMaster.Candidate candidate)
         {
-            Debug.Log("Winner is " + candidate.buttonID);
             poll?.ResetCandidateVotes(candidate);
             if (shelfDisplays == null) return;
             string buttonID = candidate?.buttonID;
             int shelfIndex = Array.FindIndex(shelfDisplays, s => s.buttonID == buttonID);
-            Debug.Log("On shelf #" + shelfIndex);
             if (shelfIndex != -1) BuyItem(shelfDisplays[shelfIndex].item);           
         }
 
         private void BuyItem(ShopItem item)
         {
-            Debug.Log("Buying " + item.song.title);
             RemoveItemFromInventory(item);
             RemoveSongFromPool(item.song);
             FillInventory();
@@ -213,7 +209,6 @@ namespace Shop
         {
             if (addSongChoiceRequest != null)
             {
-                Debug.Log("Added song choice - " + request.ResponseBody);
                 addSongChoiceRequest.onRequestEnd.RemoveListener(OnAddSongChoiceRequestEnd);
             }
         }
