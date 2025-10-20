@@ -45,9 +45,11 @@ public class HttpRequestLoop
     public float RequestsPerSeconds { get; private set; }
 
 
-    public HttpRequestLoop(string uri)
+    public HttpRequestLoop(HttpRequest.RequestType type = HttpRequest.RequestType.GET, string uri = "", ParameterFormat format = ParameterFormat.Path)
     {
+        requestType = type;
         requestUri = uri;
+        parametersFormat = format;
     }
 
     public string GetLog()
