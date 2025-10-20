@@ -51,10 +51,16 @@
     {
       "serverName": "Megalovania",
       "localName": "Megalovania"
+    },
+    {
+      "serverName": "Shop",
+      "localName": "Shop"
+    },
+    {
+      "serverName": "null",
+      "localName": "EmptyScene"
     }
   ],
   "missingStages": [],
-  "otherStages": [
-    "EmptyScene"
-  ]
+  "otherStages": []
 }
