@@ -47,9 +47,9 @@ public class Stage : MonoBehaviour
 
     virtual protected void Awake()
     {
-        if (!HasAllComponents()) Debug.LogWarning("Missing components");
         Score = GetComponentInChildren<MiniGameScore>(true);
         Coins = GetComponentInChildren<CoinCatcher>(true);
+        if (!HasAllComponents()) Debug.LogWarning("Missing components");
     }
 
     virtual protected void OnEnable() => Load();

@@ -1,216 +1,27 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Shop
 {
-    [Serializable]
-    public struct ShopItem
-    {
-        public SongInfo song;
-        public int price;
-
-        public static ShopItem None => new ShopItem() { song = SongInfo.None, price = 0 };
-        public bool IsEmpty => song == SongInfo.None;
-    }
-
     public class ShopStage : Stage
     {
-        [Header("Components")]
-        public ShopShelfDisplay[] shelfDisplays;
-        [Header("Contents")]
-        public List<SongInfo> songPool;
-        public ShopItem[] inventory;
-        [Header("Patron")]
-        public int cartCapacity;
-        public int budget;
-        public bool canBuyMinigames;
-        public int minimumPartyLevel;
-        [Header("Web")]
-        public HttpRequestLoop songPoolRequest;
-        public HttpRequestLoop addSongChoiceRequest;
-        [Header("Editor Tools")]
-        public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshSongPool", "FillInventory", "Clear Inventory");
+        [Header("Moments")]
+        public int welcomeDialogueMoment = 0;
+        public int shoppingMoment = 1;
+        public int goodbyeDialogueMoment = 2;
 
-        private PollMaster poll;
+        private Shop shop;
 
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            if (poll) poll.onCandidateWins.AddListener(OnPollWinner);
-        }
-
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-            if (poll) poll.onCandidateWins.RemoveListener(OnPollWinner);
-        }
-
-        private void Update()
-        {
-            UpdateShelves();
-        }
+        public override int MomentCount => 3;
 
         protected override bool HasAllComponents()
         {
-            if (base.HasAllComponents() && poll) return true;
-            poll = GetComponentInChildren<PollMaster>(true);
-            return base.HasAllComponents() && poll;
+            if (shop == null) shop = GetComponentInChildren<Shop>(true);
+            return base.HasAllComponents() && shop != null;
         }
 
-        public void RefreshSongPool()
+        protected override void OnMomentChange(int value)
         {
-            if (songPoolRequest != null)
-            {
-                int setlistId = concert != null ? concert.state.setlist.databaseID : -1;
-                songPoolRequest.parameters = new string[] { setlistId.ToString() };
-                songPoolRequest.onRequestEnd.AddListener(OnSongPoolRequestEnd);
-                songPoolRequest.StartRequestCoroutine(this);
-            }
-        }
-
-        private void OnSongPoolRequestEnd(HttpRequest request)
-        {
-            songPool = null;
-            if (songPoolRequest != null)
-            {
-                songPoolRequest.onRequestEnd.RemoveListener(OnSongPoolRequestEnd);
-                if (songPoolRequest.RequestStatus != HttpRequest.RequestStatus.Success)
-                {
-                    SongInfo[] getSongs = songPoolRequest.DeserializeResponse<SongInfo[]>();
-                    songPool = getSongs != null ? new(getSongs) : new();
-                }
-            }
-        }
-
-        public void RemoveSongFromPool(SongInfo song)
-        {
-            if (songPool == null) return;
-            songPool.Remove(song);
-        }
-
-        public int InventorySize
-        {
-            get => inventory != null ? inventory.Length : 0;
-            set
-            {
-                int size = Mathf.Max(0, value);
-                if (inventory != null) Array.Resize(ref inventory, size);
-                else inventory = new ShopItem[size];
-            }
-        }
-
-        public void ClearInventory()
-        {
-            if (InventorySize > 0) Array.Clear(inventory, 0, InventorySize);
-        }
-
-        public void RemoveItemFromInventory(int index)
-        {
-            if (index < 0 || index >= InventorySize) return;
-            inventory[index] = new ShopItem() { song = SongInfo.None, price = -1 };
-        }
-
-        public void RemoveItemFromInventory(ShopItem item)
-        {
-            if (InventorySize == 0) return;
-            RemoveItemFromInventory(Array.IndexOf(inventory, item));
-        }
-
-        public void FillInventory()
-        {
-            for (int i = 0, iend = InventorySize; i < iend; i++)
-            {
-                if (inventory[i].IsEmpty) inventory[i] = CreateShopItem();
-            }
-        }
-
-        private ShopItem CreateShopItem()
-        {
-            // Pick an available song from pool, that is not already in inventory
-            int songPoolSize = songPool != null ? songPool.Count : 0;
-            List<int> availableSongIndices = new List<int>(songPoolSize);
-            SongInfo song;
-            for (int i = 0; i < songPoolSize; i++)
-            {
-                song = songPool[i];
-                if (IsInInventory(song)) continue;
-                if (!canBuyMinigames && song.hasMinigame) continue;
-                if (song.partyLevel < minimumPartyLevel) continue;
-                availableSongIndices.Add(i);
-            }
-            if (availableSongIndices.Count == 0) return ShopItem.None;
-            song = songPool[availableSongIndices[UnityEngine.Random.Range(0, availableSongIndices.Count)]];
-            // Set a semi-random price
-            GetPriceRange(cartCapacity, budget, out int minPrice, out int maxPrice);
-            return new ShopItem() { song = song, price = UnityEngine.Random.Range(minPrice, maxPrice) };
-        }
-
-        private bool IsInInventory(SongInfo song)
-        {
-            if (inventory == null) return false;
-            return Array.FindIndex(inventory, item => item.song == song) != -1;
-        }
-
-        private void GetPriceRange(int buyableItems, int maxBudget, out int minPrice, out int maxPrice)
-        {
-            if (buyableItems > 0)
-            {
-                minPrice = Mathf.CeilToInt(maxBudget / (buyableItems + 1)) + 1;
-                maxPrice = Mathf.FloorToInt(maxBudget / buyableItems);
-            }
-            else
-            {
-                minPrice = maxBudget + 1;
-                maxPrice = int.MaxValue;
-            }
-        }
-
-        private void UpdateShelves()
-        {
-            int shelfCount = shelfDisplays != null ? shelfDisplays.Length : 0,
-                inventoryCount = inventory != null ? inventory.Length : 0;
-            if (shelfCount == 0) return;
-            int inventory_index = 0;
-            foreach (ShopShelfDisplay shelf in shelfDisplays)
-            {
-                if (shelf == null) continue;
-                if (inventory_index < inventoryCount) shelf.item = inventory[inventory_index];
-                else shelf.EmptyShelf();
-                inventory_index++;
-            }
-        }
-
-        private void OnPollWinner(PollMaster.Candidate candidate)
-        {
-            poll?.ResetCandidateVotes(candidate);
-            if (shelfDisplays == null) return;
-            string buttonID = candidate?.buttonID;
-            int shelfIndex = Array.FindIndex(shelfDisplays, s => s.buttonID == buttonID);
-            if (shelfIndex != -1) BuyItem(shelfDisplays[shelfIndex].item);           
-        }
-
-        private void BuyItem(ShopItem item)
-        {
-            RemoveItemFromInventory(item);
-            RemoveSongFromPool(item.song);
-            FillInventory();
-            if (addSongChoiceRequest != null)
-            {
-                int setlistId = concert != null ? concert.state.setlist.databaseID : -1;
-                int songId = item.song.databaseID;
-                addSongChoiceRequest.parameters = new string[] { setlistId.ToString(), songId.ToString() };
-                addSongChoiceRequest.onRequestEnd.AddListener(OnAddSongChoiceRequestEnd);
-                addSongChoiceRequest.StartRequestCoroutine(this, restart:true);
-            }
-        }
-
-        private void OnAddSongChoiceRequestEnd(HttpRequest request)
-        {
-            if (addSongChoiceRequest != null)
-            {
-                addSongChoiceRequest.onRequestEnd.RemoveListener(OnAddSongChoiceRequestEnd);
-            }
+            base.OnMomentChange(value);
         }
     }
 }
