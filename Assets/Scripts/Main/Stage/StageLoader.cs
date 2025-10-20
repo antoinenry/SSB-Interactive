@@ -29,7 +29,7 @@ public class StageLoader : MonoBehaviour
 
     private void OnDisable()
     {
-        Concert.Current?.onStateUpdate?.RemoveListener(OnConcertStateUpdate);
+        if (Concert.HasInstance) Concert.Current.onStateUpdate.RemoveListener(OnConcertStateUpdate);
         LoadStage(null);
     }
 
