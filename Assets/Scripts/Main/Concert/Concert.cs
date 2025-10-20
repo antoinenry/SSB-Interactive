@@ -2,18 +2,8 @@ using SocketIOClient;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Concert : MonoBehaviour
+public class Concert : MonoBehaviourSingleton<Concert>
 {
-    private static Concert current;
-    public static Concert Current
-    {
-        get
-        {
-            if (current == null) current = FindObjectOfType<Concert>(true);
-            return current;
-        }
-    }
-
     [Header("Current concert")]
     public ConcertInfo info;
     public ConcertState state;
@@ -38,8 +28,6 @@ public class Concert : MonoBehaviour
 
     private void Awake()
     {
-        if (current == null) current = this;
-        else if (current != this) Debug.LogWarning("Multiple concert instances.");
         HttpClient = CurrentAssetsManager.GetCurrent<HttpClientScriptable>();
         SocketClient = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
         SocketClient.Connect();
