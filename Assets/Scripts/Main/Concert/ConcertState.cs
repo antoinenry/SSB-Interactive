@@ -10,6 +10,7 @@ public struct ConcertState
     public int moment;
     public int momentIndex;
     public bool paused;
+    public int databaseID;
 
     public static ConcertState None => new ConcertState()
     {
@@ -21,14 +22,32 @@ public struct ConcertState
         paused = false
     };
 
+    public override bool Equals(object obj)
+    {
+        return obj is ConcertState && this == (ConcertState)obj;
+    }
+
+    public override int GetHashCode()
+    {
+        return databaseID;
+    }
+
+    public static bool operator ==(ConcertState left, ConcertState right)
+        => left.setlist == right.setlist && left.song == right.song && left.songPosition == right.songPosition && left.moment == right.moment && left.momentIndex == right.momentIndex && left.paused == right.paused;
+
+    public static bool operator !=(ConcertState left, ConcertState right)
+        => left.setlist != right.setlist || left.song != right.song || left.songPosition != right.songPosition || left.moment != right.moment || left.momentIndex == right.momentIndex || left.paused == right.paused;
+
     public bool PositionMatchesSong => setlist.GetSong(songPosition) == song;
 
     public bool Paused { get => paused; set => paused = value; }
 
     public string GetLog()
     {
-        return "setlist : " + setlist.Name + " / song : " + song.Title + " / position : " + songPosition + " / moment " + moment + " (" + momentIndex + ")";
+        return "setlist : " + setlist.Name + " / song : " + song.Title + " / position : " + songPosition + " / stage : " + song.linkedStage.Name + " / moment " + moment + " (" + momentIndex + ")";
     }
+
+    public StageInfo Stage => song.linkedStage;
 
     [JsonPropertyName("setlist")] public SetlistInfo? Setlist { get => setlist; set => setlist = value.HasValue ? value.Value : SetlistInfo.None; }
     [JsonPropertyName("setlistSong")] public SetlistState? SetlistSong
@@ -57,4 +76,5 @@ public struct ConcertState
 
         [JsonPropertyName("pause")] public bool? Paused { get => paused; set => paused = value.HasValue ? value.Value : false; }
     }
+    [JsonPropertyName("id")] public int? DatabaseID { get => databaseID; set => databaseID = value.HasValue ? value.Value : -1; }
 }

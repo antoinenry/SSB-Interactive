@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using UnityEngine;
 
@@ -9,7 +11,39 @@ public struct SetlistInfo
     public SongInfo[] songs;
     public int databaseID;
 
+    public SetlistInfo(SetlistInfo model)
+    {
+        name = model.name;
+        songs = null;
+        databaseID = model.databaseID;
+        SetSongs(model.songs);
+    }
+
+    public void Copy(SetlistInfo model)
+    {
+        name = model.name;
+        songs = null;
+        databaseID = model.databaseID;
+        SetSongs(model.songs);
+    }
+
     public static SetlistInfo None => new SetlistInfo() { name = null, songs = null };
+
+    public override bool Equals(object obj)
+    {
+        return obj is SetlistInfo && this == (SetlistInfo)obj;
+    }
+
+    public override int GetHashCode()
+    {
+        return databaseID;
+    }
+
+    public static bool operator ==(SetlistInfo left, SetlistInfo right)
+        => left.name == right.name && (left.songs == right.songs || (left.songs != null && Enumerable.SequenceEqual(left.songs, right.songs)));
+
+    public static bool operator !=(SetlistInfo left, SetlistInfo right)
+        => left.name != right.name || (left.songs != right.songs && (left.songs == null || !Enumerable.SequenceEqual(left.songs, right.songs)));
 
     public int Length
     {
@@ -26,6 +60,22 @@ public struct SetlistInfo
     {
         Length = setSongs != null ? setSongs.Length : 0;
         Array.Copy(setSongs, songs, Length);
+    }
+
+    public void SetSongs(SetlistState[] setSongs)
+    {
+        int length = 0;
+        if (setSongs == null || setSongs.Length == 0) return;
+        foreach(SetlistState s in  setSongs)
+        {
+            length = Mathf.Max(length, s.position + 1);
+        }
+        songs = new SongInfo[length];
+        foreach (SetlistState s in setSongs)
+        {
+            if (s.position < 0) continue;
+            songs[s.position] = s;
+        }
     }
 
     public SongInfo[] GetSongs()
@@ -59,7 +109,7 @@ public struct SetlistInfo
         }
         set
         {
-            SetSongs(value != null ? Array.ConvertAll(value, s => s.Song.Value) : null);
+            SetSongs(value);
         }
     }
     [JsonPropertyName("id")] public int? DatabaseID { get => databaseID; set => databaseID = value.HasValue ? value.Value : -1; }
