@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class MonoBehaviourSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T current;
+
     public static T Current
     {
         get
@@ -15,4 +16,6 @@ public abstract class MonoBehaviourSingleton<T> : MonoBehaviour where T : MonoBe
             return current;
         }
     }
+
+    public static bool HasInstance => current != null;
 }
