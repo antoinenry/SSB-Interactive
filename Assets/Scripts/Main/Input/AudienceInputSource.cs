@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using static ClientButtonTracker;
 
 public class AudienceInputSource : MonoBehaviour
@@ -31,30 +32,51 @@ public class AudienceInputSource : MonoBehaviour
         public float Velocity => deltaTime != 0f ? deltaPresses / deltaTime : 0f;
     }
 
-    public ClientButtonTracker buttonCounter;
+    public ClientButtonTracker buttonTracker;
     [Range(0f, 1f)] public float smoothRate = 1f;
     public AudienceInputConfiguration inputConfiguration;
 
-    private Dictionary<string,ButtonInput> buttonDeltasRaw;
-    private Dictionary<string, ButtonInput> buttonDeltasSmooth;
+    public UnityEvent onAudienceInput;
+
+    private Dictionary<string,ButtonInput> buttonInputsRaw;
+    private Dictionary<string, ButtonInput> buttonInputsSmooth;
+    private bool firstButtonCountUpdate;
 
     public MultipleButtonTimedCount CurrentFrame { get; private set; }
 
-    private void OnEnable() => AddButtonListeners();
+    private void OnEnable()
+    {
+        firstButtonCountUpdate = true;
+        AddButtonListeners();
+    }
 
-    private void OnDisable() => RemoveButtonListeners();
+    private void OnDisable()
+    {
+        RemoveButtonListeners();
+    }
 
     private void AddButtonListeners()
     {
-        if (buttonCounter == null) return;
-        buttonCounter.onCountUpdate.AddListener(OnButtonCountUpdate);
+        if (buttonTracker == null) return;
+        buttonTracker.onSetEnabled.AddListener(OnSetButtonTrackerEnabled);
+        buttonTracker.onCountUpdate.AddListener(OnButtonCountUpdate);
 
     }
 
     private void RemoveButtonListeners()
     {
-        if (buttonCounter == null) return;
-        buttonCounter.onCountUpdate.RemoveListener(OnButtonCountUpdate);
+        if (buttonTracker == null) return;
+        buttonTracker.onSetEnabled.RemoveListener(OnSetButtonTrackerEnabled);
+        buttonTracker.onCountUpdate.RemoveListener(OnButtonCountUpdate);
+    }
+
+    private void OnSetButtonTrackerEnabled(bool buttonTrackerEnabled)
+    {
+        if (buttonTrackerEnabled == true)
+        {
+            CurrentFrame = buttonTracker.Current;
+            firstButtonCountUpdate = true;
+        }
     }
 
     private void OnButtonCountUpdate(MultipleButtonTimedCount frame)
@@ -63,29 +85,41 @@ public class AudienceInputSource : MonoBehaviour
         MultipleButtonTimedCount previousFrame = CurrentFrame;
         CurrentFrame = frame;        
         float previousTime = previousFrame.time, currentTime = CurrentFrame.time;
-        // Clear button deltas
-        if (buttonDeltasRaw == null) buttonDeltasRaw = new();
-        foreach (string k in buttonDeltasRaw.Keys.ToList()) buttonDeltasRaw[k] = ButtonInput.None;
-        if (buttonDeltasSmooth == null) buttonDeltasSmooth = new();
-        foreach (string k in buttonDeltasSmooth.Keys.ToList()) buttonDeltasSmooth[k] = ButtonInput.None;
-        // Set new button deltas
-        if (frame.counts != null)
+        // Clear button inputs
+        if (buttonInputsRaw == null) buttonInputsRaw = new();
+        foreach (string k in buttonInputsRaw.Keys.ToList()) buttonInputsRaw[k] = ButtonInput.None;
+        if (buttonInputsSmooth == null) buttonInputsSmooth = new();
+        foreach (string k in buttonInputsSmooth.Keys.ToList()) buttonInputsSmooth[k] = ButtonInput.None;
+        // Set new button inputs
+        if (frame.counts == null) return;
+        if (firstButtonCountUpdate)
+        {
+            // Shortcup input delta for first update
             foreach (KeyValuePair<string, int> b in frame.counts)
-                SetButtonDeltas(b.Key, previousFrame[b.Key], b.Value, previousTime, currentTime); 
+                SetButtonInputs(b.Key, b.Value, b.Value, currentTime, currentTime);
+            firstButtonCountUpdate = false;
+        }
+        else
+        {
+            foreach (KeyValuePair<string, int> b in frame.counts)
+                SetButtonInputs(b.Key, previousFrame[b.Key], b.Value, previousTime, currentTime);
+        }
+        // Notify update
+        onAudienceInput.Invoke();
     }
 
-    private void SetButtonDeltas(string id, int previousCount, int currentCount, float previousTime, float currentTime)
+    private void SetButtonInputs(string id, int previousCount, int currentCount, float previousTime, float currentTime)
     {
         // Add keys if needed
-        if (buttonDeltasRaw == null) buttonDeltasRaw = new();
-        if (buttonDeltasRaw.ContainsKey(id) == false) buttonDeltasRaw.Add(id, ButtonInput.None);
-        if (buttonDeltasSmooth == null) buttonDeltasSmooth = new();
-        if (buttonDeltasSmooth.ContainsKey(id) == false) buttonDeltasSmooth.Add(id, ButtonInput.None);
+        if (buttonInputsRaw == null) buttonInputsRaw = new();
+        if (buttonInputsRaw.ContainsKey(id) == false) buttonInputsRaw.Add(id, ButtonInput.None);
+        if (buttonInputsSmooth == null) buttonInputsSmooth = new();
+        if (buttonInputsSmooth.ContainsKey(id) == false) buttonInputsSmooth.Add(id, ButtonInput.None);
         // Update raw and smoothes input
         ButtonInput oldInputRaw = ButtonInput.None,
             newInputRaw = new ButtonInput(currentCount, currentCount - previousCount, currentTime - previousTime);
-        buttonDeltasRaw[id] = newInputRaw;
-        buttonDeltasSmooth[id] = ButtonInput.Lerp(oldInputRaw, newInputRaw, 1f - .5f * smoothRate);
+        buttonInputsRaw[id] = newInputRaw;
+        buttonInputsSmooth[id] = ButtonInput.Lerp(oldInputRaw, newInputRaw, 1f - .5f * smoothRate);
     }
 
     private float ComputeAxis(float negativeValue, float positiveValue)
@@ -98,7 +132,7 @@ public class AudienceInputSource : MonoBehaviour
     // Get Buttons and Axis using InputConfig
     public float GetButton(string buttonId)
     {
-        if (inputConfiguration == null) return GetButton(buttonId, ButtonValueType.Default);
+        if (inputConfiguration == null) return GetButton(buttonId, ButtonValueType.RawTotal);
         AudienceInputConfiguration.Button buttonConfig = inputConfiguration.GetButtonConfig(buttonId);
         return GetButton(buttonId, buttonConfig.type);
     }
@@ -111,9 +145,9 @@ public class AudienceInputSource : MonoBehaviour
     }
 
     // Get Buttons and Axis by specifying config parameters
-    public ButtonInput GetButtonRaw(string buttonId) => buttonDeltasRaw != null && buttonDeltasRaw.ContainsKey(buttonId) ? buttonDeltasRaw[buttonId] : ButtonInput.None;
+    public ButtonInput GetButtonRaw(string buttonId) => buttonInputsRaw != null && buttonInputsRaw.ContainsKey(buttonId) ? buttonInputsRaw[buttonId] : ButtonInput.None;
 
-    public ButtonInput GetButtonSmooth(string buttonId) => buttonDeltasSmooth != null && buttonDeltasSmooth.ContainsKey(buttonId) ? buttonDeltasSmooth[buttonId] : ButtonInput.None;
+    public ButtonInput GetButtonSmooth(string buttonId) => buttonInputsSmooth != null && buttonInputsSmooth.ContainsKey(buttonId) ? buttonInputsSmooth[buttonId] : ButtonInput.None;
 
     public float GetButton(string buttonId, ButtonValueType buttonConfig)
     {
@@ -135,5 +169,5 @@ public class AudienceInputSource : MonoBehaviour
 
     public float GetAxis(string negativeButtonId, string positiveButtonId) => ComputeAxis(GetButton(negativeButtonId), GetButton(positiveButtonId));
 
-    
+    public bool EnableButtonTracker { get => buttonTracker != null && buttonTracker.enabled; set { if (buttonTracker) buttonTracker.enabled = value; } }
 }

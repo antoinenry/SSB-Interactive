@@ -12,8 +12,12 @@ public class MainScore : MonoBehaviour
 
     public bool DisplayScore
     {
-        get => scoreDisplay ? scoreDisplay.gameObject.activeInHierarchy : false;
-        set => scoreDisplay?.gameObject?.SetActive(value);
+        get => scoreDisplay != null && scoreDisplay.gameObject != null ? scoreDisplay.gameObject.activeInHierarchy : false;
+        set
+        {
+            if (scoreDisplay != null && scoreDisplay.gameObject != null)
+                scoreDisplay.gameObject.SetActive(value);
+        }
     }
 
     private void Awake()

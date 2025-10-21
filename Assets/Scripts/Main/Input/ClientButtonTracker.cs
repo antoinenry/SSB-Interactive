@@ -1,6 +1,6 @@
 using System;
-using System.Text.Json.Serialization;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,6 +8,10 @@ using UnityEngine.Events;
 
 public class ClientButtonTracker : MonoBehaviour
 {
+    public UnityEvent<bool> onSetEnabled;
+    public UnityEvent<MultipleButtonTimedCount> onCountUpdate;
+    public MultipleButtonTimedCount Current { get; protected set; }
+
     #region Counter structures
     // Counter for a single button with one ID: this is the format used on the http server. Used for response deserialization.
     [Serializable]
@@ -50,6 +54,14 @@ public class ClientButtonTracker : MonoBehaviour
 
         static public int CompareByAge(MultipleButtonTimedCount a, MultipleButtonTimedCount b) => b.time.CompareTo(a.time);
 
+        public void AddPresses(string buttonID, int presses)
+        {
+            if (buttonID == null) return;
+            if (counts == null) counts = new();
+            if (counts.ContainsKey(buttonID)) counts[buttonID] += presses;
+            else counts.Add(buttonID, presses);
+        }
+
         public void AddPresses(Dictionary<string, int> presses)
         {
             if (presses == null) return;
@@ -69,13 +81,19 @@ public class ClientButtonTracker : MonoBehaviour
 
     public HttpRequestLoop requestLoop;
 
-    public UnityEvent<MultipleButtonTimedCount> onCountUpdate;
+    private void OnEnable()
+    {
+        onSetEnabled.Invoke(true);
+        AddRequestListeners();
+        requestLoop?.Init();
+    }
+    private void OnDisable()
+    {
+        requestLoop?.Cancel();
+        RemoveRequestListeners();
+        onSetEnabled.Invoke(false);
+    }
 
-    public MultipleButtonTimedCount Current { get; private set; }
-
-    private void Awake() => requestLoop?.Init();
-    private void OnEnable() => AddRequestListeners();
-    private void OnDisable() => RemoveRequestListeners();
     private void Update() => requestLoop?.Update();
 
     public string GetLog()
@@ -89,19 +107,25 @@ public class ClientButtonTracker : MonoBehaviour
     private void AddRequestListeners()
     {
         if (requestLoop == null) return;
-        requestLoop.onClientResponse.AddListener(OnRequestResponse);
+        requestLoop.onRequestEnd.AddListener(OnRequestEnd);
     }
 
     private void RemoveRequestListeners()
     {
         if (requestLoop == null) return;
-        requestLoop.onClientResponse.RemoveListener(OnRequestResponse);
+        requestLoop.onRequestEnd.RemoveListener(OnRequestEnd);
     }
 
-    private void OnRequestResponse(HttpRequest buttonRequest)
+    private void OnRequestEnd(HttpRequest buttonRequest)
     {
         SingleButtonCount[] data = buttonRequest.DeserializeResponse<SingleButtonCount[]>();
         Current = new MultipleButtonTimedCount(buttonRequest.EndTime, data);
+        onCountUpdate.Invoke(Current);
+    }
+
+    public void AddPresses(string buttonID, int presses)
+    {
+        Current.AddPresses(buttonID, presses);
         onCountUpdate.Invoke(Current);
     }
 }

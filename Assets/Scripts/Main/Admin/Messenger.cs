@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Messenger : MonoBehaviour
+public class Messenger : MonoBehaviourSingleton<Messenger>
 {
     public string eventName = "text";
     public string text;
@@ -31,4 +31,6 @@ public class Messenger : MonoBehaviour
         text = t;
         SendText();
     }
+
+    static public void SendText(string t) => Current?.Send(t);
 }

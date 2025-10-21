@@ -1,11 +1,22 @@
 using UnityEngine;
+using UnityEngine.Events;
 using static AudienceInputSource;
+using static ClientButtonTracker;
 
 
 public static class AudienceInput
 {
     public static bool initialized;
     public static AudienceInputSource sourceInstance;
+
+    public static UnityEvent OnAudienceInput
+    {
+        get
+        {
+            if (!initialized) Init();
+            return sourceInstance.onAudienceInput;
+        }
+    }
 
     public static void Init()
     {
