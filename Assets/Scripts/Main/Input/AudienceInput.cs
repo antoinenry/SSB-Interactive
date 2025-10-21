@@ -25,10 +25,10 @@ public static class AudienceInput
         initialized = true;
     }
 
-    static public float GetButton(string buttonId)
+    static public bool ButtonDown(string buttonId)
     {
         if (!initialized) Init();
-        return sourceInstance.GetButton(buttonId);
+        return sourceInstance.GetButton(buttonId, ButtonValueType.RawDelta) != 0f;
     }
 
     static public float GetAxis(AudienceInputConfiguration.Axis.Direction direction)

@@ -18,13 +18,15 @@ public class StageLoader : MonoBehaviour
 
     private void OnEnable()
     {
-        Concert currentConcert = Concert.Current;
-        if (currentConcert == null) Debug.LogWarning("Missing Concert instance");
-        else
+        if (Concert.HasInstance)
         {
-            LoadStage(serverStageName: currentConcert.state.Stage.name);
-            Concert.Current.onStateUpdate.AddListener(OnConcertStateUpdate);
-        }
+            Concert currentConcert = Concert.Current;
+            if (currentConcert != null)
+            {
+                LoadStage(serverStageName: currentConcert.state.Stage.name);
+                Concert.Current.onStateUpdate.AddListener(OnConcertStateUpdate);
+            }
+        }        
     }
 
     private void OnDisable()
