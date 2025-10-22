@@ -6,52 +6,77 @@ public class MapRoad : MapNavigationStep
 {
     public MapNode firstNode;
     public MapNode lastNode;
+    public bool snapToNodes = true;
 
     private LineRenderer lineRenderer;
-    private Vector2[] wayPoints;
+    private Vector2[] waypoints;
 
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        GetWaypointsFromLine();
     }
 
     private void Update()
     {
-        SnapToNodes();
+        GetWaypointsFromLine();
+        if (snapToNodes) SnapToNodes();
     }
 
-    private void SnapToNodes()
+    private void GetWaypointsFromLine()
     {
-        // Get waypoints from line renderer
         if (lineRenderer != null)
         {
             int lineLength = lineRenderer.positionCount;
             Vector3[] linePositions = new Vector3[lineLength];
             lineRenderer.GetPositions(linePositions);
-            if (PointCount != lineLength) Array.Resize(ref wayPoints, lineLength);
-            Array.Copy(Array.ConvertAll(linePositions, p => (Vector2)p), wayPoints, wayPoints.Length);
-        }
-        // Ensure minimum length and snap to nodes
-        if (wayPoints == null) wayPoints = new Vector2[0];
-        if (firstNode != null)
-        {
-            if (PointCount == 0) Array.Resize(ref wayPoints, 1);
-            wayPoints[0] = firstNode.transform.position;
-        }
-        if (lastNode != null)
-        {
-            if (PointCount < 2) Array.Resize(ref wayPoints, 2);
-            wayPoints[PointCount - 1] = lastNode.transform.position;
-        }
-        // Update changes to line renderer
-        if (lineRenderer != null)
-        {
-            lineRenderer.positionCount = PointCount;
-            lineRenderer.SetPositions(Array.ConvertAll(wayPoints, pt => (Vector3)pt));
+            if (PointCount != lineLength) Array.Resize(ref waypoints, lineLength);
+            Array.Copy(Array.ConvertAll(linePositions, p => (Vector2)p), waypoints, waypoints.Length);
         }
     }
 
-    public int PointCount => wayPoints != null ? wayPoints.Length : 0;
+    public void AutoSetNodes(MapNode[] allNodes)
+    {
+        firstNode = null;
+        lastNode = null;
+        if (waypoints == null) return;
+        foreach (MapNode node in allNodes)
+        {
+            if (node.IsConnectedTo(this) == false) continue;
+            bool closestToFirstPoint = Vector2.Distance(node.transform.position, waypoints[0]) < Vector2.Distance(node.transform.position, waypoints[PointCount - 1]);
+            if (closestToFirstPoint)
+            {
+                if (firstNode != null) Debug.LogWarning("Two candidates for " + gameObject.name + "'s first node : " + firstNode.gameObject.name + " and " + node.gameObject.name);
+                else firstNode = node;
+            }
+            else
+            {
+                if (lastNode != null) Debug.LogWarning("Two candidates for " + gameObject.name + "'s last node : " + lastNode.gameObject.name + " and " + node.gameObject.name);
+                else lastNode = node;
+            }
+        }
+    }
+
+    private void SnapToNodes()
+    {
+        if (waypoints == null) waypoints = new Vector2[0];
+        if (firstNode != null) SetWaypoint(0, firstNode.transform.position);
+        if (lastNode != null) SetWaypoint(PointCount - 1, lastNode.transform.position);
+        if (lineRenderer != null)
+        {
+            lineRenderer.positionCount = PointCount;
+            lineRenderer.SetPositions(Array.ConvertAll(waypoints, pt => (Vector3)pt));
+        }
+    }
+
+    private void SetWaypoint(int index,  Vector3 point)
+    {
+        if (index == -1) return;
+        if (PointCount < index + 1) Array.Resize(ref waypoints, index + 1);
+        waypoints[index] = point;
+    }
+
+    public int PointCount => waypoints != null ? waypoints.Length : 0;
 
     public float Length
     {
@@ -59,28 +84,28 @@ public class MapRoad : MapNavigationStep
         {
             float l = 0f;
             for (int i = 0, iend = PointCount - 1; i < iend; i++)
-                l += Vector2.Distance(wayPoints[i], wayPoints[i + 1]);
+                l += Vector2.Distance(waypoints[i], waypoints[i + 1]);
             return l;
         }
     }
 
     public Vector2 GetTravelPosition(float t)
     {
-        if (t <= 0f) return wayPoints[0];
-        if (t >= 1f) return wayPoints[PointCount - 1];
+        if (t <= 0f) return waypoints[0];
+        if (t >= 1f) return waypoints[PointCount - 1];
         float target_distance = t * Length;
         float wayPointDistance = 0f;
         int wayPointIndex = 0;
         for (int i = 0, iend = PointCount - 1; i < iend; i++)
         {
-            wayPointDistance += Vector2.Distance(wayPoints[i], wayPoints[i + 1]);
+            wayPointDistance += Vector2.Distance(waypoints[i], waypoints[i + 1]);
             if (wayPointDistance >  target_distance)
             {
                 wayPointIndex = i;
                 break;
             }
         }
-        return Vector2.MoveTowards(wayPoints[wayPointIndex + 1], wayPoints[wayPointIndex], wayPointDistance - target_distance);
+        return Vector2.MoveTowards(waypoints[wayPointIndex + 1], waypoints[wayPointIndex], wayPointDistance - target_distance);
     }
 
     public override void SetNavigatorPosition(MapNavigator navigator)
