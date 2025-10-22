@@ -1,18 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteAlways]
 public class MapNavigator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public abstract class NavigableMapElement : MonoBehaviour
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public NavigableMapElement currentLocation;
+    [Range(0f, 1f)] public float travelProgress = 0f;
+
+    private void Update()
     {
-        
+        UpdatePosition();    
+    }
+
+    private void UpdatePosition()
+    {
+        if (currentLocation == null) return;
+        if (currentLocation is MapNode)
+        {
+            transform.position = currentLocation.transform.position;
+            travelProgress = 1f;
+        }
+        else if (currentLocation is MapRoad)
+        {
+            transform.position = (currentLocation as MapRoad).GetTravelPosition(travelProgress);
+        }
     }
 }

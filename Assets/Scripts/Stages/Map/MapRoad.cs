@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [ExecuteAlways]
-public class MapRoad : MonoBehaviour
+public class MapRoad : MapNavigator.NavigableMapElement
 {
     public MapNode firstNode;
     public MapNode lastNode;
@@ -52,4 +52,34 @@ public class MapRoad : MonoBehaviour
     }
 
     public int PointCount => wayPoints != null ? wayPoints.Length : 0;
+
+    public float Length
+    {
+        get
+        {
+            float l = 0f;
+            for (int i = 0, iend = PointCount - 1; i < iend; i++)
+                l += Vector2.Distance(wayPoints[i], wayPoints[i + 1]);
+            return l;
+        }
+    }
+
+    public Vector2 GetTravelPosition(float t)
+    {
+        if (t <= 0f) return wayPoints[0];
+        if (t >= 1f) return wayPoints[PointCount - 1];
+        float target_distance = t * Length;
+        float wayPointDistance = 0f;
+        int wayPointIndex = 0;
+        for (int i = 0, iend = PointCount - 1; i < iend; i++)
+        {
+            wayPointDistance += Vector2.Distance(wayPoints[i], wayPoints[i + 1]);
+            if (wayPointDistance >  target_distance)
+            {
+                wayPointIndex = i;
+                break;
+            }
+        }
+        return Vector2.MoveTowards(wayPoints[wayPointIndex + 1], wayPoints[wayPointIndex], wayPointDistance - target_distance);
+    }
 }

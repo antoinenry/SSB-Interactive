@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class MapNode : MonoBehaviour
+public class MapNode : MapNavigator.NavigableMapElement
 {
     [Serializable] public struct RoadConnection
     {
