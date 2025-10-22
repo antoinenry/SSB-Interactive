@@ -30,7 +30,7 @@ public class AudienceButtonListener : MonoBehaviour
 
     private void Awake()
     {
-        Init();
+        ResetButton();
     }
 
     private void OnEnable()
@@ -51,9 +51,13 @@ public class AudienceButtonListener : MonoBehaviour
             OutputValue = outputValueUpdate;
             onValueChange.Invoke(outputValueUpdate, maxValue);
         }
+        if (OutputValue >= maxValue)
+        {
+            onValueMaxed.Invoke();
+        }
     }
 
-    public void Init()
+    public void ResetButton()
     {
         InputValue = 0f;
         OutputValue = 0f;

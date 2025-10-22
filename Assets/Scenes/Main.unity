@@ -2348,7 +2348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690952035}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.61, y: 2.61, z: 0}
+  m_LocalPosition: {x: 7, y: 0.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2375,6 +2375,9 @@ MonoBehaviour:
     button: {fileID: 0}
   - road: {fileID: 0}
     button: {fileID: 0}
+  onSelectRoad:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &717786676
 GameObject:
   m_ObjectHideFlags: 0
@@ -3640,7 +3643,7 @@ LineRenderer:
   - {x: 2.3297904, y: -0.2791022, z: 0}
   - {x: 3.9129925, y: -0.6511114, z: 0}
   - {x: 5.2539563, y: 1.0186045, z: 0}
-  - {x: 6.61, y: 2.61, z: 0}
+  - {x: 7, y: 0.68, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -4322,6 +4325,9 @@ MonoBehaviour:
     button: {fileID: 1799014290}
   - road: {fileID: 0}
     button: {fileID: 2017203140}
+  onSelectRoad:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1278350122
 Transform:
   m_ObjectHideFlags: 0
@@ -6466,7 +6472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2093800896
 Transform:
   m_ObjectHideFlags: 0
@@ -6475,7 +6481,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093800895}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.4682769, y: -0.45768142, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6546,6 +6552,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a1c2cf381218a47a6e74bcd3a26c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLocation: {fileID: 1107783870}
+  travelProgress: 0.18
+  travelDirection: 0
+  travelSpeed: 100
 --- !u!1 &2107191765
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [ExecuteAlways]
-public class MapRoad : MapNavigator.NavigableMapElement
+public class MapRoad : MapNavigationStep
 {
     public MapNode firstNode;
     public MapNode lastNode;
@@ -81,5 +81,53 @@ public class MapRoad : MapNavigator.NavigableMapElement
             }
         }
         return Vector2.MoveTowards(wayPoints[wayPointIndex + 1], wayPoints[wayPointIndex], wayPointDistance - target_distance);
+    }
+
+    public override void SetNavigatorPosition(MapNavigator navigator)
+    {
+        if (navigator == null) return;
+        navigator.transform.position = GetTravelPosition(navigator.travelProgress);
+    }
+
+    public override void SetNavigatorMotion(MapNavigator navigator, float deltaTime)
+    {
+        if (navigator == null || Length == 0f) return;
+        float directionFactor = 0f;
+        if (navigator.travelDirection != 0) directionFactor = Mathf.Sign(navigator.travelDirection);
+        float deltaDistance = deltaTime * navigator.travelSpeed * directionFactor;
+        navigator.travelProgress += deltaDistance / Length;
+        if (navigator.travelProgress < 0f)
+        {
+            navigator.travelProgress = 0f;
+            onSendNavigatorTo.Invoke(firstNode);
+        }
+        else if (navigator.travelProgress > 1f)
+        {
+            navigator.travelProgress = 1f;
+            onSendNavigatorTo.Invoke(lastNode);
+        }
+    }
+
+    public override void OnNavigatorEnter(MapNavigator navigator)
+    {
+        if (navigator == null) return;
+        if (navigator.currentLocation == firstNode)
+        {
+            navigator.travelProgress = 0f;
+            navigator.travelDirection = 1;
+        }
+        else if (navigator.currentLocation == lastNode)
+        {
+            navigator.travelProgress = 1f;
+            navigator.travelDirection = -1;
+        }
+    }
+
+    public int GetDirectionTo(MapNode node)
+    {
+        if (node == null) return 0;
+        if (node == firstNode) return -1;
+        if (node == lastNode) return 1;
+        return 0;
     }
 }
