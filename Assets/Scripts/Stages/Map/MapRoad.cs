@@ -140,11 +140,13 @@ public class MapRoad : MapNavigationStep
         {
             navigator.travelProgress = 0f;
             navigator.travelDirection = 1;
+            if (lastNode != null) lastNode.OnNavigatorComing(navigator);
         }
         else if (navigator.currentLocation == lastNode)
         {
             navigator.travelProgress = 1f;
             navigator.travelDirection = -1;
+            if (firstNode != null) firstNode.OnNavigatorComing(navigator);
         }
     }
 

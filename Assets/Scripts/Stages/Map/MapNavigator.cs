@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [ExecuteAlways]
 public class MapNavigator : MonoBehaviour
@@ -10,10 +11,14 @@ public class MapNavigator : MonoBehaviour
     [Range(-1,1)] public int travelDirection = 0;
     public float travelSpeed = 1f;
 
+    public UnityEvent<MapNavigationStep> onNavigatorEnter;
+    public UnityEvent<MapNavigationStep> onNavigatorExit;
+
     private void OnEnable()
     {
         if (currentLocation)
         {
+            currentLocation.OnNavigatorComing(this);
             currentLocation.OnNavigatorEnter(this);
             currentLocation.onSendNavigatorTo.AddListener(Enter);
         }
@@ -55,6 +60,7 @@ public class MapNavigator : MonoBehaviour
         {
             Exit(currentLocation);
         }
+        onNavigatorEnter.Invoke(navigationStep);
         currentLocation = navigationStep;
     }
 
@@ -66,6 +72,7 @@ public class MapNavigator : MonoBehaviour
         }
         if (currentLocation != navigationStep) return;
         currentLocation?.OnNavigatorExit(this);
+        onNavigatorExit.Invoke(navigationStep);
         currentLocation = null;
     }
 }

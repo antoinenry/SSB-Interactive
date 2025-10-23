@@ -719,14 +719,14 @@ RectTransform:
   m_Children:
   - {fileID: 1318861847}
   - {fileID: 2063873659}
-  m_Father: {fileID: 1131729288}
+  m_Father: {fileID: 443174355}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 80, y: 80}
+  m_Pivot: {x: 0.5, y: 0.7}
 --- !u!114 &342979675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1230,6 +1230,104 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 100
   m_TargetDisplay: 0
+--- !u!1 &443174354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 443174355}
+  - component: {fileID: 443174358}
+  - component: {fileID: 443174357}
+  - component: {fileID: 443174356}
+  m_Layer: 5
+  m_Name: header_frame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &443174355
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443174354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 342979674}
+  m_Father: {fileID: 1131729288}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 481.39532, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &443174356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443174354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.12815951, g: 0.6037736, b: 0.28313485, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &443174357
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443174354}
+  m_CullTransparentMesh: 1
+--- !u!114 &443174358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443174354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8245f5fc561fb04aa1f1fe908bc827a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adaptiveTransform: {fileID: 443174355}
+  textField: {fileID: 1488284362}
+  minimumSize: {x: 0, y: 100}
+  margins:
+    left: 30
+    right: 30
+    top: 10
+    bottom: 10
 --- !u!1 &513190367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,6 +1546,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: label
+      value: 
+      objectReference: {fileID: 661339285}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: nodeName
       value: Luigi's Mansion
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
@@ -1533,6 +1635,10 @@ PrefabInstance:
     - target: {fileID: 1682681327267133301, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.306
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600270109034147157, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: text
+      value: Luigi's Mansion
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
@@ -2282,6 +2388,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
+--- !u!114 &661339285 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4600270109034147157, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+  m_PrefabInstance: {fileID: 538754048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70cab8a94203db42bc6fb7d2a857069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &709388493 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4600270109034147157, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+  m_PrefabInstance: {fileID: 1682681325536571621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70cab8a94203db42bc6fb7d2a857069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &717786676
 GameObject:
   m_ObjectHideFlags: 0
@@ -2399,6 +2527,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: label
+      value: 
+      objectReference: {fileID: 1187037885}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: nodeName
       value: The Great Escape
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
@@ -2480,6 +2612,10 @@ PrefabInstance:
     - target: {fileID: 1682681327267133301, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.189
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600270109034147157, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: text
+      value: The Great Escape
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
@@ -3131,6 +3267,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: label
+      value: 
+      objectReference: {fileID: 1844434822}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: nodeName
       value: Megalovania
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
@@ -3213,6 +3353,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4600270109034147157, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: text
+      value: Megalovania
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
 --- !u!4 &1107783868 stripped
@@ -3241,7 +3385,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1131729288}
   - component: {fileID: 1131729290}
-  - component: {fileID: 1131729289}
   m_Layer: 5
   m_Name: map_header
   m_TagString: Untagged
@@ -3261,46 +3404,16 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 342979674}
+  - {fileID: 443174355}
   - {fileID: 1488284361}
   m_Father: {fileID: 431001079}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -20}
-  m_SizeDelta: {x: 538.5, y: 100}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -10}
+  m_SizeDelta: {x: -20, y: 100}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1131729289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131729287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.26041293, g: 0.41509432, b: 0.26563865, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1131729290
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3418,6 +3531,17 @@ MonoBehaviour:
     smooth: 0
   accelerationScaleEffect: 1.5
   accelerationScaleEffectCooldown: 0.5
+--- !u!114 &1187037885 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4600270109034147157, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+  m_PrefabInstance: {fileID: 856271833}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70cab8a94203db42bc6fb7d2a857069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1193705997
 GameObject:
   m_ObjectHideFlags: 0
@@ -4173,7 +4297,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95be161480d4964a92be71c3203c7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  steps:
+  currentNodeLabel: {fileID: 1488284364}
+  navigator: {fileID: 2093800898}
+  layout:
   - {fileID: 1278350121}
   - {fileID: 1324469313}
   - {fileID: 393055612}
@@ -4183,9 +4309,7 @@ MonoBehaviour:
   - {fileID: 1209127075}
   - {fileID: 894400722}
   - {fileID: 775788083}
-  methodCaller:
-    methods:
-    - UpdateLayout
+  currentNode: {fileID: 0}
 --- !u!1 &1488284360
 GameObject:
   m_ObjectHideFlags: 0
@@ -4195,6 +4319,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1488284361}
+  - component: {fileID: 1488284364}
   - component: {fileID: 1488284363}
   - component: {fileID: 1488284362}
   m_Layer: 5
@@ -4253,8 +4378,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4293717228
-  m_fontColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4288,7 +4413,7 @@ MonoBehaviour:
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
+  m_wordWrappingRatios: 0.173
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
@@ -4321,6 +4446,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488284360}
   m_CullTransparentMesh: 1
+--- !u!114 &1488284364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488284360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70cab8a94203db42bc6fb7d2a857069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textField: {fileID: 1488284362}
+  text: Green Hill Zone
+  visible: 1
+  animated: 1
+  inAnimationSpeed: 10
+  outAnimationSpeed: 150
 --- !u!1 &1554286696
 GameObject:
   m_ObjectHideFlags: 0
@@ -5127,6 +5270,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1844434822 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4600270109034147157, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+  m_PrefabInstance: {fileID: 1106379747}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70cab8a94203db42bc6fb7d2a857069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1944649082
 GameObject:
   m_ObjectHideFlags: 0
@@ -5558,6 +5712,12 @@ MonoBehaviour:
   travelProgress: 1
   travelDirection: 0
   travelSpeed: 5
+  onNavigatorEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onNavigatorExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2107191765
 GameObject:
   m_ObjectHideFlags: 0
@@ -5799,7 +5959,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1682681326479242974, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_text
-      value: Green Hill Zone
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326479242974, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -5815,6 +5975,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: label
+      value: 
+      objectReference: {fileID: 709388493}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: nodeName
       value: Green Hill Zone
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
@@ -5912,6 +6076,10 @@ PrefabInstance:
     - target: {fileID: 1682681327267133301, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.238
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600270109034147157, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: text
+      value: Green Hill Zone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}

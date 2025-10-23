@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -37,36 +35,22 @@ public class MapNode : MapNavigationStep
     }
 
     [Header("Components")]
-    public TMP_Text labelField;
+    public GUIAnimatedText label;
     [Header("Configuration")]
-    [SerializeField] private string label = "Node";
-    public bool showLabel = true;
-    public float labelAnimationSpeed = 10f;
+    public string nodeName = "Node";
     public RoadConnection[] connectedRoads;
-
 
     public UnityEvent<MapRoad> onSelectRoad;
 
     private void Awake()
     {
         DisableConnections();
-    }
-    private void OnEnable()
-    {
-        showLabel = true;
-        StartCoroutine(AnimateLabelCoroutine());
-    }
-
-    private void OnDisable()
-    {
-        showLabel = false;
-        StopCoroutine(AnimateLabelCoroutine());
+        SetLabelVisible(true);
     }
 
     private void OnValidate()
     {
-        if (showLabel) SetLabel(label);
-        else SetLabel("");
+        if (label) label.text = nodeName;
     }
 
     public override void SetNavigatorPosition(MapNavigator navigator)
@@ -88,13 +72,13 @@ public class MapNode : MapNavigationStep
         navigator.travelDirection = 0;
         navigator.travelProgress = 1f;
         EnableConnections();
-        showLabel = false;
+        SetLabelVisible(false);
     }
 
     public override void OnNavigatorExit(MapNavigator navigator)
     {
         DisableConnections();
-        showLabel = true;
+        SetLabelVisible(true);
     }
 
     public void EnableConnections()
@@ -136,33 +120,10 @@ public class MapNode : MapNavigationStep
             if (road.button != null) road.button.ResetButton();
     }
 
-    public void SetLabel(string text)
+    public void SetLabelVisible(bool visible)
     {
-        labelField?.SetText(text);
-    }
-
-    public IEnumerator AnimateLabelCoroutine()
-    {
-        if (labelField == null) yield break;
-        if (labelField.text == null) labelField.SetText("");
-        int animatedLabelLength = labelField.text.Length, labelLength = label != null ? label.Length : 0;
-        while (true)
-        {
-            if (labelAnimationSpeed > 0f)
-            {
-                string animatedLabel = "";
-                if (showLabel && animatedLabelLength < labelLength) animatedLabelLength++;
-                else if (!showLabel && animatedLabelLength > 0) animatedLabelLength--;
-                animatedLabel = "";
-                for (int i = 0; i < animatedLabelLength; i++) animatedLabel += label[i];
-                SetLabel(animatedLabel);
-                yield return new WaitForSeconds(1f / labelAnimationSpeed);
-            }
-            else
-            {
-                SetLabel("");
-                yield return null;
-            }
-        }
+        if (label == null) return;
+        label.visible = visible;
+        if (visible) label.text = nodeName;
     }
 }
