@@ -719,14 +719,14 @@ RectTransform:
   m_Children:
   - {fileID: 1318861847}
   - {fileID: 2063873659}
-  m_Father: {fileID: 443174355}
-  m_RootOrder: 0
+  m_Father: {fileID: 1131729288}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 20}
   m_SizeDelta: {x: 80, y: 80}
-  m_Pivot: {x: 0.5, y: 0.7}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &342979675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,9 +760,9 @@ MonoBehaviour:
   smoothInput: 0
   maxValue: 10
   clampZeroMax: 1
-  enableDamping: 1
+  enableDamping: 0
   damping: 1
-  enableAutoPress: 1
+  enableAutoPress: 0
   autoPress: 1
   autoPressTriggerDelay: 1
   onValueChange:
@@ -1260,8 +1260,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 342979674}
+  m_Children: []
   m_Father: {fileID: 1131729288}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1347,7 +1346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &513190368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1555,6 +1554,14 @@ PrefabInstance:
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: showLabel
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: song.title
+      value: Luigi's
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: songInfoRequest.requestType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: connectedRoads.Array.data[0].road
@@ -1809,10 +1816,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info:
     name: PasDe-Test
-    location: Sur la plage sur le sable
-    date: 2025-10-21
+    location: Mon Cul
+    date: 2025-10-23
     setlist:
-      name: Template-PasDe-1761036390445
+      name: Template-PasDe-1761237898661
       songs:
       - title: Ultimate
         duration: 150
@@ -1847,6 +1854,17 @@ MonoBehaviour:
           moments: []
           databaseID: 9197
         databaseID: 8359
+      - title: The Great Escape
+        duration: 210
+        bpm: 160
+        partyLevel: 4
+        hasMinigame: 1
+        linkedStage:
+          name: Rayman
+          hasScore: 1
+          moments: []
+          databaseID: 8383
+        databaseID: 8360
       - title: Adibou
         duration: 180
         bpm: 160
@@ -1867,17 +1885,6 @@ MonoBehaviour:
             index: 0
           databaseID: 9198
         databaseID: 8960
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
-        linkedStage:
-          name: BlackScreen
-          hasScore: 0
-          moments: []
-          databaseID: 8375
-        databaseID: 9202
       - title: Pokemon
         duration: 240
         bpm: 180
@@ -1900,17 +1907,17 @@ MonoBehaviour:
           moments: []
           databaseID: 9197
         databaseID: 8359
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
+      - title: The Great Escape
+        duration: 210
+        bpm: 160
+        partyLevel: 4
+        hasMinigame: 1
         linkedStage:
-          name: BlackScreen
-          hasScore: 0
+          name: Rayman
+          hasScore: 1
           moments: []
-          databaseID: 8375
-        databaseID: 9202
+          databaseID: 8383
+        databaseID: 8360
       - title: Adibou
         duration: 180
         bpm: 160
@@ -1931,17 +1938,17 @@ MonoBehaviour:
             index: 0
           databaseID: 9198
         databaseID: 8960
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
+      - title: The Great Escape
+        duration: 210
+        bpm: 160
+        partyLevel: 4
+        hasMinigame: 1
         linkedStage:
-          name: BlackScreen
-          hasScore: 0
+          name: Rayman
+          hasScore: 1
           moments: []
-          databaseID: 8375
-        databaseID: 9202
+          databaseID: 8383
+        databaseID: 8360
       - title: Pokemon
         duration: 240
         bpm: 180
@@ -1953,33 +1960,44 @@ MonoBehaviour:
           moments: []
           databaseID: 8376
         databaseID: 8692
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
+      - title: The Great Escape
+        duration: 210
+        bpm: 160
+        partyLevel: 4
+        hasMinigame: 1
         linkedStage:
-          name: BlackScreen
-          hasScore: 0
+          name: Rayman
+          hasScore: 1
           moments: []
-          databaseID: 8375
-        databaseID: 9202
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
+          databaseID: 8383
+        databaseID: 8360
+      - title: The Great Escape
+        duration: 210
+        bpm: 160
+        partyLevel: 4
+        hasMinigame: 1
         linkedStage:
-          name: BlackScreen
-          hasScore: 0
+          name: Rayman
+          hasScore: 1
           moments: []
-          databaseID: 8375
-        databaseID: 9202
-      databaseID: 47
-    databaseID: 9219
+          databaseID: 8383
+        databaseID: 8360
+      - title: The Great Escape
+        duration: 210
+        bpm: 160
+        partyLevel: 4
+        hasMinigame: 1
+        linkedStage:
+          name: Rayman
+          hasScore: 1
+          moments: []
+          databaseID: 8383
+        databaseID: 8360
+      databaseID: 50
+    databaseID: 9221
   state:
     setlist:
-      name: Template-PasDe-1761036390445
+      name: Template-PasDe-1761237898661
       songs:
       - title: Ultimate
         duration: 150
@@ -2014,6 +2032,17 @@ MonoBehaviour:
           moments: []
           databaseID: 9197
         databaseID: 8359
+      - title: The Great Escape
+        duration: 210
+        bpm: 160
+        partyLevel: 4
+        hasMinigame: 1
+        linkedStage:
+          name: Rayman
+          hasScore: 1
+          moments: []
+          databaseID: 8383
+        databaseID: 8360
       - title: Adibou
         duration: 180
         bpm: 160
@@ -2034,17 +2063,6 @@ MonoBehaviour:
             index: 0
           databaseID: 9198
         databaseID: 8960
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
-        linkedStage:
-          name: BlackScreen
-          hasScore: 0
-          moments: []
-          databaseID: 8375
-        databaseID: 9202
       - title: Pokemon
         duration: 240
         bpm: 180
@@ -2067,17 +2085,17 @@ MonoBehaviour:
           moments: []
           databaseID: 9197
         databaseID: 8359
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
+      - title: The Great Escape
+        duration: 210
+        bpm: 160
+        partyLevel: 4
+        hasMinigame: 1
         linkedStage:
-          name: BlackScreen
-          hasScore: 0
+          name: Rayman
+          hasScore: 1
           moments: []
-          databaseID: 8375
-        databaseID: 9202
+          databaseID: 8383
+        databaseID: 8360
       - title: Adibou
         duration: 180
         bpm: 160
@@ -2098,17 +2116,17 @@ MonoBehaviour:
             index: 0
           databaseID: 9198
         databaseID: 8960
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
+      - title: The Great Escape
+        duration: 210
+        bpm: 160
+        partyLevel: 4
+        hasMinigame: 1
         linkedStage:
-          name: BlackScreen
-          hasScore: 0
+          name: Rayman
+          hasScore: 1
           moments: []
-          databaseID: 8375
-        databaseID: 9202
+          databaseID: 8383
+        databaseID: 8360
       - title: Pokemon
         duration: 240
         bpm: 180
@@ -2120,42 +2138,53 @@ MonoBehaviour:
           moments: []
           databaseID: 8376
         databaseID: 8692
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
+      - title: The Great Escape
+        duration: 210
+        bpm: 160
+        partyLevel: 4
+        hasMinigame: 1
         linkedStage:
-          name: BlackScreen
-          hasScore: 0
+          name: Rayman
+          hasScore: 1
           moments: []
-          databaseID: 8375
-        databaseID: 9202
-      - title: AUDIENCE_CHOICE
-        duration: 0
-        bpm: 0
-        partyLevel: 0
-        hasMinigame: 0
+          databaseID: 8383
+        databaseID: 8360
+      - title: The Great Escape
+        duration: 210
+        bpm: 160
+        partyLevel: 4
+        hasMinigame: 1
         linkedStage:
-          name: BlackScreen
-          hasScore: 0
+          name: Rayman
+          hasScore: 1
           moments: []
-          databaseID: 8375
-        databaseID: 9202
-      databaseID: 47
+          databaseID: 8383
+        databaseID: 8360
+      - title: The Great Escape
+        duration: 210
+        bpm: 160
+        partyLevel: 4
+        hasMinigame: 1
+        linkedStage:
+          name: Rayman
+          hasScore: 1
+          moments: []
+          databaseID: 8383
+        databaseID: 8360
+      databaseID: 50
     song:
-      title: Ultimate
-      duration: 150
-      bpm: 160
-      partyLevel: 5
-      hasMinigame: 0
+      title: Mii
+      duration: 120
+      bpm: 120
+      partyLevel: 1
+      hasMinigame: 1
       linkedStage:
-        name: Logo
+        name: Map
         hasScore: 0
         moments: []
-        databaseID: 8376
-      databaseID: 8365
-    songPosition: 0
+        databaseID: 9197
+      databaseID: 8359
+    songPosition: 2
     moment: 0
     momentIndex: -1
     paused: 0
@@ -2177,14 +2206,20 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0.33857727
+    responseTime: 0.30534363
     loopCount: 0
-    responseBody: '{"id":9219,"ips":["92.184.112.210"],"date":"2025-10-21","location":"Sur
-      la plage sur le sable","name":"PasDe-Test","setlist":{"id":47,"name":"Template-PasDe-1761036390445","isTemplate":false,"templateRef":43,"setlistSongs":[{"id":464,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":465,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":466,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":467,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+    responseBody: '{"id":9221,"ips":["92.184.104.157","92.184.104.15"],"date":"2025-10-23","location":"Mon
+      Cul","name":"PasDe-Test","setlist":{"id":50,"name":"Template-PasDe-1761237898661","isTemplate":false,"templateRef":43,"setlistSongs":[{"id":505,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":506,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":507,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":508,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
       - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
-      - Au revoir"}]}},"position":3},{"id":468,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":4},{"id":469,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":5},{"id":470,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":6},{"id":471,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":7},{"id":472,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+      - Au revoir"}]}},"position":4},{"id":509,"song":{"id":8360,"title":"The Great
+      Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},"position":3},{"id":510,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":5},{"id":511,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":6},{"id":512,"song":{"id":8360,"title":"The
+      Great Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},"position":7},{"id":513,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
       - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
-      - Au revoir"}]}},"position":8},{"id":473,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":9},{"id":474,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":10},{"id":475,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":11},{"id":476,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":12}]},"scores":[]}'
+      - Au revoir"}]}},"position":8},{"id":514,"song":{"id":8360,"title":"The Great
+      Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},"position":9},{"id":515,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":10},{"id":516,"song":{"id":8360,"title":"The
+      Great Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},"position":11},{"id":517,"song":{"id":8360,"title":"The
+      Great Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},"position":12},{"id":518,"song":{"id":8360,"title":"The
+      Great Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},"position":13}]},"scores":[]}'
   concertStateRequest:
     requestType: 0
     requestUri: current
@@ -2204,11 +2239,17 @@ MonoBehaviour:
     failureInfo: 0
     responseTime: 0
     loopCount: 0
-    responseBody: '{"id":0,"setlistSong":{"id":464,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},"setlist":{"id":47,"name":"Template-PasDe-1761036390445","isTemplate":false,"templateRef":43,"setlistSongs":[{"id":464,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":465,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":466,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":467,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+    responseBody: '{"id":0,"setlistSong":{"id":507,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},"setlist":{"id":50,"name":"Template-PasDe-1761237898661","isTemplate":false,"templateRef":43,"setlistSongs":[{"id":505,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":506,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":507,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":508,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
       - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
-      - Au revoir"}]}},"position":3},{"id":468,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":4},{"id":469,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":5},{"id":470,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":6},{"id":471,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":7},{"id":472,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+      - Au revoir"}]}},"position":4},{"id":509,"song":{"id":8360,"title":"The Great
+      Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},"position":3},{"id":510,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":5},{"id":511,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":6},{"id":512,"song":{"id":8360,"title":"The
+      Great Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},"position":7},{"id":513,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
       - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
-      - Au revoir"}]}},"position":8},{"id":473,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":9},{"id":474,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":10},{"id":475,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":11},{"id":476,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":12}]},"moment":0,"momentIndex":null,"stageTitle":"Logo","numberOfMoments":0}'
+      - Au revoir"}]}},"position":8},{"id":514,"song":{"id":8360,"title":"The Great
+      Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},"position":9},{"id":515,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":10},{"id":516,"song":{"id":8360,"title":"The
+      Great Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},"position":11},{"id":517,"song":{"id":8360,"title":"The
+      Great Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},"position":12},{"id":518,"song":{"id":8360,"title":"The
+      Great Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},"position":13}]},"moment":0,"momentIndex":null,"stageTitle":"Map","numberOfMoments":0}'
   pauseStateRequest:
     requestType: 0
     requestUri: pause
@@ -2226,7 +2267,7 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0.15866089
+    responseTime: 0.16659546
     loopCount: 0
     responseBody: '{"id":1,"pause":false}'
   stateChangeEvent: concert_state
@@ -2271,10 +2312,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: text
-  text: vodka cornichon
+  text: coucou
   methodCaller:
     methods:
-    - SendText
+    - Send
 --- !u!1001 &655103914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2532,6 +2573,14 @@ PrefabInstance:
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: nodeName
       value: The Great Escape
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: song.title
+      value: The Great Escape
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: songInfoRequest.requestType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: connectedRoads.Array.data[0].road
@@ -2848,7 +2897,7 @@ MonoBehaviour:
   toggleKey: 108
   visible: 0
   socketIOEventQueueLength: 10
---- !u!1 &882158006
+--- !u!1 &885058125
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2856,8 +2905,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 882158007}
-  - component: {fileID: 882158008}
+  - component: {fileID: 885058126}
+  - component: {fileID: 885058127}
   m_Layer: 0
   m_Name: stage_EmptyScene(Clone)
   m_TagString: Untagged
@@ -2865,13 +2914,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &882158007
+--- !u!4 &885058126
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882158006}
+  m_GameObject: {fileID: 885058125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -2880,13 +2929,13 @@ Transform:
   m_Father: {fileID: 1649474561}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &882158008
+--- !u!114 &885058127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882158006}
+  m_GameObject: {fileID: 885058125}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a06f8da9125e7e54dad1e0c672d5c69c, type: 3}
@@ -3274,6 +3323,14 @@ PrefabInstance:
       value: Megalovania
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: song.title
+      value: Megalovania
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: songInfoRequest.requestType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: connectedRoads.Array.data[0].road
       value: 
       objectReference: {fileID: 775788083}
@@ -3406,6 +3463,7 @@ RectTransform:
   m_Children:
   - {fileID: 443174355}
   - {fileID: 1488284361}
+  - {fileID: 342979674}
   m_Father: {fileID: 431001079}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3817,7 +3875,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -162.2, y: 0}
+  m_SizeDelta: {x: -162.25005, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1274989196
 MonoBehaviour:
@@ -4298,6 +4356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentNodeLabel: {fileID: 1488284364}
+  validateButton: {fileID: 342979676}
   navigator: {fileID: 2093800898}
   layout:
   - {fileID: 1278350121}
@@ -4310,6 +4369,32 @@ MonoBehaviour:
   - {fileID: 894400722}
   - {fileID: 775788083}
   currentNode: {fileID: 0}
+  addSongChoiceRequest:
+    requestType: 1
+    requestUri: setlists/songs/{setlist_id}/chosen/{song_id}
+    parameters:
+    - setlist_id
+    - song_id
+    parametersFormat: 0
+    requestTimeout: 5
+    loop: 0
+    maxLoops: 3
+    minLoopDuration: 3
+    onRequestSend:
+      m_PersistentCalls:
+        m_Calls: []
+    onRequestEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    status: 0
+    failureInfo: 0
+    responseTime: 0
+    loopCount: 0
+    responseBody: 
+  choiceMessage: 'Morceau choisi : '
+  onValidateNodeChoice:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1488284360
 GameObject:
   m_ObjectHideFlags: 0
@@ -4806,7 +4891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1649474560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4850,7 +4935,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 882158007}
+  - {fileID: 885058126}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5736,7 +5821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2107191766
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5983,6 +6068,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: showLabel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: song.title
+      value: Sonex
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: songInfo.title
+      value: Sonex
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: songInfoRequest.requestType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}

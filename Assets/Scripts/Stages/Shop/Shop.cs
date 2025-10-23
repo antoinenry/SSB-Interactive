@@ -221,7 +221,7 @@ namespace Shop
 
         private void BuyItem(ShopItem item)
         {
-            Messenger.SendText(buyingMessage);
+            AdminMessenger.Send(buyingMessage);
             // Update cart
             if (cart == null) cart = new List<ShopItem>(cartCapacity);
             cart.Add(item);
@@ -244,7 +244,7 @@ namespace Shop
 
         private void OnAddSongChoiceRequestEnd(HttpRequest request)
         {
-            Messenger.SendText(CartContentMessage);
+            AdminMessenger.Send(CartContentMessage);
             if (addSongChoiceRequest != null)
             {
                 addSongChoiceRequest.onRequestEnd.RemoveListener(OnAddSongChoiceRequestEnd);

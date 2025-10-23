@@ -16,14 +16,14 @@ namespace Megalovania
 
         public bool Caught { get; private set; }
 
-        private Messenger adminMessenger;
+        private AdminMessenger adminMessenger;
         private TMP_Text textField;
         private SpriteRenderer sprite;
         private float catchTime;
 
         private void Awake()
         {
-            adminMessenger = FindObjectOfType<Messenger>(true);
+            adminMessenger = FindObjectOfType<AdminMessenger>(true);
             textField = GetComponentInChildren<TMP_Text>(true);
             sprite = GetComponent<SpriteRenderer>();
         }
@@ -51,7 +51,7 @@ namespace Megalovania
             if (Caught) return;
             Caught = true;
             catchTime = Time.time;
-            adminMessenger.Send(text);
+            AdminMessenger.Send(text);
             onCaught.Invoke();
         }
     }

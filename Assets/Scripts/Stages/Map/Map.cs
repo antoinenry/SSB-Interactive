@@ -1,14 +1,20 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Map : MonoBehaviour
 {
     [Header("Components")]
     public GUIAnimatedText currentNodeLabel;
+    public AudienceButtonListener validateButton;
     [SerializeField] private MapNavigator navigator;
     [SerializeField] private MapNavigationStep[] layout;
     [Header("Output")]
     [SerializeField] private MapNode currentNode;
+    public HttpRequestLoop addSongChoiceRequest = new(HttpRequest.RequestType.POST, "setlists/songs/{setlist_id}/chosen/{song_id}", HttpRequestLoop.ParameterFormat.Path);
+    public string choiceMessage = "Morceau choisi : ";
+
+    public UnityEvent onValidateNodeChoice;
 
     private void Reset()
     {
@@ -32,6 +38,8 @@ public class Map : MonoBehaviour
         if (navigator == null) return;
         navigator.onNavigatorEnter.AddListener(OnNavigatorEnter);
         navigator.onNavigatorExit.AddListener(OnNavigatorExit);
+        if (navigator.currentLocation == null) CurrentNode = null;
+        else if (navigator.currentLocation is MapNode) CurrentNode = navigator.currentLocation as MapNode;
     }
 
     private void RemoveNavigatorListeners()
@@ -93,10 +101,63 @@ public class Map : MonoBehaviour
         {
             currentNodeLabel.text = currentNode.nodeName;
             currentNodeLabel.visible = true;
+            ShowValidateButton();
         }
         else
         {
             currentNodeLabel.visible = false;
+            HideValidateButton();
         }
     }
+
+    private void ShowValidateButton()
+    {
+        if (validateButton)
+        {
+            validateButton.gameObject.SetActive(true);
+            validateButton.onValueMaxed.AddListener(OnValidateButtonMaxed);
+        }
+    }
+
+    private void HideValidateButton()
+    {
+        if (validateButton)
+        {
+            validateButton.gameObject.SetActive(false);
+            validateButton.onValueMaxed.RemoveListener(OnValidateButtonMaxed);
+        }
+    }
+
+    private void OnValidateButtonMaxed()
+    {
+        if (validateButton)
+        {
+            validateButton.ResetButton();
+            HideValidateButton();
+        }
+        ValidateCurrentNode();
+    }
+
+    private void ValidateCurrentNode()
+    {
+        if (currentNode == null) return;
+        if (addSongChoiceRequest != null)
+        {
+            int setlistId = Concert.Current != null ? Concert.Current.state.setlist.databaseID : -1;
+            int songId = currentNode.song.databaseID;
+            addSongChoiceRequest.parameters = new string[] { setlistId.ToString(), songId.ToString() };
+            addSongChoiceRequest.onRequestEnd.AddListener(OnAddSongChoiceRequestEnd);
+            addSongChoiceRequest.StartRequestCoroutine(this, restart: true);
+        }
+        onValidateNodeChoice.Invoke();
+    }
+
+    private void OnAddSongChoiceRequestEnd(HttpRequest request)
+    {
+        AdminMessenger.Send(NodeChoiceMessage);
+        if (addSongChoiceRequest != null)
+            addSongChoiceRequest.onRequestEnd.RemoveListener(OnAddSongChoiceRequestEnd);
+    }
+
+    private string NodeChoiceMessage => choiceMessage + currentNode.nodeName;
 }

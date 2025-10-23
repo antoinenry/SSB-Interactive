@@ -38,7 +38,10 @@ public class MapNode : MapNavigationStep
     public GUIAnimatedText label;
     [Header("Configuration")]
     public string nodeName = "Node";
+    public SongInfo song;
     public RoadConnection[] connectedRoads;
+    [Header("Web")]
+    public HttpRequestLoop songInfoRequest = new(HttpRequest.RequestType.GET, "songs/title/{title}", HttpRequestLoop.ParameterFormat.Path);
 
     public UnityEvent<MapRoad> onSelectRoad;
 
@@ -46,6 +49,11 @@ public class MapNode : MapNavigationStep
     {
         DisableConnections();
         SetLabelVisible(true);
+    }
+
+    private void OnEnable()
+    {
+        FindSongInfo();
     }
 
     private void OnValidate()
@@ -125,5 +133,28 @@ public class MapNode : MapNavigationStep
         if (label == null) return;
         label.visible = visible;
         if (visible) label.text = nodeName;
+    }
+
+    public void FindSongInfo()
+    {
+        if (songInfoRequest != null)
+        {
+            songInfoRequest.parameters = new string[] { song.title };
+            songInfoRequest.onRequestEnd.AddListener(OnFindSongInfo);
+            songInfoRequest.StartRequestCoroutine(this, restart: true);
+        }
+    }
+
+    private void OnFindSongInfo(HttpRequest request)
+    {
+        songInfoRequest.onRequestEnd.RemoveListener(OnFindSongInfo);
+        if (request.Status == HttpRequest.RequestStatus.Success)
+        {
+            song = request.DeserializeResponse < SongInfo>();
+        }
+        else
+        {
+            Debug.LogWarning("Couldn't find song info for node " + gameObject.name);
+        }
     }
 }

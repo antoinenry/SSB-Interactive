@@ -91,6 +91,12 @@ public struct SetlistInfo
         return songs[index];
     }
 
+    public SongInfo GetSong(string title)
+    {
+        if (Length == 0) return SongInfo.None;
+        return Array.Find(songs, s => s.title == title);
+    }
+
     [JsonPropertyName("name")] public string Name { get => name; set => name = value; }
     [JsonPropertyName("setlistSongs")] public SetlistState[] SetlistSongs
     {
