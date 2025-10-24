@@ -12,7 +12,7 @@ using System.Text.Json;
 [Serializable]
 public class HttpRequest
 {
-    public enum RequestType { GET, POST }
+    public enum RequestType { GET, POST, PUT }
     public enum RequestStatus { Created, Running, Success, Failed, Canceled }
 
     public RequestType type = RequestType.GET;
@@ -86,6 +86,10 @@ public class HttpRequest
                     break;
                 case RequestType.POST:
                     response = await client.PostAsync(FullUri, new StringContent(requestBody, Encoding.Default, mediaType), cancelToken);
+                    response.EnsureSuccessStatusCode();
+                    break;
+                case RequestType.PUT:
+                    response = await client.PutAsync(FullUri, new StringContent(requestBody, Encoding.Default, mediaType), cancelToken);
                     response.EnsureSuccessStatusCode();
                     break;
             }
