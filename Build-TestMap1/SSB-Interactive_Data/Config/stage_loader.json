@@ -1,0 +1,70 @@
+{
+  "stages": [
+    {
+      "serverName": "BlackScreen",
+      "localName": "BlackScreen"
+    },
+    {
+      "serverName": "Logo",
+      "localName": "Logo"
+    },
+    {
+      "serverName": "LevelSelect",
+      "localName": "LevelSelect"
+    },
+    {
+      "serverName": "MovingLogo",
+      "localName": "MovingLogo"
+    },
+    {
+      "serverName": "ShovelKnight",
+      "localName": "ShovelKnight"
+    },
+    {
+      "serverName": "DonkeyKong",
+      "localName": "DonkeyKong"
+    },
+    {
+      "serverName": "FloralFury",
+      "localName": "FloralFury"
+    },
+    {
+      "serverName": "LuigisMansion",
+      "localName": "LuigisMansion"
+    },
+    {
+      "serverName": "LoadingScreen",
+      "localName": "LoadingScreen"
+    },
+    {
+      "serverName": "Rayman",
+      "localName": "Rayman"
+    },
+    {
+      "serverName": "Sonic",
+      "localName": "Sonic"
+    },
+    {
+      "serverName": "Quizz",
+      "localName": "Quizz"
+    },
+    {
+      "serverName": "Megalovania",
+      "localName": "Megalovania"
+    },
+    {
+      "serverName": "Shop",
+      "localName": "Shop"
+    },
+    {
+      "serverName": "Map",
+      "localName": "Map"
+    },
+    {
+      "serverName": "null",
+      "localName": "EmptyScene"
+    }
+  ],
+  "missingStages": [],
+  "otherStages": []
+}

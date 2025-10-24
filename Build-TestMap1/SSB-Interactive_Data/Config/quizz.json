@@ -1,0 +1,27 @@
+[
+  {
+    "question": "Question 1",
+    "a": "Bonne Reponse",
+    "b": "Mauvaise Reponse",
+    "x": "Mauvaise Reponse",
+    "y": "Mauvaise Reponse",
+    "answer": [
+      "a"
+    ],
+    "right": "Bravo",
+    "wrong": "Dommage"
+  },
+  {
+    "question": "Question 2",
+    "a": "Mauvaise Reponse",
+    "b": "Mauvaise Reponse",
+    "x": "Bonne Reponse",
+    "y": "Autre Bonne Reponse",
+    "answer": [
+      "x",
+      "y"
+    ],
+    "right": "Bravo",
+    "wrong": "Dommage"
+  }
+]
