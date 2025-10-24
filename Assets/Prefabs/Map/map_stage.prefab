@@ -85,6 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8257269749621669662}
+  - component: {fileID: 2593559338666729563}
   m_Layer: 0
   m_Name: map_stage
   m_TagString: Untagged
@@ -110,6 +111,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2593559338666729563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8257269749621669663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec4a04d1e5b9294b8b17022410c6b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Map
+  stageNameGUI: {fileID: 0}
+  showInputPanel: 0
+  loadMessage: La Carte
+  onStageEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8257269749636120080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,14 +1047,12 @@ MonoBehaviour:
   addSongChoiceRequest:
     requestType: 1
     requestUri: setlists/songs/{setlist_id}/chosen/{song_id}
-    parameters:
-    - setlist_id
-    - song_id
+    parameters: []
     parametersFormat: 0
-    requestTimeout: 5
+    requestTimeout: 1
     loop: 0
-    maxLoops: 3
-    minLoopDuration: 3
+    maxLoops: 0
+    minLoopDuration: 0.2
     onRequestSend:
       m_PersistentCalls:
         m_Calls: []
@@ -1068,11 +1086,11 @@ PrefabInstance:
     - target: {fileID: 5312335317815030477, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
       propertyPath: lastNode
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7335698411316427568}
     - target: {fileID: 5312335317815030477, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
       propertyPath: firstNode
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8257269750752239628}
     - target: {fileID: 5312335317815030478, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
       propertyPath: m_Positions.Array.data[1].x
       value: 1.1764507
@@ -1517,11 +1535,11 @@ PrefabInstance:
     - target: {fileID: 5312335317815030477, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
       propertyPath: lastNode
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8257269750752239628}
     - target: {fileID: 5312335317815030477, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
       propertyPath: firstNode
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7335698411602881769}
     - target: {fileID: 5312335317815030478, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
       propertyPath: m_Positions.Array.size
       value: 4
@@ -1798,11 +1816,11 @@ PrefabInstance:
     - target: {fileID: 5312335317815030477, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
       propertyPath: lastNode
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7335698411067413258}
     - target: {fileID: 5312335317815030477, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
       propertyPath: firstNode
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7335698411602881769}
     - target: {fileID: 5312335317815030478, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
       propertyPath: m_Positions.Array.size
       value: 4
@@ -2064,11 +2082,11 @@ PrefabInstance:
     - target: {fileID: 5312335317815030477, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
       propertyPath: lastNode
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8257269750752239628}
     - target: {fileID: 5312335317815030477, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
       propertyPath: firstNode
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7335698411067413258}
     - target: {fileID: 5312335317815030478, guid: d86110ef2ab6cbf4bb9112e42c91ae18, type: 3}
       propertyPath: m_Positions.Array.size
       value: 4

@@ -14,7 +14,7 @@ public class MapNavigator : MonoBehaviour
     public UnityEvent<MapNavigationStep> onNavigatorEnter;
     public UnityEvent<MapNavigationStep> onNavigatorExit;
 
-    private void OnEnable()
+    public void OnEnable()
     {
         if (currentLocation)
         {
@@ -24,7 +24,7 @@ public class MapNavigator : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         if (currentLocation)
         {
@@ -56,7 +56,7 @@ public class MapNavigator : MonoBehaviour
             navigationStep.OnNavigatorEnter(this);
             navigationStep.onSendNavigatorTo.AddListener(Enter);
         }
-        if (currentLocation)
+        if (navigationStep != currentLocation)
         {
             Exit(currentLocation);
         }

@@ -45,20 +45,14 @@ public class MapNode : MapNavigationStep
 
     public UnityEvent<MapRoad> onSelectRoad;
 
-    private void Awake()
-    {
-        DisableConnections();
-        SetLabelVisible(true);
-    }
-
-    private void OnEnable()
-    {
-        FindSongInfo();
-    }
-
     private void OnValidate()
     {
         if (label) label.text = nodeName;
+    }
+
+    private void Awake()
+    {
+        FindSongInfo();
     }
 
     public override void SetNavigatorPosition(MapNavigator navigator)

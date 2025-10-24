@@ -16,6 +16,4 @@ public abstract class MonoBehaviourSingleton<T> : MonoBehaviour where T : MonoBe
             return current;
         }
     }
-
-    public static bool HasInstance => current != null;
 }

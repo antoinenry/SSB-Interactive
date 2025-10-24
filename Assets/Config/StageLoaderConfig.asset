@@ -43,6 +43,8 @@ MonoBehaviour:
       localName: Megalovania
     - serverName: Shop
       localName: Shop
+    - serverName: Map
+      localName: Map
     - serverName: null
       localName: EmptyScene
     missingStages: []

@@ -13,7 +13,6 @@ public class MapRoad : MapNavigationStep
 
     private void Awake()
     {
-        lineRenderer = GetComponent<LineRenderer>();
         GetWaypointsFromLine();
     }
 
@@ -25,6 +24,7 @@ public class MapRoad : MapNavigationStep
 
     private void GetWaypointsFromLine()
     {
+        if (lineRenderer == null) lineRenderer = GetComponent<LineRenderer>();
         if (lineRenderer != null)
         {
             int lineLength = lineRenderer.positionCount;
@@ -39,7 +39,7 @@ public class MapRoad : MapNavigationStep
     {
         firstNode = null;
         lastNode = null;
-        if (waypoints == null) return;
+        if (waypoints == null) GetWaypointsFromLine();
         foreach (MapNode node in allNodes)
         {
             if (node.IsConnectedTo(this) == false) continue;

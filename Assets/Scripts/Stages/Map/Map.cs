@@ -26,6 +26,7 @@ public class Map : MonoBehaviour
     {
         GetLayoutInChildren();
         AddNavigatorListeners();
+        InitNavigatorLocation();
     }
 
     private void OnDisable()
@@ -70,6 +71,24 @@ public class Map : MonoBehaviour
         if (roads.Length > 0) Array.Copy(roads, 0, layout, nodes.Length, roads.Length);
         // Set links
         foreach (MapRoad road in roads) road.AutoSetNodes(nodes);
+    }
+
+    public void InitNavigatorLocation()
+    {
+        if (layout == null) return;
+        foreach (MapNavigationStep step in  layout)
+        {
+            if (step == null) continue;
+            if (navigator?.currentLocation == step)
+            {
+                step.OnNavigatorComing(navigator);
+                step.OnNavigatorEnter(navigator);
+            }
+            else
+            {
+                step.OnNavigatorExit(navigator);
+            }
+        }
     }
 
     private void OnNavigatorEnter(MapNavigationStep location)

@@ -18,20 +18,17 @@ public class StageLoader : MonoBehaviour
 
     private void OnEnable()
     {
-        if (ConcertAdmin.HasInstance)
+        ConcertAdmin currentConcert = ConcertAdmin.Current;
+        if (currentConcert != null)
         {
-            ConcertAdmin currentConcert = ConcertAdmin.Current;
-            if (currentConcert != null)
-            {
-                LoadStage(serverStageName: currentConcert.state.Stage.name);
-                ConcertAdmin.Current.onStateUpdate.AddListener(OnConcertStateUpdate);
-            }
-        }        
+            LoadStage(serverStageName: currentConcert.state.Stage.name);
+            ConcertAdmin.Current.onStateUpdate.AddListener(OnConcertStateUpdate);
+        }
     }
 
     private void OnDisable()
     {
-        if (ConcertAdmin.HasInstance) ConcertAdmin.Current.onStateUpdate.RemoveListener(OnConcertStateUpdate);
+        ConcertAdmin.Current.onStateUpdate.RemoveListener(OnConcertStateUpdate);
         LoadStage(null);
     }
 
