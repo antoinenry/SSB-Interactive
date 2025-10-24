@@ -136,7 +136,8 @@ namespace Map
             {
                 currentNodeLabel.text = currentNode.nodeName;
                 currentNodeLabel.visible = true;
-                ShowValidateButton();
+                if (currentNode.canBeSelected) ShowValidateButton();
+                else HideValidateButton();
             }
             else
             {

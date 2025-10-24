@@ -38,7 +38,7 @@ public struct ConcertState
     public static bool operator !=(ConcertState left, ConcertState right)
         => left.setlist != right.setlist || left.song != right.song || left.songPosition != right.songPosition || left.moment != right.moment || left.momentIndex == right.momentIndex || left.paused == right.paused;
 
-    public bool PositionMatchesSong => setlist.GetSong(songPosition) == song;
+    public bool PositionMatchesSong => setlist.GetSongByIndex(songPosition) == song;
 
     public bool Paused { get => paused; set => paused = value; }
 

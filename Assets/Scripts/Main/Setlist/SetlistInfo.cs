@@ -85,16 +85,18 @@ public struct SetlistInfo
         return getSongs;
     }
 
-    public SongInfo GetSong(int index)
+    public SongInfo GetSongByIndex(int index)
     {
         if (index < 0 || index >= Length) return SongInfo.None;
         return songs[index];
     }
 
-    public SongInfo GetSong(string title)
+    public bool ContainsSong(SongInfo song) => songs != null && songs.Contains(song);
+
+    public SongInfo FindSong(Predicate<SongInfo> predicate)
     {
-        if (Length == 0) return SongInfo.None;
-        return Array.Find(songs, s => s.title == title);
+        if (Length == 0 || predicate == null) return SongInfo.None;
+        return Array.Find(songs, predicate);
     }
 
     [JsonPropertyName("name")] public string Name { get => name; set => name = value; }

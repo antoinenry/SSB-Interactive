@@ -14,5 +14,6 @@ namespace Map
         public virtual void OnNavigatorExit(MapNavigator navigator) { }
         public virtual void EnableConnections() { }
         public virtual void DisableConnections() { }
+        public virtual bool CanBeSelected => false;
     }
 }

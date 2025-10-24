@@ -159,5 +159,13 @@ namespace Map
             if (node == lastNode) return 1;
             return 0;
         }
+
+        public MapNode GetOtherNode(MapNode node)
+        {
+            if (node == null) return null;
+            if (node == firstNode) return lastNode;
+            if (node == lastNode) return firstNode;
+            return null;
+        }
     }
 }

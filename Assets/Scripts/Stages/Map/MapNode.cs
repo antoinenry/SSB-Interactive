@@ -39,10 +39,12 @@ namespace Map
 
         [Header("Components")]
         public GUIAnimatedText label;
+        public SpriteRenderer checkMark;
         [Header("Configuration")]
         public string nodeName = "Node";
         public SongInfo song;
         public RoadConnection[] connectedRoads;
+        public bool canBeSelected = true;
         [Header("Web")]
         public HttpRequestLoop songInfoRequest = new(HttpRequest.RequestType.GET, "songs/title/{title}", HttpRequestLoop.ParameterFormat.Path);
 
@@ -51,11 +53,14 @@ namespace Map
         private void OnValidate()
         {
             if (label) label.text = nodeName;
+            if (checkMark) checkMark.enabled = !canBeSelected;
         }
 
         private void Awake()
         {
             FindSongInfo();
+            canBeSelected = ConcertAdmin.Current.state.setlist.FindSong(s => s.title == song.title) == SongInfo.None;
+            if (checkMark) checkMark.enabled = !canBeSelected;
         }
 
         public override void SetNavigatorPosition(MapNavigator navigator)
@@ -69,7 +74,24 @@ namespace Map
         public override void SetNavigatorMotion(MapNavigator navigator, float deltaTime)
         {
             if (navigator == null) return;
+            if (canBeSelected == false) TryKickNavigatorOut(navigator);
+        }
 
+        public bool TryKickNavigatorOut(MapNavigator navigator)
+        {
+            if (navigator == null) return false;
+            RoadConnection availableRoadConnection = null;
+            if (connectedRoads != null) availableRoadConnection = Array.Find(connectedRoads, c => GetConnectedNode(c.road) != null);
+            if (availableRoadConnection == null) return false;
+            onSendNavigatorTo.Invoke(availableRoadConnection.road);
+            return true;
+        }
+
+        public MapNode GetConnectedNode(MapRoad road, bool onlyIfCanBeSelected = true)
+        {
+            MapNode otherNode = road?.GetOtherNode(this);
+            if (otherNode != null && (onlyIfCanBeSelected == false || otherNode.canBeSelected)) return otherNode;
+            else return null;
         }
 
         public override void OnNavigatorEnter(MapNavigator navigator)
@@ -91,8 +113,17 @@ namespace Map
             if (connectedRoads == null) return;
             foreach (RoadConnection c in connectedRoads)
             {
-                c.Enable();
-                c.onSelectRoad.AddListener(OnSelectRoadConnection);
+                MapNode destinationNode = c?.road?.GetOtherNode(this);
+                if (destinationNode == null) continue;
+                if (destinationNode.canBeSelected)
+                {
+                    c.Enable();
+                    c.onSelectRoad.AddListener(OnSelectRoadConnection);
+                }
+                else
+                {
+                    c.Disable();
+                }
             }
         }
 
@@ -105,6 +136,8 @@ namespace Map
                 c.Disable();
             }
         }
+
+        public override bool CanBeSelected => canBeSelected;
 
         private void OnSelectRoadConnection(RoadConnection connection)
         {
