@@ -271,13 +271,13 @@ namespace Shop
         {
             SetlistInfo currentSetlist = ConcertAdmin.Current.state.setlist;
             int currentPosition = ConcertAdmin.Current.state.songPosition;
-            string shopSongTitle = currentSetlist.GetSongByIndex(currentPosition).title;
+            string shopSongTitle = currentSetlist.GetSong(currentPosition).title;
             cartCapacity = 0;
             SongInfo song;
             bool skipSlots = false;
             for (int i = currentPosition + 1; i < currentSetlist.Length; i++)
             {
-                song = currentSetlist.GetSongByIndex(i);
+                song = currentSetlist.GetSong(i);
                 if (song.title == shopSongTitle) break;
                 else if (song.title == skipSlotsAfterTitle) skipSlots = true;
                 else if (song.title == emptySetlistSlotTitle && skipSlots == false) cartCapacity++;

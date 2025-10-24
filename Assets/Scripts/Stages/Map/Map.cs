@@ -91,7 +91,12 @@ namespace Map
 
         public void InitNavigatorLocation()
         {
-            if (layout == null) return;
+            if (navigator == null)
+                return;
+            if (CurrentNode == null && navigator.currentLocation != null && navigator.currentLocation is MapNode) CurrentNode = navigator.currentLocation as MapNode;
+            else navigator.currentLocation = CurrentNode;
+            if (layout == null)
+                return;
             foreach (MapNavigationStep step in layout)
             {
                 if (step == null) continue;
@@ -107,6 +112,35 @@ namespace Map
             }
         }
 
+        public void GoToLatestPlayedSong()
+        {
+            if (navigator == null) return;
+            MapNode latestNode = GetLatestPlayedSongNode();
+            if (latestNode == null) return;
+            CurrentNode = latestNode;
+        }
+
+        private MapNode GetLatestPlayedSongNode()
+        {
+            if (layout == null) return null;
+            MapNode latestNode = null, candidate = null;
+            SetlistInfo currentSetlist = ConcertAdmin.Current.state.setlist;
+            int latestIndex = -1, candidateIndex = -1, currentSongPosition = ConcertAdmin.Current.state.songPosition;
+            foreach (MapNavigationStep step in layout)
+            {
+                if (step == null || step is MapNode == false)
+                    continue;
+                candidate = step as MapNode;
+                candidateIndex = currentSetlist.FindIndex(s => s.title == candidate.song.title);
+                if (candidateIndex < currentSongPosition && candidateIndex > latestIndex)
+                {
+                    latestNode = candidate;
+                    latestIndex = candidateIndex;
+                }
+            }
+            return latestNode;
+        }
+
         private void OnNavigatorEnter(MapNavigationStep location)
         {
             if (location != null && location is MapNode) CurrentNode = location as MapNode;
@@ -115,16 +149,17 @@ namespace Map
 
         private void OnNavigatorExit(MapNavigationStep location)
         {
-            if (location != null && location is MapNode) CurrentNode = location as MapNode;
-            else CurrentNode = null;
+            if (CurrentNode == location) CurrentNode = null;
         }
 
         public MapNode CurrentNode
         {
             get => currentNode;
-            private set
+            set
             {
                 currentNode = value;
+                if (navigator) navigator.currentLocation = currentNode;
+                InitNavigatorLocation();
                 UpdateCurrentNodeLabel();
             }
         }
@@ -132,12 +167,11 @@ namespace Map
         private void UpdateCurrentNodeLabel()
         {
             if (currentNodeLabel == null) return;
-            if (currentNode != null)
+            if (currentNode != null && currentNode.canBeSelected)
             {
                 currentNodeLabel.text = currentNode.nodeName;
                 currentNodeLabel.visible = true;
-                if (currentNode.canBeSelected) ShowValidateButton();
-                else HideValidateButton();
+                ShowValidateButton();
             }
             else
             {

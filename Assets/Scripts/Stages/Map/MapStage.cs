@@ -7,7 +7,11 @@ namespace Map
         protected override void OnEnable()
         {
             base.OnEnable();
-            map?.StartNavigation();
+            if (map)
+            {
+                map.GoToLatestPlayedSong();
+                map.StartNavigation();
+            }
         }
 
         protected override bool HasAllComponents()

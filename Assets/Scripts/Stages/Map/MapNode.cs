@@ -99,7 +99,7 @@ namespace Map
             navigator.travelDirection = 0;
             navigator.travelProgress = 1f;
             EnableConnections();
-            SetLabelVisible(false);
+            SetLabelVisible(!canBeSelected);
         }
 
         public override void OnNavigatorExit(MapNavigator navigator)
