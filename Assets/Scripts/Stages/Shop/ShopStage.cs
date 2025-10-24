@@ -13,14 +13,12 @@ namespace Shop
         public float dialogDuration = 2f;
 
         private Shop shop;
-        private NPCDialog dialog;
         private float dialogTimer;
 
         protected override bool HasAllComponents()
         {
             if (shop == null) shop = GetComponentInChildren<Shop>(true);
-            if (dialog == null) dialog = GetComponentInChildren<NPCDialog>(true);
-            return base.HasAllComponents() && shop != null && dialog != null;
+            return base.HasAllComponents() && shop != null;
         }
 
         protected override void OnEnable()
@@ -42,7 +40,7 @@ namespace Shop
             switch(currentPhase)
             {
                 case Phase.NPC_Welcome:
-                    dialog.text = welcomeDialog;
+                    //dialog.text = welcomeDialog;
                     ShowNPC();
                     dialogTimer += Time.deltaTime;
                     if (dialogTimer > dialogDuration) currentPhase = Phase.Shopping;
@@ -52,13 +50,13 @@ namespace Shop
                     dialogTimer = 0f;
                     break;
                 case Phase.NPC_Purchase:
-                    dialog.text = purchaseDialog;
+                    //dialog.text = purchaseDialog;
                     ShowNPC();
                     dialogTimer += Time.deltaTime;
                     if (dialogTimer > dialogDuration) currentPhase = shop.CartIsFull ? Phase.NPC_Goodbye : Phase.Shopping;
                     break;
                 case Phase.NPC_Goodbye:
-                    dialog.text = goodbyeDialog;
+                    //dialog.text = goodbyeDialog;
                     ShowNPC();
                     break;
             }
@@ -66,14 +64,14 @@ namespace Shop
 
         private void ShowNPC()
         {
-            dialog.gameObject.SetActive(true);
+            //dialog.gameObject.SetActive(true);
             shop.Close();
 
         }
 
         private void ShowShop()
         {
-            dialog.gameObject.SetActive(false);
+            //dialog.gameObject.SetActive(false);
             shop.Open();
         }
 
