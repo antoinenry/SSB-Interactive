@@ -18,18 +18,17 @@ public class StageLoader : MonoBehaviour
 
     private void OnEnable()
     {
-        Concert currentConcert = Concert.Current;
-        if (currentConcert == null) Debug.LogWarning("Missing Concert instance");
-        else
+        ConcertAdmin currentConcert = ConcertAdmin.Current;
+        if (currentConcert != null)
         {
             LoadStage(serverStageName: currentConcert.state.Stage.name);
-            Concert.Current.onStateUpdate.AddListener(OnConcertStateUpdate);
+            ConcertAdmin.Current.onStateUpdate.AddListener(OnConcertStateUpdate);
         }
     }
 
     private void OnDisable()
     {
-        if (Concert.HasInstance) Concert.Current.onStateUpdate.RemoveListener(OnConcertStateUpdate);
+        ConcertAdmin.Current.onStateUpdate.RemoveListener(OnConcertStateUpdate);
         LoadStage(null);
     }
 

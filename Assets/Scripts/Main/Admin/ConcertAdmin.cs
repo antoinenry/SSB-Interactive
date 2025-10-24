@@ -2,7 +2,7 @@ using SocketIOClient;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Concert : MonoBehaviourSingleton<Concert>
+public class ConcertAdmin : MonoBehaviourSingleton<ConcertAdmin>
 {
     [Header("Current concert")]
     public ConcertInfo info;
@@ -15,11 +15,11 @@ public class Concert : MonoBehaviourSingleton<Concert>
     public string stateChangeEvent = "concert_state";
     public string pauseEvent = "pause";
     public string resumeEvent = "resume";
-    [Header("Editor Tools")]
-    public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshConcertInfo", "RefreshConcertState", "ClearConcert");
     [Header("Events")]
     public UnityEvent<ConcertInfo> onInfoUpdate;
     public UnityEvent<ConcertState> onStateUpdate;
+    [Header("Editor Tools")]
+    public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshConcertInfo", "RefreshConcertState", "ClearConcert");
 
     private bool pendingConcertState;
 

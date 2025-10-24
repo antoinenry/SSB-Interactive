@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 using UnityEngine;
 
@@ -89,6 +88,18 @@ public struct SetlistInfo
     {
         if (index < 0 || index >= Length) return SongInfo.None;
         return songs[index];
+    }
+
+    public int IndexOf(SongInfo song) => songs != null ? Array.IndexOf(songs, song) : -1;
+
+    public int FindIndex(Predicate<SongInfo> predicate) => songs != null && predicate != null ? Array.FindIndex(songs, predicate) : -1;
+
+    public bool ContainsSong(SongInfo song) => IndexOf(song) != -1;
+
+    public SongInfo FindSong(Predicate<SongInfo> predicate)
+    {
+        if (Length == 0 || predicate == null) return SongInfo.None;
+        return Array.Find(songs, predicate);
     }
 
     [JsonPropertyName("name")] public string Name { get => name; set => name = value; }

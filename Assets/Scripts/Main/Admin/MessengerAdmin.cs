@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Messenger : MonoBehaviourSingleton<Messenger>
+public class MessengerAdmin : MonoBehaviourSingleton<MessengerAdmin>
 {
     public string eventName = "text";
     public string text;
-    public ObjectMethodCaller methodCaller = new ObjectMethodCaller("SendText");
+    public ObjectMethodCaller methodCaller = new ObjectMethodCaller("Send");
 
     private SocketIOClientScriptable client;
 
@@ -20,17 +20,20 @@ public class Messenger : MonoBehaviourSingleton<Messenger>
         return client;
     }
 
-    public void SendText()
+    public void Send()
     {
+        SendText(text);
+    }
+
+    public void SendText(string t)
+    {
+        text = t;
         if (!HasAllComponents()) return;
         client.Emit(eventName, text);
     }
 
-    public void Send(string t)
+    static public void Send(string t)
     {
-        text = t;
-        SendText();
+        Current?.SendText(t);
     }
-
-    static public void SendText(string t) => Current?.Send(t);
 }

@@ -123,57 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &7971991
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7971992}
-  - component: {fileID: 7971993}
-  m_Layer: 0
-  m_Name: stage_EmptyScene(Clone)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7971992
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7971991}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1649474561}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7971993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7971991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a06f8da9125e7e54dad1e0c672d5c69c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: EmptyScene
-  stageNameGUI: {fileID: 0}
-  showInputPanel: 0
-  loadMessage: vodka cornichon
-  onStageEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &66053362
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,6 +762,98 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407309711}
   m_CullTransparentMesh: 1
+--- !u!1 &468390427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 468390428}
+  - component: {fileID: 468390431}
+  - component: {fileID: 468390430}
+  - component: {fileID: 468390429}
+  m_Layer: 0
+  m_Name: Logo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &468390428
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468390427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1230911506}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: -20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &468390429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468390427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e3fe871a80c70845a74d5d84e69a86a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 0.1
+  alphaMax: 0.5
+  alphaMin: 0.1
+--- !u!114 &468390430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468390427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: a529b447036bc4445b2c1dd6c7aef75b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &468390431
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468390427}
+  m_CullTransparentMesh: 1
 --- !u!1 &513190367
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,7 +931,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 100
   m_TargetDisplay: 0
@@ -911,7 +952,7 @@ RectTransform:
   - {fileID: 863463674}
   - {fileID: 1554286697}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -958,7 +999,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 0}
+  m_BackGroundColor: {r: 0.18477672, g: 0.089711644, b: 0.3018868, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1168,37 +1209,417 @@ MonoBehaviour:
   m_GameObject: {fileID: 586072265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54de52bdee4a69f459717de0c01909ef, type: 3}
+  m_Script: {fileID: 11500000, guid: f950165416397874aa6d958239ac37a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   info:
-    name: 
-    location: 
-    date: 
+    name: PasDe-Test
+    location: Mon Cul
+    date: 2025-10-23
     setlist:
-      name: 
-      songs: []
-      databaseID: 0
-    databaseID: 0
+      name: Template-PasDe-1761240243166
+      songs:
+      - title: Ultimate
+        duration: 150
+        bpm: 160
+        partyLevel: 5
+        hasMinigame: 0
+        linkedStage:
+          name: Logo
+          hasScore: 0
+          moments: []
+          databaseID: 8376
+        databaseID: 8365
+      - title: Dovakhiin
+        duration: 180
+        bpm: 75
+        partyLevel: 3
+        hasMinigame: 0
+        linkedStage:
+          name: Logo
+          hasScore: 0
+          moments: []
+          databaseID: 8376
+        databaseID: 8432
+      - title: Mii
+        duration: 120
+        bpm: 120
+        partyLevel: 1
+        hasMinigame: 1
+        linkedStage:
+          name: Map
+          hasScore: 0
+          moments: []
+          databaseID: 9197
+        databaseID: 8359
+      - title: Sonex
+        duration: 210
+        bpm: 140
+        partyLevel: 3
+        hasMinigame: 1
+        linkedStage:
+          name: Sonic
+          hasScore: 1
+          moments:
+          - name: 
+            moment: 0
+            index: 0
+          - name: 
+            moment: 1
+            index: 0
+          databaseID: 8384
+        databaseID: 8363
+      - title: Adibou
+        duration: 180
+        bpm: 160
+        partyLevel: 100
+        hasMinigame: 1
+        linkedStage:
+          name: Shop
+          hasScore: 0
+          moments:
+          - name: 
+            moment: 0
+            index: 0
+          - name: 
+            moment: 1
+            index: 0
+          - name: 
+            moment: 2
+            index: 0
+          databaseID: 9198
+        databaseID: 8960
+      - title: Pokemon
+        duration: 240
+        bpm: 180
+        partyLevel: 5
+        hasMinigame: 0
+        linkedStage:
+          name: Logo
+          hasScore: 0
+          moments: []
+          databaseID: 8376
+        databaseID: 8692
+      - title: Mii
+        duration: 120
+        bpm: 120
+        partyLevel: 1
+        hasMinigame: 1
+        linkedStage:
+          name: Map
+          hasScore: 0
+          moments: []
+          databaseID: 9197
+        databaseID: 8359
+      - title: Sonex
+        duration: 210
+        bpm: 140
+        partyLevel: 3
+        hasMinigame: 1
+        linkedStage:
+          name: Sonic
+          hasScore: 1
+          moments:
+          - name: 
+            moment: 0
+            index: 0
+          - name: 
+            moment: 1
+            index: 0
+          databaseID: 8384
+        databaseID: 8363
+      - title: Adibou
+        duration: 180
+        bpm: 160
+        partyLevel: 100
+        hasMinigame: 1
+        linkedStage:
+          name: Shop
+          hasScore: 0
+          moments:
+          - name: 
+            moment: 0
+            index: 0
+          - name: 
+            moment: 1
+            index: 0
+          - name: 
+            moment: 2
+            index: 0
+          databaseID: 9198
+        databaseID: 8960
+      - title: Sonex
+        duration: 210
+        bpm: 140
+        partyLevel: 3
+        hasMinigame: 1
+        linkedStage:
+          name: Sonic
+          hasScore: 1
+          moments:
+          - name: 
+            moment: 0
+            index: 0
+          - name: 
+            moment: 1
+            index: 0
+          databaseID: 8384
+        databaseID: 8363
+      - title: Pokemon
+        duration: 240
+        bpm: 180
+        partyLevel: 5
+        hasMinigame: 0
+        linkedStage:
+          name: Logo
+          hasScore: 0
+          moments: []
+          databaseID: 8376
+        databaseID: 8692
+      - title: Sonex
+        duration: 210
+        bpm: 140
+        partyLevel: 3
+        hasMinigame: 1
+        linkedStage:
+          name: Sonic
+          hasScore: 1
+          moments:
+          - name: 
+            moment: 0
+            index: 0
+          - name: 
+            moment: 1
+            index: 0
+          databaseID: 8384
+        databaseID: 8363
+      - title: Sonex
+        duration: 210
+        bpm: 140
+        partyLevel: 3
+        hasMinigame: 1
+        linkedStage:
+          name: Sonic
+          hasScore: 1
+          moments:
+          - name: 
+            moment: 0
+            index: 0
+          - name: 
+            moment: 1
+            index: 0
+          databaseID: 8384
+        databaseID: 8363
+      - title: Sonex
+        duration: 210
+        bpm: 140
+        partyLevel: 3
+        hasMinigame: 1
+        linkedStage:
+          name: Sonic
+          hasScore: 1
+          moments:
+          - name: 
+            moment: 0
+            index: 0
+          - name: 
+            moment: 1
+            index: 0
+          databaseID: 8384
+        databaseID: 8363
+      databaseID: 52
+    databaseID: 9221
   state:
     setlist:
-      name: 
-      songs: []
-      databaseID: 0
+      name: Template-PasDe-1761240620304
+      songs:
+      - title: Ultimate
+        duration: 150
+        bpm: 160
+        partyLevel: 5
+        hasMinigame: 0
+        linkedStage:
+          name: Logo
+          hasScore: 0
+          moments: []
+          databaseID: 8376
+        databaseID: 8365
+      - title: Dovakhiin
+        duration: 180
+        bpm: 75
+        partyLevel: 3
+        hasMinigame: 0
+        linkedStage:
+          name: Logo
+          hasScore: 0
+          moments: []
+          databaseID: 8376
+        databaseID: 8432
+      - title: Mii
+        duration: 120
+        bpm: 120
+        partyLevel: 1
+        hasMinigame: 1
+        linkedStage:
+          name: Map
+          hasScore: 0
+          moments: []
+          databaseID: 9197
+        databaseID: 8359
+      - title: AUDIENCE_CHOICE
+        duration: 0
+        bpm: 0
+        partyLevel: 0
+        hasMinigame: 0
+        linkedStage:
+          name: BlackScreen
+          hasScore: 0
+          moments: []
+          databaseID: 8375
+        databaseID: 9202
+      - title: Adibou
+        duration: 180
+        bpm: 160
+        partyLevel: 100
+        hasMinigame: 1
+        linkedStage:
+          name: Shop
+          hasScore: 0
+          moments:
+          - name: 
+            moment: 0
+            index: 0
+          - name: 
+            moment: 1
+            index: 0
+          - name: 
+            moment: 2
+            index: 0
+          databaseID: 9198
+        databaseID: 8960
+      - title: Pokemon
+        duration: 240
+        bpm: 180
+        partyLevel: 5
+        hasMinigame: 0
+        linkedStage:
+          name: Logo
+          hasScore: 0
+          moments: []
+          databaseID: 8376
+        databaseID: 8692
+      - title: Mii
+        duration: 120
+        bpm: 120
+        partyLevel: 1
+        hasMinigame: 1
+        linkedStage:
+          name: Map
+          hasScore: 0
+          moments: []
+          databaseID: 9197
+        databaseID: 8359
+      - title: AUDIENCE_CHOICE
+        duration: 0
+        bpm: 0
+        partyLevel: 0
+        hasMinigame: 0
+        linkedStage:
+          name: BlackScreen
+          hasScore: 0
+          moments: []
+          databaseID: 8375
+        databaseID: 9202
+      - title: Adibou
+        duration: 180
+        bpm: 160
+        partyLevel: 100
+        hasMinigame: 1
+        linkedStage:
+          name: Shop
+          hasScore: 0
+          moments:
+          - name: 
+            moment: 0
+            index: 0
+          - name: 
+            moment: 1
+            index: 0
+          - name: 
+            moment: 2
+            index: 0
+          databaseID: 9198
+        databaseID: 8960
+      - title: AUDIENCE_CHOICE
+        duration: 0
+        bpm: 0
+        partyLevel: 0
+        hasMinigame: 0
+        linkedStage:
+          name: BlackScreen
+          hasScore: 0
+          moments: []
+          databaseID: 8375
+        databaseID: 9202
+      - title: Pokemon
+        duration: 240
+        bpm: 180
+        partyLevel: 5
+        hasMinigame: 0
+        linkedStage:
+          name: Logo
+          hasScore: 0
+          moments: []
+          databaseID: 8376
+        databaseID: 8692
+      - title: AUDIENCE_CHOICE
+        duration: 0
+        bpm: 0
+        partyLevel: 0
+        hasMinigame: 0
+        linkedStage:
+          name: BlackScreen
+          hasScore: 0
+          moments: []
+          databaseID: 8375
+        databaseID: 9202
+      - title: AUDIENCE_CHOICE
+        duration: 0
+        bpm: 0
+        partyLevel: 0
+        hasMinigame: 0
+        linkedStage:
+          name: BlackScreen
+          hasScore: 0
+          moments: []
+          databaseID: 8375
+        databaseID: 9202
+      - title: AUDIENCE_CHOICE
+        duration: 0
+        bpm: 0
+        partyLevel: 0
+        hasMinigame: 0
+        linkedStage:
+          name: BlackScreen
+          hasScore: 0
+          moments: []
+          databaseID: 8375
+        databaseID: 9202
+      databaseID: 53
     song:
-      title: 
-      duration: 0
-      bpm: 0
-      partyLevel: 0
+      title: Ultimate
+      duration: 150
+      bpm: 160
+      partyLevel: 5
       hasMinigame: 0
       linkedStage:
-        name: 
+        name: Logo
         hasScore: 0
         moments: []
-        databaseID: 0
-      databaseID: 0
-    songPosition: -1
-    moment: -1
+        databaseID: 8376
+      databaseID: 8365
+    songPosition: 0
+    moment: 0
     momentIndex: -1
     paused: 0
     databaseID: 0
@@ -1219,13 +1640,14 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0
+    responseTime: 0.15579987
     loopCount: 0
-    responseBody: '{"id":9213,"ips":["92.184.100.210","92.184.112.55","92.184.112.56","74.125.210.166","16.144.230.122","40.77.167.46","92.184.112.16","92.184.112.205","92.184.112.156","35.93.53.161"],"date":"2025-10-20","location":"Kremlin-Bicetre","name":"PasDe-Test","setlist":{"id":46,"name":"Template-PasDe-1760978709459","isTemplate":false,"templateRef":43,"setlistSongs":[{"id":451,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":452,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":453,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":454,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+    responseBody: '{"id":9221,"ips":["92.184.104.157","92.184.104.15"],"date":"2025-10-23","location":"Mon
+      Cul","name":"PasDe-Test","setlist":{"id":52,"name":"Template-PasDe-1761240243166","isTemplate":false,"templateRef":43,"setlistSongs":[{"id":533,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":534,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":535,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":536,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
       - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
-      - Au revoir"}]}},"position":3},{"id":455,"song":{"id":8362,"title":"Resurrections","duration":420,"bpm":70,"zgg":1.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":4},{"id":456,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":5},{"id":457,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":6},{"id":458,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":7},{"id":459,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+      - Au revoir"}]}},"position":4},{"id":537,"song":{"id":8363,"title":"Sonex","duration":210,"bpm":140,"zgg":3.0,"minigame":true,"stage":{"id":8384,"title":"Sonic","hasScore":true,"stageMoments":[{"id":9214,"moment":0,"momentIndex":0,"momentTitle":"normal"},{"id":9215,"moment":1,"momentIndex":1,"momentTitle":"invincible"}]}},"position":3},{"id":538,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":5},{"id":539,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":6},{"id":540,"song":{"id":8363,"title":"Sonex","duration":210,"bpm":140,"zgg":3.0,"minigame":true,"stage":{"id":8384,"title":"Sonic","hasScore":true,"stageMoments":[{"id":9214,"moment":0,"momentIndex":0,"momentTitle":"normal"},{"id":9215,"moment":1,"momentIndex":1,"momentTitle":"invincible"}]}},"position":7},{"id":541,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
       - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
-      - Au revoir"}]}},"position":8},{"id":460,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":9},{"id":461,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":10},{"id":462,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":11},{"id":463,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":12}]},"scores":[]}'
+      - Au revoir"}]}},"position":8},{"id":542,"song":{"id":8363,"title":"Sonex","duration":210,"bpm":140,"zgg":3.0,"minigame":true,"stage":{"id":8384,"title":"Sonic","hasScore":true,"stageMoments":[{"id":9214,"moment":0,"momentIndex":0,"momentTitle":"normal"},{"id":9215,"moment":1,"momentIndex":1,"momentTitle":"invincible"}]}},"position":9},{"id":543,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":10},{"id":544,"song":{"id":8363,"title":"Sonex","duration":210,"bpm":140,"zgg":3.0,"minigame":true,"stage":{"id":8384,"title":"Sonic","hasScore":true,"stageMoments":[{"id":9214,"moment":0,"momentIndex":0,"momentTitle":"normal"},{"id":9215,"moment":1,"momentIndex":1,"momentTitle":"invincible"}]}},"position":11},{"id":545,"song":{"id":8363,"title":"Sonex","duration":210,"bpm":140,"zgg":3.0,"minigame":true,"stage":{"id":8384,"title":"Sonic","hasScore":true,"stageMoments":[{"id":9214,"moment":0,"momentIndex":0,"momentTitle":"normal"},{"id":9215,"moment":1,"momentIndex":1,"momentTitle":"invincible"}]}},"position":12},{"id":546,"song":{"id":8363,"title":"Sonex","duration":210,"bpm":140,"zgg":3.0,"minigame":true,"stage":{"id":8384,"title":"Sonic","hasScore":true,"stageMoments":[{"id":9214,"moment":0,"momentIndex":0,"momentTitle":"normal"},{"id":9215,"moment":1,"momentIndex":1,"momentTitle":"invincible"}]}},"position":13}]},"scores":[]}'
   concertStateRequest:
     requestType: 0
     requestUri: current
@@ -1243,15 +1665,13 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0.3015747
+    responseTime: 0
     loopCount: 0
-    responseBody: '{"id":0,"setlistSong":{"id":454,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+    responseBody: '{"id":0,"setlistSong":{"id":547,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},"setlist":{"id":53,"name":"Template-PasDe-1761240620304","isTemplate":false,"templateRef":43,"setlistSongs":[{"id":547,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":548,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":549,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":550,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
       - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
-      - Au revoir"}]}},"position":3},"setlist":{"id":46,"name":"Template-PasDe-1760978709459","isTemplate":false,"templateRef":43,"setlistSongs":[{"id":451,"song":{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":0},{"id":452,"song":{"id":8432,"title":"Dovakhiin","duration":180,"bpm":75,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":1},{"id":453,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":2},{"id":454,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
+      - Au revoir"}]}},"position":4},{"id":551,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":3},{"id":552,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":5},{"id":553,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":6},{"id":554,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":7},{"id":555,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
       - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
-      - Au revoir"}]}},"position":3},{"id":455,"song":{"id":8362,"title":"Resurrections","duration":420,"bpm":70,"zgg":1.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":4},{"id":456,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":5},{"id":457,"song":{"id":8359,"title":"Mii","duration":120,"bpm":120,"zgg":1.0,"minigame":true,"stage":{"id":9197,"title":"Map","hasScore":false,"stageMoments":[]}},"position":6},{"id":458,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":7},{"id":459,"song":{"id":8960,"title":"Adibou","duration":180,"bpm":160,"zgg":100.0,"minigame":true,"stage":{"id":9198,"title":"Shop","hasScore":false,"stageMoments":[{"id":9216,"moment":0,"momentIndex":0,"momentTitle":"NPC
-      - Bienvenue"},{"id":9217,"moment":1,"momentIndex":1,"momentTitle":"Achats"},{"id":9218,"moment":2,"momentIndex":2,"momentTitle":"NPC
-      - Au revoir"}]}},"position":8},{"id":460,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":9},{"id":461,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":10},{"id":462,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":11},{"id":463,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":12}]},"moment":0,"momentIndex":0,"stageTitle":"Shop","numberOfMoments":3}'
+      - Au revoir"}]}},"position":8},{"id":556,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":9},{"id":557,"song":{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},"position":10},{"id":558,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":11},{"id":559,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":12},{"id":560,"song":{"id":9202,"title":"AUDIENCE_CHOICE","duration":0,"bpm":0,"zgg":0.0,"minigame":null,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}},"position":13}]},"moment":0,"momentIndex":null,"stageTitle":"Map","numberOfMoments":0}'
   pauseStateRequest:
     requestType: 0
     requestUri: pause
@@ -1269,23 +1689,24 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0.3015747
+    responseTime: 0
     loopCount: 0
     responseBody: '{"id":1,"pause":false}'
   stateChangeEvent: concert_state
   pauseEvent: pause
   resumeEvent: resume
-  editorButtons:
-    methods:
-    - RefreshConcertInfo
-    - RefreshConcertState
-    - ClearConcert
   onInfoUpdate:
     m_PersistentCalls:
       m_Calls: []
   onStateUpdate:
     m_PersistentCalls:
       m_Calls: []
+  editorButtons:
+    methods:
+    - RefreshConcertInfo
+    - RefreshConcertState
+    - ClearConcert
+    - RequestNextSong
 --- !u!4 &586072267
 Transform:
   m_ObjectHideFlags: 0
@@ -1310,14 +1731,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 586072265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2d0a29414c37dc4796eae914098d024, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ab86c34298a3fb4e84ac7f99b21230e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: text
-  text: vodka cornichon
+  text: t'as pas une playstation?
   methodCaller:
     methods:
-    - SendText
+    - Send
 --- !u!1 &717786676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,6 +2044,58 @@ MonoBehaviour:
   toggleKey: 108
   visible: 0
   socketIOEventQueueLength: 10
+--- !u!1 &866969291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 866969292}
+  - component: {fileID: 866969293}
+  m_Layer: 0
+  m_Name: stage_Logo(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &866969292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866969291}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1230911506}
+  m_Father: {fileID: 1649474561}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &866969293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866969291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06f8da9125e7e54dad1e0c672d5c69c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Logo
+  stageNameGUI: {fileID: 0}
+  showInputPanel: 0
+  loadMessage: t'as pas une playstation?
+  onStageEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &897969702
 GameObject:
   m_ObjectHideFlags: 0
@@ -2092,6 +2565,107 @@ MonoBehaviour:
     smooth: 0
   accelerationScaleEffect: 1.5
   accelerationScaleEffectCooldown: 0.5
+--- !u!1 &1230911505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1230911506}
+  - component: {fileID: 1230911509}
+  - component: {fileID: 1230911508}
+  - component: {fileID: 1230911507}
+  m_Layer: 0
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1230911506
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230911505}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 468390428}
+  m_Father: {fileID: 866969292}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1230911507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230911505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1230911508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230911505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1230911509
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230911505}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1258209700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,7 +2816,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -162.2, y: 0}
+  m_SizeDelta: {x: -162.25005, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1274989196
 MonoBehaviour:
@@ -2917,6 +3491,7 @@ MonoBehaviour:
   - {fileID: 7170219840902276357, guid: caad6e8de52229c4384ed48dd8312cf8, type: 3}
   - {fileID: 7024128606045382352, guid: 59c22b0d78757f4438e0038a5a5cf64f, type: 3}
   - {fileID: 5826677002221474623, guid: d1ad1775b4912224481907f2b1ca4cec, type: 3}
+  - {fileID: 2593559338666729563, guid: 402b2746220628a48b4541aab55c8358, type: 3}
   pauseGUI: {fileID: 1554286696}
   mainScore: {fileID: 1649474563}
 --- !u!4 &1649474561
@@ -2931,7 +3506,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7971992}
+  - {fileID: 866969292}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3162,74 +3737,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780973967}
   m_CullTransparentMesh: 1
---- !u!1 &1790379140
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1790379143}
-  - component: {fileID: 1790379142}
-  - component: {fileID: 1790379141}
-  m_Layer: 0
-  m_Name: Event System
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1790379141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790379140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &1790379142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790379140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &1790379143
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790379140}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1989991253
 GameObject:
   m_ObjectHideFlags: 0
