@@ -15,8 +15,8 @@ public class Stage : MonoBehaviour
     private int moment;
     private bool paused;
 
-    protected Concert concert;
-    protected AdminMessenger adminMessenger;
+    protected ConcertAdmin concert;
+    protected MessengerAdmin adminMessenger;
 
     public MiniGameScore Score { get; private set; }
     public CoinCatcher Coins { get; private set; }
@@ -61,8 +61,8 @@ public class Stage : MonoBehaviour
     virtual protected bool HasAllComponents()
     {
         if (concert && adminMessenger) return true;
-        concert = FindObjectOfType<Concert>(true);
-        adminMessenger = FindObjectOfType<AdminMessenger>(true);
+        concert = FindObjectOfType<ConcertAdmin>(true);
+        adminMessenger = FindObjectOfType<MessengerAdmin>(true);
         return concert && adminMessenger;
     }
 
@@ -99,7 +99,7 @@ public class Stage : MonoBehaviour
         MainGUI.ShowInputPanel = showInputPanel;
         CameraSetup();
         OnMomentChange(Moment);
-        AdminMessenger.Send(loadMessage);
+        MessengerAdmin.Send(loadMessage);
     }
 
     public void Unload()

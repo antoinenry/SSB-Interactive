@@ -12,7 +12,7 @@ public class DebugLog : MonoBehaviour
     public int socketIOEventQueueLength;
 
     private string logText;
-    private Concert concertClient;
+    private ConcertAdmin concertClient;
     private SocketIOClientScriptable socketClient;
     private Queue<string> socketIOEventQueue;
     private int socketIOEventCount;
@@ -21,7 +21,7 @@ public class DebugLog : MonoBehaviour
 
     private void OnEnable()
     {
-        concertClient = FindObjectOfType<Concert>();
+        concertClient = FindObjectOfType<ConcertAdmin>();
         socketClient = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
         socketIOEventQueue = new Queue<string>(socketIOEventQueueLength);
         stageLoader = FindObjectOfType<StageLoader>();

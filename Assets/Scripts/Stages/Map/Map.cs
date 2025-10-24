@@ -143,7 +143,7 @@ public class Map : MonoBehaviour
         if (currentNode == null) return;
         if (addSongChoiceRequest != null)
         {
-            int setlistId = Concert.Current != null ? Concert.Current.state.setlist.databaseID : -1;
+            int setlistId = ConcertAdmin.Current != null ? ConcertAdmin.Current.state.setlist.databaseID : -1;
             int songId = currentNode.song.databaseID;
             addSongChoiceRequest.parameters = new string[] { setlistId.ToString(), songId.ToString() };
             addSongChoiceRequest.onRequestEnd.AddListener(OnAddSongChoiceRequestEnd);
@@ -154,7 +154,7 @@ public class Map : MonoBehaviour
 
     private void OnAddSongChoiceRequestEnd(HttpRequest request)
     {
-        AdminMessenger.Send(NodeChoiceMessage);
+        MessengerAdmin.Send(NodeChoiceMessage);
         if (addSongChoiceRequest != null)
             addSongChoiceRequest.onRequestEnd.RemoveListener(OnAddSongChoiceRequestEnd);
     }

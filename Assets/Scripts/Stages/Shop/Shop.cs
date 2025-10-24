@@ -91,7 +91,7 @@ namespace Shop
         {
             if (songPoolRequest != null)
             {
-                int setlistId = Concert.Current != null ? Concert.Current.state.setlist.databaseID : -1;
+                int setlistId = ConcertAdmin.Current != null ? ConcertAdmin.Current.state.setlist.databaseID : -1;
                 songPoolRequest.parameters = new string[] { setlistId.ToString() };
                 songPoolRequest.onRequestEnd.AddListener(OnSongPoolRequestEnd);
                 songPoolRequest.StartRequestCoroutine(this, restart: true);
@@ -221,7 +221,7 @@ namespace Shop
 
         private void BuyItem(ShopItem item)
         {
-            AdminMessenger.Send(buyingMessage);
+            MessengerAdmin.Send(buyingMessage);
             // Update cart
             if (cart == null) cart = new List<ShopItem>(cartCapacity);
             cart.Add(item);
@@ -232,7 +232,7 @@ namespace Shop
             // Update setlist
             if (addSongChoiceRequest != null)
             {
-                int setlistId = Concert.Current != null ? Concert.Current.state.setlist.databaseID : -1;
+                int setlistId = ConcertAdmin.Current != null ? ConcertAdmin.Current.state.setlist.databaseID : -1;
                 int songId = item.song.databaseID;
                 addSongChoiceRequest.parameters = new string[] { setlistId.ToString(), songId.ToString() };
                 addSongChoiceRequest.onRequestEnd.AddListener(OnAddSongChoiceRequestEnd);
@@ -244,7 +244,7 @@ namespace Shop
 
         private void OnAddSongChoiceRequestEnd(HttpRequest request)
         {
-            AdminMessenger.Send(CartContentMessage);
+            MessengerAdmin.Send(CartContentMessage);
             if (addSongChoiceRequest != null)
             {
                 addSongChoiceRequest.onRequestEnd.RemoveListener(OnAddSongChoiceRequestEnd);
@@ -269,8 +269,8 @@ namespace Shop
 
         public void InitCart()
         {
-            SetlistInfo currentSetlist = Concert.Current.state.setlist;
-            int currentPosition = Concert.Current.state.songPosition;
+            SetlistInfo currentSetlist = ConcertAdmin.Current.state.setlist;
+            int currentPosition = ConcertAdmin.Current.state.songPosition;
             string shopSongTitle = currentSetlist.GetSong(currentPosition).title;
             cartCapacity = 0;
             SongInfo song;

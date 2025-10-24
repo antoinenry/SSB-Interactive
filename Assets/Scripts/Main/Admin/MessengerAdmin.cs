@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AdminMessenger : MonoBehaviourSingleton<AdminMessenger>
+public class MessengerAdmin : MonoBehaviourSingleton<MessengerAdmin>
 {
     public string eventName = "text";
     public string text;

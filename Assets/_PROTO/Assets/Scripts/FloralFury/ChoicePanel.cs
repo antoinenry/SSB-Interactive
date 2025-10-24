@@ -26,7 +26,7 @@ public class ChoicePanel : MonoBehaviour
     private float rightCounter;
     private float rightStartCount;
     private bool locked;
-    private AdminMessenger adminMessenger;
+    private MessengerAdmin adminMessenger;
 
     public bool Locked
     {
@@ -50,7 +50,7 @@ public class ChoicePanel : MonoBehaviour
 
     private void Awake()
     {
-        adminMessenger = FindObjectOfType<AdminMessenger>(true);
+        adminMessenger = FindObjectOfType<MessengerAdmin>(true);
     }
 
     private void OnEnable()
@@ -98,7 +98,7 @@ public class ChoicePanel : MonoBehaviour
 
         if (leftCounter > middleCounter && leftCounter > rightCounter)
         {
-            if (selected != Choice.Left) AdminMessenger.Send(leftChoiceName);
+            if (selected != Choice.Left) MessengerAdmin.Send(leftChoiceName);
             selected = Choice.Left;
             leftSlider.transform.localScale = scaleEffect * Vector3.one;
             middleSlider.transform.localScale = Vector3.one;
@@ -106,7 +106,7 @@ public class ChoicePanel : MonoBehaviour
         }
         else if (middleCounter > leftCounter && middleCounter > rightCounter)
         {
-            if (selected != Choice.Middle) AdminMessenger.Send(middleChoiceName);
+            if (selected != Choice.Middle) MessengerAdmin.Send(middleChoiceName);
             selected = Choice.Middle;
             leftSlider.transform.localScale = Vector3.one;
             middleSlider.transform.localScale = scaleEffect * Vector3.one;
@@ -114,7 +114,7 @@ public class ChoicePanel : MonoBehaviour
         }
         else if (rightCounter > leftCounter && rightCounter > middleCounter)
         {
-            if (selected != Choice.Right) AdminMessenger.Send(rightChoiceName);
+            if (selected != Choice.Right) MessengerAdmin.Send(rightChoiceName);
             selected = Choice.Right;
             leftSlider.transform.localScale = Vector3.one;
             middleSlider.transform.localScale = Vector3.one;

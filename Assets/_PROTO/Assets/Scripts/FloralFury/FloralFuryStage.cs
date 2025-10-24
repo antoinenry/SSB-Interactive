@@ -19,7 +19,7 @@ public class FloralFuryStage : Stage
     private Cuphead cup;
     private ChoicePanel choices;
     private ObjectSpawner spawner;
-    private AdminMessenger messenger;
+    private MessengerAdmin messenger;
 
     protected override void OnMomentChange(int momentValue)
     {
@@ -33,7 +33,7 @@ public class FloralFuryStage : Stage
         cup = FindObjectOfType<Cuphead>(true);
         choices = FindObjectOfType<ChoicePanel>(true);
         spawner = FindObjectOfType<ObjectSpawner>(true);
-        messenger = FindObjectOfType<AdminMessenger>(true);
+        messenger = FindObjectOfType<MessengerAdmin>(true);
         return base.HasAllComponents() && cup && choices && spawner && messenger;
     }
 
@@ -58,7 +58,7 @@ public class FloralFuryStage : Stage
                 choices.LockChoice();
                 cup.enabled = true;
                 spawner.enabled = true;
-                AdminMessenger.Send("Go solo de " + choices.SelectedChoice);
+                MessengerAdmin.Send("Go solo de " + choices.SelectedChoice);
                 break;
         }
         for (int i = 0, iend = currentPhase.dropChances.Length; i < iend; i++)
