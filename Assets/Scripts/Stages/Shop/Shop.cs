@@ -27,11 +27,12 @@ namespace Shop
         public int budget;
         public bool canBuyMinigames;
         public int minimumPartyLevel;
+        public int minimumZggForSongs = 1;
         [Header("Setlist reading")]
         public string emptySetlistSlotTitle = "AUDIENCE_CHOICE";
         public string skipSlotsAfterTitle = "Mii";
         [Header("Web")]
-        public HttpRequestLoop songPoolRequest = new(HttpRequest.RequestType.GET, "songs/available/{setlist_id}", HttpRequestLoop.ParameterFormat.Query);
+        public HttpRequestLoop songPoolRequest = new(HttpRequest.RequestType.GET, "songs/available/{setlist_id}/{minzgg}", HttpRequestLoop.ParameterFormat.Query);
         public HttpRequestLoop addSongChoiceRequest = new(HttpRequest.RequestType.POST, "setlists/songs/{setlist_id}/chosen/{song_id}", HttpRequestLoop.ParameterFormat.Path);
         public string cartContentMessagePrefix = "Panier : ";
         public string buyingMessage = "Achat en cours...";
@@ -92,7 +93,7 @@ namespace Shop
             if (songPoolRequest != null)
             {
                 int setlistId = ConcertAdmin.Current != null ? ConcertAdmin.Current.state.setlist.databaseID : -1;
-                songPoolRequest.parameters = new string[] { setlistId.ToString() };
+                songPoolRequest.parameters = new string[] { setlistId.ToString(), "1" };
                 songPoolRequest.onRequestEnd.AddListener(OnSongPoolRequestEnd);
                 songPoolRequest.StartRequestCoroutine(this, restart: true);
             }

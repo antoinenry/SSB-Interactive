@@ -2004,7 +2004,7 @@ MonoBehaviour:
   skipSlotsAfterTitle: Mii
   songPoolRequest:
     requestType: 0
-    requestUri: songs/available/{setlist_id}
+    requestUri: songs/available/{setlist_id}/{minzgg}
     parameters:
     - setlist_id
     parametersFormat: 1
