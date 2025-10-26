@@ -167,7 +167,14 @@ public class HttpRequestLoop
                 {
                     if (i < uriLength - 1 && requestUri[i + 1] == '{')
                     {
-                        fullUri += "?";
+                        if (parameterIndex == 0)
+                        {
+                            fullUri += "?";
+                        }
+                        else
+                        {
+                            fullUri += "&";
+                        }
                         for (i += 2; i < uriLength; i++)
                         {
                             if (requestUri[i] == '}') break;
