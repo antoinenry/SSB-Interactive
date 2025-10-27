@@ -43,5 +43,6 @@ MonoBehaviour:
       answers: []
     - text: En route, voyageurs ! Soyez un public extraordinaire et guidez nos amis
         vers la SET LISTE ULTIME !
-      answers: []
+      answers:
+      - START
     reactions: []

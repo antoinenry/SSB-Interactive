@@ -1,12 +1,12 @@
 {
   "stages": [
     {
-      "serverName": "BlackScreen",
-      "localName": "BlackScreen"
-    },
-    {
       "serverName": "Logo",
       "localName": "Logo"
+    },
+    {
+      "serverName": "Prophecy",
+      "localName": "Prophecy"
     },
     {
       "serverName": "LevelSelect",
@@ -59,6 +59,10 @@
     {
       "serverName": "Map",
       "localName": "Map"
+    },
+    {
+      "serverName": "BlackScreen",
+      "localName": "BlackScreen"
     },
     {
       "serverName": "null",
