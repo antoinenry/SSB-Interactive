@@ -48,9 +48,11 @@
       "answers": []
     },
     {
-      "AnswerCount": 0,
+      "AnswerCount": 1,
       "text": "En route, voyageurs ! Soyez un public extraordinaire et guidez nos amis vers la SET LISTE ULTIME !",
-      "answers": []
+      "answers": [
+        "START"
+      ]
     }
   ],
   "reactions": []

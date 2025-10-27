@@ -15,6 +15,7 @@ public class GUIAnimatedText : MonoBehaviour
     private Coroutine animationCoroutine;
 
     public string AnimatedText { get; private set; }
+    public bool IsAnimating => AnimatedText != text;
 
     private void Reset()
     {

@@ -9,7 +9,7 @@ public class NPCDialog : MonoBehaviour
     [Header("Content")]
     [SerializeField] NPCDialogAsset dialog;
     [SerializeField] int lineIndex = 0;
-    [SerializeField] bool reaction = false;
+    [SerializeField] bool isReacting = false;
     [SerializeField] int reactionIndex = -1;
 
     private void Reset()
@@ -20,7 +20,7 @@ public class NPCDialog : MonoBehaviour
 
     private void OnValidate()
     {
-        if (reaction) ShowReactionLine();
+        if (isReacting) ShowReactionLine();
         else ShowDialogLine();
     }
 
@@ -33,7 +33,12 @@ public class NPCDialog : MonoBehaviour
     {
         SetButtonListenersActive(false);
         ClearText();
-        ClearButtons();
+        HideAllButtons();
+    }
+
+    private void Update()
+    {
+        ButtonVisibilityUpdate();
     }
 
     private void SetButtonListenersActive(bool active)
@@ -51,6 +56,25 @@ public class NPCDialog : MonoBehaviour
                 if (active) button.onValidateChoice.AddListener(OnChoseAnswer);
                 else button.onValidateChoice.RemoveListener(OnChoseAnswer);
             }
+        }
+    }
+
+    private void ButtonVisibilityUpdate()
+    {
+        if (   (textField != null && textField.IsAnimating)
+            || (dialog == null || lineIndex >= dialog.LineCount)    )
+        {
+            HideAllButtons();
+        }
+        else if (isReacting || dialog.GetLine(lineIndex).AnswerCount == 0)
+        {
+            ShowAnswerButtons(null);
+            SetNextButtonActive(true);
+        }
+        else
+        {
+            ShowAnswerButtons(dialog.GetLine(lineIndex).answers);
+            SetNextButtonActive(false);
         }
     }
 
@@ -107,11 +131,10 @@ public class NPCDialog : MonoBehaviour
         }
     }
 
-    public void ClearButtons()
+    public void HideAllButtons()
     {
         SetNextButtonActive(false);
         ShowAnswerButtons(null);
-        ResetButtons();
     }
 
     public void ResetButtons()
@@ -131,12 +154,12 @@ public class NPCDialog : MonoBehaviour
 
     private void ShowDialogLine()
     {
-        reaction = false;
+        isReacting = false;
         NPCDialogContent.DynamicLine currentLine = dialog != null ? dialog.GetLine(lineIndex) : NPCDialogContent.DynamicLine.None;
         if (dialog == null || lineIndex >= dialog.LineCount)
         {
             ClearText();
-            ClearButtons();
+            HideAllButtons();
             return;
         }
         ShowText(currentLine.text);
@@ -155,8 +178,8 @@ public class NPCDialog : MonoBehaviour
 
     private void ShowReactionLine()
     {
-        reaction = true;
-        ClearButtons();
+        isReacting = true;
+        HideAllButtons();
         ShowText(dialog.GetReaction(lineIndex, reactionIndex));
     }
 }
