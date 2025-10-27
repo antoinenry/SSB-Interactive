@@ -34,8 +34,11 @@ public class StageLoader : MonoBehaviour
 
     private void OnConcertStateUpdate(ConcertState state)
     {
+        // Stage change
         StageInfo stageUpdate = state.Stage;
-        if (LoadedStage == null || LoadedStage.name != stageUpdate.name) LoadStage(serverStageName: stageUpdate.name);
+        if (LoadedStage == null || LoadedStage.name != stageUpdate.name) LoadStage(serverStageName: stageUpdate.name, moment:state.moment);
+        // Moment change
+        else if (LoadedStage != null) LoadedStage.Moment = state.moment;
     }
 
     public void LoadStage(string localStageName = null, string serverStageName = null, int moment = 0)

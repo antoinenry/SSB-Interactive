@@ -1,8 +1,8 @@
 {
   "stages": [
     {
-      "serverName": "Logo",
-      "localName": "Logo"
+      "serverName": "Intro",
+      "localName": "Intro"
     },
     {
       "serverName": "Prophecy",
@@ -61,6 +61,10 @@
       "localName": "Map"
     },
     {
+      "serverName": "Logo",
+      "localName": "Logo"
+    },
+    {
       "serverName": "BlackScreen",
       "localName": "BlackScreen"
     },
@@ -69,6 +73,11 @@
       "localName": "EmptyScene"
     }
   ],
-  "missingStages": [],
-  "otherStages": []
+  "missingStages": [
+    "Intro",
+    "Prophecy"
+  ],
+  "otherStages": [
+    null
+  ]
 }

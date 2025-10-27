@@ -5328,7 +5328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3474933853021414017}
-  - component: {fileID: 3279151865877827021}
+  - component: {fileID: 7035219918791492689}
   m_Layer: 0
   m_Name: prophecy_stage
   m_TagString: Untagged
@@ -5354,7 +5354,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3279151865877827021
+--- !u!114 &7035219918791492689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5363,13 +5363,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3474933853021414016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5e95ad03d341dc45a10c145fd3bf68e, type: 3}
+  m_Script: {fileID: 11500000, guid: a06f8da9125e7e54dad1e0c672d5c69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: Prophecy
   stageNameGUI: {fileID: 0}
   showInputPanel: 0
-  loadMessage: "La proph\xE9tie"
+  loadMessage: 
   onStageEnd:
     m_PersistentCalls:
       m_Calls: []

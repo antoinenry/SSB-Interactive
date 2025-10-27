@@ -15,10 +15,10 @@ MonoBehaviour:
   savePath: Config/stage_loader.json
   data:
     stages:
-    - serverName: BlackScreen
-      localName: BlackScreen
-    - serverName: Logo
-      localName: Logo
+    - serverName: Intro
+      localName: Intro
+    - serverName: Prophecy
+      localName: Prophecy
     - serverName: LevelSelect
       localName: LevelSelect
     - serverName: MovingLogo
@@ -45,6 +45,10 @@ MonoBehaviour:
       localName: Shop
     - serverName: Map
       localName: Map
+    - serverName: Logo
+      localName: Logo
+    - serverName: BlackScreen
+      localName: BlackScreen
     - serverName: null
       localName: EmptyScene
     missingStages: []

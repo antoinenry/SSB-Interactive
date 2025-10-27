@@ -21,7 +21,7 @@ public class ConcertAdmin : MonoBehaviourSingleton<ConcertAdmin>
     [Header("Editor Tools")]
     public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshConcertInfo", "RefreshConcertState", "ClearConcert");
 
-    private bool pendingConcertState;
+    private bool pendingStateEvent;
 
     public HttpClientScriptable HttpClient { get; private set; }
     public SocketIOClientScriptable SocketClient { get; private set; }
@@ -47,9 +47,9 @@ public class ConcertAdmin : MonoBehaviourSingleton<ConcertAdmin>
 
     private void Update()
     {
-        if (pendingConcertState)
+        if (pendingStateEvent)
         {
-            pendingConcertState = false;
+            pendingStateEvent = false;
             onStateUpdate.Invoke(state);
         }
     }
@@ -157,11 +157,11 @@ public class ConcertAdmin : MonoBehaviourSingleton<ConcertAdmin>
         if (eventName != stateChangeEvent) return;
         string dataString = response.GetValue<string>();
         ConcertState stateUpdate = SocketIOResponseEvent.DeserializeResponse<ConcertState>(dataString);
-        if (stateUpdate != state)
+        // Socket events are async, which can cause error with UnityEvents. One solution is to wait for next update to send event (pending).
+        if (state != stateUpdate)
         {
             state = stateUpdate;
-            //onStateUpdate.Invoke(stateUpdate);
-            pendingConcertState = true;
+            pendingStateEvent = true;
         }
     }
 
