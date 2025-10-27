@@ -1,0 +1,29 @@
+{
+  "LineCount": 2,
+  "ReactionCount": 1,
+  "lines": [
+    {
+      "AnswerCount": 0,
+      "text": "Bonjour !",
+      "answers": []
+    },
+    {
+      "AnswerCount": 2,
+      "text": "Comment va ?",
+      "answers": [
+        "Super !",
+        "Moyen..."
+      ]
+    }
+  ],
+  "reactions": [
+    {
+      "ResponseCount": 2,
+      "fromLine": 1,
+      "responses": [
+        "Tant mieux !",
+        "Ah bah zut alors."
+      ]
+    }
+  ]
+}

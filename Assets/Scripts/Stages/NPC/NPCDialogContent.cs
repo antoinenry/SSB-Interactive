@@ -39,9 +39,15 @@ public struct NPCDialogContent
         else return lines[lineIndex];
     }
 
+    public bool HasReaction(int lineIndex, int answerIndex)
+    {
+        if (ReactionCount == 0) return false;
+        else return Array.FindIndex(reactions, r => r.fromLine == lineIndex && r.ResponseCount > answerIndex) != -1;
+    }
+
     public string GetReaction(int lineIndex, int answerIndex)
     {
-        if (ReactionCount == 0) return null;
+        if (HasReaction(lineIndex, answerIndex) == false) return null;
         else return Array.Find(reactions, r => r.fromLine == lineIndex).GetResponse(answerIndex);
     }
 }

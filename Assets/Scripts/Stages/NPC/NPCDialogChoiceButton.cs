@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 [ExecuteAlways]
 public class NPCDialogChoiceButton : MonoBehaviour
@@ -7,6 +8,9 @@ public class NPCDialogChoiceButton : MonoBehaviour
     public AudienceButtonListener button;
     public TMP_Text label;
     public string labelText = "OK";
+    public int choiceIndex = -1;
+
+    public UnityEvent<int> onValidateChoice;
 
     private void Reset()
     {
@@ -19,23 +23,29 @@ public class NPCDialogChoiceButton : MonoBehaviour
         if (button)
         {
             button.ResetButton();
-            button.gameObject.SetActive(true);
+            button.onValueMaxed.AddListener(OnButtonValueMaxed);
         }
-        if (label) label.gameObject.SetActive(true);
     }
 
     private void OnDisable()
     {
         if (button)
         {
-            button.gameObject.SetActive(false);
             button.ResetButton();
+            button.onValueMaxed.RemoveListener(OnButtonValueMaxed);
         }
-        if (label) label.gameObject.SetActive(false);
+    }
+
+    private void OnButtonValueMaxed()
+    {
+        onValidateChoice.Invoke(choiceIndex);
+        ResetButton();
     }
 
     void Update()
     {
         if (label) label.text = labelText;
     }
+
+    public void ResetButton() => button?.ResetButton();
 }

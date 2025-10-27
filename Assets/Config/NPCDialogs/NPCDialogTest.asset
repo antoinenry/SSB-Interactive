@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c175f6705eaf484b8014760745fd032, type: 3}
   m_Name: NPCDialogTest
   m_EditorClassIdentifier: 
-  savePath: Config/prophet.json
+  savePath: Config/npcTest.json
   data:
     lines:
     - text: Bonjour !

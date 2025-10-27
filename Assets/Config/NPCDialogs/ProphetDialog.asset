@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c175f6705eaf484b8014760745fd032, type: 3}
+  m_Name: ProphetDialog
+  m_EditorClassIdentifier: 
+  savePath: Config/prophet.json
+  data:
+    lines:
+    - text: "Oyez la l\xE9gende transmise de fanfaron en fanfaron !"
+      answers: []
+    - text: "Depuis la nuit des temps, toutes les fanfares gal\xE8rent \xE0 savoir
+        dans quel ordre interpr\xE9ter leurs morceaux."
+      answers: []
+    - text: "Faut-il mettre le morceau le plus rapide au d\xE9but? Le plus fort au
+        milieu ? Le plus beau \xE0 la fin ?"
+      answers: []
+    - text: "Beaucoup ont sombr\xE9 dans la folie en tentant de r\xE9pondre \xE0
+        ces questions."
+      answers: []
+    - text: "Mais la l\xE9gende raconte qu\u2019il existe quelque part un public
+        extraordinaire qui poss\xE8de la cl\xE9 de cette \xE9nigme."
+      answers: []
+    - text: "Un public comme vous, voyageurs ! Un public qui trouvera\u2026 LA SET
+        LISTE ULTIME !"
+      answers: []
+    - text: "Etes-vous pr\xEAt, <ins\xE9rer nom du public>, \xE0 vous lancer dans
+        cette qu\xEAte ?"
+      answers:
+      - Oui
+      - "Bien s\xFBr"
+      - On y va
+      - Le public est d'accord
+    - text: Je savais que SSB pouvait compter sur vous.
+      answers: []
+    - text: En route, voyageurs ! Soyez un public extraordinaire et guidez nos amis
+        vers la SET LISTE ULTIME !
+      answers: []
+    reactions: []
