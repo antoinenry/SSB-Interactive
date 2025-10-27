@@ -281,7 +281,7 @@ namespace Shop
                 song = currentSetlist.GetSong(i);
                 if (song.title == shopSongTitle) break;
                 else if (song.title == skipSlotsAfterTitle) skipSlots = true;
-                else if (song.title == emptySetlistSlotTitle && skipSlots == false) cartCapacity++;
+                else if (song.title.Equals(emptySetlistSlotTitle, StringComparison.OrdinalIgnoreCase) && skipSlots == false) cartCapacity++;
                 else skipSlots = false;
             }
             cart = new List<ShopItem>(cartCapacity);
