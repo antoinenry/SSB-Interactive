@@ -61,7 +61,7 @@ public class StageLoader : MonoBehaviour
 
     public int LoadedMoment
     {
-        get { return LoadedStage != null ? LoadedStage.Moment : -1; }
+        get { return LoadedStage != null ? LoadedStage.Moment : 0; }
         set { if (LoadedStage) LoadedStage.Moment = value; }
     }
 

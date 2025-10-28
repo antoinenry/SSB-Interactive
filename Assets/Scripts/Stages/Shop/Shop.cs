@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
+using static Ghost;
 
 namespace Shop
 {
@@ -15,6 +17,7 @@ namespace Shop
         public bool IsEmpty => song == SongInfo.None;
     }
 
+    [ExecuteAlways]
     public class Shop : MonoBehaviour
     {
         [Header("Components")]
@@ -40,21 +43,10 @@ namespace Shop
         [Header("Editor Tools")]
         public ObjectMethodCaller editorButtons = new ObjectMethodCaller("RefreshSongPool", "FillInventory", "ClearInventory", "InitCart");
 
-        private PollMaster poll;
         private List<ShopItem> cart;
-
-        private void Awake()
-        {
-            poll = GetComponentInChildren<PollMaster>(true);
-        }
 
         protected void OnEnable()
         {
-            if (poll)
-            {
-                poll.ResetAllVotes();
-                poll.onCandidateWins.AddListener(OnPollWinner);
-            }
             ClearInventory();
             RefreshSongPool();
             InitCart();
@@ -62,29 +54,53 @@ namespace Shop
 
         protected void OnDisable()
         {
-            if (poll)
-            {
-                poll.ResetAllVotes();
-                poll.onCandidateWins.RemoveListener(OnPollWinner);
-            }
+            SetShelfListenersActive(false);
         }
 
         private void Update()
         {
-            FillInventory();
             UpdateShelves();
+        }
+
+        private void SetShelfListenersActive(bool active)
+        {
+            if (shelfDisplays == null) return;
+            foreach(ShopShelfDisplay shelf in shelfDisplays)
+            {
+                if (shelf == null) continue;
+                if (active) shelf.onChoseItem.AddListener(OnItemChoice);
+                else shelf.onChoseItem.RemoveListener(OnItemChoice);
+            }
+        }
+
+        private void OnItemChoice(ShopItem item)
+        {
+            ResetShelves();
+            BuyItem(item);
+        }
+
+        public void ResetShelves()
+        {
+            if (shelfDisplays == null) return;
+            foreach (ShopShelfDisplay shelf in shelfDisplays)
+            {
+                if (shelf == null) continue;
+                shelf.ResetShelf();
+            }
         }
 
         public void Open()
         {
-            if (poll != null) poll.enabled = true;
-            if (shelfDisplays != null) foreach(ShopShelfDisplay shelf in shelfDisplays) shelf.gameObject.SetActive(true);
+            ResetShelves();
+            FillInventory();
+            SetShelfListenersActive(true);
+            if (shelfDisplays != null) foreach(ShopShelfDisplay shelf in shelfDisplays) if (shelf != null) shelf.gameObject.SetActive(true);
         }
 
         public void Close()
         {
-            if (poll != null) poll.enabled = false;
-            if (shelfDisplays != null) foreach (ShopShelfDisplay shelf in shelfDisplays) shelf.gameObject.SetActive(false);
+            SetShelfListenersActive(false);
+            if (shelfDisplays != null) foreach (ShopShelfDisplay shelf in shelfDisplays) if (shelf != null) shelf.gameObject.SetActive(false);
         }
 
         public void RefreshSongPool()
@@ -208,15 +224,6 @@ namespace Shop
                 else shelf.EmptyShelf();
                 inventory_index++;
             }
-        }
-
-        private void OnPollWinner(PollMaster.Candidate candidate)
-        {
-            poll?.ResetCandidateVotes(candidate);
-            if (shelfDisplays == null) return;
-            string buttonID = candidate?.buttonID;
-            int shelfIndex = Array.FindIndex(shelfDisplays, s => s.buttonID == buttonID);
-            if (shelfIndex != -1) BuyItem(shelfDisplays[shelfIndex].item);
         }
 
         private void BuyItem(ShopItem item)

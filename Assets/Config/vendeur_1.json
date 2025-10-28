@@ -1,0 +1,27 @@
+{
+  "LineCount": 4,
+  "ReactionCount": 0,
+  "lines": [
+    {
+      "AnswerCount": 0,
+      "text": "Bien le bonjour, les \u00E9trangers !",
+      "answers": []
+    },
+    {
+      "AnswerCount": 0,
+      "text": "Bienvenue dans ma modeste \u00E9choppe \u201CLA SSBRASSERIE\u201D, uniquement des morceaux de qualit\u00E9 !",
+      "answers": []
+    },
+    {
+      "AnswerCount": 0,
+      "text": "Dites-donc, vous \u00EAtes un peu nombreux pour mon petit magasin. Encore un public qui cherche la setliste parfaite?",
+      "answers": []
+    },
+    {
+      "AnswerCount": 0,
+      "text": "Vous \u00EAtes au bon endroit. Jetez un \u0153il \u00E0 mon inventaire !",
+      "answers": []
+    }
+  ],
+  "reactions": []
+}

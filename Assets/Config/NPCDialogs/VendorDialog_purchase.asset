@@ -10,19 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c175f6705eaf484b8014760745fd032, type: 3}
-  m_Name: NPCDialogTest
+  m_Name: VendorDialog_purchase
   m_EditorClassIdentifier: 
-  savePath: Config/npcTest.json
+  savePath: Config/vendeur_2.json
   data:
     lines:
-    - text: Bonjour !
+    - text: "Oh, excellent choix ! J'ai le m\xEAme \xE0 la maison."
       answers: []
-    - text: Comment va ?
-      answers:
-      - Super !
-      - Moyen...
-    reactions:
-    - fromLine: 1
-      responses:
-      - Tant mieux !
-      - Ah bah zut alors.
+    reactions: []

@@ -1,90 +1,95 @@
+using UnityEditorInternal.Profiling;
 using UnityEngine;
 
 namespace Shop
 {
     public class ShopStage : Stage
     {
-        public enum Phase { NPC_Welcome, Shopping, NPC_Purchase, NPC_Goodbye }
-
-        public Phase currentPhase;
-        public string welcomeDialog = "Bienvenue étranger !";
-        public string purchaseDialog = "Excellent choix !";
-        public string goodbyeDialog = "Héhé, un plaisir de faire affaire avec vous, étranger.";
-        public float dialogDuration = 2f;
+        public NPCDialogAsset introDialog;
+        public NPCDialogAsset purchaseDialog;
+        public NPCDialogAsset outroDialog;
 
         private Shop shop;
-        private float dialogTimer;
+        private NPCDialog npc;
+
+        public override int MomentCount => 3;
 
         protected override bool HasAllComponents()
         {
+            if (base.HasAllComponents() && shop != null && npc != null) return true;
             if (shop == null) shop = GetComponentInChildren<Shop>(true);
-            return base.HasAllComponents() && shop != null;
+            if (npc == null) npc = GetComponentInChildren<NPCDialog>(true);
+            return base.HasAllComponents() && shop != null && npc != null;
         }
 
-        protected override void OnEnable()
+        protected override void OnMomentChange(int value)
         {
-            base.OnEnable();
-            shop.onBuyItem.AddListener(OnBuyItem);
-            currentPhase = Phase.NPC_Welcome;
-        }
-
-        protected override void OnDisable()
-        {
-            shop.onBuyItem.RemoveListener(OnBuyItem);
-            base.OnDisable();
-        }
-
-        private void Update()
-        {
-            if (Application.isPlaying == false) dialogTimer = 0f;
-            switch(currentPhase)
+            base.OnMomentChange(value);
+            switch (value)
             {
-                case Phase.NPC_Welcome:
-                    //dialog.text = welcomeDialog;
-                    ShowNPC();
-                    dialogTimer += Time.deltaTime;
-                    if (dialogTimer > dialogDuration) currentPhase = Phase.Shopping;
-                    break;
-                case Phase.Shopping:
-                    ShowShop();
-                    dialogTimer = 0f;
-                    break;
-                case Phase.NPC_Purchase:
-                    //dialog.text = purchaseDialog;
-                    ShowNPC();
-                    dialogTimer += Time.deltaTime;
-                    if (dialogTimer > dialogDuration) currentPhase = shop.CartIsFull ? Phase.NPC_Goodbye : Phase.Shopping;
-                    break;
-                case Phase.NPC_Goodbye:
-                    //dialog.text = goodbyeDialog;
-                    ShowNPC();
-                    break;
+                case 0: ShowIntroDialog(); break;
+                case 1: ShowShop(); break;
+                case 2: ShowOutroDialog(); break;
             }
         }
 
-        private void ShowNPC()
+        private void OnBuyItem(ShopItem item)
         {
-            //dialog.gameObject.SetActive(true);
-            shop.Close();
+            if (shop == null) return;
+            if (shop.CartIsFull)
+            {
+                HideShop();
+            }
+            else
+            {
+                ShowPurchaseDialog();
+            }
+        }
 
+        private void OnPurchaseDialogEnd()
+        {
+            if (npc != null) npc.onDialogEnd.RemoveListener(OnPurchaseDialogEnd);
+            ShowShop();
+        }
+
+        private void ShowIntroDialog()
+        {
+            HideShop();
+            if (npc != null) npc.ShowDialogLine(introDialog, 0);
         }
 
         private void ShowShop()
         {
-            //dialog.gameObject.SetActive(false);
+            HideDialog();
+            if (shop == null) return;            
             shop.Open();
+            shop.onBuyItem.AddListener(OnBuyItem);
         }
 
-        private void OnBuyItem(ShopItem shopItem)
+        private void ShowPurchaseDialog()
         {
-            if (shop.CartIsFull)
-            {
-                currentPhase = Phase.NPC_Goodbye;
-            }
-            else
-            {
-                currentPhase = Phase.NPC_Purchase;
-            }
+            HideShop();
+            if (npc == null) return;
+            npc.ShowDialogLine(purchaseDialog, 0);
+            npc.onDialogEnd.AddListener(OnPurchaseDialogEnd);
+        }
+
+        private void ShowOutroDialog()
+        {
+            HideShop();
+            if (npc != null) npc.ShowDialogLine(outroDialog, 0);
+        }
+
+        private void HideDialog()
+        {
+            if (npc != null) npc.HideDialog();
+        }
+
+        private void HideShop()
+        {
+            if (shop == null) return;
+            shop.Close();
+            shop.onBuyItem.RemoveListener(OnBuyItem);
         }
     }
 }
