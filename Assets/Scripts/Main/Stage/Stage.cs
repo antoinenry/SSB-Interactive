@@ -94,12 +94,12 @@ public class Stage : MonoBehaviour
 
     public void Load()
     {
+        MessengerAdmin.Send(loadMessage);
         if (!HasAllComponents()) return;
         if (stageNameGUI != null) stageNameGUI.text = name;
         MainGUI.ShowInputPanel = showInputPanel;
         CameraSetup();
         OnMomentChange(Moment);
-        MessengerAdmin.Send(loadMessage);
     }
 
     public void Unload()
