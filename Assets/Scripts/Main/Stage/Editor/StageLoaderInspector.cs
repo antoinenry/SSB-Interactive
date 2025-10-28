@@ -16,6 +16,7 @@ public class StageLoaderInspector : Editor
     {
         targetStageLoader = target as StageLoader;
         stageOptions = targetStageLoader.Config?.GetAllLocalNames();
+        selectedStageIndex = Array.IndexOf(stageOptions, targetStageLoader.LoadedStage?.name);
         if (stageOptions == null) stageOptions = new string[0];
         momentField = targetStageLoader.LoadedStage != null ? targetStageLoader.LoadedStage.Moment : 0;
     }
