@@ -56,7 +56,13 @@ public class StageLoader : MonoBehaviour
         else if (localStageName != null) LoadStageFromLocalName(localStageName);
         else LoadStageFromLocalName(defaultStage);
         // Set moment
-        if (LoadedStage) LoadedStage.Moment = moment;
+        LoadedMoment = moment;
+    }
+
+    public int LoadedMoment
+    {
+        get { return LoadedStage != null ? LoadedStage.Moment : -1; }
+        set { if (LoadedStage) LoadedStage.Moment = value; }
     }
 
     public bool Pause

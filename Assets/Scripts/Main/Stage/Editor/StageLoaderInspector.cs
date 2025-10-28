@@ -6,7 +6,8 @@ using System;
 public class StageLoaderInspector : Editor
 {
     private StageLoader targetStageLoader;
-    private string stageField;
+    private string[] stageOptions;
+    private int selectedStageIndex;
     private int momentField = 0;
     private string[] missingScenes;
     private int nullScenes;
@@ -14,20 +15,29 @@ public class StageLoaderInspector : Editor
     private void OnEnable()
     {
         targetStageLoader = target as StageLoader;
-        stageField = targetStageLoader.LoadedStage?.name;
+        stageOptions = targetStageLoader.Config?.GetAllLocalNames();
+        if (stageOptions == null) stageOptions = new string[0];
         momentField = targetStageLoader.LoadedStage != null ? targetStageLoader.LoadedStage.Moment : 0;
     }
 
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        stageField = EditorGUILayout.TextField("Stage", stageField);
-        momentField = EditorGUILayout.IntField("Moment", momentField);
+
+        EditorGUI.BeginChangeCheck();
+        selectedStageIndex = EditorGUILayout.Popup("Stage", Array.IndexOf(stageOptions, targetStageLoader.LoadedStage?.name), stageOptions);
+        if (EditorGUI.EndChangeCheck()) targetStageLoader.LoadStage(localStageName: stageOptions[selectedStageIndex]);
+
+        EditorGUI.BeginChangeCheck();
+        momentField = EditorGUILayout.IntField("Moment", targetStageLoader.LoadedMoment);
+        if (EditorGUI.EndChangeCheck()) targetStageLoader.LoadedMoment = momentField;
+
         EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Load")) targetStageLoader.LoadStage(stageField, null, momentField);
-        if (GUILayout.Button("Unload")) targetStageLoader.LoadStage(null);
+        if (targetStageLoader.LoadedStage != null && GUILayout.Button("Unload")) targetStageLoader.LoadStage(null);
+        if (targetStageLoader.LoadedStage == null && GUILayout.Button("Reload")) targetStageLoader.LoadStage(localStageName: stageOptions[selectedStageIndex]);
         if (GUILayout.Button(targetStageLoader.Pause ? "Unpause" : "Pause")) targetStageLoader.Pause = !targetStageLoader.Pause;
         EditorGUILayout.EndHorizontal();
+
         nullScenes = Array.FindAll(targetStageLoader.stages, s => s == null).Length;
         if (nullScenes > 0) EditorGUILayout.HelpBox(nullScenes + " null stages.", MessageType.Warning);
         missingScenes = targetStageLoader.Config?.Data.missingStages;
