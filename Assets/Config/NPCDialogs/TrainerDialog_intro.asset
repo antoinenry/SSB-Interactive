@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c175f6705eaf484b8014760745fd032, type: 3}
+  m_Name: TrainerDialog_intro
+  m_EditorClassIdentifier: 
+  savePath: Config/poke_trainer_1.json
+  data:
+    lines:
+    - text: "J\u2019ai tout entendu! Quelle setliste incroyable!"
+      answers: []
+    - text: "\u2026 <ins\xE9rer nom du public>, c\u2019est bien \xE7a?"
+      answers: []
+    - text: "Bien jou\xE9. Vous \xEAtes sur la bonne voie vers la Set Liste Ultime...
+        mais la route est longue et sem\xE9e d\u2019emb\xFBches! "
+      answers: []
+    - text: "Ce qu\u2019il vous faudrait c\u2019est un compagnon de route qui vous
+        aidera en cas de coup dur."
+      answers: []
+    - text: "Je sais! Prenez un fanfaron de poche! Je vous l\u2019offre, il vous
+        sera utile."
+      answers: []
+    reactions: []

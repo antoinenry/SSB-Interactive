@@ -19,8 +19,12 @@ MonoBehaviour:
       localName: Intro
     - serverName: Prophecy
       localName: Prophecy
-    - serverName: LevelSelect
-      localName: LevelSelect
+    - serverName: Map
+      localName: Map
+    - serverName: Shop
+      localName: Shop
+    - serverName: PokeStarter
+      localName: PokeStarter
     - serverName: MovingLogo
       localName: MovingLogo
     - serverName: ShovelKnight
@@ -41,10 +45,8 @@ MonoBehaviour:
       localName: Quizz
     - serverName: Megalovania
       localName: Megalovania
-    - serverName: Shop
-      localName: Shop
-    - serverName: Map
-      localName: Map
+    - serverName: LevelSelect
+      localName: LevelSelect
     - serverName: Logo
       localName: Logo
     - serverName: BlackScreen

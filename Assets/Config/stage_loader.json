@@ -9,8 +9,16 @@
       "localName": "Prophecy"
     },
     {
-      "serverName": "LevelSelect",
-      "localName": "LevelSelect"
+      "serverName": "Map",
+      "localName": "Map"
+    },
+    {
+      "serverName": "Shop",
+      "localName": "Shop"
+    },
+    {
+      "serverName": "PokeStarter",
+      "localName": "PokeStarter"
     },
     {
       "serverName": "MovingLogo",
@@ -53,12 +61,8 @@
       "localName": "Megalovania"
     },
     {
-      "serverName": "Shop",
-      "localName": "Shop"
-    },
-    {
-      "serverName": "Map",
-      "localName": "Map"
+      "serverName": "LevelSelect",
+      "localName": "LevelSelect"
     },
     {
       "serverName": "Logo",
@@ -74,10 +78,7 @@
     }
   ],
   "missingStages": [
-    "Intro",
-    "Prophecy"
+    "PokeStarter"
   ],
-  "otherStages": [
-    null
-  ]
+  "otherStages": []
 }

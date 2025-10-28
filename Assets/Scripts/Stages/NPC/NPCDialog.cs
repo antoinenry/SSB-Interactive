@@ -1,20 +1,31 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NPCDialog : MonoBehaviour
 {
     [Header("Components")]
-    public GUIAnimatedText textField;
+    public Animation animatedGUI;
+    public GUIAnimatedText animatedText;
     public AudienceButtonListener nextButton;
     public NPCDialogChoiceButton[] answerButtons;
     [Header("Content")]
-    [SerializeField] NPCDialogAsset dialog;
+    public NPCDialogAsset dialog;
     [SerializeField] int lineIndex = 0;
     [SerializeField] bool isReacting = false;
     [SerializeField] int reactionIndex = -1;
+    [Header("Sequence")]
+    public bool messageDialogToAdmin = true;
+    public string messageOnDialogEnd = "(fin du dialogue)";
+    public AnimationClip showAnimation;
+    public AnimationClip hideAnimation;
+    public UnityEvent onDialogEnd;
+
+    public bool IsShowingDialog {  get; private set; }
 
     private void Reset()
     {
-        textField = GetComponentInChildren<GUIAnimatedText>(true);
+        animatedGUI = GetComponentInChildren<Animation>(true);
+        animatedText = GetComponentInChildren<GUIAnimatedText>(true);
         answerButtons = GetComponentsInChildren<NPCDialogChoiceButton>(true);
     }
 
@@ -31,9 +42,17 @@ public class NPCDialog : MonoBehaviour
 
     private void OnDisable()
     {
+        IsShowingDialog = false;
         SetButtonListenersActive(false);
         ClearText();
         HideAllButtons();
+    }
+
+    private void Start()
+    {
+        ClearText();
+        HideAllButtons();
+        ShowDialogLine();
     }
 
     private void Update()
@@ -61,7 +80,7 @@ public class NPCDialog : MonoBehaviour
 
     private void ButtonVisibilityUpdate()
     {
-        if (   (textField != null && textField.IsAnimating)
+        if (   (animatedText != null && animatedText.IsAnimating)
             || (dialog == null || lineIndex >= dialog.LineCount)    )
         {
             HideAllButtons();
@@ -100,8 +119,10 @@ public class NPCDialog : MonoBehaviour
 
     public void ShowText(string text)
     {
-        if (textField == null) return;
-        textField.text = text;
+        if (messageDialogToAdmin && text != "" && Application.isPlaying)
+            MessengerAdmin.Send(text);
+        if (animatedText == null) return;
+        animatedText.text = text;
     }
 
     public void ClearText() => ShowText("");
@@ -143,28 +164,34 @@ public class NPCDialog : MonoBehaviour
         if (answerButtons != null) foreach (NPCDialogChoiceButton button in answerButtons) button?.ResetButton();
     }
 
-    private void ShowDialogLine(NPCDialogAsset setDialog, int setLineIndex)
+    public void ShowDialogLine(NPCDialogAsset setDialog, int setLineIndex)
     {
         dialog = setDialog;
         lineIndex = setLineIndex;
         ShowDialogLine();
     }
 
-    private void ShowDialogLine(int setLineIndex) => ShowDialogLine(dialog, setLineIndex);
+    public void ShowDialogLine(int setLineIndex) => ShowDialogLine(dialog, setLineIndex);
 
-    private void ShowDialogLine()
+    public void ShowDialogLine()
     {
         isReacting = false;
+        if (lineIndex < 0)
+        {
+            HideDialog();
+        }
         NPCDialogContent.DynamicLine currentLine = dialog != null ? dialog.GetLine(lineIndex) : NPCDialogContent.DynamicLine.None;
         if (dialog == null || lineIndex >= dialog.LineCount)
         {
-            ClearText();
-            HideAllButtons();
-            return;
+            EndDialog();
         }
-        ShowText(currentLine.text);
-        SetNextButtonActive(currentLine.AnswerCount == 0);
-        ShowAnswerButtons(currentLine.answers);
+        else
+        {
+            ShowDialog();
+            ShowText(currentLine.text);
+            SetNextButtonActive(currentLine.AnswerCount == 0);
+            ShowAnswerButtons(currentLine.answers);
+        }
     } 
 
     private void ShowReactionLine(int setLineIndex, int setReactionIndex)
@@ -178,8 +205,41 @@ public class NPCDialog : MonoBehaviour
 
     private void ShowReactionLine()
     {
+        IsShowingDialog = true;
         isReacting = true;
         HideAllButtons();
         ShowText(dialog.GetReaction(lineIndex, reactionIndex));
+    }
+
+    private void EndDialog()
+    {
+        if (messageDialogToAdmin && messageOnDialogEnd != "" && Application.isPlaying)
+            MessengerAdmin.Send(messageOnDialogEnd);
+        HideDialog();
+        onDialogEnd.Invoke();
+    }
+
+    public void ShowDialog()
+    {
+        if (IsShowingDialog == true) return;
+        if (animatedGUI)
+        {
+            animatedGUI.clip = showAnimation;
+            animatedGUI.Play();
+        }
+        IsShowingDialog = true;
+    }
+
+    public void HideDialog()
+    {
+        ClearText();
+        HideAllButtons();
+        if (IsShowingDialog == false) return;
+        if (animatedGUI)
+        {
+            animatedGUI.clip = hideAnimation;
+            animatedGUI.Play();
+        }
+        IsShowingDialog = false;
     }
 }
