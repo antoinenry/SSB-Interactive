@@ -1,26 +1,33 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class AudienceButtonListener : MonoBehaviour
 {
-    public enum ValueType { Delta, Velocity, Total, Counter }
-
-    [Header("Input source")]
     public string buttonID = "a";
-    public ValueType inputType = ValueType.Delta;
-    public bool smoothInput = false;
-    [Header("Range")]
-    public float maxValue = 10;
-    public bool clampZeroMax = true;
-    [Header("Dynamics")]
-    public bool enableDamping = true;
-    [Min(0f)] public float damping;
-    public bool enableAutoPress = true;
-    public float autoPress = -1f;
-    [Min(0f)] public float autoPressTriggerDelay = 1f;
-    [Header("Output")]
+    public ButtonConfiguration configuration;
     public UnityEvent<float,float> onValueChange;
     public UnityEvent onValueMaxed;
+
+    public enum ValueType { Delta, Velocity, Total, Counter }
+
+    [Serializable]
+    public struct ButtonConfiguration
+    {
+        [Header("Input")]
+        public ValueType inputType;
+        public bool smoothInput;
+        [Header("Range")]
+        public float maxValue;
+        public bool clampZeroMax;
+        [Header("Damping")]
+        public bool enableDamping;
+        [Min(0f)] public float dampingForce;
+        [Header("Autopress")]
+        public bool enableAutoPress;
+        public float autoPressSpeed;
+        [Min(0f)] public float autoPressTriggerDelay;
+    }
 
     public float InputValue { get; private set; }
     public float OutputValue { get; private set; }
@@ -49,9 +56,9 @@ public class AudienceButtonListener : MonoBehaviour
         if (outputValueUpdate != OutputValue)
         {
             OutputValue = outputValueUpdate;
-            onValueChange.Invoke(outputValueUpdate, maxValue);
+            onValueChange.Invoke(outputValueUpdate, configuration.maxValue);
         }
-        if (OutputValue >= maxValue)
+        if (OutputValue >= configuration.maxValue)
         {
             onValueMaxed.Invoke();
         }
@@ -62,7 +69,7 @@ public class AudienceButtonListener : MonoBehaviour
         InputValue = 0f;
         OutputValue = 0f;
         StaticOutputValue = 0f;
-        onValueChange.Invoke(0f, maxValue);
+        onValueChange.Invoke(0f, configuration.maxValue);
     }
 
     private void OnAudienceInput()
@@ -74,12 +81,12 @@ public class AudienceButtonListener : MonoBehaviour
 
     private float GetInputValue()
     {
-        switch (inputType)
+        switch (configuration.inputType)
         {
-            case ValueType.Delta:       return AudienceInput.GetButton(buttonID, new(ButtonValueType.ValueType.Delta, smoothInput));
-            case ValueType.Counter:     return AudienceInput.GetButton(buttonID, new(ButtonValueType.ValueType.Delta, smoothInput));
-            case ValueType.Velocity:    return AudienceInput.GetButton(buttonID, new(ButtonValueType.ValueType.Velocity, smoothInput));
-            case ValueType.Total:       return AudienceInput.GetButton(buttonID, new(ButtonValueType.ValueType.Total, smoothInput));
+            case ValueType.Delta:       return AudienceInput.GetButton(buttonID, new(ButtonValueType.ValueType.Delta, configuration.smoothInput));
+            case ValueType.Counter:     return AudienceInput.GetButton(buttonID, new(ButtonValueType.ValueType.Delta, configuration.smoothInput));
+            case ValueType.Velocity:    return AudienceInput.GetButton(buttonID, new(ButtonValueType.ValueType.Velocity, configuration.smoothInput));
+            case ValueType.Total:       return AudienceInput.GetButton(buttonID, new(ButtonValueType.ValueType.Total, configuration.smoothInput));
             default:                    return 0f;
         }
     }
@@ -87,12 +94,12 @@ public class AudienceButtonListener : MonoBehaviour
     private float ProcessInputValue()
     {
         float processed;
-        if (inputType == ValueType.Counter)
+        if (configuration.inputType == ValueType.Counter)
             processed = OutputValue + InputValue;
         else
             processed = InputValue;
-        if (clampZeroMax)
-            processed = Mathf.Clamp(processed, 0f, maxValue);
+        if (configuration.clampZeroMax)
+            processed = Mathf.Clamp(processed, 0f, configuration.maxValue);
         return processed;
     }
 
@@ -100,21 +107,21 @@ public class AudienceButtonListener : MonoBehaviour
     {
         float processed = StaticOutputValue;
         float deltaTime = Time.deltaTime;
-        if (enableDamping && damping > 0f)
+        if (configuration.enableDamping && configuration.dampingForce > 0f)
         {
-            processed = Mathf.MoveTowards(OutputValue, processed, deltaTime * Mathf.Abs(OutputValue - processed) / damping);
+            processed = Mathf.MoveTowards(OutputValue, processed, deltaTime * Mathf.Abs(OutputValue - processed) / configuration.dampingForce);
         }
-        if (enableAutoPress && autoPress != 0f)
+        if (configuration.enableAutoPress && configuration.autoPressSpeed != 0f)
         {
-            if (autoPressTimer < autoPressTriggerDelay) autoPressTimer += deltaTime;
-            if (autoPressTimer >= autoPressTriggerDelay) processed += deltaTime * autoPress;
+            if (autoPressTimer < configuration.autoPressTriggerDelay) autoPressTimer += deltaTime;
+            if (autoPressTimer >= configuration.autoPressTriggerDelay) processed += deltaTime * configuration.autoPressSpeed;
         }
         return processed;
     }
 
-    public void PressButton(int presses = 1)
+    public void PressButton(float presses = 1f)
     {
-        InputValue += presses;
+        InputValue = presses;
         StaticOutputValue = ProcessInputValue();
         autoPressTimer = 0f;
     }
