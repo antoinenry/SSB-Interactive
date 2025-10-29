@@ -389,15 +389,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: b
-  inputType: 3
-  smoothInput: 0
-  maxValue: 5
-  clampZeroMax: 1
-  enableDamping: 0
-  damping: 1
-  enableAutoPress: 0
-  autoPress: 1
-  autoPressTriggerDelay: 1
+  configuration:
+    inputType: 0
+    smoothInput: 0
+    maxValue: 10
+    clampZeroMax: 0
+    enableDamping: 0
+    dampingForce: 0
+    enableAutoPress: 0
+    autoPressSpeed: 0
+    autoPressTriggerDelay: 0
   onValueChange:
     m_PersistentCalls:
       m_Calls:

@@ -7,8 +7,14 @@ public class AudienceButtonListenerGroup : MonoBehaviour
 {
     [Header("Buttons")]
     public AudienceButtonListener[] buttons;
-    public AudienceButtonListener.ButtonConfiguration buttonConfiguration;
     public bool applyButtonConfiguration = true;
+    public AudienceButtonListener.ButtonConfiguration buttonConfiguration;
+    [Header("Animations")]
+    public Animation[] buttonAnimations;
+    public AnimationClip idleAnimation;
+    public AnimationClip selectedAnimation;
+    public AnimationClip winnerAnimation;
+    public AnimationClip loserAnimation;
     [Header("Auto press")]
     public AutoPressMode autoPress = AutoPressMode.Leader;
     public float autoPressDelay = 3f;
@@ -27,19 +33,20 @@ public class AudienceButtonListenerGroup : MonoBehaviour
     private void Reset()
     {
         buttons = GetComponentsInChildren<AudienceButtonListener>(true);
+        buttonAnimations = GetComponentsInChildren<Animation>(true);
         ApplyButtonConfiguration();
     }
 
     private void OnEnable()
     {
-        autoPressTimer = 0f;
+        ResetButtons();
         SetListenersActive(true);
     }
 
     private void OnDisable()
     {
-        autoPressTimer = 0f;
         SetListenersActive(false);
+        ResetButtons();
     }
 
     private void OnValidate()
@@ -49,6 +56,7 @@ public class AudienceButtonListenerGroup : MonoBehaviour
 
     private void Update()
     {
+        AnimationUpdate();
         if (autoPress != AutoPressMode.Off) AutoPressUpdate(Time.deltaTime);
     }
 
@@ -97,6 +105,13 @@ public class AudienceButtonListenerGroup : MonoBehaviour
     {
         if (RankedButtons == null) UpdateButtonRanking();
         return RankedButtons.Length > 0 ? RankedButtons[0] : null;
+    }
+
+    public int GetLeaderIndex()
+    {
+        if (buttons == null) return -1;
+        AudienceButtonListener leader = GetLeaderButton();
+        return Array.IndexOf(buttons, leader);
     }
 
     public AudienceButtonListener GetRandomButton()
@@ -165,5 +180,42 @@ public class AudienceButtonListenerGroup : MonoBehaviour
         if (targetButton == null) return;
         float autoPressSpeed = autoPressBaseSpeed + (autoPressTimer - autoPressDelay) * autoPressAcceleration;
         targetButton.PressButton(autoPressSpeed * deltaTime);
+    }
+
+    private void AnimationUpdate()
+    {
+        if (buttonAnimations == null) return;
+        int animationCount = buttonAnimations != null ? buttonAnimations.Length : 0;
+        int leaderIndex = GetLeaderIndex();
+        bool leaderWins = HasWinner();
+        AnimationClip leaderAnimation = leaderWins ? winnerAnimation : selectedAnimation;
+        AnimationClip otherAnimation = leaderWins ? loserAnimation : idleAnimation;
+
+        for (int i = 0; i < animationCount; i++)
+        {
+            if (buttonAnimations[i] == null) continue;
+            buttonAnimations[i].clip = i == leaderIndex ? leaderAnimation : otherAnimation;
+            buttonAnimations[i].Play();
+                
+        }
+    }
+
+    public bool HasWinner()
+    {
+        AudienceButtonListener leader = GetLeaderButton();
+        if (leader == null) return false;
+        return leader.IsMaxed;
+    }
+    public void ResetButtons()
+    {
+        autoPressTimer = 0f;
+        if (buttons == null) return;
+        foreach (AudienceButtonListener b in buttons) if (b) b.ResetButton();
+    }
+
+    public void SetButtonsEnabled(bool setEnabled)
+    {
+        if (buttons == null) return;
+        foreach (AudienceButtonListener b in buttons) if (b) b.enabled = setEnabled;
     }
 }

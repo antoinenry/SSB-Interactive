@@ -58,7 +58,7 @@ public class AudienceButtonListener : MonoBehaviour
             OutputValue = outputValueUpdate;
             onValueChange.Invoke(outputValueUpdate, configuration.maxValue);
         }
-        if (OutputValue >= configuration.maxValue)
+        if (IsMaxed)
         {
             onValueMaxed.Invoke();
         }
@@ -125,4 +125,6 @@ public class AudienceButtonListener : MonoBehaviour
         StaticOutputValue = ProcessInputValue();
         autoPressTimer = 0f;
     }
+
+    public bool IsMaxed => OutputValue >= configuration.maxValue;
 }
