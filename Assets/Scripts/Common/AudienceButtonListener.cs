@@ -20,9 +20,6 @@ public class AudienceButtonListener : MonoBehaviour
         [Header("Range")]
         public float maxValue;
         public bool clampZeroMax;
-        [Header("Damping")]
-        public bool enableDamping;
-        [Min(0f)] public float dampingForce;
         [Header("Autopress")]
         public bool enableAutoPress;
         public float autoPressSpeed;
@@ -52,7 +49,7 @@ public class AudienceButtonListener : MonoBehaviour
 
     private void Update()
     {
-        float outputValueUpdate = ProcessDynamicValue();
+        float outputValueUpdate = ProcessDynamicValue(Time.deltaTime);
         if (outputValueUpdate != OutputValue)
         {
             OutputValue = outputValueUpdate;
@@ -103,14 +100,9 @@ public class AudienceButtonListener : MonoBehaviour
         return processed;
     }
 
-    private float ProcessDynamicValue()
+    private float ProcessDynamicValue(float deltaTime)
     {
-        float processed = StaticOutputValue;
-        float deltaTime = Time.deltaTime;
-        if (configuration.enableDamping && configuration.dampingForce > 0f)
-        {
-            processed = Mathf.MoveTowards(OutputValue, processed, deltaTime * Mathf.Abs(OutputValue - processed) / configuration.dampingForce);
-        }
+        float processed = OutputValue;
         if (configuration.enableAutoPress && configuration.autoPressSpeed != 0f)
         {
             if (autoPressTimer < configuration.autoPressTriggerDelay) autoPressTimer += deltaTime;
@@ -123,7 +115,7 @@ public class AudienceButtonListener : MonoBehaviour
     {
         InputValue = presses;
         StaticOutputValue = ProcessInputValue();
-        autoPressTimer = 0f;
+        //autoPressTimer = 0f;
     }
 
     public bool IsMaxed => OutputValue >= configuration.maxValue;

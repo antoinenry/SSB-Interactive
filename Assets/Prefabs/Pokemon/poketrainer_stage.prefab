@@ -1145,8 +1145,6 @@ MonoBehaviour:
     smoothInput: 0
     maxValue: 10
     clampZeroMax: 0
-    enableDamping: 0
-    dampingForce: 0
     enableAutoPress: 0
     autoPressSpeed: 0
     autoPressTriggerDelay: 0
