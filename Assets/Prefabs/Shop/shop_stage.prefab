@@ -2504,28 +2504,7 @@ MonoBehaviour:
       Killer","duration":210,"bpm":128,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8431,"title":"Rock
       N Stone","duration":210,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8961,"title":"Fall
       Guys","duration":210,"bpm":148,"zgg":80.0,"minigame":false,"stage":{"id":8371,"title":"MovingLogo","hasScore":false,"stageMoments":[]}}]'
-  addSongChoiceRequest:
-    requestType: 1
-    requestUri: setlists/songs/{setlist_id}/chosen/{song_id}
-    parameters:
-    - setlist_id
-    - song_id
-    parametersFormat: 0
-    requestTimeout: 5
-    loop: 3
-    maxLoops: 2
-    minLoopDuration: 5
-    onRequestSend:
-      m_PersistentCalls:
-        m_Calls: []
-    onRequestEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    status: 0
-    failureInfo: 0
-    responseTime: 0
-    loopCount: 0
-    responseBody: 
+  socketClient: {fileID: 0}
   cartContentMessagePrefix: 'Panier : '
   buyingMessage: Achat en cours...
   onBuyItem:

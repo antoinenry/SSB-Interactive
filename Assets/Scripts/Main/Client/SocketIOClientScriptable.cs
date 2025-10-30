@@ -12,7 +12,7 @@ public class SocketIOClientScriptable : ScriptableObject
     public string serverUrl = "https://smash3000.ovh";
     public SocketIOClientOptions options = SocketIOClientOptions.Default;
 
-    private SocketIOClient.SocketIO client;
+    public SocketIOClient.SocketIO client;
     private Task connectionTask;
     private List<Task> emissionTasks;
     private string connectionError;
@@ -201,7 +201,7 @@ public class SocketIOClientScriptable : ScriptableObject
         emissionTasks.Add(newTask);
     }
 
-    async private Task EmitAsync(int taskIndex, string eventName, params object[] parameters)
+    async public Task EmitAsync(int taskIndex, string eventName, params object[] parameters)
     {
         try
         {

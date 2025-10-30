@@ -1,4 +1,5 @@
 using System;
+using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,6 +15,7 @@ namespace Map
         [Header("Output")]
         [SerializeField] private MapNode currentNode;
         public HttpRequestLoop addSongChoiceRequest = new(HttpRequest.RequestType.POST, "setlists/songs/{setlist_id}/chosen/{song_id}", HttpRequestLoop.ParameterFormat.Path);
+        public SocketIOClientScriptable socketClient;
         public string choiceMessage = "Morceau choisi : ";
 
         public UnityEvent onValidateNodeChoice;
@@ -26,6 +28,10 @@ namespace Map
 
         private void OnEnable()
         {
+            if (socketClient == null)
+            {
+                socketClient = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
+            }
             GetLayoutInChildren();
             AddNavigatorListeners();
         }
@@ -212,22 +218,12 @@ namespace Map
         {
             if (currentNode == null) return;
             PauseNavigation();
-            if (addSongChoiceRequest != null)
+            if (socketClient != null)
             {
-                int setlistId = ConcertAdmin.Current != null ? ConcertAdmin.Current.state.setlist.databaseID : -1;
-                int songId = currentNode.song.databaseID;
-                addSongChoiceRequest.parameters = new string[] { setlistId.ToString(), songId.ToString() };
-                addSongChoiceRequest.onRequestEnd.AddListener(OnAddSongChoiceRequestEnd);
-                addSongChoiceRequest.StartRequestCoroutine(this, restart: true);
+                socketClient.Emit("choice", currentNode.song.databaseID);
+                MessengerAdmin.Send(NodeChoiceMessage);
             }
             onValidateNodeChoice.Invoke();
-        }
-
-        private void OnAddSongChoiceRequestEnd(HttpRequest request)
-        {
-            MessengerAdmin.Send(NodeChoiceMessage);
-            if (addSongChoiceRequest != null)
-                addSongChoiceRequest.onRequestEnd.RemoveListener(OnAddSongChoiceRequestEnd);
         }
 
         private string NodeChoiceMessage => choiceMessage + currentNode.nodeName;
