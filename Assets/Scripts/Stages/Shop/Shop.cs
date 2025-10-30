@@ -35,7 +35,7 @@ namespace Shop
         public string skipSlotsAfterTitle = "Mii";
         [Header("Web")]
         public HttpRequestLoop songPoolRequest = new(HttpRequest.RequestType.GET, "songs/available/{setlist_id}", HttpRequestLoop.ParameterFormat.Query);
-        public HttpRequestLoop addSongChoiceRequest = new(HttpRequest.RequestType.POST, "setlists/songs/{setlist_id}/chosen/{song_id}", HttpRequestLoop.ParameterFormat.Path);
+        public SocketIOClientScriptable socketClient;
         public string cartContentMessagePrefix = "Panier : ";
         public string buyingMessage = "Achat en cours...";
         [Header("Events")]
@@ -47,6 +47,10 @@ namespace Shop
 
         protected void OnEnable()
         {
+            if (socketClient == null)
+            {
+                socketClient = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
+            }
             ClearInventory();
             RefreshSongPool();
             InitCart();
@@ -237,25 +241,13 @@ namespace Shop
             RemoveSongFromPool(item.song);
             FillInventory();
             // Update setlist
-            if (addSongChoiceRequest != null)
+            if (socketClient != null)
             {
-                int setlistId = ConcertAdmin.Current != null ? ConcertAdmin.Current.state.setlist.databaseID : -1;
-                int songId = item.song.databaseID;
-                addSongChoiceRequest.parameters = new string[] { setlistId.ToString(), songId.ToString() };
-                addSongChoiceRequest.onRequestEnd.AddListener(OnAddSongChoiceRequestEnd);
-                addSongChoiceRequest.StartRequestCoroutine(this, restart: true);
+                socketClient.Emit("choice", item.song.databaseID);
+                MessengerAdmin.Send(CartContentMessage);
             }
             // Notify purchase
             onBuyItem.Invoke(item);
-        }
-
-        private void OnAddSongChoiceRequestEnd(HttpRequest request)
-        {
-            MessengerAdmin.Send(CartContentMessage);
-            if (addSongChoiceRequest != null)
-            {
-                addSongChoiceRequest.onRequestEnd.RemoveListener(OnAddSongChoiceRequestEnd);
-            }
         }
 
         private string CartContentMessage

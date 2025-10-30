@@ -3,16 +3,15 @@ using System.Text.Json;
 using UnityEditor.UIElements;
 using UnityEngine;
 
-[Serializable]
-public struct AdminText
+public class AdminText
 {
-    public string text;
-    public float duration;
+    public string Message { get; set; }
+    public float Duration { get; set; }
 
     public AdminText(string text, float duration)
     {
-        this.text = text;
-        this.duration = duration;
+        this.Message = text;
+        this.Duration = duration;
     }
 }
 
@@ -48,7 +47,11 @@ public class MessengerAdmin : MonoBehaviourSingleton<MessengerAdmin>
         text = t;
         if (!HasAllComponents()) return;
         AdminText message = new(t, duration);
-        client.Emit(eventName, JsonSerializer.Serialize(message));
+        JsonSerializerOptions options = new JsonSerializerOptions {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+        String jsonMessage = JsonSerializer.Serialize(message, options);
+        client.Emit(eventName, jsonMessage);
     }
 
     static public void Send(string t)
