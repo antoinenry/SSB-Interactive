@@ -372,9 +372,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cec8bb7e127c1541afcd8d69bd7d06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 3531675159423714150}
   gaugeFill: {fileID: 471105730585404990}
-  value: 5
-  maxValue: 5
+  value: 6
+  maxValue: 10
   showGauge: 1
 --- !u!114 &3531675159423714150
 MonoBehaviour:
@@ -385,35 +386,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 471105730586910662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: a
   configuration:
-    inputType: 0
+    inputType: 1
     smoothInput: 0
     maxValue: 10
-    clampZeroMax: 0
-    enableDamping: 0
-    dampingForce: 0
+    clampZeroMax: 1
     enableAutoPress: 0
     autoPressSpeed: 0
-    autoPressTriggerDelay: 0
+    autoPressDelay: 0
   onValueChange:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 471105730586910660}
-        m_TargetAssemblyTypeName: GUIAudienceButton, Assembly-CSharp
-        m_MethodName: SetValues
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onValueMaxed:
     m_PersistentCalls:
       m_Calls: []

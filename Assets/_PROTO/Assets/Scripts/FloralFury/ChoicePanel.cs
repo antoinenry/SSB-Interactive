@@ -55,9 +55,9 @@ public class ChoicePanel : MonoBehaviour
 
     private void OnEnable()
     {
-        leftStartCount = (int)AudienceInput.GetButtonRaw(leftButtonID).Total;
-        middleStartCount = (int)AudienceInput.GetButtonRaw(middleButtonID).Total;
-        rightStartCount = (int)AudienceInput.GetButtonRaw(rightButtonID).Total;
+        leftStartCount = (int)AudienceInputSource.Current.GetButton(leftButtonID).totalPresses;
+        middleStartCount = (int)AudienceInputSource.Current.GetButton(middleButtonID).totalPresses;
+        rightStartCount = (int)AudienceInputSource.Current.GetButton(rightButtonID).totalPresses;
         UnlockChoice();
     }
 
@@ -86,9 +86,9 @@ public class ChoicePanel : MonoBehaviour
     private void Update()
     {
         if (locked) return;
-        leftCounter = (int)AudienceInput.GetButtonRaw(leftButtonID).Total - leftStartCount;
-        middleCounter = (int)AudienceInput.GetButtonRaw(middleButtonID).Total - middleStartCount;
-        rightCounter = (int)AudienceInput.GetButtonRaw(rightButtonID).Total - rightStartCount;
+        leftCounter = (int)AudienceInputSource.Current.GetButton(leftButtonID).totalPresses - leftStartCount;
+        middleCounter = (int)AudienceInputSource.Current.GetButton(middleButtonID).totalPresses - middleStartCount;
+        rightCounter = (int)AudienceInputSource.Current.GetButton(rightButtonID).totalPresses - rightStartCount;
 
         float sum = leftCounter + middleCounter + rightCounter;
         float normalizer = sum != 0f ? 1f / sum : 0f;

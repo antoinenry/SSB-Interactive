@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6093147530031307753}
   - component: {fileID: 6093147530031307758}
   m_Layer: 0
-  m_Name: poketrainer_stage
+  m_Name: pokeStarter_stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   npc: {fileID: 1048683575754537827}
-  selector: {fileID: 1208641246}
+  selector: {fileID: 3841054799375957558}
   introDialog: {fileID: 11400000, guid: 0905c5f4315312c4dbc03b703f60d3df, type: 2}
   outroDialog: {fileID: 11400000, guid: 8c2609393e79f3546a64f08f16d30515, type: 2}
 --- !u!1 &6179586511707778082
@@ -732,10 +732,10 @@ RectTransform:
   m_Father: {fileID: 6179586512616728702}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1583.3333, y: -325}
-  m_SizeDelta: {x: 573.3333, y: 550}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6179586512965361836
 CanvasRenderer:
@@ -830,10 +830,10 @@ RectTransform:
   m_Father: {fileID: 6179586512616728702}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 336.66666, y: -325}
-  m_SizeDelta: {x: 573.3333, y: 550}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6179586513212369073
 CanvasRenderer:
@@ -928,10 +928,10 @@ RectTransform:
   m_Father: {fileID: 6179586512616728702}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -325}
-  m_SizeDelta: {x: 573.3333, y: 550}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6179586513236275555
 CanvasRenderer:
@@ -1101,12 +1101,12 @@ GameObject:
   - component: {fileID: 6179586513318505404}
   - component: {fileID: 1208641246}
   m_Layer: 0
-  m_Name: pokestarter_selection
+  m_Name: pokeStarter_selection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6179586513318505404
 Transform:
   m_ObjectHideFlags: 0
@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6179586513318505407}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3b7ee615d3ecfe4a818f113c775a308, type: 3}
+  m_Script: {fileID: 11500000, guid: df9ca8806a01aad42a5b3bdb84ab88a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttons:
@@ -1141,13 +1141,16 @@ MonoBehaviour:
   - {fileID: 7260166441444533964}
   applyButtonConfiguration: 1
   buttonConfiguration:
-    inputType: 3
-    smoothInput: 0
-    maxValue: 10
+    inputType: 0
+    maxValue: 0
     clampZeroMax: 0
     enableAutoPress: 0
     autoPressSpeed: 0
-    autoPressTriggerDelay: 0
+    autoPressDelay: 0
+  autoPress: 2
+  autoPressDelay: 3
+  autoPressBaseSpeed: 1
+  autoPressAcceleration: 1
   buttonAnimations:
   - {fileID: 4750093919187207863}
   - {fileID: 5399453365506647743}
@@ -1156,10 +1159,6 @@ MonoBehaviour:
   selectedAnimation: {fileID: 7400000, guid: 2be62d66b393b7041931ffc09d355fbe, type: 2}
   winnerAnimation: {fileID: 0}
   loserAnimation: {fileID: 7400000, guid: b8f905241cd1da74ab024dfc1a89b5f7, type: 2}
-  autoPress: 2
-  autoPressDelay: 10
-  autoPressBaseSpeed: 1
-  autoPressAcceleration: 1
   onRankingChange:
     m_PersistentCalls:
       m_Calls: []
@@ -1343,11 +1342,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: configuration.maxValue
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: configuration.inputType
-      value: 3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
+      propertyPath: configuration.clampZeroMax
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
@@ -1364,7 +1367,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6179586511909733061
@@ -1382,13 +1385,17 @@ PrefabInstance:
       propertyPath: text
       value: "J\u2019ai tout entendu! Quelle setliste incroyable!"
       objectReference: {fileID: 0}
+    - target: {fileID: 6579725067914310807, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6579725069097335209, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_text
       value: "Dresseur de pok\xE9fanfaron"
       objectReference: {fileID: 0}
     - target: {fileID: 6579725069437532576, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_Name
-      value: pokestarter_dialog
+      value: pokeStarter_dialog
       objectReference: {fileID: 0}
     - target: {fileID: 6579725069437532576, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_IsActive
@@ -1442,6 +1449,22 @@ PrefabInstance:
       propertyPath: dialog
       value: 
       objectReference: {fileID: 11400000, guid: 0905c5f4315312c4dbc03b703f60d3df, type: 2}
+    - target: {fileID: 7659750839756637531, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659750839911964351, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659750840046985845, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659750840206145694, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
 --- !u!114 &1048683575754537827 stripped
@@ -1460,6 +1483,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6579725069437532577, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
   m_PrefabInstance: {fileID: 6179586511909733061}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3841054799375957558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6957049650967756019, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+  m_PrefabInstance: {fileID: 6179586511909733061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9ca8806a01aad42a5b3bdb84ab88a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6179586512252341925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1561,11 +1595,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: configuration.maxValue
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: configuration.inputType
-      value: 3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
+      propertyPath: configuration.clampZeroMax
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
@@ -1582,7 +1620,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6179586512668781697
@@ -1686,11 +1724,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.maxValue
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.inputType
-      value: 3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
+      propertyPath: configuration.clampZeroMax
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
@@ -1707,6 +1749,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

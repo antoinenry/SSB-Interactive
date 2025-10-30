@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 // Keeps track of button counts though http client.
-
 public class ClientButtonTracker : MonoBehaviour
 {
+    public HttpRequestLoop requestLoop;
     public UnityEvent<bool> onSetEnabled;
     public UnityEvent<MultipleButtonTimedCount> onCountUpdate;
     public MultipleButtonTimedCount Current { get; protected set; }
@@ -78,8 +78,6 @@ public class ClientButtonTracker : MonoBehaviour
         }
     }
     #endregion
-
-    public HttpRequestLoop requestLoop;
 
     private void OnEnable()
     {

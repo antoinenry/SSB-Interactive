@@ -7,19 +7,19 @@ public class AudienceButtonListenerGroup : MonoBehaviour
 {
     [Header("Buttons")]
     public AudienceButtonListener[] buttons;
-    public bool applyButtonConfiguration = true;
-    public AudienceButtonListener.ButtonConfiguration buttonConfiguration;
+    public bool applyButtonConfiguration = false;
+    public AudienceButtonListener.Configuration buttonConfiguration;
+    [Header("Auto press")]
+    public AutoPressMode autoPress = AutoPressMode.Leader;
+    public float autoPressDelay = 3f;
+    public float autoPressBaseSpeed = 1f;
+    public float autoPressAcceleration = 1f;
     [Header("Animations")]
     public Animation[] buttonAnimations;
     public AnimationClip idleAnimation;
     public AnimationClip selectedAnimation;
     public AnimationClip winnerAnimation;
     public AnimationClip loserAnimation;
-    [Header("Auto press")]
-    public AutoPressMode autoPress = AutoPressMode.Leader;
-    public float autoPressDelay = 3f;
-    public float autoPressBaseSpeed = 1f;
-    public float autoPressAcceleration = 1f;
     [Header("Events")]
     public UnityEvent onRankingChange;
     public UnityEvent onButtonMaxed;

@@ -5,7 +5,6 @@ public class GUIButtonCountSlider : MonoBehaviour
 {
     public string buttonID;
     public bool adaptMaxValue = true;
-    public ButtonValueType valueType;
     public float accelerationScaleEffect = 1.5f;
     public float accelerationScaleEffectCooldown = .5f;
 
@@ -25,7 +24,7 @@ public class GUIButtonCountSlider : MonoBehaviour
     private void Update()
     {
         if (slider == null) return;
-        float buttonValue = AudienceInput.GetButton(buttonID, valueType);
+        float buttonValue = AudienceInputSource.Current.GetButton(buttonID).deltaPresses;
         if (adaptMaxValue) slider.maxValue = Mathf.Max(buttonValue, slider.maxValue);
         float delta = buttonValue - slider.value;
         slider.value = buttonValue;

@@ -211,14 +211,6 @@ public class NPCDialog : MonoBehaviour
         ShowText(dialog.GetReaction(lineIndex, reactionIndex));
     }
 
-    private void EndDialog()
-    {
-        if (messageDialogToAdmin && messageOnDialogEnd != "" && Application.isPlaying)
-            MessengerAdmin.Send(messageOnDialogEnd);
-        HideDialog();
-        onDialogEnd.Invoke();
-    }
-
     public void ShowDialog()
     {
         if (IsShowingDialog == true) return;
@@ -241,5 +233,16 @@ public class NPCDialog : MonoBehaviour
             animatedGUI.Play();
         }
         IsShowingDialog = false;
+    }
+
+    public void EndDialog()
+    {
+        if (messageDialogToAdmin && messageOnDialogEnd != "" && Application.isPlaying)
+            MessengerAdmin.Send(messageOnDialogEnd);
+        HideDialog();
+        lineIndex = dialog != null ? dialog.LineCount : -1;
+        isReacting = false;
+        reactionIndex = -1;
+        onDialogEnd.Invoke();
     }
 }

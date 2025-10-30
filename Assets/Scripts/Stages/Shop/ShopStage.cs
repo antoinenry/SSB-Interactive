@@ -1,4 +1,3 @@
-using UnityEditorInternal.Profiling;
 using UnityEngine;
 
 namespace Shop
@@ -82,7 +81,7 @@ namespace Shop
 
         private void HideDialog()
         {
-            if (npc != null) npc.HideDialog();
+            if (npc != null) npc.EndDialog();
         }
 
         private void HideShop()

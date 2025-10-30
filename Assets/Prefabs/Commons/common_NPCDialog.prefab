@@ -566,33 +566,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6579725067695540982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: a
   configuration:
-    inputType: 3
-    smoothInput: 0
+    inputType: 1
     maxValue: 10
     clampZeroMax: 0
     enableAutoPress: 1
     autoPressSpeed: 1
-    autoPressTriggerDelay: 3
+    autoPressDelay: 1
   onValueChange:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6579725069080461616}
-        m_TargetAssemblyTypeName: GUIAudienceButton, Assembly-CSharp
-        m_MethodName: SetValues
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onValueMaxed:
     m_PersistentCalls:
       m_Calls: []
@@ -670,7 +657,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -839,7 +826,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6579725067914310807}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3b7ee615d3ecfe4a818f113c775a308, type: 3}
+  m_Script: {fileID: 11500000, guid: df9ca8806a01aad42a5b3bdb84ab88a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttons:
@@ -849,22 +836,21 @@ MonoBehaviour:
   - {fileID: 7659750839911964351}
   applyButtonConfiguration: 1
   buttonConfiguration:
-    inputType: 3
-    smoothInput: 0
+    inputType: 1
     maxValue: 10
     clampZeroMax: 1
     enableAutoPress: 0
     autoPressSpeed: 0
-    autoPressTriggerDelay: 0
+    autoPressDelay: 0
+  autoPress: 2
+  autoPressDelay: 1
+  autoPressBaseSpeed: 1
+  autoPressAcceleration: 0
   buttonAnimations: []
   idleAnimation: {fileID: 0}
   selectedAnimation: {fileID: 0}
   winnerAnimation: {fileID: 0}
   loserAnimation: {fileID: 0}
-  autoPress: 2
-  autoPressDelay: 3
-  autoPressBaseSpeed: 1
-  autoPressAcceleration: 1
   onRankingChange:
     m_PersistentCalls:
       m_Calls: []
@@ -1680,9 +1666,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cec8bb7e127c1541afcd8d69bd7d06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 6579725067695540980}
   gaugeFill: {fileID: 6579725067801233886}
-  value: 5
-  maxValue: 5
+  value: 0
+  maxValue: 10
   showGauge: 1
 --- !u!1 &6579725069097335211
 GameObject:
@@ -2181,8 +2168,12 @@ PrefabInstance:
       value: button_B
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
+      propertyPath: configuration.maxValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: configuration.inputType
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: configuration.clampZeroMax
@@ -2203,7 +2194,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6579725068496428505
@@ -2306,8 +2297,12 @@ PrefabInstance:
       value: y
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
+      propertyPath: configuration.maxValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.inputType
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.clampZeroMax
@@ -2328,7 +2323,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6579725068739886072
@@ -2427,8 +2422,12 @@ PrefabInstance:
       value: button_X
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
+      propertyPath: configuration.maxValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: configuration.inputType
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: configuration.clampZeroMax
@@ -2449,7 +2448,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6579725068883304723
@@ -2548,8 +2547,12 @@ PrefabInstance:
       value: button_A
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
+      propertyPath: configuration.maxValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531675159423714150, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
       propertyPath: configuration.inputType
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
       propertyPath: configuration.clampZeroMax
@@ -2570,6 +2573,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

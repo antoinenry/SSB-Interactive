@@ -102,10 +102,10 @@ public class Quizz : MonoBehaviour
 
     private void ResetAnswerCount()
     {
-        startingValueA = AudienceInput.GetButtonRaw("a").Total;
-        startingValueB = AudienceInput.GetButtonRaw("b").Total;
-        startingValueX = AudienceInput.GetButtonRaw("x").Total;
-        startingValueY = AudienceInput.GetButtonRaw("y").Total;
+        startingValueA = AudienceInputSource.Current.GetButton("a").totalPresses;
+        startingValueB = AudienceInputSource.Current.GetButton("b").totalPresses;
+        startingValueX = AudienceInputSource.Current.GetButton("x").totalPresses;
+        startingValueY = AudienceInputSource.Current.GetButton("y").totalPresses;
         aSlider.value = 0;
         bSlider.value = 0;
         xSlider.value = 0;
@@ -190,10 +190,10 @@ public class Quizz : MonoBehaviour
             answerDisplayY.text = question.answerY;
             answerDisplayY.color = normalColor;
         }
-        ySlider.value = AudienceInput.GetButtonRaw("y").Total - startingValueY;
-        xSlider.value = AudienceInput.GetButtonRaw("x").Total - startingValueX;
-        bSlider.value = AudienceInput.GetButtonRaw("b").Total - startingValueB;
-        aSlider.value = AudienceInput.GetButtonRaw("a").Total - startingValueA;
+        ySlider.value = AudienceInputSource.Current.GetButton("y").totalPresses - startingValueY;
+        xSlider.value = AudienceInputSource.Current.GetButton("x").totalPresses - startingValueX;
+        bSlider.value = AudienceInputSource.Current.GetButton("b").totalPresses - startingValueB;
+        aSlider.value = AudienceInputSource.Current.GetButton("a").totalPresses - startingValueA;
         SliderBalance();
 
         if (timerSlider != null)
