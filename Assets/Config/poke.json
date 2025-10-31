@@ -1,0 +1,22 @@
+{
+  "pokeFanf_left": {
+    "pokeName": "Grotuyo",
+    "musicianName": "DeGnou"
+  },
+  "pokeFanf_middle": {
+    "pokeName": "Saxoxoxo",
+    "musicianName": "Gratin"
+  },
+  "pokeFanf_right": {
+    "pokeName": "Cooliss",
+    "musicianName": "Antoine"
+  },
+  "pokeFanf_ally": {
+    "pokeName": "",
+    "musicianName": ""
+  },
+  "pokeFanf_ennemy": {
+    "pokeName": "",
+    "musicianName": ""
+  }
+}

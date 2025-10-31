@@ -54,9 +54,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   npc: {fileID: 1048683575754537827}
-  selector: {fileID: 3841054799375957558}
+  selector: {fileID: 5339358818045074698}
   introDialog: {fileID: 11400000, guid: 0905c5f4315312c4dbc03b703f60d3df, type: 2}
   outroDialog: {fileID: 11400000, guid: 8c2609393e79f3546a64f08f16d30515, type: 2}
+  config: {fileID: 11400000, guid: bc672a51a1768414384fe903e3ebcc94, type: 2}
 --- !u!1 &6179586511707778082
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,9 +124,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'TUBITUBE
-
-    niveau 1'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6eb65c8f8f6b01540b312919a8dc0dfa, type: 2}
   m_sharedMaterial: {fileID: -4822564077284020679, guid: 6eb65c8f8f6b01540b312919a8dc0dfa, type: 2}
@@ -152,7 +151,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.25
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -260,9 +259,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'CLIPPY
-
-    niveau 1'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6eb65c8f8f6b01540b312919a8dc0dfa, type: 2}
   m_sharedMaterial: {fileID: -4822564077284020679, guid: 6eb65c8f8f6b01540b312919a8dc0dfa, type: 2}
@@ -289,7 +286,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.25
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -397,9 +394,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SAXOXO
-
-    niveau 1'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6eb65c8f8f6b01540b312919a8dc0dfa, type: 2}
   m_sharedMaterial: {fileID: -4822564077284020679, guid: 6eb65c8f8f6b01540b312919a8dc0dfa, type: 2}
@@ -426,7 +421,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.25
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -704,6 +699,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6179586512965361839}
+  - component: {fileID: 480523562395855835}
   - component: {fileID: 6179586512965361836}
   - component: {fileID: 411121657}
   - component: {fileID: 7273930564981277528}
@@ -737,6 +733,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &480523562395855835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6179586512965361838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3bbad79690c8e4eb72a1e52a9b0b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 7260166441444533964}
+  item:
+    pokeName: 
+    musicianName: 
+  onItemValueChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemValueMaxed:
+    m_PersistentCalls:
+      m_Calls: []
+  label: {fileID: 6179586511812406445}
 --- !u!222 &6179586512965361836
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -784,7 +803,7 @@ Animation:
   m_GameObject: {fileID: 6179586512965361838}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: aacd152c7ad9b2040b585257790f110c, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 7400000, guid: aacd152c7ad9b2040b585257790f110c, type: 2}
   - {fileID: 7400000, guid: 2be62d66b393b7041931ffc09d355fbe, type: 2}
@@ -802,6 +821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6179586513212369072}
+  - component: {fileID: 3173296718081327838}
   - component: {fileID: 6179586513212369073}
   - component: {fileID: 1003308559}
   - component: {fileID: 4750093919187207863}
@@ -835,6 +855,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3173296718081327838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6179586513212369075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3bbad79690c8e4eb72a1e52a9b0b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 7260166441605598659}
+  item:
+    pokeName: 
+    musicianName: 
+  onItemValueChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemValueMaxed:
+    m_PersistentCalls:
+      m_Calls: []
+  label: {fileID: 6179586511707778080}
 --- !u!222 &6179586513212369073
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -882,7 +925,7 @@ Animation:
   m_GameObject: {fileID: 6179586513212369075}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: aacd152c7ad9b2040b585257790f110c, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 7400000, guid: aacd152c7ad9b2040b585257790f110c, type: 2}
   - {fileID: 7400000, guid: 2be62d66b393b7041931ffc09d355fbe, type: 2}
@@ -900,6 +943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6179586513236275554}
+  - component: {fileID: 9081929855578406927}
   - component: {fileID: 6179586513236275555}
   - component: {fileID: 1843914177}
   - component: {fileID: 5399453365506647743}
@@ -933,6 +977,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9081929855578406927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6179586513236275549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3bbad79690c8e4eb72a1e52a9b0b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 7260166442273697767}
+  item:
+    pokeName: 
+    musicianName: 
+  onItemValueChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemValueMaxed:
+    m_PersistentCalls:
+      m_Calls: []
+  label: {fileID: 6179586511731024321}
 --- !u!222 &6179586513236275555
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -980,7 +1047,7 @@ Animation:
   m_GameObject: {fileID: 6179586513236275549}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: aacd152c7ad9b2040b585257790f110c, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 7400000, guid: aacd152c7ad9b2040b585257790f110c, type: 2}
   - {fileID: 7400000, guid: 2be62d66b393b7041931ffc09d355fbe, type: 2}
@@ -1099,14 +1166,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6179586513318505404}
+  - component: {fileID: 5339358818045074698}
   - component: {fileID: 1208641246}
   m_Layer: 0
-  m_Name: pokeStarter_selection
+  m_Name: pokeStarter_selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6179586513318505404
 Transform:
   m_ObjectHideFlags: 0
@@ -1123,6 +1191,39 @@ Transform:
   m_Father: {fileID: 6093147530031307753}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5339358818045074698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6179586513318505407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ea226349d024544afc939c08570ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonGroup: {fileID: 0}
+  selectors:
+  - {fileID: 3173296718081327838}
+  - {fileID: 9081929855578406927}
+  - {fileID: 480523562395855835}
+  config:
+    pokeFanf_left:
+      pokeName: Celui de gauche
+      musicianName: GAUCHE
+    pokeFanf_middle:
+      pokeName: Celui du milieu
+      musicianName: MILIEU
+    pokeFanf_right:
+      pokeName: Celui de droite
+      musicianName: DROITE
+    pokeFanf_ally:
+      pokeName: 
+      musicianName: 
+    pokeFanf_ennemy:
+      pokeName: 
+      musicianName: 
 --- !u!114 &1208641246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1139,25 +1240,26 @@ MonoBehaviour:
   - {fileID: 7260166441605598659}
   - {fileID: 7260166442273697767}
   - {fileID: 7260166441444533964}
-  applyButtonConfiguration: 1
   buttonConfiguration:
-    inputType: 0
-    maxValue: 0
-    clampZeroMax: 0
+    inputType: 1
+    maxValue: 10
+    clampZeroMax: 1
     enableAutoPress: 0
-    autoPressSpeed: 0
+    autoPressSpeed: 1
     autoPressDelay: 0
+  applyButtonConfiguration: 1
+  disableLosers: 1
   autoPress: 2
-  autoPressDelay: 3
+  autoPressDelay: 10
   autoPressBaseSpeed: 1
-  autoPressAcceleration: 1
+  autoPressAcceleration: 0
   buttonAnimations:
   - {fileID: 4750093919187207863}
   - {fileID: 5399453365506647743}
   - {fileID: 7273930564981277528}
   idleAnimation: {fileID: 7400000, guid: aacd152c7ad9b2040b585257790f110c, type: 2}
   selectedAnimation: {fileID: 7400000, guid: 2be62d66b393b7041931ffc09d355fbe, type: 2}
-  winnerAnimation: {fileID: 0}
+  winnerAnimation: {fileID: 7400000, guid: 2be62d66b393b7041931ffc09d355fbe, type: 2}
   loserAnimation: {fileID: 7400000, guid: b8f905241cd1da74ab024dfc1a89b5f7, type: 2}
   onRankingChange:
     m_PersistentCalls:
@@ -1248,6 +1350,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6179586512965361839}
     m_Modifications:
+    - target: {fileID: 471105730585404990, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471105730586910660, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
+      propertyPath: value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471105730586910660, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
+      propertyPath: maxValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 471105730586910661, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1338,19 +1452,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: configuration.maxValue
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: configuration.inputType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: configuration.clampZeroMax
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
+      propertyPath: configuration.autoPressSpeed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
@@ -1365,7 +1483,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 6179586511873697194}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
@@ -1384,6 +1502,10 @@ PrefabInstance:
     - target: {fileID: 6579725067420259655, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: text
       value: "J\u2019ai tout entendu! Quelle setliste incroyable!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579725067473962905, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0243303
       objectReference: {fileID: 0}
     - target: {fileID: 6579725067914310807, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_IsActive
@@ -1483,17 +1605,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6579725069437532577, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
   m_PrefabInstance: {fileID: 6179586511909733061}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3841054799375957558 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6957049650967756019, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
-  m_PrefabInstance: {fileID: 6179586511909733061}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9ca8806a01aad42a5b3bdb84ab88a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6179586512252341925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1501,6 +1612,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6179586513212369072}
     m_Modifications:
+    - target: {fileID: 471105730585404990, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471105730586910660, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
+      propertyPath: value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471105730586910660, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
+      propertyPath: maxValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 471105730586910661, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1591,19 +1714,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: configuration.maxValue
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: configuration.inputType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: configuration.clampZeroMax
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
+      propertyPath: configuration.autoPressSpeed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
@@ -1618,7 +1745,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 6179586512252341925}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
@@ -1630,6 +1757,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6179586513236275554}
     m_Modifications:
+    - target: {fileID: 471105730585404990, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471105730586910660, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
+      propertyPath: value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471105730586910660, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
+      propertyPath: maxValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 471105730586910661, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1720,19 +1859,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.maxValue
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.inputType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.clampZeroMax
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
+      propertyPath: configuration.autoPressSpeed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
@@ -1747,7 +1890,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 6179586512668781697}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
