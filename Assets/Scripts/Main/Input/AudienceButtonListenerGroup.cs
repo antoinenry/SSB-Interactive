@@ -8,12 +8,12 @@ public class AudienceButtonListenerGroup : MonoBehaviour
     [Header("Buttons")]
     public AudienceButtonListener[] buttons;
     public bool applyButtonConfiguration = false;
-    public AudienceButtonListener.Configuration buttonConfiguration;
+    public AudienceButtonListener.Configuration buttonConfiguration = AudienceButtonListener.Configuration.Default;
     [Header("Auto press")]
     public AutoPressMode autoPress = AutoPressMode.Leader;
-    public float autoPressDelay = 3f;
+    public float autoPressDelay = 5f;
     public float autoPressBaseSpeed = 1f;
-    public float autoPressAcceleration = 1f;
+    public float autoPressAcceleration = 0f;
     [Header("Animations")]
     public Animation[] buttonAnimations;
     public AnimationClip idleAnimation;
@@ -190,7 +190,6 @@ public class AudienceButtonListenerGroup : MonoBehaviour
         bool leaderWins = HasWinner();
         AnimationClip leaderAnimation = leaderWins ? winnerAnimation : selectedAnimation;
         AnimationClip otherAnimation = leaderWins ? loserAnimation : idleAnimation;
-
         for (int i = 0; i < animationCount; i++)
         {
             if (buttonAnimations[i] == null) continue;

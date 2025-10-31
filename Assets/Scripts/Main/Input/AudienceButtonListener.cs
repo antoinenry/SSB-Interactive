@@ -23,6 +23,16 @@ public class AudienceButtonListener : MonoBehaviour
         public bool enableAutoPress;
         public float autoPressSpeed;
         [Min(0f)] public float autoPressDelay;
+
+        public static Configuration Default = new Configuration()
+        {
+            inputType = ValueType.Counter,
+            maxValue = 10f,
+            clampZeroMax = true,
+            enableAutoPress = false,
+            autoPressSpeed = 1f,
+            autoPressDelay = 0f
+        };
     }
 
     public float AudienceInputValue {  get; private set; }
