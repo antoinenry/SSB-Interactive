@@ -155,7 +155,8 @@ public class AudienceButtonListener : MonoBehaviour
             OutputValue = outputValueUpdate;
         }
         // Notify if value reaches max
-        if (IsMaxed) onValueMaxed.Invoke();
+        if (IsMaxed)
+            onValueMaxed.Invoke();
     }
 
     public void ResetButton()

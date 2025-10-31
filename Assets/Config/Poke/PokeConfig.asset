@@ -14,18 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:Pokefanf:PokeConfigAsset
   savePath: Config/poke.json
   data:
-    pokeFanf_left:
-      pokeName: Grotuyo
+    pokeFanf_starters:
+    - pokeName: Grotuyo
       musicianName: DeGnou
-    pokeFanf_middle:
-      pokeName: Saxoxoxo
+    - pokeName: Saxoxo
       musicianName: Gratin
-    pokeFanf_right:
-      pokeName: Cooliss
+    - pokeName: Clippy
       musicianName: Antoine
     pokeFanf_ally:
-      pokeName: 
-      musicianName: 
+      pokeName: Clippy
+      musicianName: Antoine
     pokeFanf_ennemy:
-      pokeName: 
-      musicianName: 
+      pokeName: Saxoxo
+      musicianName: Gratin
+    musician_priority:
+    - Gratin
+    - DeGnou
+    - Antoine

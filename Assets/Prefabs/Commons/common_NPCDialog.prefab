@@ -834,7 +834,6 @@ MonoBehaviour:
   - {fileID: 7659750839756637531}
   - {fileID: 7659750840206145694}
   - {fileID: 7659750839911964351}
-  applyButtonConfiguration: 1
   buttonConfiguration:
     inputType: 1
     maxValue: 10
@@ -842,6 +841,8 @@ MonoBehaviour:
     enableAutoPress: 0
     autoPressSpeed: 0
     autoPressDelay: 0
+  applyButtonConfiguration: 1
+  disableLosers: 0
   autoPress: 2
   autoPressDelay: 1
   autoPressBaseSpeed: 1

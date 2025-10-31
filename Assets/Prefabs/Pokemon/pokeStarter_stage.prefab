@@ -58,6 +58,8 @@ MonoBehaviour:
   introDialog: {fileID: 11400000, guid: 0905c5f4315312c4dbc03b703f60d3df, type: 2}
   outroDialog: {fileID: 11400000, guid: 8c2609393e79f3546a64f08f16d30515, type: 2}
   config: {fileID: 11400000, guid: bc672a51a1768414384fe903e3ebcc94, type: 2}
+  selectionMessage: 'Curseur : '
+  validationMessage: 'VALIDE : '
 --- !u!1 &6179586511707778082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,27 +1205,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ea226349d024544afc939c08570ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonGroup: {fileID: 0}
+  buttonGroup: {fileID: 1208641246}
   selectors:
   - {fileID: 3173296718081327838}
   - {fileID: 9081929855578406927}
   - {fileID: 480523562395855835}
+  onRankingChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onSelectorMaxed:
+    m_PersistentCalls:
+      m_Calls: []
   config:
-    pokeFanf_left:
-      pokeName: Celui de gauche
-      musicianName: GAUCHE
-    pokeFanf_middle:
-      pokeName: Celui du milieu
-      musicianName: MILIEU
-    pokeFanf_right:
-      pokeName: Celui de droite
-      musicianName: DROITE
+    pokeFanf_starters: []
     pokeFanf_ally:
       pokeName: 
       musicianName: 
     pokeFanf_ennemy:
       pokeName: 
       musicianName: 
+    musician_priority: []
 --- !u!114 &1208641246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1504,8 +1505,12 @@ PrefabInstance:
       value: "J\u2019ai tout entendu! Quelle setliste incroyable!"
       objectReference: {fileID: 0}
     - target: {fileID: 6579725067473962905, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579725067473962905, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.0243303
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6579725067914310807, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_IsActive

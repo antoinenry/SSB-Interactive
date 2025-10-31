@@ -9,7 +9,7 @@ namespace Pokefanf
 
         private void Update()
         {
-            SetItems(config.pokeFanf_left, config.pokeFanf_middle, config.pokeFanf_right);
+            SetItems(config.pokeFanf_starters);
         }
     }
 }

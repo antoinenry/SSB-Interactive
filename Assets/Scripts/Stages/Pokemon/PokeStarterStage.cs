@@ -12,6 +12,9 @@ namespace Pokefanf
         public NPCDialogAsset introDialog;
         public NPCDialogAsset outroDialog;
         public PokeConfigAsset config;
+        [Header("Web")]
+        public string selectionMessage = "Curseur : ";
+        public string validationMessage = "VALIDE : ";
 
         public override int MomentCount => 3;
 
@@ -33,6 +36,18 @@ namespace Pokefanf
                 case 1: ShowSelector(); break;
                 case 2: ShowOutroDialog(); break;
             }
+        }
+
+        private void OnChangeSelection()
+        {
+            if (selector == null) return;
+            MessengerAdmin.Send(selectionMessage + selector.GetLeader().musicianName);
+        }
+
+        private void OnValidateSelection(Pokefanf selected)
+        {
+            MessengerAdmin.Send(validationMessage + selected.musicianName);
+            if (config != null) config.SetBattleConfig(ally: selected);
         }
 
         private void ShowIntroDialog()
@@ -58,11 +73,15 @@ namespace Pokefanf
             if (selector == null) return;
             if (config != null) selector.config = config.Data;
             selector.gameObject.SetActive(true);
+            selector.onRankingChange.AddListener(OnChangeSelection);
+            selector.onSelectorMaxed.AddListener(OnValidateSelection);
         }
 
         private void HideSelector()
         {
             if (selector == null) return;
+            selector.onRankingChange.RemoveListener(OnChangeSelection);
+            selector.onSelectorMaxed.RemoveListener(OnValidateSelection);
             selector.gameObject.SetActive(false);
         }
     }
