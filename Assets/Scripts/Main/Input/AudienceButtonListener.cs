@@ -43,22 +43,22 @@ public class AudienceButtonListener : MonoBehaviour
 
     private float autoPressTimer;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         ResetButton();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         AudienceInputSource.Current.onAudienceInput.AddListener(OnAudienceInput);
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         AudienceInputSource.Current.onAudienceInput.RemoveListener(OnAudienceInput);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         UpdateAutopress(Time.deltaTime);
         UpdateOutputValue();

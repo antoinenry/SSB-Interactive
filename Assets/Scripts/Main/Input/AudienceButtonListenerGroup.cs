@@ -7,8 +7,9 @@ public class AudienceButtonListenerGroup : MonoBehaviour
 {
     [Header("Buttons")]
     public AudienceButtonListener[] buttons;
-    public bool applyButtonConfiguration = false;
     public AudienceButtonListener.Configuration buttonConfiguration = AudienceButtonListener.Configuration.Default;
+    public bool applyButtonConfiguration = false;
+    public bool disableLosers = false;
     [Header("Auto press")]
     public AutoPressMode autoPress = AutoPressMode.Leader;
     public float autoPressDelay = 5f;
@@ -30,31 +31,31 @@ public class AudienceButtonListenerGroup : MonoBehaviour
 
     public AudienceButtonListener[] RankedButtons { get; private set; }
 
-    private void Reset()
+    protected virtual void Reset()
     {
         buttons = GetComponentsInChildren<AudienceButtonListener>(true);
         buttonAnimations = GetComponentsInChildren<Animation>(true);
         ApplyButtonConfiguration();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         ResetButtons();
         SetListenersActive(true);
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         SetListenersActive(false);
         ResetButtons();
     }
 
-    private void OnValidate()
+    protected virtual void OnValidate()
     {
         ApplyButtonConfiguration();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         AnimationUpdate();
         if (autoPress != AutoPressMode.Off) AutoPressUpdate(Time.deltaTime);
@@ -87,6 +88,15 @@ public class AudienceButtonListenerGroup : MonoBehaviour
     private void OnButtonValueMaxed()
     {
         onButtonMaxed.Invoke();
+        if (disableLosers)
+        {
+            if (RankedButtons == null) UpdateButtonRanking();
+            for (int i = 1; i < ButtonCount; i++)
+            {
+                if (RankedButtons[i] == null) continue;
+                RankedButtons[i].enabled = false;
+            }
+        }
     }
 
     private void ApplyButtonConfiguration()
@@ -205,6 +215,13 @@ public class AudienceButtonListenerGroup : MonoBehaviour
         if (leader == null) return false;
         return leader.IsMaxed;
     }
+
+    public int GetRank(AudienceButtonListener button)
+    {
+        if (RankedButtons == null) return -1;
+        return Array.IndexOf(RankedButtons, button);
+    }
+
     public void ResetButtons()
     {
         autoPressTimer = 0f;
