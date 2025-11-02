@@ -8,14 +8,15 @@ namespace Pokefanf
     {
         public TMP_Text label;
 
-        private void Reset()
+        protected override void Reset()
         {
+            base.Reset();
             label = GetComponentInChildren<TMP_Text>(true);
         }
 
         private void Update()
         {
-            if (label) label.text = item.pokeName;
+            if (label) label.text = Item.pokeName;
         }
     }
 }

@@ -1,36 +1,63 @@
 {
+  "Ally": {
+    "HasMusician": true,
+    "AttackCount": 4,
+    "pokeName": "Saxoxo",
+    "musicianName": "Gratin",
+    "attacks": [
+      "Coin coin",
+      "Jase",
+      "Teukeuteu",
+      "Saxysax"
+    ]
+  },
+  "Ennemy": {
+    "HasMusician": true,
+    "AttackCount": 4,
+    "pokeName": "Tubazooka",
+    "musicianName": "DeGnou",
+    "attacks": [
+      "Hyperpiston",
+      "Chassakour",
+      "FFFF",
+      "Note pédale"
+    ]
+  },
   "pokeFanf_starters": [
     {
       "HasMusician": true,
-      "pokeName": "Grotuyo",
-      "musicianName": "DeGnou",
-      "attacks": [
-        "Attaque 1",
-        "Attaque 2",
-        "Attaque 3",
-        "Attaque 4"
-      ]
-    },
-    {
-      "HasMusician": true,
+      "AttackCount": 4,
       "pokeName": "Saxoxo",
       "musicianName": "Gratin",
       "attacks": [
-        "Attaque 1",
-        "Attaque 2",
-        "Attaque 3",
-        "Attaque 4"
+        "Coin coin",
+        "Jase",
+        "Teukeuteu",
+        "Saxysax"
       ]
     },
     {
       "HasMusician": true,
+      "AttackCount": 4,
+      "pokeName": "Tubazooka",
+      "musicianName": "DeGnou",
+      "attacks": [
+        "Hyperpiston",
+        "Chassakour",
+        "FFFF",
+        "Note pédale"
+      ]
+    },
+    {
+      "HasMusician": true,
+      "AttackCount": 4,
       "pokeName": "Clippy",
       "musicianName": "Antoine",
       "attacks": [
-        "Attaque 1",
-        "Attaque 2",
-        "Attaque 3",
-        "Attaque 4"
+        "Hélicoulisse",
+        "Sadtrombone.gif",
+        "Slidomax",
+        "Fulguropouet"
       ]
     }
   ],

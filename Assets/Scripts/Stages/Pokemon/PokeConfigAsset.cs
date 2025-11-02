@@ -63,6 +63,6 @@ namespace Pokefanf
         }
 
         public Pokefanf Ally => GetStarterByMusicianName(ally_musician);
-        public Pokefanf Ennemy => GetStarterByMusicianName(ennemy_musician);
+        public Pokefanf Enemy => GetStarterByMusicianName(ennemy_musician);
     }
 }

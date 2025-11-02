@@ -5,6 +5,6 @@ namespace NPC
     [Serializable]
     public struct NPCDialogConfig
     {
-        public NPCDialogInjectorConfig injector;
+        public NPCDialogInjectorConfig injectors;
     }
 }

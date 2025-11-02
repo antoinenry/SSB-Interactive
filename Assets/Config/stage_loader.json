@@ -21,6 +21,10 @@
       "localName": "PokeStarter"
     },
     {
+      "serverName": "PokeBattle",
+      "localName": "PokeBattle"
+    },
+    {
       "serverName": "MovingLogo",
       "localName": "MovingLogo"
     },
@@ -77,8 +81,6 @@
       "localName": "EmptyScene"
     }
   ],
-  "missingStages": [
-    "PokeStarter"
-  ],
+  "missingStages": [],
   "otherStages": []
 }

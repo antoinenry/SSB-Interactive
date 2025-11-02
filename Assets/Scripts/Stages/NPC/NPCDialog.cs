@@ -12,7 +12,6 @@ namespace NPC
         public NPCDialogChoiceButton[] answerButtons;
         [Header("Content")]
         public NPCDialogContentAsset dialog;
-        public NPCDialogInjector injector;
         [SerializeField] int lineIndex = 0;
         [SerializeField] bool isReacting = false;
         [SerializeField] int reactionIndex = -1;
@@ -48,13 +47,13 @@ namespace NPC
             IsShowingDialog = false;
             SetButtonListenersActive(false);
             ClearText();
-            HideAllButtons();
+            HideButtons();
         }
 
         private void Start()
         {
             ClearText();
-            HideAllButtons();
+            HideButtons();
             ShowDialogLine();
         }
 
@@ -83,10 +82,11 @@ namespace NPC
 
         private void ButtonVisibilityUpdate()
         {
-            if ((animatedText != null && animatedText.IsAnimating)
+            if (    CurrentLine.hideNextButton
+                || (animatedText != null && animatedText.IsAnimating)
                 || (dialog == null || lineIndex >= dialog.LineCount))
             {
-                HideAllButtons();
+                HideButtons();
             }
             else if (isReacting || dialog.GetLine(lineIndex).AnswerCount == 0)
             {
@@ -102,8 +102,7 @@ namespace NPC
 
         private void OnNextButtonMaxed()
         {
-            ResetButtons();
-            ShowDialogLine(++lineIndex);
+            ShowNextLine();
         }
 
         private void OnChoseAnswer(int answerIndex)
@@ -120,23 +119,19 @@ namespace NPC
             }
         }
 
+        public void ShowNextLine()
+        {
+            ResetButtons();
+            ShowDialogLine(++lineIndex);
+        }
+
         public void ShowText(string text)
         {
-            text = InjectText(text);
+            text = NPCDialogInjector.InjectAll(text);
             if (messageDialogToAdmin && text != "" && Application.isPlaying)
                 MessengerAdmin.Send(text);
             if (animatedText == null) return;
             animatedText.text = text;
-        }
-
-        public string InjectText(string text)
-        {
-            if (injector != null)
-            {
-                injector.UpdateDictionary();
-                return injector.Inject(text);
-            }
-            return text;
         }
 
         public void ClearText() => ShowText("");
@@ -160,13 +155,19 @@ namespace NPC
                 else
                 {
                     button.choiceIndex = i;
-                    button.labelText = InjectText(answerTexts[i]);
+                    button.labelText = NPCDialogInjector.InjectAll(answerTexts[i]);
                     button.gameObject.SetActive(true);
                 }
             }
         }
 
-        public void HideAllButtons()
+        public void ShowButtons()
+        {
+            SetNextButtonActive(CurrentLine.AnswerCount == 0);
+            ShowAnswerButtons(CurrentLine.answers);
+        }
+
+        public void HideButtons()
         {
             SetNextButtonActive(false);
             ShowAnswerButtons(null);
@@ -178,6 +179,8 @@ namespace NPC
             if (answerButtons != null) foreach (NPCDialogChoiceButton button in answerButtons) button?.ResetButton();
         }
 
+        public void ShowDialogLine(int setLineIndex) => ShowDialogLine(dialog, setLineIndex);
+
         public void ShowDialogLine(NPCDialogContentAsset setDialog, int setLineIndex)
         {
             dialog = setDialog;
@@ -185,7 +188,7 @@ namespace NPC
             ShowDialogLine();
         }
 
-        public void ShowDialogLine(int setLineIndex) => ShowDialogLine(dialog, setLineIndex);
+        public NPCDialogContent.DynamicLine CurrentLine => dialog != null ? dialog.GetLine(lineIndex) : NPCDialogContent.DynamicLine.None;
 
         public void ShowDialogLine()
         {
@@ -194,7 +197,6 @@ namespace NPC
             {
                 HideDialog();
             }
-            NPCDialogContent.DynamicLine currentLine = dialog != null ? dialog.GetLine(lineIndex) : NPCDialogContent.DynamicLine.None;
             if (dialog == null || lineIndex >= dialog.LineCount)
             {
                 EndDialog();
@@ -202,9 +204,8 @@ namespace NPC
             else
             {
                 ShowDialog();
-                ShowText(currentLine.text);
-                SetNextButtonActive(currentLine.AnswerCount == 0);
-                ShowAnswerButtons(currentLine.answers);
+                ShowText(CurrentLine.text);
+                ButtonVisibilityUpdate();
             }
         }
 
@@ -221,7 +222,7 @@ namespace NPC
         {
             IsShowingDialog = true;
             isReacting = true;
-            HideAllButtons();
+            HideButtons();
             ShowText(dialog.GetReaction(lineIndex, reactionIndex));
         }
 
@@ -239,7 +240,7 @@ namespace NPC
         public void HideDialog()
         {
             ClearText();
-            HideAllButtons();
+            HideButtons();
             if (IsShowingDialog == false) return;
             if (animatedGUI)
             {

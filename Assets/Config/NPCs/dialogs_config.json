@@ -1,8 +1,13 @@
 {
-  "injector": {
-    "key_ConcertName": "nom_du_concert",
-    "key_VenueName": "nom_du_public",
-    "key_PokeAllyName": "pokefanfaron_gentil",
-    "key_PokeEnemyName": "pokefanfaron_mechant"
+  "injectors": {
+    "concertAdmin": {
+      "key_ConcertName": "nom_du_concert",
+      "key_ConcertLocation": "nom_du_public"
+    },
+    "pokeFanf": {
+      "key_AllyPoke": "pokefanfaron_gentil",
+      "key_EnemyPoke": "pokefanfaron_mechant",
+      "key_CurrentAttack": "poke_attaque"
+    }
   }
 }

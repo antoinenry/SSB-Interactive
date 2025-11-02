@@ -15,27 +15,27 @@ MonoBehaviour:
   savePath: Config/poke.json
   data:
     pokeFanf_starters:
-    - pokeName: Grotuyo
-      musicianName: DeGnou
-      attacks:
-      - Attaque 1
-      - Attaque 2
-      - Attaque 3
-      - Attaque 4
     - pokeName: Saxoxo
       musicianName: Gratin
       attacks:
-      - Attaque 1
-      - Attaque 2
-      - Attaque 3
-      - Attaque 4
+      - Coin coin
+      - Jase
+      - Teukeuteu
+      - Saxysax
+    - pokeName: Tubazooka
+      musicianName: DeGnou
+      attacks:
+      - Hyperpiston
+      - Chassakour
+      - FFFF
+      - "Note p\xE9dale"
     - pokeName: Clippy
       musicianName: Antoine
       attacks:
-      - Attaque 1
-      - Attaque 2
-      - Attaque 3
-      - Attaque 4
+      - "H\xE9licoulisse"
+      - Sadtrombone.gif
+      - Slidomax
+      - Fulguropouet
     ally_musician: Gratin
     ennemy_musician: DeGnou
     musician_priority:

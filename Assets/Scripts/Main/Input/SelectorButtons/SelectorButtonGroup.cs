@@ -63,7 +63,7 @@ public abstract class SelectorButtonGroup<T> : MonoBehaviour
         {
             if (selectors[i] == null) continue;
             if (buttonGroup != null) rank = buttonGroup.GetRank(selectors[i].Button);
-            if (rank >= 0 && rank < rankCount) RankedItems[rank] = selectors[i].item;
+            if (rank >= 0 && rank < rankCount) RankedItems[rank] = selectors[i].Item;
         }
         onRankingChange.Invoke();
     }
@@ -81,7 +81,7 @@ public abstract class SelectorButtonGroup<T> : MonoBehaviour
         foreach (SelectorButton<T> s in selectors)
         {
             if (s == null) continue;
-            s.item = i < itemCount ? items[i++] : default;
+            s.Item = i < itemCount ? items[i++] : default;
         }
     }
 
@@ -89,7 +89,7 @@ public abstract class SelectorButtonGroup<T> : MonoBehaviour
     {
         if (buttonGroup == null || selectors == null) return default;
         SelectorButton<T> leaderSelector = Array.Find(selectors, s => s.Button == buttonGroup.GetLeaderButton());
-        return leaderSelector != null ? leaderSelector.item : default;
+        return leaderSelector != null ? leaderSelector.Item : default;
     }
 
     public bool HasWinner() => buttonGroup != null ? buttonGroup.HasWinner() : false;

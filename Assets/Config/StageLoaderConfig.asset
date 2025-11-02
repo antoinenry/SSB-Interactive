@@ -25,6 +25,8 @@ MonoBehaviour:
       localName: Shop
     - serverName: PokeStarter
       localName: PokeStarter
+    - serverName: PokeBattle
+      localName: PokeBattle
     - serverName: MovingLogo
       localName: MovingLogo
     - serverName: ShovelKnight

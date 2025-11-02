@@ -16,5 +16,12 @@ namespace Pokefanf
         };
 
         public bool HasMusician => musicianName != null && musicianName != "";
+        public int AttackCount => attacks != null ? attacks.Length : 0;
+
+        public string GetAttack()
+        {
+            if (AttackCount > 0) return attacks[0];
+            else return null;
+        }
     }
 }
