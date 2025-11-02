@@ -751,6 +751,7 @@ MonoBehaviour:
   item:
     pokeName: 
     musicianName: 
+    attacks: []
   onItemValueChange:
     m_PersistentCalls:
       m_Calls: []
@@ -873,6 +874,7 @@ MonoBehaviour:
   item:
     pokeName: 
     musicianName: 
+    attacks: []
   onItemValueChange:
     m_PersistentCalls:
       m_Calls: []
@@ -995,6 +997,7 @@ MonoBehaviour:
   item:
     pokeName: 
     musicianName: 
+    attacks: []
   onItemValueChange:
     m_PersistentCalls:
       m_Calls: []
@@ -1218,12 +1221,8 @@ MonoBehaviour:
       m_Calls: []
   config:
     pokeFanf_starters: []
-    pokeFanf_ally:
-      pokeName: 
-      musicianName: 
-    pokeFanf_ennemy:
-      pokeName: 
-      musicianName: 
+    ally_musician: 
+    ennemy_musician: 
     musician_priority: []
 --- !u!114 &1208641246
 MonoBehaviour:
@@ -1514,7 +1513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6579725067914310807, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6579725069097335209, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_text

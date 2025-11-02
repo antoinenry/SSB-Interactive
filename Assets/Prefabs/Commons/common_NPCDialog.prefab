@@ -2080,6 +2080,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6579725069010216319}
     m_Modifications:
+    - target: {fileID: 471105730585404990, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471105730586910660, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
+      propertyPath: value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 471105730586910661, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -2205,6 +2213,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6579725068234024874}
     m_Modifications:
+    - target: {fileID: 471105730585404990, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471105730586910660, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
+      propertyPath: value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 471105730586910661, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -2334,6 +2350,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6579725068752613899}
     m_Modifications:
+    - target: {fileID: 471105730585404990, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471105730586910660, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
+      propertyPath: value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 471105730586910661, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -2459,6 +2483,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6579725069472091335}
     m_Modifications:
+    - target: {fileID: 471105730585404990, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471105730586910660, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
+      propertyPath: value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 471105730586910661, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
       propertyPath: m_Pivot.x
       value: 1

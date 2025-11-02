@@ -7,6 +7,7 @@ namespace Pokefanf
     {
         public string pokeName;
         public string musicianName;
+        public string[] attacks;
 
         public static Pokefanf None => new Pokefanf()
         {

@@ -3,29 +3,39 @@
     {
       "HasMusician": true,
       "pokeName": "Grotuyo",
-      "musicianName": "DeGnou"
+      "musicianName": "DeGnou",
+      "attacks": [
+        "Attaque 1",
+        "Attaque 2",
+        "Attaque 3",
+        "Attaque 4"
+      ]
     },
     {
       "HasMusician": true,
       "pokeName": "Saxoxo",
-      "musicianName": "Gratin"
+      "musicianName": "Gratin",
+      "attacks": [
+        "Attaque 1",
+        "Attaque 2",
+        "Attaque 3",
+        "Attaque 4"
+      ]
     },
     {
       "HasMusician": true,
       "pokeName": "Clippy",
-      "musicianName": "Antoine"
+      "musicianName": "Antoine",
+      "attacks": [
+        "Attaque 1",
+        "Attaque 2",
+        "Attaque 3",
+        "Attaque 4"
+      ]
     }
   ],
-  "pokeFanf_ally": {
-    "HasMusician": true,
-    "pokeName": "Clippy",
-    "musicianName": "Antoine"
-  },
-  "pokeFanf_ennemy": {
-    "HasMusician": true,
-    "pokeName": "Saxoxo",
-    "musicianName": "Gratin"
-  },
+  "ally_musician": "Gratin",
+  "ennemy_musician": "DeGnou",
   "musician_priority": [
     "Gratin",
     "DeGnou",

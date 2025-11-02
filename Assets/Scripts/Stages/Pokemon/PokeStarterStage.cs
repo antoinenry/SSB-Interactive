@@ -1,5 +1,5 @@
-using Shop;
 using UnityEngine;
+using NPC;
 
 namespace Pokefanf
 {
@@ -9,8 +9,8 @@ namespace Pokefanf
         public NPCDialog npc;
         public PokeSelectorGroup selector;
         [Header("Contents")]
-        public NPCDialogAsset introDialog;
-        public NPCDialogAsset outroDialog;
+        public NPCDialogContentAsset introDialog;
+        public NPCDialogContentAsset outroDialog;
         public PokeConfigAsset config;
         [Header("Web")]
         public string selectionMessage = "Curseur : ";
@@ -47,7 +47,11 @@ namespace Pokefanf
         private void OnValidateSelection(Pokefanf selected)
         {
             MessengerAdmin.Send(validationMessage + selected.musicianName);
-            if (config != null) config.SetBattleConfig(ally: selected);
+            if (config != null)
+            {
+                config.Data.SetBattleConfig(selected.musicianName);
+                config.Save();
+            }
         }
 
         private void ShowIntroDialog()

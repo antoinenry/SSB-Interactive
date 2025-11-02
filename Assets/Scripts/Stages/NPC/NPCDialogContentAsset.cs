@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NPCDialog", menuName = "Config/NPCDialog")]
-public class NPCDialogAsset : JsonAsset<NPCDialogContent>
+public class NPCDialogContentAsset : JsonAsset<NPCDialogContent>
 {
     public override NPCDialogContent Data { get => data; set => data = value; }
     [SerializeField] private NPCDialogContent data;

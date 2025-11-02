@@ -1,0 +1,24 @@
+{
+  "LineCount": 3,
+  "ReactionCount": 0,
+  "lines": [
+    {
+      "AnswerCount": 0,
+      "text": "Un pokefanfaron_mechant sauvage apparaît !",
+      "answers": []
+    },
+    {
+      "AnswerCount": 0,
+      "text": "Vite, nom_du_public ! A vos manettes !",
+      "answers": []
+    },
+    {
+      "AnswerCount": 1,
+      "text": "Appelez votre fidèle pokefanfaron_gentil avant que le pokefanfaron_mechant fasse un solo de 40 minutes! On a plus le temps !",
+      "answers": [
+        "GO, pokefanfaron_gentil !"
+      ]
+    }
+  ],
+  "reactions": []
+}

@@ -17,17 +17,29 @@ MonoBehaviour:
     pokeFanf_starters:
     - pokeName: Grotuyo
       musicianName: DeGnou
+      attacks:
+      - Attaque 1
+      - Attaque 2
+      - Attaque 3
+      - Attaque 4
     - pokeName: Saxoxo
       musicianName: Gratin
+      attacks:
+      - Attaque 1
+      - Attaque 2
+      - Attaque 3
+      - Attaque 4
     - pokeName: Clippy
       musicianName: Antoine
-    pokeFanf_ally:
-      pokeName: Clippy
-      musicianName: Antoine
-    pokeFanf_ennemy:
-      pokeName: Saxoxo
-      musicianName: Gratin
+      attacks:
+      - Attaque 1
+      - Attaque 2
+      - Attaque 3
+      - Attaque 4
+    ally_musician: Gratin
+    ennemy_musician: DeGnou
     musician_priority:
     - Gratin
     - DeGnou
     - Antoine
+  isCurrent: 0
