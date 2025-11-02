@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Minigames
   m_EditorClassIdentifier: 
   savePath: Config/minigames.json
+  isUserData: 0
   isCurrent: 0
   data:
     donkeyKong:
@@ -242,7 +243,7 @@ MonoBehaviour:
           max: 20
         minGapDuration: 3
         reverseChance: 0
-        itemChance: 0
+        itemChance: 1
       - checkpointDistance: 10
         carSpeed:
           min: 3
@@ -252,7 +253,7 @@ MonoBehaviour:
           max: 19
         minGapDuration: 3
         reverseChance: 0.1
-        itemChance: 0.5
+        itemChance: 1
       - checkpointDistance: 10
         carSpeed:
           min: 4
@@ -262,7 +263,7 @@ MonoBehaviour:
           max: 18
         minGapDuration: 3
         reverseChance: 0.2
-        itemChance: 0
+        itemChance: 1
       - checkpointDistance: 10
         carSpeed:
           min: 5
@@ -272,7 +273,7 @@ MonoBehaviour:
           max: 16
         minGapDuration: 2.5
         reverseChance: 0.3
-        itemChance: 0.5
+        itemChance: 1
       - checkpointDistance: 10
         carSpeed:
           min: 6
@@ -282,7 +283,7 @@ MonoBehaviour:
           max: 14
         minGapDuration: 2.5
         reverseChance: 0.4
-        itemChance: 0.3
+        itemChance: 1
       - checkpointDistance: 10
         carSpeed:
           min: 7
@@ -292,7 +293,7 @@ MonoBehaviour:
           max: 12
         minGapDuration: 2
         reverseChance: 0.5
-        itemChance: 0.3
+        itemChance: 1
       - checkpointDistance: 10
         carSpeed:
           min: 8
@@ -302,7 +303,7 @@ MonoBehaviour:
           max: 10
         minGapDuration: 2
         reverseChance: 0.5
-        itemChance: 0
+        itemChance: 1
       - checkpointDistance: 10
         carSpeed:
           min: 9
