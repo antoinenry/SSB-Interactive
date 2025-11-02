@@ -67,12 +67,16 @@ public class MainScore : MonoBehaviour
             pointsFromCoins = 0;
             scoreDisplay.coinCount = 0;
         }
+        InventoryTracker inventoryTracker = CurrentAssetsManager.GetCurrent<InventoryTracker>();
+        int initPlayerMoney = inventoryTracker.Data.Money;
+        inventoryTracker.SetMoney(initPlayerMoney + coins.count);
         PostStageScore(pointsFromMiniGame + pointsFromCoins, stageName);
         if (DisplayScore)
         {
             scoreDisplay.hideMiniScore = miniScore == null;
             scoreDisplay.hideCoins = coins == null;
-            scoreDisplay.PlayAddingUpAnimation(pointsFromMiniGame, pointsFromCoins);
+            scoreDisplay.SetLevelName(stageName);
+            scoreDisplay.PlayAddingUpAnimation(pointsFromMiniGame, pointsFromCoins, initPlayerMoney);
         }
     }
 
