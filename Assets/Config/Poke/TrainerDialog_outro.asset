@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c175f6705eaf484b8014760745fd032, type: 3}
   m_Name: TrainerDialog_outro
   m_EditorClassIdentifier: 
-  savePath: Config/poke_trainer_2.json
+  savePath: Config/Poke/poke_trainer_2.json
   data:
     lines:
     - text: "Un <ins\xE9rer nom du pok\xE9 fanfaron> ! C\u2019est mon pr\xE9f\xE9r\xE9

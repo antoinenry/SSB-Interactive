@@ -16,8 +16,11 @@ namespace NPC
         {
             if (NPCDialogConfigAsset.Current != null) config = NPCDialogConfigAsset.Current.Data.injector;
             injectionDictionary = new Dictionary<string, string>();
-            injectionDictionary.TryAdd(config.key_ConcertName, ConcertAdmin.Current.info.name);
-            injectionDictionary.TryAdd(config.key_VenueName, ConcertAdmin.Current.info.location);
+            if (ConcertAdmin.Current != null)
+            {
+                injectionDictionary.TryAdd(config.key_ConcertName, ConcertAdmin.Current.info.name);
+                injectionDictionary.TryAdd(config.key_VenueName, ConcertAdmin.Current.info.location);
+            }
             injectionDictionary.TryAdd(config.key_PokeAllyName, PokeConfig.Current.Ally.pokeName);
             injectionDictionary.TryAdd(config.key_PokeEnemyName, PokeConfig.Current.Ennemy.pokeName);
         }

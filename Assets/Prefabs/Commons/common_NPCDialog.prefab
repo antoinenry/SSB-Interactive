@@ -1996,6 +1996,12 @@ MonoBehaviour:
   - {fileID: 6579725068752613896}
   - {fileID: 6579725068234024875}
   dialog: {fileID: 11400000, guid: 35e0e1916e9092e4792670ffb26f2e9a, type: 2}
+  injector:
+    config:
+      key_ConcertName: nom_du_concert
+      key_VenueName: nom_du_public
+      key_PokeAllyName: pokefanfaron_gentil
+      key_PokeEnemyName: pokefanfaron_mechant
   lineIndex: 0
   isReacting: 0
   reactionIndex: 0

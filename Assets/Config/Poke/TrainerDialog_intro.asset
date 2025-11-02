@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c175f6705eaf484b8014760745fd032, type: 3}
   m_Name: TrainerDialog_intro
   m_EditorClassIdentifier: 
-  savePath: Config/poke_trainer_1.json
+  savePath: Config/Poke/poke_trainer_1.json
   data:
     lines:
     - text: "J\u2019ai tout entendu! Quelle setliste incroyable!"

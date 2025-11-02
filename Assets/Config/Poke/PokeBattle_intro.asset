@@ -12,16 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c175f6705eaf484b8014760745fd032, type: 3}
   m_Name: PokeBattle_intro
   m_EditorClassIdentifier: 
-  savePath: Config/pokebattle_intro
+  savePath: Config/Poke/poke_battle_intro.json
   data:
     lines:
-    - text: "Un <nom du pok\xE9 fanfaron m\xE9chant> sauvage appara\xEEt !"
+    - text: "Un pokefanfaron_mechant sauvage appara\xEEt !"
       answers: []
-    - text: Vite, <nom du public> ! A vos manettes !
+    - text: Vite, nom_du_public ! A vos manettes !
       answers: []
-    - text: "Appelez votre fid\xE8le <nom du pok\xE9 fanfaron gentil> avant que le
-        <nom du pok\xE9 fanfaron m\xE9chant> fasse un solo de 40 minutes! On a plus
-        le temps !"
+    - text: "Appelez votre fid\xE8le pokefanfaron_gentil avant que le pokefanfaron_mechant
+        fasse un solo de 40 minutes! On a plus le temps !"
       answers:
-      - "GO, <nom du pok\xE9 fanfaron gentil> !"
+      - GO, pokefanfaron_gentil !
     reactions: []

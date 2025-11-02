@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d35d512e5f7e64b8d5b96550c87e5d, type: 3}
   m_Name: NPCDialogConfig
   m_EditorClassIdentifier: 
-  savePath: 
+  savePath: Config/NPCs/dialogs_config.json
   data:
     injector:
-      key_ConcertName: 
-      key_VenueName: 
-      key_PokeAllyName: 
-      key_PokeEnemyName: 
+      key_ConcertName: nom_du_concert
+      key_VenueName: nom_du_public
+      key_PokeAllyName: pokefanfaron_gentil
+      key_PokeEnemyName: pokefanfaron_mechant
   isCurrent: 0
