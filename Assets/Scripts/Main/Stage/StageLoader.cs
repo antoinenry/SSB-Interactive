@@ -46,6 +46,7 @@ public class StageLoader : MonoBehaviour
         // Init Money on setlist change
         if (state.setlist.databaseID != setlistInfo.databaseID)
         {
+            setlistInfo = state.setlist;
             inventoryTracker.Reset();
         }
     }

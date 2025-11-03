@@ -195,8 +195,8 @@ namespace Shop
             if (availableSongIndices.Count == 0) return ShopItem.None;
             song = songPool[availableSongIndices[UnityEngine.Random.Range(0, availableSongIndices.Count)]];
             // Set a semi-random price
-            GetPriceRange(cartCapacity, budget, out int minPrice, out int maxPrice);
-            return new ShopItem() { song = song, price = UnityEngine.Random.Range(minPrice, maxPrice) };
+            GetPriceRange(cartCapacity, playerInventory.Data.Money, out int minPrice, out int maxPrice);
+            return new ShopItem() { song = song, price = UnityEngine.Random.Range(minPrice, maxPrice + 1) };
         }
 
         private bool IsInInventory(SongInfo song)
@@ -209,7 +209,7 @@ namespace Shop
         {
             if (buyableItems > 0)
             {
-                minPrice = Mathf.CeilToInt(maxBudget / (buyableItems + 1)) + 1;
+                minPrice = Mathf.CeilToInt(((float)maxBudget) / (buyableItems + 2));
                 maxPrice = Mathf.FloorToInt(maxBudget / buyableItems);
             }
             else
