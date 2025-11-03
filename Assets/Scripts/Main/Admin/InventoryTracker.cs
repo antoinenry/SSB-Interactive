@@ -20,4 +20,13 @@ public class InventoryTracker : JsonAsset<InventoryData>
         };
         Save();
     }
+
+    public void Reset()
+    {
+        Data = new InventoryData
+        {
+            Money = 5
+        };
+        Save();
+    }
 }

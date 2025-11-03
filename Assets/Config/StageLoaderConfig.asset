@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: StageLoaderConfig
   m_EditorClassIdentifier: 
   savePath: Config/stage_loader.json
+  isUserData: 0
   data:
     stages:
     - serverName: Intro

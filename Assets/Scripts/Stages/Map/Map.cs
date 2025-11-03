@@ -17,6 +17,7 @@ namespace Map
         public HttpRequestLoop addSongChoiceRequest = new(HttpRequest.RequestType.POST, "setlists/songs/{setlist_id}/chosen/{song_id}", HttpRequestLoop.ParameterFormat.Path);
         public SocketIOClientScriptable socketClient;
         public string choiceMessage = "Morceau choisi : ";
+        private bool lockValidation = false;
 
         public UnityEvent onValidateNodeChoice;
 
@@ -218,9 +219,10 @@ namespace Map
         {
             if (currentNode == null) return;
             PauseNavigation();
-            if (socketClient != null)
+            if (socketClient != null && !lockValidation)
             {
-                socketClient.Emit("choice", currentNode.song.databaseID);
+                lockValidation = true;
+                socketClient.client.EmitAsync("choice", response => { lockValidation = false; }, currentNode.song.databaseID);
                 MessengerAdmin.Send(NodeChoiceMessage);
             }
             onValidateNodeChoice.Invoke();

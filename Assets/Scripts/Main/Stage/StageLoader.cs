@@ -10,15 +10,19 @@ public class StageLoader : MonoBehaviour
     public MainScore mainScore;
 
     public Stage LoadedStage { get; private set; }
+    private SetlistInfo setlistInfo;
     public StageNamingConfig Config => CurrentAssetsManager.GetCurrent<StageNamingConfig>();
 
     public string[] StageNames => stages != null ? Array.ConvertAll(stages, s => s?.name) : new string[0];
     public string LoadedStageLocalName => LoadedStage?.name;
     public string LoadedStageServerName => Config?.GetServerName(LoadedStageLocalName);
+    private InventoryTracker inventoryTracker;
 
     private void OnEnable()
     {
         ConcertAdmin currentConcert = ConcertAdmin.Current;
+        setlistInfo = currentConcert.state.setlist;
+        inventoryTracker = CurrentAssetsManager.GetCurrent<InventoryTracker>();
         if (currentConcert != null)
         {
             LoadStage(serverStageName: currentConcert.state.Stage.name);
@@ -36,9 +40,14 @@ public class StageLoader : MonoBehaviour
     {
         // Stage change
         StageInfo stageUpdate = state.Stage;
-        if (LoadedStage == null || LoadedStage.name != stageUpdate.name) LoadStage(serverStageName: stageUpdate.name, moment:state.moment);
+        if (LoadedStage == null || LoadedStage.name != stageUpdate.name) LoadStage(serverStageName: stageUpdate.name, moment: state.moment);
         // Moment change
         else if (LoadedStage != null) LoadedStage.Moment = state.moment;
+        // Init Money on setlist change
+        if (state.setlist.databaseID != setlistInfo.databaseID)
+        {
+            inventoryTracker.Reset();
+        }
     }
 
     public void LoadStage(string localStageName = null, string serverStageName = null, int moment = 0)

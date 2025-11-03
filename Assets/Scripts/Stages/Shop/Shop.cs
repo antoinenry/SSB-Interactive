@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,6 +26,8 @@ namespace Shop
         [Header("Contents")]
         public List<SongInfo> songPool;
         public ShopItem[] inventory;
+
+        public TMP_Text moneyField;
         [Header("Patron")]
         public int cartCapacity;
         public int budget;
@@ -45,12 +48,13 @@ namespace Shop
 
         private List<ShopItem> cart;
 
+        private InventoryTracker playerInventory;
+
         protected void OnEnable()
         {
-            if (socketClient == null)
-            {
-                socketClient = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
-            }
+            playerInventory = CurrentAssetsManager.GetCurrent<InventoryTracker>();
+            socketClient = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
+            SetPlayerMoney(playerInventory.Data.Money);
             ClearInventory();
             RefreshSongPool();
             InitCart();
@@ -239,6 +243,8 @@ namespace Shop
             // Update inventory
             RemoveItemFromInventory(item);
             RemoveSongFromPool(item.song);
+            int newPlayerMoney = playerInventory.Data.Money - item.price;
+            SetPlayerMoney(newPlayerMoney);
             FillInventory();
             // Update setlist
             if (socketClient != null)
@@ -283,6 +289,13 @@ namespace Shop
                 else skipSlots = false;
             }
             cart = new List<ShopItem>(cartCapacity);
+        }
+
+        public void SetPlayerMoney(int value)
+        {
+            moneyField.enabled = true;
+            moneyField.text = "x " + value;
+            playerInventory.SetMoney(value);
         }
     }
 }
