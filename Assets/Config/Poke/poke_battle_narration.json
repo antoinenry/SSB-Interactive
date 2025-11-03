@@ -1,0 +1,87 @@
+{
+  "LineCount": 13,
+  "ReactionCount": 0,
+  "lines": [
+    {
+      "AnswerCount": 0,
+      "text": "Un pokefanfaron_mechant sauvage apparaît !",
+      "answers": [],
+      "hideNextButton": true
+    },
+    {
+      "AnswerCount": 0,
+      "text": "Vite, nom_du_public ! A vos manettes !",
+      "answers": [],
+      "hideNextButton": false
+    },
+    {
+      "AnswerCount": 1,
+      "text": "Appelez votre fidèle pokefanfaron_gentil avant que le pokefanfaron_mechant fasse un solo de 40 minutes! On a plus le temps !",
+      "answers": [
+        "GO, pokefanfaron_gentil !"
+      ],
+      "hideNextButton": false
+    },
+    {
+      "AnswerCount": 0,
+      "text": "pokefanfaron_gentil veut se battre !",
+      "answers": [],
+      "hideNextButton": true
+    },
+    {
+      "AnswerCount": 0,
+      "text": "Que va faire pokefanfaron_gentil ?",
+      "answers": [],
+      "hideNextButton": true
+    },
+    {
+      "AnswerCount": 0,
+      "text": "pokefanfaron_gentil utilise poke_attaque !",
+      "answers": [],
+      "hideNextButton": true
+    },
+    {
+      "AnswerCount": 0,
+      "text": "...ça n\u0027est pas très efficace.",
+      "answers": [],
+      "hideNextButton": true
+    },
+    {
+      "AnswerCount": 0,
+      "text": "pokefanfaron_mechant utilise poke_attaque !",
+      "answers": [],
+      "hideNextButton": true
+    },
+    {
+      "AnswerCount": 0,
+      "text": "C\u0027est très efficace !",
+      "answers": [],
+      "hideNextButton": true
+    },
+    {
+      "AnswerCount": 0,
+      "text": "Que va faire pokefanfaron_gentil ?",
+      "answers": [],
+      "hideNextButton": true
+    },
+    {
+      "AnswerCount": 0,
+      "text": "pokefanfaron_gentil utilise poke_attaque !",
+      "answers": [],
+      "hideNextButton": true
+    },
+    {
+      "AnswerCount": 0,
+      "text": "COUP CRITIQUE ! ULTRA KILL ! NO SCOPE !",
+      "answers": [],
+      "hideNextButton": true
+    },
+    {
+      "AnswerCount": 0,
+      "text": "pokefanfaron_mechant est K.O !",
+      "answers": [],
+      "hideNextButton": true
+    }
+  ],
+  "reactions": []
+}

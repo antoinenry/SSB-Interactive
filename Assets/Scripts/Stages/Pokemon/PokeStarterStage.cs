@@ -1,44 +1,92 @@
 using UnityEngine;
+using NPC;
 
-public class PokeStarterStage : Stage
+namespace Pokefanf
 {
-    [Header("Components")]
-    public NPCDialog npc;
-    [Header("Contents")]
-    public NPCDialogAsset introDialog;
-    public NPCDialogAsset outroDialog;
-    public GameObject selectionGUI;
-
-    public override int MomentCount => 3;
-
-    protected override void OnMomentChange(int value)
+    public class PokeStarterStage : Stage
     {
-        base.OnMomentChange(value);
-        switch (value)
+        [Header("Components")]
+        public NPCDialog npc;
+        public PokeSelectorGroup selector;
+        [Header("Contents")]
+        public NPCDialogContentAsset introDialog;
+        public NPCDialogContentAsset outroDialog;
+        public PokeConfigAsset config;
+        [Header("Web")]
+        public string selectionMessage = "Curseur : ";
+        public string validationMessage = "VALIDE : ";
+
+        public override int MomentCount => 3;
+
+        protected override bool HasAllComponents()
         {
-            case 0: ShowIntro(); break;
-            case 1: ShowSelection(); break;
-            case 2: ShowOutro(); break;
+            if (base.HasAllComponents() && npc != null && selector != null) return true;
+            if (npc == null) npc = GetComponentInChildren<NPCDialog>(true);
+            if (selector == null) selector = GetComponentInChildren<PokeSelectorGroup>(true);
+            return (base.HasAllComponents() && npc != null && selector != null);
         }
-    }
 
-    private void ShowIntro()
-    {
-        npc.gameObject.SetActive(true);
-        npc.ShowDialogLine(setDialog: introDialog, setLineIndex: 0);
-        selectionGUI.SetActive(false);
-    }
+        protected override void OnMomentChange(int value)
+        {
+            base.OnMomentChange(value);
+            base.OnMomentChange(value);
+            switch (value)
+            {
+                case 0: ShowIntroDialog(); break;
+                case 1: ShowSelector(); break;
+                case 2: ShowOutroDialog(); break;
+            }
+        }
 
-    private void ShowSelection()
-    {
-        npc.gameObject.SetActive(false);
-        selectionGUI.SetActive(true);
-    }
+        private void OnChangeSelection()
+        {
+            if (selector == null) return;
+            MessengerAdmin.Send(selectionMessage + selector.GetLeader().musicianName);
+        }
 
-    private void ShowOutro()
-    {
-        npc.gameObject.SetActive(true);
-        npc.ShowDialogLine(setDialog: outroDialog, setLineIndex: 0);
-        selectionGUI.SetActive(false);
+        private void OnValidateSelection(Pokefanf selected)
+        {
+            MessengerAdmin.Send(validationMessage + selected.musicianName);
+            if (config != null)
+            {
+                config.Data.SetBattleConfig(selected.musicianName);
+                config.Save();
+            }
+        }
+
+        private void ShowIntroDialog()
+        {
+            HideSelector();
+            if (npc != null) npc.ShowDialogLine(introDialog, 0);
+        }
+
+        private void ShowOutroDialog()
+        {
+            HideSelector();
+            if (npc != null) npc.ShowDialogLine(outroDialog, 0);
+        }
+
+        private void HideDialog()
+        {
+            if (npc != null) npc.EndDialog();
+        }
+
+        private void ShowSelector()
+        {
+            HideDialog();
+            if (selector == null) return;
+            if (config != null) selector.config = config.Data;
+            selector.gameObject.SetActive(true);
+            selector.onRankingChange.AddListener(OnChangeSelection);
+            selector.onSelectorMaxed.AddListener(OnValidateSelection);
+        }
+
+        private void HideSelector()
+        {
+            if (selector == null) return;
+            selector.onRankingChange.RemoveListener(OnChangeSelection);
+            selector.onSelectorMaxed.RemoveListener(OnValidateSelection);
+            selector.gameObject.SetActive(false);
+        }
     }
 }

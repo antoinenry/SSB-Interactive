@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c175f6705eaf484b8014760745fd032, type: 3}
+  m_Name: PokeBattle_narration
+  m_EditorClassIdentifier: 
+  savePath: Config/Poke/poke_battle_narration.json
+  data:
+    lines:
+    - text: "Un pokefanfaron_mechant sauvage appara\xEEt !"
+      answers: []
+      hideNextButton: 1
+    - text: Vite, nom_du_public ! A vos manettes !
+      answers: []
+      hideNextButton: 0
+    - text: "Appelez votre fid\xE8le pokefanfaron_gentil avant que le pokefanfaron_mechant
+        fasse un solo de 40 minutes! On a plus le temps !"
+      answers:
+      - GO, pokefanfaron_gentil !
+      hideNextButton: 0
+    - text: pokefanfaron_gentil veut se battre !
+      answers: []
+      hideNextButton: 1
+    - text: Que va faire pokefanfaron_gentil ?
+      answers: []
+      hideNextButton: 1
+    - text: pokefanfaron_gentil utilise poke_attaque !
+      answers: []
+      hideNextButton: 1
+    - text: "...\xE7a n'est pas tr\xE8s efficace."
+      answers: []
+      hideNextButton: 1
+    - text: pokefanfaron_mechant utilise poke_attaque !
+      answers: []
+      hideNextButton: 1
+    - text: "C'est tr\xE8s efficace !"
+      answers: []
+      hideNextButton: 1
+    - text: Que va faire pokefanfaron_gentil ?
+      answers: []
+      hideNextButton: 1
+    - text: pokefanfaron_gentil utilise poke_attaque !
+      answers: []
+      hideNextButton: 1
+    - text: COUP CRITIQUE ! ULTRA KILL ! NO SCOPE !
+      answers: []
+      hideNextButton: 1
+    - text: pokefanfaron_mechant est K.O !
+      answers: []
+      hideNextButton: 1
+    reactions: []

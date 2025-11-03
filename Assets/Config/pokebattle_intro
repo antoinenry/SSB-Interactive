@@ -1,0 +1,24 @@
+{
+  "LineCount": 3,
+  "ReactionCount": 0,
+  "lines": [
+    {
+      "AnswerCount": 0,
+      "text": "Un \u003Cnom du pok\u00E9 fanfaron m\u00E9chant\u003E sauvage appara\u00EEt !",
+      "answers": []
+    },
+    {
+      "AnswerCount": 0,
+      "text": "Vite, \u003Cnom du public\u003E ! A vos manettes !",
+      "answers": []
+    },
+    {
+      "AnswerCount": 1,
+      "text": "Appelez votre fid\u00E8le \u003Cnom du pok\u00E9 fanfaron gentil\u003E avant que le \u003Cnom du pok\u00E9 fanfaron m\u00E9chant\u003E fasse un solo de 40 minutes! On a plus le temps !",
+      "answers": [
+        "GO, \u003Cnom du pok\u00E9 fanfaron gentil\u003E !"
+      ]
+    }
+  ],
+  "reactions": []
+}

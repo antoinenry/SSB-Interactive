@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028bd86d29238cd47ac45c70dce09201, type: 3}
+  m_Name: PokeConfig
+  m_EditorClassIdentifier: Assembly-CSharp:Pokefanf:PokeConfigAsset
+  savePath: Config/poke.json
+  data:
+    pokeFanf_starters:
+    - pokeName: Saxoxo
+      musicianName: Gratin
+      attacks:
+      - Coin coin
+      - Jase
+      - Teukeuteu
+      - Saxysax
+    - pokeName: Tubazooka
+      musicianName: DeGnou
+      attacks:
+      - Hyperpiston
+      - Chassakour
+      - FFFF
+      - "Note p\xE9dale"
+    - pokeName: Clippy
+      musicianName: Antoine
+      attacks:
+      - "H\xE9licoulisse"
+      - Sadtrombone.gif
+      - Slidomax
+      - Fulguropouet
+    ally_musician: Gratin
+    ennemy_musician: DeGnou
+    musician_priority:
+    - Gratin
+    - DeGnou
+    - Antoine
+  isCurrent: 0

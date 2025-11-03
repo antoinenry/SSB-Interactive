@@ -8,6 +8,7 @@ public struct NPCDialogContent
     {
         public string text;
         public string[] answers;
+        public bool hideNextButton;
 
         public static DynamicLine None => new DynamicLine() { text = null, answers = null };
 

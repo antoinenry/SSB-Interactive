@@ -1,13 +1,13 @@
-using UnityEditorInternal.Profiling;
 using UnityEngine;
+using NPC;
 
 namespace Shop
 {
     public class ShopStage : Stage
     {
-        public NPCDialogAsset introDialog;
-        public NPCDialogAsset purchaseDialog;
-        public NPCDialogAsset outroDialog;
+        public NPCDialogContentAsset introDialog;
+        public NPCDialogContentAsset purchaseDialog;
+        public NPCDialogContentAsset outroDialog;
 
         private Shop shop;
         private NPCDialog npc;
@@ -82,7 +82,7 @@ namespace Shop
 
         private void HideDialog()
         {
-            if (npc != null) npc.HideDialog();
+            if (npc != null) npc.EndDialog();
         }
 
         private void HideShop()

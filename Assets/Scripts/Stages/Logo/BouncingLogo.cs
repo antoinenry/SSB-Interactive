@@ -39,9 +39,9 @@ public class BouncingLogo : MonoBehaviour
         screenRect.center = cam.transform.position;
         if (Application.isPlaying)
         {
-            horizontalInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Horizontal);
+            horizontalInput = AudienceInputSource.Current.GetHorizontalAxis().deltaPresses;
             if (horizontalInput != 0f) horizontalInput = Mathf.Sign(horizontalInput);
-            verticalInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Vertical);
+            verticalInput = AudienceInputSource.Current.GetVerticalAxis().deltaPresses;
             if (verticalInput != 0f) verticalInput = Mathf.Sign(verticalInput);
         }
     }
