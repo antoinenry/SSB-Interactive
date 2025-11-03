@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class GUIMainScorePanel : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class GUIMainScorePanel : MonoBehaviour
     public string congratsPrefix = "Bravo ";
     public string publicName;
     public TMP_Text totalField;
+    public TMP_Text playerMoneyField;
+    public TMP_Text levelName;
     public float totalScore;
     public string totalSuffix = " points";
     [Header("Animation")]
@@ -25,16 +28,19 @@ public class GUIMainScorePanel : MonoBehaviour
     public float pointsPerSecond = 100f;
     public float maxAnimationDuration = 5f;
 
-    public void PlayAddingUpAnimation(int pointsFromMiniScore, int pointsFromCoinScore)
+    public Transform coinBagTransform;
+
+    public void PlayAddingUpAnimation(int pointsFromMiniScore, int pointsFromCoinScore, int initPlayerMoney)
     {
         StopAllCoroutines();
-        StartCoroutine(AddingAnimationCoroutine(pointsFromMiniScore, pointsFromCoinScore));
+        StartCoroutine(AddingAnimationCoroutine(pointsFromMiniScore, pointsFromCoinScore, initPlayerMoney));
     }
 
-    private IEnumerator AddingAnimationCoroutine(int pointsFromMiniScore, int pointsFromCoins)
+    private IEnumerator AddingAnimationCoroutine(int pointsFromMiniScore, int pointsFromCoins, int initPlayerMoney)
     {
         SetMiniScoreValue(miniScoreUnits, miniScoreSuffix);
         SetCoinCount(coinCount);
+        SetPlayerMoney(initPlayerMoney);
         SetPublicName(publicName);
         SetTotalValue(totalScore);
         // Animation
@@ -59,10 +65,14 @@ public class GUIMainScorePanel : MonoBehaviour
         SetTotalValue(totalScore);
         // Coins
         float coinsPerSecond = pps * coinCount / pointsFromCoins;
+        float initCoincount = coinCount;
+        Vector3 initBagScale = coinBagTransform.localScale;
         while (coinCount > 0)
         {
             deltaTime = Time.unscaledDeltaTime;
             SetCoinCount(coinCount - deltaTime * coinsPerSecond);
+            SetPlayerMoney(initPlayerMoney + initCoincount - (int)coinCount);
+            ScaleBag(coinCount % 1, initBagScale);
             SetTotalValue(totalScore + deltaTime * pps);
             yield return null;
         }
@@ -101,5 +111,27 @@ public class GUIMainScorePanel : MonoBehaviour
     {
         totalScore = value;
         if (totalField) totalField.text = (int)value + totalSuffix;
+    }
+
+    public void SetPlayerMoney(float value)
+    {
+        if (playerMoneyField)
+        {
+            playerMoneyField.enabled = true;
+            playerMoneyField.text = ((int)value).ToString();
+        }
+
+    }
+
+    public void ScaleBag(float value, Vector3 initScale)
+    {
+        Debug.Log("Scale value: " + value);
+        coinBagTransform.localScale = initScale * (1 + (float)Math.Pow(value, 3) / 2);
+    }
+
+    public void SetLevelName(String name)
+    {
+        levelName.enabled = true;
+        levelName.text = name + " STAGE";
     }
 }
