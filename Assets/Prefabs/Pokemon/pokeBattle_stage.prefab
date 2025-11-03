@@ -2829,7 +2829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6579725067420259655, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: text
-      value: "Un Tubazooka sauvage appara\xEEt !"
+      value: "Un pokefanfaron_mechant sauvage appara\xEEt !"
       objectReference: {fileID: 0}
     - target: {fileID: 6579725067473962905, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_SizeDelta.x
