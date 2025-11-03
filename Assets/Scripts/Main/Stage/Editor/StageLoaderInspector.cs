@@ -28,6 +28,7 @@ public class StageLoaderInspector : Editor
         EditorGUI.BeginChangeCheck();
         selectedStageIndex = EditorGUILayout.Popup("Stage", Array.IndexOf(stageOptions, targetStageLoader.LoadedStage?.name), stageOptions);
         if (EditorGUI.EndChangeCheck()) targetStageLoader.LoadStage(localStageName: stageOptions[selectedStageIndex]);
+        if (selectedStageIndex == -1) targetStageLoader.LoadStage(null);
 
         EditorGUI.BeginChangeCheck();
         momentField = EditorGUILayout.IntField("Moment", targetStageLoader.LoadedMoment);

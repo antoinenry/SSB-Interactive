@@ -32,7 +32,7 @@ public class BouncyKnight : MonoBehaviour
         //    body.AddForce(InputSource.Current.RightNormalized * moveForce * Vector2.right);
         //    body.AddForce(InputSource.Current.LeftNormalized * moveForce * Vector2.left);
         //}
-        float horizontalInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Horizontal);
+        float horizontalInput = AudienceInputSource.Current.GetHorizontalAxis().deltaPresses;
         body.AddForce(horizontalInput * moveForce * Vector2.right);
         Camera cam = Camera.main;
         float cameraX = cam.transform.position.x;

@@ -5,12 +5,34 @@ using UnityEngine.UI;
 public class GUIAudienceButton : MonoBehaviour
 {
     [Header("Components")]
+    public AudienceButtonListener button;
     public Image gaugeFill;
     [Header("Input")]
     public float value = 5;
     public float maxValue = 5;
     [Header("Aspect")]
     public bool showGauge = true;
+
+    private void Reset()
+    {
+        button = GetComponentInChildren<AudienceButtonListener>(true);
+        gaugeFill = GetComponentInChildren<Image>(true);
+    }
+
+    private void OnEnable()
+    {
+        if (button)
+        {
+            value = button.OutputValue;
+            maxValue = button.MaxValue;
+            button.onValueChange.AddListener(SetValues);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (button) button.onValueChange.RemoveListener(SetValues);
+    }
 
     private void Update()
     {

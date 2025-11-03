@@ -1,3 +1,4 @@
+using NPC;
 using SocketIOClient;
 using UnityEngine;
 using UnityEngine.Events;
@@ -94,8 +95,17 @@ public class ConcertAdmin : MonoBehaviourSingleton<ConcertAdmin>
                     info = newInfo;
                     onInfoUpdate.Invoke(info);
                 }
+                UpdateNPCDialogs();
             }
         }
+    }
+
+    private void UpdateNPCDialogs()
+    {
+        NPCDialogInjector_ConcertAdmin injector = NPCDialogInjectorConfig.Current.concertAdmin;
+        if (injector == null) return;
+        injector.UpdateDictionary(injector.key_ConcertName, info.name);
+        injector.UpdateDictionary(injector.key_ConcertLocation, info.location);
     }
 
     public void RefreshConcertState()

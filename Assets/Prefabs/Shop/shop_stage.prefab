@@ -2186,6 +2186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 201598447929938965}
   - component: {fileID: 201598447929938964}
+  - component: {fileID: 8492709014855590295}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -2226,194 +2227,7 @@ MonoBehaviour:
   - {fileID: 201598446663018278}
   - {fileID: 201598447841641034}
   - {fileID: 201598447481401469}
-  songPool:
-  - title: Bamboo Boogaloo
-    duration: 210
-    bpm: 170
-    partyLevel: 4
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8345
-  - title: Corneria
-    duration: 180
-    bpm: 180
-    partyLevel: 5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8347
-  - title: Crypteque
-    duration: 180
-    bpm: 132
-    partyLevel: 4.5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8348
-  - title: Danse Macabre
-    duration: 210
-    bpm: 100
-    partyLevel: 4
-    hasMinigame: 1
-    linkedStage:
-      name: ShovelKnight
-      hasScore: 1
-      moments: []
-      databaseID: 8378
-    databaseID: 8349
-  - title: DK
-    duration: 180
-    bpm: 125
-    partyLevel: 3
-    hasMinigame: 1
-    linkedStage:
-      name: DonkeyKong
-      hasScore: 1
-      moments: []
-      databaseID: 8379
-    databaseID: 8350
-  - title: Gourmet
-    duration: 150
-    bpm: 180
-    partyLevel: 5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8352
-  - title: Halo
-    duration: 170
-    bpm: 120
-    partyLevel: 2
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8353
-  - title: Floral Fury
-    duration: 240
-    bpm: 130
-    partyLevel: 3
-    hasMinigame: 1
-    linkedStage:
-      name: FloralFury
-      hasScore: 1
-      moments: []
-      databaseID: 8380
-    databaseID: 8354
-  - title: In the Blood
-    duration: 240
-    bpm: 80
-    partyLevel: 1.5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8355
-  - title: Kass theme
-    duration: 210
-    bpm: 180
-    partyLevel: 4
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8356
-  - title: The Great Escape
-    duration: 210
-    bpm: 160
-    partyLevel: 4
-    hasMinigame: 1
-    linkedStage:
-      name: Rayman
-      hasScore: 1
-      moments: []
-      databaseID: 8383
-    databaseID: 8360
-  - title: the Man with the machine gun
-    duration: 205
-    bpm: 140
-    partyLevel: 3
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8361
-  - title: Resurrections
-    duration: 420
-    bpm: 70
-    partyLevel: 1
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8362
-  - title: Still Alive
-    duration: 180
-    bpm: 120
-    partyLevel: 1.5
-    hasMinigame: 1
-    linkedStage:
-      name: Quizz
-      hasScore: 1
-      moments: []
-      databaseID: 8385
-    databaseID: 8364
-  - title: Vampire Killer
-    duration: 210
-    bpm: 128
-    partyLevel: 5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8366
-  - title: Rock N Stone
-    duration: 210
-    bpm: 180
-    partyLevel: 5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8431
-  - title: Fall Guys
-    duration: 210
-    bpm: 148
-    partyLevel: 80
-    hasMinigame: 0
-    linkedStage:
-      name: MovingLogo
-      hasScore: 0
-      moments: []
-      databaseID: 8371
-    databaseID: 8961
+  songPool: []
   inventory:
   - song:
       title: 
@@ -2467,7 +2281,7 @@ MonoBehaviour:
         databaseID: 0
       databaseID: 0
     price: 0
-  cartCapacity: 4
+  cartCapacity: 0
   budget: 10
   canBuyMinigames: 0
   minimumPartyLevel: 0
@@ -2477,7 +2291,7 @@ MonoBehaviour:
     requestType: 0
     requestUri: songs/available/{setlist_id}
     parameters:
-    - 53
+    - 64
     parametersFormat: 1
     requestTimeout: 5
     loop: 3
@@ -2491,19 +2305,9 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0.38955975
+    responseTime: 0
     loopCount: 0
-    responseBody: '[{"id":8345,"title":"Bamboo Boogaloo","duration":210,"bpm":170,"zgg":4.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8347,"title":"Corneria","duration":180,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8348,"title":"Crypteque","duration":180,"bpm":132,"zgg":4.5,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8349,"title":"Danse
-      Macabre","duration":210,"bpm":100,"zgg":4.0,"minigame":true,"stage":{"id":8378,"title":"ShovelKnight","hasScore":true,"stageMoments":[]}},{"id":8350,"title":"DK","duration":180,"bpm":125,"zgg":3.0,"minigame":true,"stage":{"id":8379,"title":"DonkeyKong","hasScore":true,"stageMoments":[]}},{"id":8352,"title":"Gourmet","duration":150,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8353,"title":"Halo","duration":170,"bpm":120,"zgg":2.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8354,"title":"Floral
-      Fury","duration":240,"bpm":130,"zgg":3.0,"minigame":true,"stage":{"id":8380,"title":"FloralFury","hasScore":true,"stageMoments":[]}},{"id":8355,"title":"In
-      the Blood","duration":240,"bpm":80,"zgg":1.5,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8356,"title":"Kass
-      theme","duration":210,"bpm":180,"zgg":4.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8360,"title":"The
-      Great Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},{"id":8361,"title":"the
-      Man with the machine gun","duration":205,"bpm":140,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8362,"title":"Resurrections","duration":420,"bpm":70,"zgg":1.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8364,"title":"Still
-      Alive","duration":180,"bpm":120,"zgg":1.5,"minigame":true,"stage":{"id":8385,"title":"Quizz","hasScore":true,"stageMoments":[]}},{"id":8366,"title":"Vampire
-      Killer","duration":210,"bpm":128,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8431,"title":"Rock
-      N Stone","duration":210,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8961,"title":"Fall
-      Guys","duration":210,"bpm":148,"zgg":80.0,"minigame":false,"stage":{"id":8371,"title":"MovingLogo","hasScore":false,"stageMoments":[]}}]'
+    responseBody: 
   addSongChoiceRequest:
     requestType: 1
     requestUri: setlists/songs/{setlist_id}/chosen/{song_id}
@@ -2537,6 +2341,47 @@ MonoBehaviour:
     - FillInventory
     - ClearInventory
     - InitCart
+--- !u!114 &8492709014855590295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201598447929938970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9ca8806a01aad42a5b3bdb84ab88a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 3733272300300683857}
+  - {fileID: 3733272300345461008}
+  - {fileID: 3733272301475810203}
+  - {fileID: 3733272301206932415}
+  buttonConfiguration:
+    inputType: 1
+    maxValue: 10
+    clampZeroMax: 1
+    enableAutoPress: 0
+    autoPressSpeed: 0
+    autoPressDelay: 0
+  applyButtonConfiguration: 1
+  disableLosers: 0
+  autoPress: 2
+  autoPressDelay: 3
+  autoPressBaseSpeed: 1
+  autoPressAcceleration: 0
+  buttonAnimations: []
+  idleAnimation: {fileID: 0}
+  selectedAnimation: {fileID: 0}
+  winnerAnimation: {fileID: 0}
+  loserAnimation: {fileID: 0}
+  onRankingChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonMaxed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &201598447972073160
 GameObject:
   m_ObjectHideFlags: 0
@@ -3665,7 +3510,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &201598446631635255
@@ -3778,7 +3623,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &201598447738620121
@@ -3891,7 +3736,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &201598448007432445
@@ -4004,7 +3849,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbe11675fe715949a303e5e652f5ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dcd82b45ced1054f804814cd9988a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7312958930789923272

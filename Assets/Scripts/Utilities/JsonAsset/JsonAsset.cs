@@ -1,5 +1,8 @@
 using System.IO;
+using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Unicode;
 using UnityEngine;
 
 public abstract class JsonAsset : ScriptableObject
@@ -10,7 +13,8 @@ public abstract class JsonAsset : ScriptableObject
     {
         WriteIndented = true,
         IncludeFields = true,
-        AllowTrailingCommas = true
+        AllowTrailingCommas = true,
+        Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
     };
 
     public abstract void Save();

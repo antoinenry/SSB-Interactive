@@ -113,7 +113,7 @@ public class Cuphead : MonoBehaviour
 
     private void FreeMove()
     {
-        float input = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Horizontal);
+        float input = AudienceInputSource.Current.GetHorizontalAxis().deltaPresses;
         if (input > 0f) WalkRight();
         else if (input < 0f) WalkLeft();
         else StayIdle();

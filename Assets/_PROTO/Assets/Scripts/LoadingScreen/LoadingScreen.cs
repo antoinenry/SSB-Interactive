@@ -65,7 +65,7 @@ public class LoadingScreen : MonoBehaviour
         {
             instructionDisplay.enabled = true;
             nextSlider.enabled = true;
-            if (AudienceInput.GetButtonRaw(nextTipButton).Velocity > 0f)
+            if (AudienceInputSource.Current.GetButton(nextTipButton).deltaPresses > 0f)
             {
                 nextSlider.value++;
             }
@@ -95,7 +95,7 @@ public class LoadingScreen : MonoBehaviour
         {
             timeBeforeProgress -= Time.deltaTime;
         }
-        float horizontalInput = AudienceInput.GetAxis(AudienceInputConfiguration.Axis.Direction.Horizontal);
+        float horizontalInput = AudienceInputSource.Current.GetHorizontalAxis().deltaPresses;
         if (horizontalInput > 0f && loadingSlider.transform.rotation.z > -maxInclinaison) loadingSlider.transform.rotation *= Quaternion.Euler(0f, 0f, -inclinaisonSpeed * Time.deltaTime);
         else if (horizontalInput < 0f && loadingSlider.transform.rotation.z < maxInclinaison) loadingSlider.transform.rotation *= Quaternion.Euler(0f, 0f, inclinaisonSpeed * Time.deltaTime);
         loadingSlider.value -= loadingSlider.transform.rotation.z * gravity * Time.deltaTime;
