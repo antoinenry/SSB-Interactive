@@ -27,8 +27,11 @@ public class Stage : MonoBehaviour
     {
         set
         {
-            moment = value;
-            OnMomentChange(value);
+            if (moment != value)
+            {
+                moment = value;
+                OnMomentChange(value);
+            }
         }
         get => moment;
     }
