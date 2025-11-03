@@ -680,6 +680,7 @@ MonoBehaviour:
   unitValue: 0
   precision: 1
   unit: m
+  showUnitInFront: 0
   pointsPerUnit: 10
 --- !u!114 &5890789143975836130
 MonoBehaviour:
@@ -697,6 +698,8 @@ MonoBehaviour:
   prefix: x
   count: 0
   pointsPerCoin: 100
+  loseCoinEffect: {fileID: 0}
+  loseCoinEffectDuration: 1
 --- !u!1 &1561187521
 GameObject:
   m_ObjectHideFlags: 0

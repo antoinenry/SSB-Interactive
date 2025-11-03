@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,6 +26,8 @@ namespace Shop
         [Header("Contents")]
         public List<SongInfo> songPool;
         public ShopItem[] inventory;
+
+        public TMP_Text moneyField;
         [Header("Patron")]
         public int cartCapacity;
         public int budget;
@@ -35,7 +38,7 @@ namespace Shop
         public string skipSlotsAfterTitle = "Mii";
         [Header("Web")]
         public HttpRequestLoop songPoolRequest = new(HttpRequest.RequestType.GET, "songs/available/{setlist_id}", HttpRequestLoop.ParameterFormat.Query);
-        public HttpRequestLoop addSongChoiceRequest = new(HttpRequest.RequestType.POST, "setlists/songs/{setlist_id}/chosen/{song_id}", HttpRequestLoop.ParameterFormat.Path);
+        public SocketIOClientScriptable socketClient;
         public string cartContentMessagePrefix = "Panier : ";
         public string buyingMessage = "Achat en cours...";
         [Header("Events")]
@@ -45,8 +48,13 @@ namespace Shop
 
         private List<ShopItem> cart;
 
+        private InventoryTracker playerInventory;
+
         protected void OnEnable()
         {
+            playerInventory = CurrentAssetsManager.GetCurrent<InventoryTracker>();
+            socketClient = CurrentAssetsManager.GetCurrent<SocketIOClientScriptable>();
+            SetPlayerMoney(playerInventory.Data.Money);
             ClearInventory();
             RefreshSongPool();
             InitCart();
@@ -187,8 +195,8 @@ namespace Shop
             if (availableSongIndices.Count == 0) return ShopItem.None;
             song = songPool[availableSongIndices[UnityEngine.Random.Range(0, availableSongIndices.Count)]];
             // Set a semi-random price
-            GetPriceRange(cartCapacity, budget, out int minPrice, out int maxPrice);
-            return new ShopItem() { song = song, price = UnityEngine.Random.Range(minPrice, maxPrice) };
+            GetPriceRange(cartCapacity, playerInventory.Data.Money, out int minPrice, out int maxPrice);
+            return new ShopItem() { song = song, price = UnityEngine.Random.Range(minPrice, maxPrice + 1) };
         }
 
         private bool IsInInventory(SongInfo song)
@@ -201,7 +209,7 @@ namespace Shop
         {
             if (buyableItems > 0)
             {
-                minPrice = Mathf.CeilToInt(maxBudget / (buyableItems + 1)) + 1;
+                minPrice = Mathf.CeilToInt(((float)maxBudget) / (buyableItems + 2));
                 maxPrice = Mathf.FloorToInt(maxBudget / buyableItems);
             }
             else
@@ -235,27 +243,17 @@ namespace Shop
             // Update inventory
             RemoveItemFromInventory(item);
             RemoveSongFromPool(item.song);
+            int newPlayerMoney = playerInventory.Data.Money - item.price;
+            SetPlayerMoney(newPlayerMoney);
             FillInventory();
             // Update setlist
-            if (addSongChoiceRequest != null)
+            if (socketClient != null)
             {
-                int setlistId = ConcertAdmin.Current != null ? ConcertAdmin.Current.state.setlist.databaseID : -1;
-                int songId = item.song.databaseID;
-                addSongChoiceRequest.parameters = new string[] { setlistId.ToString(), songId.ToString() };
-                addSongChoiceRequest.onRequestEnd.AddListener(OnAddSongChoiceRequestEnd);
-                addSongChoiceRequest.StartRequestCoroutine(this, restart: true);
+                socketClient.Emit("choice", item.song.databaseID);
+                MessengerAdmin.Send(CartContentMessage);
             }
             // Notify purchase
             onBuyItem.Invoke(item);
-        }
-
-        private void OnAddSongChoiceRequestEnd(HttpRequest request)
-        {
-            MessengerAdmin.Send(CartContentMessage);
-            if (addSongChoiceRequest != null)
-            {
-                addSongChoiceRequest.onRequestEnd.RemoveListener(OnAddSongChoiceRequestEnd);
-            }
         }
 
         private string CartContentMessage
@@ -291,6 +289,13 @@ namespace Shop
                 else skipSlots = false;
             }
             cart = new List<ShopItem>(cartCapacity);
+        }
+
+        public void SetPlayerMoney(int value)
+        {
+            moneyField.enabled = true;
+            moneyField.text = "x " + value;
+            playerInventory.SetMoney(value);
         }
     }
 }

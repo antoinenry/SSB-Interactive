@@ -2281,6 +2281,7 @@ MonoBehaviour:
         databaseID: 0
       databaseID: 0
     price: 0
+  moneyField: {fileID: 1847034740789240341}
   cartCapacity: 0
   budget: 10
   canBuyMinigames: 0
@@ -2307,29 +2308,23 @@ MonoBehaviour:
     failureInfo: 0
     responseTime: 0
     loopCount: 0
-    responseBody: 
-  addSongChoiceRequest:
-    requestType: 1
-    requestUri: setlists/songs/{setlist_id}/chosen/{song_id}
-    parameters:
-    - setlist_id
-    - song_id
-    parametersFormat: 0
-    requestTimeout: 5
-    loop: 3
-    maxLoops: 2
-    minLoopDuration: 5
-    onRequestSend:
-      m_PersistentCalls:
-        m_Calls: []
-    onRequestEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    status: 0
-    failureInfo: 0
-    responseTime: 0
-    loopCount: 0
-    responseBody: 
+    responseBody: "[{\"id\":15,\"title\":\"Bamboo Boogaloo\",\"duration\":210,\"bpm\":170,\"zgg\":4.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":18,\"title\":\"Danse
+      Macabre\",\"duration\":210,\"bpm\":100,\"zgg\":4.0,\"minigame\":true,\"stage\":{\"id\":6,\"title\":\"ShovelKnight\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":19,\"title\":\"DK\",\"duration\":180,\"bpm\":125,\"zgg\":3.0,\"minigame\":true,\"stage\":{\"id\":7,\"title\":\"DonkeyKong\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":20,\"title\":\"Gourmet\",\"duration\":150,\"bpm\":180,\"zgg\":5.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":21,\"title\":\"Halo\",\"duration\":170,\"bpm\":120,\"zgg\":2.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":22,\"title\":\"Floral
+      Fury\",\"duration\":240,\"bpm\":130,\"zgg\":3.0,\"minigame\":true,\"stage\":{\"id\":8,\"title\":\"FloralFury\",\"hasScore\":true,\"stageMoments\":[{\"id\":48,\"moment\":0,\"momentIndex\":0,\"momentTitle\":\"pluie
+      pi\xE8ces\"},{\"id\":49,\"moment\":1,\"momentIndex\":1,\"momentTitle\":\"choix
+      solo\"},{\"id\":50,\"moment\":2,\"momentIndex\":2,\"momentTitle\":\"solo !!\"},{\"id\":51,\"moment\":0,\"momentIndex\":3,\"momentTitle\":\"pluie
+      pi\xE8ces\"},{\"id\":52,\"moment\":1,\"momentIndex\":4,\"momentTitle\":\"choix
+      solo\"},{\"id\":53,\"moment\":2,\"momentIndex\":5,\"momentTitle\":\"solo !!\"},{\"id\":54,\"moment\":0,\"momentIndex\":6,\"momentTitle\":\"pluie
+      pi\xE8ces\"}]}},{\"id\":23,\"title\":\"In the Blood\",\"duration\":240,\"bpm\":80,\"zgg\":1.5,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":24,\"title\":\"Kass
+      theme\",\"duration\":210,\"bpm\":180,\"zgg\":4.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":25,\"title\":\"Luigi's\",\"duration\":150,\"bpm\":110,\"zgg\":3.0,\"minigame\":true,\"stage\":{\"id\":9,\"title\":\"LuigisMansion\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":26,\"title\":\"Megalovania\",\"duration\":300,\"bpm\":240,\"zgg\":5.0,\"minigame\":true,\"stage\":{\"id\":14,\"title\":\"Megalovania\",\"hasScore\":true,\"stageMoments\":[{\"id\":60,\"moment\":0,\"momentIndex\":0,\"momentTitle\":\"bullet
+      hell\"},{\"id\":61,\"moment\":1,\"momentIndex\":1,\"momentTitle\":\"solo !!\"},{\"id\":62,\"moment\":0,\"momentIndex\":2,\"momentTitle\":\"bullet
+      hell\"}]}},{\"id\":28,\"title\":\"The Great Escape\",\"duration\":210,\"bpm\":160,\"zgg\":4.0,\"minigame\":true,\"stage\":{\"id\":11,\"title\":\"Rayman\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":29,\"title\":\"the
+      Man with the machine gun\",\"duration\":205,\"bpm\":140,\"zgg\":0.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":30,\"title\":\"Resurrections\",\"duration\":420,\"bpm\":70,\"zgg\":1.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":32,\"title\":\"Still
+      Alive\",\"duration\":180,\"bpm\":120,\"zgg\":1.5,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":34,\"title\":\"Vampire
+      Killer\",\"duration\":210,\"bpm\":128,\"zgg\":5.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":35,\"title\":\"Rock
+      N Stone\",\"duration\":210,\"bpm\":180,\"zgg\":0.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":37,\"title\":\"Pokemon\",\"duration\":240,\"bpm\":180,\"zgg\":0.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":39,\"title\":\"Fall
+      Guys\",\"duration\":210,\"bpm\":148,\"zgg\":80.0,\"minigame\":false,\"stage\":{\"id\":1,\"title\":\"MovingLogo\",\"hasScore\":false,\"stageMoments\":[]}}]"
+  socketClient: {fileID: 11400000, guid: 334956e2833778442be8a34651c0bb35, type: 2}
   cartContentMessagePrefix: 'Panier : '
   buyingMessage: Achat en cours...
   onBuyItem:
@@ -2680,7 +2675,7 @@ GameObject:
   - component: {fileID: 1847034740789240340}
   - component: {fileID: 1847034740789240341}
   m_Layer: 5
-  m_Name: coins_field
+  m_Name: money_field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2761,15 +2756,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 47.4
+  m_fontSize: 50
   m_fontSizeBase: 62.43
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 50
-  m_fontStyle: 0
-  m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_fontStyle: 16
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2992,7 +2987,7 @@ GameObject:
   - component: {fileID: 1847034741511822814}
   - component: {fileID: 1847034741511822815}
   m_Layer: 5
-  m_Name: coins_icon
+  m_Name: coinbag_icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3046,7 +3041,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 215077077, guid: 3e664c7d851eec64192c94e47ca78e9e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45d0d6601024061ab88a025ce4c3f98d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3094,7 +3089,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -10, y: -5}
-  m_SizeDelta: {x: 165, y: 80}
+  m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &1847034741698490798
 CanvasRenderer:
@@ -3118,8 +3113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
-    m_Right: 0
-    m_Top: 0
+    m_Right: 50
+    m_Top: 20
     m_Bottom: 0
   m_ChildAlignment: 2
   m_Spacing: 0
@@ -3866,6 +3861,10 @@ PrefabInstance:
     - target: {fileID: 6579725067420259655, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: text
       value: "Bien le bonjour, les \xE9trangers !"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579725067473962905, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0243303
       objectReference: {fileID: 0}
     - target: {fileID: 6579725069097335209, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_text
