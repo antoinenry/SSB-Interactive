@@ -19,9 +19,15 @@ public class Transition : MonoBehaviour
         stageLoader = FindObjectOfType<StageLoader>(true);
     }
 
+    private void OnDisable()
+    {
+        if (TransitionMaterial != null)
+            TransitionMaterial.SetFloat(radiusParameterName, openRadius);
+    }
+
     private void Update()
     {
-        if (stageLoader != null) open = stageLoader.LoadedStage != null && stageLoader.LoadedMoment >= 0 && stageLoader.LoadedMoment < stageLoader.LoadedStage.MomentCount;
+        if (Application.isPlaying && stageLoader != null) open = stageLoader.LoadedStage != null && stageLoader.LoadedMoment >= 0 && stageLoader.LoadedMoment < stageLoader.LoadedStage.MomentCount;
         if (TransitionMaterial == null) return;
         float radius;
         if (Application.isPlaying)
