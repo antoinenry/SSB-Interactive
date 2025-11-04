@@ -4821,7 +4821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3474933853021414017}
-  - component: {fileID: 7035219918791492689}
+  - component: {fileID: 2098556569067207479}
   m_Layer: 0
   m_Name: prophecy_stage
   m_TagString: Untagged
@@ -4847,7 +4847,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7035219918791492689
+--- !u!114 &2098556569067207479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4856,7 +4856,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3474933853021414016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a06f8da9125e7e54dad1e0c672d5c69c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c72a42923a1d644c83442709ff873e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: Prophecy
@@ -4866,6 +4866,7 @@ MonoBehaviour:
   onStageEnd:
     m_PersistentCalls:
       m_Calls: []
+  npc: {fileID: 3474933853598964312}
 --- !u!1 &3474933853241942734
 GameObject:
   m_ObjectHideFlags: 0
@@ -4957,15 +4958,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3474933853021414017}
     m_Modifications:
+    - target: {fileID: 3206691491608823968, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 4825a84264a5b614694d2de58362bfa6, type: 2}
     - target: {fileID: 6579725067420259649, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_text
-      value: "Oyez la l\xE9gende transmise de fanfaron en fanfaron !"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6579725067420259655, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: text
-      value: "Oyez la l\xE9gende transmise de fanfaron en fanfaron !"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6579725067430332434, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579725067473962905, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.49428418
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579725067695540982, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -5023,10 +5036,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6579725069437532582, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: lineIndex
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+--- !u!114 &3474933853598964312 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6579725069437532582, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+  m_PrefabInstance: {fileID: 7743536017863386110}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df9c00b084604d4fa082cc28f971e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3474933853598964319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6579725069437532577, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}

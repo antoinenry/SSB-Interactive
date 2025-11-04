@@ -12,7 +12,7 @@ namespace Shop
         private Shop shop;
         private NPCDialog npc;
 
-        public override int MomentCount => 3;
+        public override int MomentCount => 4;
 
         protected override bool HasAllComponents()
         {
@@ -27,9 +27,10 @@ namespace Shop
             base.OnMomentChange(value);
             switch (value)
             {
-                case 0: ShowIntroDialog(); break;
-                case 1: ShowShop(); break;
-                case 2: ShowOutroDialog(); break;
+                case 0: HideDialog(); break;
+                case 1: ShowIntroDialog(); break;
+                case 2: ShowShop(); break;
+                case 3: ShowOutroDialog(); break;
             }
         }
 
