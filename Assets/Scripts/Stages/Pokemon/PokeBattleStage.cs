@@ -44,7 +44,12 @@ namespace Pokefanf
         protected override void OnEnable()
         {
             base.OnEnable();
-            SetPokefanfs(PokeConfig.Current.Ally, PokeConfig.Current.Enemy);
+            InventoryTracker playerInventory = CurrentAssetsManager.GetCurrent<InventoryTracker>();
+            PokeConfigAsset pokeConfig = CurrentAssetsManager.GetCurrent<PokeConfigAsset>();
+            SetPokefanfs(
+                pokeConfig.GetStarterByPokeName(playerInventory.Data.StarterMusician),
+                pokeConfig.GetEnemyMusician(playerInventory.Data.StarterMusician)
+            );
             SetCurrentAttack(null);
             if (attackPanel) attackPanel.onSelectorMaxed.AddListener(OnSelectAttack);
         }
