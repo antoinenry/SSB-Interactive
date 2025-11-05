@@ -4,7 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StageNamingConfig", menuName = "Config/Stage Naming")]
 public class StageNamingConfig : JsonAsset<StageNamingConfigData>
 {
-    public override StageNamingConfigData Data { get => data; set => data = value; }
     [SerializeField] private StageNamingConfigData data;
 
     [CurrentToggle] public bool isCurrent;
