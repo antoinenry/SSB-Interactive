@@ -60,7 +60,7 @@ public struct ConcertState
         set
         {
             SetlistState setlistSong = value.HasValue ? value.Value : SetlistState.None;
-            song = setlistSong;
+            song = setlistSong.song;
             songPosition = setlistSong.position;
         }
     }

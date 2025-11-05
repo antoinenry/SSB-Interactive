@@ -4862,7 +4862,6 @@ MonoBehaviour:
   name: Prophecy
   stageNameGUI: {fileID: 0}
   showInputPanel: 0
-  loadMessage: 
   onStageEnd:
     m_PersistentCalls:
       m_Calls: []
