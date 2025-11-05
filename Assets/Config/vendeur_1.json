@@ -4,23 +4,27 @@
   "lines": [
     {
       "AnswerCount": 0,
-      "text": "Bien le bonjour, les \u00E9trangers !",
-      "answers": []
+      "text": "Bien le bonjour, les étrangers !",
+      "answers": [],
+      "hideNextButton": false
     },
     {
       "AnswerCount": 0,
-      "text": "Bienvenue dans ma modeste \u00E9choppe \u201CLA SSBRASSERIE\u201D, uniquement des morceaux de qualit\u00E9 !",
-      "answers": []
+      "text": "Bienvenue dans ma modeste échoppe “LA SSBRASSERIE”, uniquement des morceaux de qualité !",
+      "answers": [],
+      "hideNextButton": false
     },
     {
       "AnswerCount": 0,
-      "text": "Dites-donc, vous \u00EAtes un peu nombreux pour mon petit magasin. Encore un public qui cherche la setliste parfaite?",
-      "answers": []
+      "text": "Dites-donc, vous êtes un peu nombreux pour mon petit magasin. Encore un public qui cherche la setliste parfaite?",
+      "answers": [],
+      "hideNextButton": false
     },
     {
       "AnswerCount": 0,
-      "text": "Vous \u00EAtes au bon endroit. Jetez un \u0153il \u00E0 mon inventaire !",
-      "answers": []
+      "text": "Vous êtes au bon endroit. Jetez un œil à mon inventaire !",
+      "answers": [],
+      "hideNextButton": false
     }
   ],
   "reactions": []

@@ -2656,7 +2656,6 @@ MonoBehaviour:
   name: Shop
   stageNameGUI: {fileID: 0}
   showInputPanel: 0
-  loadMessage: 
   onStageEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -3854,6 +3853,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1847034740765575383}
     m_Modifications:
+    - target: {fileID: 3206691491608823968, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 4825a84264a5b614694d2de58362bfa6, type: 2}
     - target: {fileID: 6579725067420259649, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_text
       value: "Bien le bonjour, les \xE9trangers !"
@@ -3922,6 +3925,10 @@ PrefabInstance:
       propertyPath: dialog
       value: 
       objectReference: {fileID: 11400000, guid: b4929226b69548e46831fed3bd953506, type: 2}
+    - target: {fileID: 6579725069437532582, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: reactionIndex
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
 --- !u!4 &4481988108477169769 stripped
