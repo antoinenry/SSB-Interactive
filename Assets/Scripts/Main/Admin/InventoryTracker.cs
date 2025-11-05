@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public struct InventoryData
 {
     public int Money;
@@ -9,7 +11,6 @@ public struct InventoryData
 [CreateAssetMenu(menuName = "Utility/InventoryTracker", fileName = "InventoryTracker")]
 public class InventoryTracker : JsonAsset<InventoryData>
 {
-    [SerializeField] private InventoryData data;
     private void OnEnable() => Load();
     private void OnDisable() => Save();
     public void SetMoney(int money)

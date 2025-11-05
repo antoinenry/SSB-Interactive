@@ -47,7 +47,7 @@ namespace Pokefanf
             InventoryTracker playerInventory = CurrentAssetsManager.GetCurrent<InventoryTracker>();
             PokeConfigAsset pokeConfig = CurrentAssetsManager.GetCurrent<PokeConfigAsset>();
             SetPokefanfs(
-                pokeConfig.GetStarterByPokeName(playerInventory.Data.StarterMusician),
+                pokeConfig.GetStarterByMusicianName(playerInventory.Data.StarterMusician),
                 pokeConfig.GetEnemyMusician(playerInventory.Data.StarterMusician)
             );
             SetCurrentAttack(null);

@@ -21,7 +21,7 @@ namespace Pokefanf
 
         protected override bool HasAllComponents()
         {
-            if (base.HasAllComponents() && npc != null && selector != null) return true;
+            if (base.HasAllComponents() && npc != null && selector != null && playerInventory != null) return true;
             if (npc == null) npc = GetComponentInChildren<NPCDialog>(true);
             if (selector == null) selector = GetComponentInChildren<PokeSelectorGroup>(true);
             if (playerInventory == null)

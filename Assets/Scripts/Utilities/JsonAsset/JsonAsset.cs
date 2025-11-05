@@ -37,6 +37,9 @@ public abstract class JsonAsset<T> : ScriptableObject, JsonAsset where T : struc
     public bool isUserData = false;
     public T Data;
 
+    private void OnEnable() => Load();
+    private void OnDisable() => Save();
+
     static public JsonSerializerOptions JsonOptions => new JsonSerializerOptions()
     {
         WriteIndented = true,
