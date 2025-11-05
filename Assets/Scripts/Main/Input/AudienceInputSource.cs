@@ -120,7 +120,7 @@ public class AudienceInputSource : MonoBehaviourSingleton<AudienceInputSource>
         if (buttonInputs == null) buttonInputs = new();
         if (buttonInputs.ContainsKey(id) == false) buttonInputs.Add(id, AudienceButtonInput.None);
         // Update dictionnary
-        buttonInputs[id] = new AudienceButtonInput(currentCount, currentCount - previousCount, 0f, PlayerCount);
+        buttonInputs[id] = new AudienceButtonInput(currentCount, currentCount - previousCount, 0f);
     }
 
     public float GetLastInputTime()
