@@ -56,6 +56,8 @@ MonoBehaviour:
       localName: BlackScreen
     - serverName: null
       localName: EmptyScene
+    - serverName: Outro
+      localName: Outro
     missingStages: []
     otherStages: []
   isCurrent: 0

@@ -91,9 +91,4 @@ public class MainScore : MonoBehaviour
         scorePost.SerializeBody(data);
         if (httpClient != null) httpClient.SendRequest(scorePost);
     }
-
-    public void RequestScoreTotal()
-    {
-
-    }
 }

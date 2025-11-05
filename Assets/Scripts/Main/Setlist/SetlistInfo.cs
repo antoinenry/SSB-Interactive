@@ -73,7 +73,7 @@ public struct SetlistInfo
         foreach (SetlistState s in setSongs)
         {
             if (s.position < 0) continue;
-            songs[s.position] = s;
+            songs[s.position] = s.song;
         }
     }
 
