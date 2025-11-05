@@ -18,22 +18,27 @@ public class AudienceInputSource : MonoBehaviourSingleton<AudienceInputSource>
     public ClientButtonTracker buttonTracker;
     public AxisConfiguration horizontalAxis;
     public AxisConfiguration verticalAxis;
+    public HttpRequestLoop playerCountRequest = new HttpRequestLoop(HttpRequest.RequestType.GET, "concert/crowd");
+    public int substractedPlayerCount = 2;
     public UnityEvent onAudienceInput;
 
     private Dictionary<string,AudienceButtonInput> buttonInputs;
     private bool firstButtonCountUpdate;
 
     public MultipleButtonTimedCount CurrentFrame { get; private set; }
+    public int PlayerCount { get; private set; }
 
     private void OnEnable()
     {
         firstButtonCountUpdate = true;
         AddButtonListeners();
+        StartPlayerCounter();
     }
 
     private void OnDisable()
     {
         RemoveButtonListeners();
+        StopPlayerCounter();
     }
 
     private void AddButtonListeners()
@@ -49,6 +54,21 @@ public class AudienceInputSource : MonoBehaviourSingleton<AudienceInputSource>
         if (buttonTracker == null) return;
         buttonTracker.onSetEnabled.RemoveListener(OnSetButtonTrackerEnabled);
         buttonTracker.onCountUpdate.RemoveListener(OnButtonCountUpdate);
+    }
+
+    private void StartPlayerCounter()
+    {
+        if (playerCountRequest == null) return;
+        playerCountRequest.Init();
+        playerCountRequest.StartRequestCoroutine(this);
+        playerCountRequest.onRequestEnd.AddListener(OnPlayerCountRequestEnd);
+    }
+
+    private void StopPlayerCounter()
+    {
+        if (playerCountRequest == null) return;
+        playerCountRequest.StopRequestCoroutine();
+        playerCountRequest.onRequestEnd.RemoveListener(OnPlayerCountRequestEnd);
     }
 
     private void OnSetButtonTrackerEnabled(bool buttonTrackerEnabled)
@@ -87,13 +107,20 @@ public class AudienceInputSource : MonoBehaviourSingleton<AudienceInputSource>
         onAudienceInput.Invoke();
     }
 
+    private void OnPlayerCountRequestEnd(HttpRequest request)
+    {
+        if (playerCountRequest == null || request.Status != HttpRequest.RequestStatus.Success) return;
+        PlayerCount = playerCountRequest.DeserializeResponse<int>() - substractedPlayerCount;
+        if (PlayerCount < 0) PlayerCount = 0;
+    }
+
     private void SetButtonInputs(string id, int previousCount, int currentCount, float previousTime, float currentTime)
     {
         // Add keys if needed
         if (buttonInputs == null) buttonInputs = new();
         if (buttonInputs.ContainsKey(id) == false) buttonInputs.Add(id, AudienceButtonInput.None);
         // Update dictionnary
-        buttonInputs[id] = new AudienceButtonInput(currentCount, currentCount - previousCount, 0f);
+        buttonInputs[id] = new AudienceButtonInput(currentCount, currentCount - previousCount, 0f, PlayerCount);
     }
 
     public float GetLastInputTime()

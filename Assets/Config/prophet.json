@@ -4,55 +4,64 @@
   "lines": [
     {
       "AnswerCount": 0,
-      "text": "Oyez la l\u00E9gende transmise de fanfaron en fanfaron !",
-      "answers": []
+      "text": "Oyez la légende transmise de fanfaron en fanfaron !",
+      "answers": [],
+      "hideNextButton": false
     },
     {
       "AnswerCount": 0,
-      "text": "Depuis la nuit des temps, toutes les fanfares gal\u00E8rent \u00E0 savoir dans quel ordre interpr\u00E9ter leurs morceaux.",
-      "answers": []
+      "text": "Depuis la nuit des temps, toutes les fanfares galèrent à savoir dans quel ordre interpréter leurs morceaux.",
+      "answers": [],
+      "hideNextButton": false
     },
     {
       "AnswerCount": 0,
-      "text": "Faut-il mettre le morceau le plus rapide au d\u00E9but? Le plus fort au milieu ? Le plus beau \u00E0 la fin ?",
-      "answers": []
+      "text": "Faut-il mettre le morceau le plus rapide au début? Le plus fort au milieu ? Le plus beau à la fin ?",
+      "answers": [],
+      "hideNextButton": false
     },
     {
       "AnswerCount": 0,
-      "text": "Beaucoup ont sombr\u00E9 dans la folie en tentant de r\u00E9pondre \u00E0 ces questions.",
-      "answers": []
+      "text": "Beaucoup ont sombré dans la folie en tentant de répondre à ces questions.",
+      "answers": [],
+      "hideNextButton": false
     },
     {
       "AnswerCount": 0,
-      "text": "Mais la l\u00E9gende raconte qu\u2019il existe quelque part un public extraordinaire qui poss\u00E8de la cl\u00E9 de cette \u00E9nigme.",
-      "answers": []
+      "text": "Mais la légende raconte qu’il existe quelque part un public extraordinaire qui possède la clé de cette énigme.",
+      "answers": [],
+      "hideNextButton": false
     },
     {
       "AnswerCount": 0,
-      "text": "Un public comme vous, voyageurs ! Un public qui trouvera\u2026 LA SET LISTE ULTIME !",
-      "answers": []
+      "text": "Un public comme vous, voyageurs ! Un public qui trouvera… LA SET LISTE ULTIME !",
+      "answers": [],
+      "hideNextButton": false
     },
     {
       "AnswerCount": 4,
-      "text": "Etes-vous pr\u00EAt, \u003Cins\u00E9rer nom du public\u003E, \u00E0 vous lancer dans cette qu\u00EAte ?",
+      "text": "Etes-vous prêt, \u003Cinsérer nom du public\u003E, à vous lancer dans cette quête ?",
       "answers": [
         "Oui",
-        "Bien s\u00FBr",
+        "Bien sûr",
         "On y va",
         "Le public est d\u0027accord"
-      ]
+      ],
+      "hideNextButton": false
     },
     {
       "AnswerCount": 0,
       "text": "Je savais que SSB pouvait compter sur vous.",
-      "answers": []
+      "answers": [],
+      "hideNextButton": false
     },
     {
       "AnswerCount": 1,
       "text": "En route, voyageurs ! Soyez un public extraordinaire et guidez nos amis vers la SET LISTE ULTIME !",
       "answers": [
         "START"
-      ]
+      ],
+      "hideNextButton": false
     }
   ],
   "reactions": []
