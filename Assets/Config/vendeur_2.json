@@ -4,8 +4,9 @@
   "lines": [
     {
       "AnswerCount": 0,
-      "text": "Oh, excellent choix ! J\u0027ai le m\u00EAme \u00E0 la maison.",
-      "answers": []
+      "text": "Oh, excellent choix ! J\u0027ai le même à la maison.",
+      "answers": [],
+      "hideNextButton": false
     }
   ],
   "reactions": []

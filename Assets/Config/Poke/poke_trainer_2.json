@@ -4,13 +4,15 @@
   "lines": [
     {
       "AnswerCount": 0,
-      "text": "Un \u003Cins\u00E9rer nom du pok\u00E9 fanfaron\u003E ! C\u2019est mon pr\u00E9f\u00E9r\u00E9 ! ",
-      "answers": []
+      "text": "Un \u003Cinsérer nom du poké fanfaron\u003E ! C’est mon préféré ! ",
+      "answers": [],
+      "hideNextButton": false
     },
     {
       "AnswerCount": 0,
-      "text": "Il vous sera utile, je vous le garantie. Il est temps de continuer votre route \u00E0 pr\u00E9sent.",
-      "answers": []
+      "text": "Il vous sera utile, je vous le garantie. Il est temps de continuer votre route à présent.",
+      "answers": [],
+      "hideNextButton": false
     }
   ],
   "reactions": []

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   savePath: Config/minigames.json
   isUserData: 0
-  isCurrent: 0
-  data:
+  Data:
     donkeyKong:
       horizontalSpeed: 1
       rotateSpeed: 90
@@ -314,3 +313,4 @@ MonoBehaviour:
         minGapDuration: 2
         reverseChance: 0.5
         itemChance: 1
+  isCurrent: 0

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: PokeConfig
   m_EditorClassIdentifier: Assembly-CSharp:Pokefanf:PokeConfigAsset
   savePath: Config/poke.json
-  data:
+  isUserData: 0
+  Data:
     pokeFanf_starters:
     - pokeName: Saxoxo
       musicianName: Gratin
@@ -36,8 +37,6 @@ MonoBehaviour:
       - Sadtrombone.gif
       - Slidomax
       - Fulguropouet
-    ally_musician: Gratin
-    ennemy_musician: DeGnou
     musician_priority:
     - Gratin
     - DeGnou
