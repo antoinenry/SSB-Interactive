@@ -1,28 +1,4 @@
 {
-  "Ally": {
-    "HasMusician": true,
-    "AttackCount": 4,
-    "pokeName": "Saxoxo",
-    "musicianName": "Gratin",
-    "attacks": [
-      "Coin coin",
-      "Jase",
-      "Teukeuteu",
-      "Saxysax"
-    ]
-  },
-  "Ennemy": {
-    "HasMusician": true,
-    "AttackCount": 4,
-    "pokeName": "Tubazooka",
-    "musicianName": "DeGnou",
-    "attacks": [
-      "Hyperpiston",
-      "Chassakour",
-      "FFFF",
-      "Note pédale"
-    ]
-  },
   "pokeFanf_starters": [
     {
       "HasMusician": true,
@@ -61,8 +37,6 @@
       ]
     }
   ],
-  "ally_musician": "Gratin",
-  "ennemy_musician": "DeGnou",
   "musician_priority": [
     "Gratin",
     "DeGnou",

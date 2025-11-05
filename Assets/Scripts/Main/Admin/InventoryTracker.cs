@@ -1,22 +1,34 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public struct InventoryData
 {
     public int Money;
+    public string StarterMusician;
 }
 
 [CreateAssetMenu(menuName = "Utility/InventoryTracker", fileName = "InventoryTracker")]
 public class InventoryTracker : JsonAsset<InventoryData>
 {
-    public override InventoryData Data { get => data; set => data = value; }
-    [SerializeField] private InventoryData data;
     private void OnEnable() => Load();
     private void OnDisable() => Save();
     public void SetMoney(int money)
     {
         Data = new InventoryData
         {
-            Money = money
+            Money = money,
+            StarterMusician = Data.StarterMusician
+        };
+        Save();
+    }
+
+    public void SetStarter(string name)
+    {
+        Data = new InventoryData
+        {
+            Money = Data.Money,
+            StarterMusician = name
         };
         Save();
     }
@@ -25,7 +37,8 @@ public class InventoryTracker : JsonAsset<InventoryData>
     {
         Data = new InventoryData
         {
-            Money = 5
+            Money = 5,
+            StarterMusician = null
         };
         Save();
     }

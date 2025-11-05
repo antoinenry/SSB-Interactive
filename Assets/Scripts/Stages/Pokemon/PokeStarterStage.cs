@@ -12,6 +12,7 @@ namespace Pokefanf
         public NPCDialogContentAsset introDialog;
         public NPCDialogContentAsset outroDialog;
         public PokeConfigAsset config;
+        public InventoryTracker playerInventory;
         [Header("Web")]
         public string selectionMessage = "Curseur : ";
         public string validationMessage = "VALIDE : ";
@@ -20,9 +21,13 @@ namespace Pokefanf
 
         protected override bool HasAllComponents()
         {
-            if (base.HasAllComponents() && npc != null && selector != null) return true;
+            if (base.HasAllComponents() && npc != null && selector != null && playerInventory != null) return true;
             if (npc == null) npc = GetComponentInChildren<NPCDialog>(true);
             if (selector == null) selector = GetComponentInChildren<PokeSelectorGroup>(true);
+            if (playerInventory == null)
+            {
+                playerInventory = CurrentAssetsManager.GetCurrent<InventoryTracker>();
+            }
             return (base.HasAllComponents() && npc != null && selector != null);
         }
 
@@ -47,10 +52,9 @@ namespace Pokefanf
         private void OnValidateSelection(Pokefanf selected)
         {
             MessengerAdmin.Send(validationMessage + selected.musicianName);
-            if (config != null)
+            if (playerInventory != null)
             {
-                config.Data.SetBattleConfig(selected.musicianName);
-                config.Save();
+                playerInventory.SetStarter(selected.musicianName);
             }
         }
 
