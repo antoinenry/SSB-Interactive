@@ -392,8 +392,8 @@ MonoBehaviour:
   buttonID: x
   configuration:
     inputType: 1
-    smoothInput: 0
-    maxValue: 10
+    scaleWithPlayerCount: 1
+    maxValue: 5
     clampZeroMax: 1
     enableAutoPress: 0
     autoPressSpeed: 0

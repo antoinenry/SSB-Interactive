@@ -55,7 +55,7 @@ MonoBehaviour:
   text: "Oyez la l\xE9gende transmise de fanfaron en fanfaron !"
   visible: 1
   animated: 1
-  inAnimationSpeed: 20
+  inAnimationSpeed: 40
   outAnimationSpeed: 1000
 --- !u!222 &6579725067420259654
 CanvasRenderer:
@@ -572,11 +572,12 @@ MonoBehaviour:
   buttonID: a
   configuration:
     inputType: 1
-    maxValue: 10
+    scaleWithPlayerCount: 1
+    maxValue: 5
     clampZeroMax: 0
     enableAutoPress: 1
     autoPressSpeed: 1
-    autoPressDelay: 1
+    autoPressDelay: 2
   onValueChange:
     m_PersistentCalls:
       m_Calls: []
@@ -791,7 +792,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.000030517578, y: 200}
+  m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &6579725067914310805
 MonoBehaviour:
@@ -836,6 +837,7 @@ MonoBehaviour:
   - {fileID: 7659750839911964351}
   buttonConfiguration:
     inputType: 1
+    scaleWithPlayerCount: 1
     maxValue: 10
     clampZeroMax: 1
     enableAutoPress: 0
@@ -844,8 +846,8 @@ MonoBehaviour:
   applyButtonConfiguration: 1
   disableLosers: 0
   autoPress: 2
-  autoPressDelay: 1
-  autoPressBaseSpeed: 1
+  autoPressDelay: 5
+  autoPressBaseSpeed: 0.5
   autoPressAcceleration: 0
   buttonAnimations: []
   idleAnimation: {fileID: 0}
@@ -1995,6 +1997,7 @@ MonoBehaviour:
   - {fileID: 6579725069010216316}
   - {fileID: 6579725068752613896}
   - {fileID: 6579725068234024875}
+  buttonGroup: {fileID: 6957049650967756019}
   dialog: {fileID: 11400000, guid: 35e0e1916e9092e4792670ffb26f2e9a, type: 2}
   lineIndex: 0
   isReacting: 0

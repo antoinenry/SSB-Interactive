@@ -49,7 +49,6 @@ MonoBehaviour:
   name: PokeStarter
   stageNameGUI: {fileID: 0}
   showInputPanel: 0
-  loadMessage: 
   onStageEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -58,6 +57,7 @@ MonoBehaviour:
   introDialog: {fileID: 11400000, guid: 0905c5f4315312c4dbc03b703f60d3df, type: 2}
   outroDialog: {fileID: 11400000, guid: 8c2609393e79f3546a64f08f16d30515, type: 2}
   config: {fileID: 11400000, guid: bc672a51a1768414384fe903e3ebcc94, type: 2}
+  playerInventory: {fileID: 0}
   selectionMessage: 'Curseur : '
   validationMessage: 'VALIDE : '
 --- !u!1 &6179586511707778082
@@ -1221,8 +1221,6 @@ MonoBehaviour:
       m_Calls: []
   config:
     pokeFanf_starters: []
-    ally_musician: 
-    ennemy_musician: 
     musician_priority: []
 --- !u!114 &1208641246
 MonoBehaviour:
@@ -1575,6 +1573,10 @@ PrefabInstance:
       propertyPath: dialog
       value: 
       objectReference: {fileID: 11400000, guid: 0905c5f4315312c4dbc03b703f60d3df, type: 2}
+    - target: {fileID: 6579725069437532582, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: reactionIndex
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7659750839756637531, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_Enabled
       value: 0
