@@ -25,7 +25,6 @@ namespace Shop
         [Header("Contents")]
         public List<SongInfo> songPool;
         public ShopItem[] inventory;
-
         public TMP_Text moneyField;
         [Header("Patron")]
         public int cartCapacity;
@@ -48,6 +47,12 @@ namespace Shop
         private List<ShopItem> cart;
 
         private InventoryTracker playerInventory;
+        private AudienceButtonListenerGroup buttonGroup;
+
+        private void Awake()
+        {
+            buttonGroup = GetComponentInChildren<AudienceButtonListenerGroup>(true);
+        }
 
         protected void OnEnable()
         {
@@ -102,10 +107,12 @@ namespace Shop
             FillInventory();
             SetShelfListenersActive(true);
             if (shelfDisplays != null) foreach(ShopShelfDisplay shelf in shelfDisplays) if (shelf != null) shelf.gameObject.SetActive(true);
+            if (buttonGroup) buttonGroup.ResetButtons();
         }
 
         public void Close()
         {
+            if (buttonGroup) buttonGroup.ResetButtons();
             SetShelfListenersActive(false);
             if (shelfDisplays != null) foreach (ShopShelfDisplay shelf in shelfDisplays) if (shelf != null) shelf.gameObject.SetActive(false);
         }
