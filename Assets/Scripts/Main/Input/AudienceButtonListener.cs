@@ -16,6 +16,7 @@ public class AudienceButtonListener : MonoBehaviour
     {
         [Header("Input")]
         public ValueType inputType;
+        public bool scaleWithPlayerCount;
         [Header("Range")]
         public float maxValue;
         public bool clampZeroMax;
@@ -132,21 +133,23 @@ public class AudienceButtonListener : MonoBehaviour
     private void UpdateOutputValue()
     {
         float outputValueUpdate = 0f;
+        float outputValueScale = 1f;
+        if (configuration.scaleWithPlayerCount && AudienceInputSource.Current.PlayerCount > 1) outputValueUpdate = 1f / AudienceInputSource.Current.PlayerCount;
         // Different output behaviour depending on input type
         switch (configuration.inputType)
         {
             case ValueType.Total:
-                outputValueUpdate = AudienceInputValue;
+                outputValueUpdate = outputValueScale * AudienceInputValue;
                 break;
             case ValueType.Counter:
-                outputValueUpdate = OutputValue + GetCurrentFrameAudienceInput();
+                outputValueUpdate = OutputValue + outputValueScale * GetCurrentFrameAudienceInput();
                 break;
             case ValueType.Velocity:
 
                 break;
         }
         // Additional values
-        outputValueUpdate += AutopressValue + ExternalInputValue;
+        outputValueUpdate += outputValueScale * (AutopressValue + ExternalInputValue);
         ExternalInputValue = 0f;
         // Update output and notify if value has changed
         if (outputValueUpdate != OutputValue)

@@ -10,6 +10,7 @@ namespace NPC
         public GUIAnimatedText animatedText;
         public AudienceButtonListener nextButton;
         public NPCDialogChoiceButton[] answerButtons;
+        public AudienceButtonListenerGroup buttonGroup;
         [Header("Content")]
         public NPCDialogContentAsset dialog;
         [SerializeField] int lineIndex = 0;
@@ -29,6 +30,7 @@ namespace NPC
             animatedGUI = GetComponentInChildren<Animation>(true);
             animatedText = GetComponentInChildren<GUIAnimatedText>(true);
             answerButtons = GetComponentsInChildren<NPCDialogChoiceButton>(true);
+            buttonGroup = GetComponentInChildren<AudienceButtonListenerGroup>(true);
         }
 
         private void OnValidate()
@@ -177,6 +179,7 @@ namespace NPC
         {
             if (nextButton) nextButton.ResetButton();
             if (answerButtons != null) foreach (NPCDialogChoiceButton button in answerButtons) button?.ResetButton();
+            if (buttonGroup) buttonGroup.ResetButtons();
         }
 
         public void ShowDialogLine(int setLineIndex) => ShowDialogLine(dialog, setLineIndex);

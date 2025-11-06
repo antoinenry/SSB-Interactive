@@ -104,11 +104,8 @@ public class HttpRequestLoopDrawer : PropertyDrawer
 
             // Duration
             SerializedProperty minLoopDurationProperty = property.FindPropertyRelative("minLoopDuration");
-            if (maxLoopsProperty.intValue > 1)
-            {
-                AddFieldLine(ref fieldRect);
-                minLoopDurationProperty.floatValue = EditorGUI.FloatField(fieldRect, "Min Loop Duration", minLoopDurationProperty.floatValue);
-            }
+            AddFieldLine(ref fieldRect);
+            minLoopDurationProperty.floatValue = EditorGUI.FloatField(fieldRect, "Min Loop Duration", minLoopDurationProperty.floatValue);
         }
 
         // Detail log
