@@ -96,7 +96,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &784123052
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1226,7 +1226,6 @@ MonoBehaviour:
   replacedWithAudienceName: nom_du_public
   replacedWithScore: score_du_public
   ignoredSetlistTitles:
-  - Intro Ultimate
   - Mii
   - Adibou
   - AUDIENCE_CHOICE
@@ -1558,7 +1557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1358387414811998277
 RectTransform:
   m_ObjectHideFlags: 0
