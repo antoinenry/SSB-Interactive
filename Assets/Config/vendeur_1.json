@@ -1,31 +1,37 @@
 {
-  "LineCount": 4,
-  "ReactionCount": 0,
+  "LineCount": 3,
+  "ReactionCount": 1,
   "lines": [
     {
       "AnswerCount": 0,
-      "text": "Bien le bonjour, les étrangers !",
+      "text": "Bien le bonjour, voyageurs !",
       "answers": [],
       "hideNextButton": false
     },
     {
       "AnswerCount": 0,
-      "text": "Bienvenue dans ma modeste échoppe “LA SSBRASSERIE”, uniquement des morceaux de qualité !",
+      "text": "Bienvenue dans ma modeste échoppe \u0022Au Prochain Morceau”. Uniquement des musiques de qualité !",
       "answers": [],
       "hideNextButton": false
     },
     {
-      "AnswerCount": 0,
-      "text": "Dites-donc, vous êtes un peu nombreux pour mon petit magasin. Encore un public qui cherche la setliste parfaite?",
-      "answers": [],
-      "hideNextButton": false
-    },
-    {
-      "AnswerCount": 0,
-      "text": "Vous êtes au bon endroit. Jetez un œil à mon inventaire !",
-      "answers": [],
+      "AnswerCount": 2,
+      "text": "Hum, vous êtes un peu nombreux pour mon petit magasin. Ah, laissez-moi deviner ! Vous cherchez... LA SET LISTE ULTIME ?",
+      "answers": [
+        "Tout à fait !",
+        "C\u0027est pas vos oignons."
+      ],
       "hideNextButton": false
     }
   ],
-  "reactions": []
+  "reactions": [
+    {
+      "ResponseCount": 2,
+      "fromLine": 2,
+      "responses": [
+        "J\u0027en étais sûr ! Vous êtes au bon endroit. Jetez un oeil à mon inventaire !",
+        "Bon, bon. Jetez tout de même un oeil à mon inventaire..."
+      ]
+    }
+  ]
 }

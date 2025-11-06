@@ -21,6 +21,8 @@ namespace NPC
         public string messageOnDialogEnd = "(fin du dialogue)";
         public AnimationClip showAnimation;
         public AnimationClip hideAnimation;
+        [Header("Events")]
+        public UnityEvent onPressNext;
         public UnityEvent onDialogEnd;
 
         public bool IsShowingDialog { get; private set; }
@@ -104,6 +106,7 @@ namespace NPC
 
         private void OnNextButtonMaxed()
         {
+            onPressNext.Invoke();
             ShowNextLine();
         }
 
@@ -121,12 +124,6 @@ namespace NPC
             }
         }
 
-        public void ShowNextLine()
-        {
-            ResetButtons();
-            ShowDialogLine(++lineIndex);
-        }
-
         public void ShowText(string text)
         {
             text = NPCDialogInjector.InjectAll(text);
@@ -138,50 +135,6 @@ namespace NPC
 
         public void ClearText() => ShowText("");
 
-        public void SetNextButtonActive(bool active)
-        {
-            if (nextButton == null) return;
-            nextButton.gameObject.SetActive(active);
-        }
-
-        public void ShowAnswerButtons(string[] answerTexts)
-        {
-            int buttonCount = answerButtons != null ? answerButtons.Length : 0;
-            int answerCount = answerTexts != null ? answerTexts.Length : 0;
-            NPCDialogChoiceButton button;
-            for (int i = 0; i < buttonCount; i++)
-            {
-                button = answerButtons[i];
-                if (button == null) continue;
-                if (i > answerCount - 1) button.gameObject.SetActive(false);
-                else
-                {
-                    button.choiceIndex = i;
-                    button.labelText = NPCDialogInjector.InjectAll(answerTexts[i]);
-                    button.gameObject.SetActive(true);
-                }
-            }
-        }
-
-        public void ShowButtons()
-        {
-            SetNextButtonActive(CurrentLine.AnswerCount == 0);
-            ShowAnswerButtons(CurrentLine.answers);
-        }
-
-        public void HideButtons()
-        {
-            SetNextButtonActive(false);
-            ShowAnswerButtons(null);
-        }
-
-        public void ResetButtons()
-        {
-            if (nextButton) nextButton.ResetButton();
-            if (answerButtons != null) foreach (NPCDialogChoiceButton button in answerButtons) button?.ResetButton();
-            if (buttonGroup) buttonGroup.ResetButtons();
-        }
-
         public void ShowDialogLine(int setLineIndex) => ShowDialogLine(dialog, setLineIndex);
 
         public void ShowDialogLine(NPCDialogContentAsset setDialog, int setLineIndex)
@@ -191,11 +144,21 @@ namespace NPC
             ShowDialogLine();
         }
 
+        public void ShowNextLine() => ShowDialogLine(++lineIndex);
+
+        public void ShowRandomLine()
+        {
+            int lineCount = dialog != null ? dialog.LineCount : 0;
+            if (lineCount == 0) EndDialog();
+            else ShowDialogLine(Random.Range(0, lineCount));
+        }
+
         public NPCDialogContent.DynamicLine CurrentLine => dialog != null ? dialog.GetLine(lineIndex) : NPCDialogContent.DynamicLine.None;
 
         public void ShowDialogLine()
         {
             isReacting = false;
+            ResetButtons();
             if (lineIndex < 0)
             {
                 HideDialog();
@@ -262,6 +225,50 @@ namespace NPC
             isReacting = false;
             reactionIndex = -1;
             onDialogEnd.Invoke();
+        }
+
+        public void SetNextButtonActive(bool active)
+        {
+            if (nextButton == null) return;
+            nextButton.gameObject.SetActive(active);
+        }
+
+        public void ShowAnswerButtons(string[] answerTexts)
+        {
+            int buttonCount = answerButtons != null ? answerButtons.Length : 0;
+            int answerCount = answerTexts != null ? answerTexts.Length : 0;
+            NPCDialogChoiceButton button;
+            for (int i = 0; i < buttonCount; i++)
+            {
+                button = answerButtons[i];
+                if (button == null) continue;
+                if (i > answerCount - 1) button.gameObject.SetActive(false);
+                else
+                {
+                    button.choiceIndex = i;
+                    button.labelText = NPCDialogInjector.InjectAll(answerTexts[i]);
+                    button.gameObject.SetActive(true);
+                }
+            }
+        }
+
+        public void ShowButtons()
+        {
+            SetNextButtonActive(CurrentLine.AnswerCount == 0);
+            ShowAnswerButtons(CurrentLine.answers);
+        }
+
+        public void HideButtons()
+        {
+            SetNextButtonActive(false);
+            ShowAnswerButtons(null);
+        }
+
+        public void ResetButtons()
+        {
+            if (nextButton) nextButton.ResetButton();
+            if (answerButtons != null) foreach (NPCDialogChoiceButton button in answerButtons) button?.ResetButton();
+            if (buttonGroup) buttonGroup.ResetButtons();
         }
     }
 }

@@ -1,10 +1,28 @@
 {
-  "LineCount": 1,
+  "LineCount": 4,
   "ReactionCount": 0,
   "lines": [
     {
       "AnswerCount": 0,
       "text": "Oh, excellent choix ! J\u0027ai le même à la maison.",
+      "answers": [],
+      "hideNextButton": false
+    },
+    {
+      "AnswerCount": 0,
+      "text": "Eh, un grand classique ! Vous êtes un connaisseur !",
+      "answers": [],
+      "hideNextButton": false
+    },
+    {
+      "AnswerCount": 0,
+      "text": "Vous avez de la chance, il est en promotion.",
+      "answers": [],
+      "hideNextButton": false
+    },
+    {
+      "AnswerCount": 0,
+      "text": "Ah, il est pas facile celui-là. Bah, je suis certain que Super Smash Brass s\u0027en sortira !         ...probablement.",
       "answers": [],
       "hideNextButton": false
     }

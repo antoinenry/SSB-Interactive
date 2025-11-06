@@ -1,5 +1,6 @@
 using UnityEngine;
 using NPC;
+using Unity.Android.Types;
 
 namespace Shop
 {
@@ -34,25 +35,6 @@ namespace Shop
             }
         }
 
-        private void OnBuyItem(ShopItem item)
-        {
-            if (shop == null) return;
-            if (shop.CartIsFull)
-            {
-                HideShop();
-            }
-            else
-            {
-                ShowPurchaseDialog();
-            }
-        }
-
-        private void OnPurchaseDialogEnd()
-        {
-            if (npc != null) npc.onDialogEnd.RemoveListener(OnPurchaseDialogEnd);
-            ShowShop();
-        }
-
         private void ShowIntroDialog()
         {
             HideShop();
@@ -67,12 +49,34 @@ namespace Shop
             shop.onBuyItem.AddListener(OnBuyItem);
         }
 
+        private void OnBuyItem(ShopItem item)
+        {
+            if (shop == null) return;
+            ShowPurchaseDialog();
+        }
+
         private void ShowPurchaseDialog()
         {
             HideShop();
             if (npc == null) return;
-            npc.ShowDialogLine(purchaseDialog, 0);
-            npc.onDialogEnd.AddListener(OnPurchaseDialogEnd);
+            npc.dialog = purchaseDialog;
+            npc.ShowRandomLine();
+            npc.onPressNext.AddListener(OnPurchaseDialogEnd);
+        }
+
+        private void HideShop()
+        {
+            if (shop == null) return;
+            shop.Close();
+            shop.onBuyItem.RemoveListener(OnBuyItem);
+        }
+
+        private void OnPurchaseDialogEnd()
+        {
+            HideDialog();
+            if (npc != null) npc.onDialogEnd.RemoveListener(OnPurchaseDialogEnd);
+            if (shop.CartIsFull) HideShop();
+            else ShowShop();
         }
 
         private void ShowOutroDialog()
@@ -84,13 +88,6 @@ namespace Shop
         private void HideDialog()
         {
             if (npc != null) npc.EndDialog();
-        }
-
-        private void HideShop()
-        {
-            if (shop == null) return;
-            shop.Close();
-            shop.onBuyItem.RemoveListener(OnBuyItem);
         }
 
         private NPCDialogContentAsset GetCurrentIntroDialogAsset()
