@@ -20,10 +20,11 @@ MonoBehaviour:
       answers: []
       hideNextButton: 0
     - text: "\u2026 Vous \xEAtes nom_du_public, c\u2019est bien \xE7a?"
-      answers: []
+      answers:
+      - Eh oui, c'est bien nous !
+      - Vous devez confondre avec un autre public.
       hideNextButton: 0
-    - text: "Bien jou\xE9 ! Vous \xEAtes sur la bonne voie vers... LA SET LISTE ULTIME
-        !"
+    - text: "Vous \xEAtes sur la bonne voie vers... LA SET LISTE ULTIME !"
       answers: []
       hideNextButton: 0
     - text: "Mais faites attention ! A partir d'ici, la route devient bien plus dangereuse
@@ -34,4 +35,9 @@ MonoBehaviour:
         Il vous sera tr\xE8s utile."
       answers: []
       hideNextButton: 0
-    reactions: []
+    reactions:
+    - fromLine: 1
+      responses:
+      - Je le savais ! Je suis votre plus grand fan !
+      - Aha, vous voulez restez incognito ? Je comprends... on est jamais trop prudent
+        !

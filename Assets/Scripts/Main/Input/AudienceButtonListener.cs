@@ -9,7 +9,7 @@ public class AudienceButtonListener : MonoBehaviour
     public UnityEvent<float,float> onValueChange;
     public UnityEvent onValueMaxed;
 
-    public enum ValueType { Total, Counter, Velocity }
+    public enum ValueType { Total, Counter, Delta }
 
     [Serializable]
     public struct Configuration
@@ -70,11 +70,10 @@ public class AudienceButtonListener : MonoBehaviour
         switch (configuration.inputType)
         {
             case ValueType.Counter:
+            case ValueType.Delta:
                 AudienceInputValue = AudienceInputSource.Current.GetButton(buttonID).deltaPresses; break;
             case ValueType.Total:
                 AudienceInputValue = AudienceInputSource.Current.GetButton(buttonID).totalPresses; break;
-            case ValueType.Velocity:
-                throw new Exception("Button velocity not implemented");
             default:
                 AudienceInputValue = 0f; break;
         }
@@ -107,10 +106,8 @@ public class AudienceButtonListener : MonoBehaviour
                 AutopressValue += simulatedInputValue;
                 break;
             case ValueType.Counter:
+            case ValueType.Delta:
                 AutopressValue = simulatedInputValue;
-                break;
-            case ValueType.Velocity:
-                AutopressValue = configuration.enableAutoPress ? configuration.autoPressSpeed : 0f;
                 break;
         }
     }
@@ -124,8 +121,8 @@ public class AudienceButtonListener : MonoBehaviour
             case ValueType.Counter:
                 ExternalInputValue += presses;
                 break;
-            case ValueType.Velocity:
-
+            case ValueType.Delta:
+                ExternalInputValue = presses;
                 break;
         }
     }
@@ -139,13 +136,11 @@ public class AudienceButtonListener : MonoBehaviour
         switch (configuration.inputType)
         {
             case ValueType.Total:
+            case ValueType.Delta:
                 outputValueUpdate = outputValueScale * AudienceInputValue;
                 break;
             case ValueType.Counter:
                 outputValueUpdate = OutputValue + outputValueScale * GetCurrentFrameAudienceInput();
-                break;
-            case ValueType.Velocity:
-
                 break;
         }
         // Additional values
