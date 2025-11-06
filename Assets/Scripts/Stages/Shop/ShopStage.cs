@@ -5,7 +5,7 @@ namespace Shop
 {
     public class ShopStage : Stage
     {
-        public NPCDialogContentAsset introDialog;
+        public NPCDialogContentAsset[] introDialogs;
         public NPCDialogContentAsset purchaseDialog;
         public NPCDialogContentAsset outroDialog;
 
@@ -56,7 +56,7 @@ namespace Shop
         private void ShowIntroDialog()
         {
             HideShop();
-            if (npc != null) npc.ShowDialogLine(introDialog, 0);
+            if (npc != null) npc.ShowDialogLine(GetCurrentIntroDialogAsset(), 0);
         }
 
         private void ShowShop()
@@ -91,6 +91,21 @@ namespace Shop
             if (shop == null) return;
             shop.Close();
             shop.onBuyItem.RemoveListener(OnBuyItem);
+        }
+
+        private NPCDialogContentAsset GetCurrentIntroDialogAsset()
+        {
+            int dialogOptions = introDialogs != null ? introDialogs.Length : 0;
+            if (dialogOptions == 0) return null;
+            // Count previous shop song occurences in setlist
+            int shopIteration = 0;
+            SetlistInfo currentSetlist = ConcertAdmin.Current.state.setlist;
+            SongInfo currentSong = ConcertAdmin.Current.state.song;
+            int currentSongPosition = ConcertAdmin.Current.state.songPosition;
+            for (int i = 0; i < currentSongPosition && i < currentSetlist.Length; i++)
+                if (currentSetlist.GetSong(i) == currentSong) shopIteration++;
+            // Get corresponding dialog (clamped index)
+            return introDialogs[Mathf.Clamp(shopIteration, 0, dialogOptions)];
         }
     }
 }
