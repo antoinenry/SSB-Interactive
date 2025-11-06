@@ -2227,289 +2227,7 @@ MonoBehaviour:
   - {fileID: 201598446663018278}
   - {fileID: 201598447841641034}
   - {fileID: 201598447481401469}
-  songPool:
-  - title: Bamboo Boogaloo
-    duration: 210
-    bpm: 170
-    partyLevel: 4
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8345
-  - title: Corneria
-    duration: 180
-    bpm: 180
-    partyLevel: 5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8347
-  - title: Crypteque
-    duration: 180
-    bpm: 132
-    partyLevel: 4.5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8348
-  - title: Danse Macabre
-    duration: 210
-    bpm: 100
-    partyLevel: 4
-    hasMinigame: 1
-    linkedStage:
-      name: ShovelKnight
-      hasScore: 1
-      moments: []
-      databaseID: 8378
-    databaseID: 8349
-  - title: DK
-    duration: 180
-    bpm: 125
-    partyLevel: 3
-    hasMinigame: 1
-    linkedStage:
-      name: DonkeyKong
-      hasScore: 1
-      moments: []
-      databaseID: 8379
-    databaseID: 8350
-  - title: Gourmet
-    duration: 150
-    bpm: 180
-    partyLevel: 5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8352
-  - title: Halo
-    duration: 170
-    bpm: 120
-    partyLevel: 2
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8353
-  - title: Floral Fury
-    duration: 240
-    bpm: 130
-    partyLevel: 3
-    hasMinigame: 1
-    linkedStage:
-      name: FloralFury
-      hasScore: 1
-      moments: []
-      databaseID: 8380
-    databaseID: 8354
-  - title: In the Blood
-    duration: 240
-    bpm: 80
-    partyLevel: 1.5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8355
-  - title: Kass theme
-    duration: 210
-    bpm: 180
-    partyLevel: 4
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8356
-  - title: Luigi's
-    duration: 150
-    bpm: 110
-    partyLevel: 3
-    hasMinigame: 1
-    linkedStage:
-      name: LuigisMansion
-      hasScore: 1
-      moments: []
-      databaseID: 8381
-    databaseID: 8357
-  - title: Megalovania
-    duration: 300
-    bpm: 240
-    partyLevel: 5
-    hasMinigame: 1
-    linkedStage:
-      name: Megalovania
-      hasScore: 1
-      moments: []
-      databaseID: 8649
-    databaseID: 8358
-  - title: The Great Escape
-    duration: 210
-    bpm: 160
-    partyLevel: 4
-    hasMinigame: 1
-    linkedStage:
-      name: Rayman
-      hasScore: 1
-      moments: []
-      databaseID: 8383
-    databaseID: 8360
-  - title: the Man with the machine gun
-    duration: 205
-    bpm: 140
-    partyLevel: 3
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8361
-  - title: Resurrections
-    duration: 420
-    bpm: 70
-    partyLevel: 1
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8362
-  - title: Sonex
-    duration: 210
-    bpm: 140
-    partyLevel: 3
-    hasMinigame: 1
-    linkedStage:
-      name: Sonic
-      hasScore: 1
-      moments:
-      - name: 
-        moment: 0
-        index: 0
-      - name: 
-        moment: 1
-        index: 0
-      databaseID: 8384
-    databaseID: 8363
-  - title: Still Alive
-    duration: 180
-    bpm: 120
-    partyLevel: 1.5
-    hasMinigame: 1
-    linkedStage:
-      name: Quizz
-      hasScore: 1
-      moments: []
-      databaseID: 8385
-    databaseID: 8364
-  - title: Ultimate
-    duration: 150
-    bpm: 160
-    partyLevel: 5
-    hasMinigame: 0
-    linkedStage:
-      name: Intro
-      hasScore: 0
-      moments:
-      - name: 
-        moment: 0
-        index: 0
-      - name: 
-        moment: 1
-        index: 0
-      - name: 
-        moment: 2
-        index: 0
-      - name: 
-        moment: 3
-        index: 0
-      databaseID: 9227
-    databaseID: 8365
-  - title: Vampire Killer
-    duration: 210
-    bpm: 128
-    partyLevel: 5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8366
-  - title: Rock N Stone
-    duration: 210
-    bpm: 180
-    partyLevel: 5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8431
-  - title: Pokemon
-    duration: 240
-    bpm: 180
-    partyLevel: 5
-    hasMinigame: 0
-    linkedStage:
-      name: Logo
-      hasScore: 0
-      moments: []
-      databaseID: 8376
-    databaseID: 8692
-  - title: Fall Guys
-    duration: 210
-    bpm: 148
-    partyLevel: 80
-    hasMinigame: 0
-    linkedStage:
-      name: MovingLogo
-      hasScore: 0
-      moments: []
-      databaseID: 8371
-    databaseID: 8961
-  - title: Dernier morceau
-    duration: 0
-    bpm: 0
-    partyLevel: 0
-    hasMinigame: 0
-    linkedStage:
-      name: Outro
-      hasScore: 0
-      moments: []
-      databaseID: 9297
-    databaseID: 9298
-  - title: Mise en place
-    duration: 0
-    bpm: 0
-    partyLevel: 0
-    hasMinigame: 0
-    linkedStage:
-      name: BlackScreen
-      hasScore: 0
-      moments: []
-      databaseID: 8375
-    databaseID: 9307
+  songPool: []
   inventory:
   - song:
       title: 
@@ -2564,17 +2282,17 @@ MonoBehaviour:
       databaseID: 0
     price: 0
   moneyField: {fileID: 1847034740789240341}
-  cartCapacity: 6
+  cartCapacity: 0
   budget: 10
   canBuyMinigames: 0
-  minimumPartyLevel: 1
+  minimumPartyLevel: 0
   emptySetlistSlotTitle: AUDIENCE_CHOICE
   skipSlotsAfterTitle: Mii
   songPoolRequest:
     requestType: 0
     requestUri: songs/available/{setlist_id}
     parameters:
-    - 80
+    - 64
     parametersFormat: 1
     requestTimeout: 5
     loop: 3
@@ -2588,21 +2306,24 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0.4946022
+    responseTime: 0
     loopCount: 0
-    responseBody: '[{"id":8345,"title":"Bamboo Boogaloo","duration":210,"bpm":170,"zgg":4.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8347,"title":"Corneria","duration":180,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8348,"title":"Crypteque","duration":180,"bpm":132,"zgg":4.5,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8349,"title":"Danse
-      Macabre","duration":210,"bpm":100,"zgg":4.0,"minigame":true,"stage":{"id":8378,"title":"ShovelKnight","hasScore":true,"stageMoments":[]}},{"id":8350,"title":"DK","duration":180,"bpm":125,"zgg":3.0,"minigame":true,"stage":{"id":8379,"title":"DonkeyKong","hasScore":true,"stageMoments":[]}},{"id":8352,"title":"Gourmet","duration":150,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8353,"title":"Halo","duration":170,"bpm":120,"zgg":2.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8354,"title":"Floral
-      Fury","duration":240,"bpm":130,"zgg":3.0,"minigame":true,"stage":{"id":8380,"title":"FloralFury","hasScore":true,"stageMoments":[]}},{"id":8355,"title":"In
-      the Blood","duration":240,"bpm":80,"zgg":1.5,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8356,"title":"Kass
-      theme","duration":210,"bpm":180,"zgg":4.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8357,"title":"Luigi''s","duration":150,"bpm":110,"zgg":3.0,"minigame":true,"stage":{"id":8381,"title":"LuigisMansion","hasScore":true,"stageMoments":[]}},{"id":8358,"title":"Megalovania","duration":300,"bpm":240,"zgg":5.0,"minigame":true,"stage":{"id":8649,"title":"Megalovania","hasScore":true,"stageMoments":[]}},{"id":8360,"title":"The
-      Great Escape","duration":210,"bpm":160,"zgg":4.0,"minigame":true,"stage":{"id":8383,"title":"Rayman","hasScore":true,"stageMoments":[]}},{"id":8361,"title":"the
-      Man with the machine gun","duration":205,"bpm":140,"zgg":3.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8362,"title":"Resurrections","duration":420,"bpm":70,"zgg":1.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8363,"title":"Sonex","duration":210,"bpm":140,"zgg":3.0,"minigame":true,"stage":{"id":8384,"title":"Sonic","hasScore":true,"stageMoments":[{"id":9214,"moment":0,"momentIndex":0,"momentTitle":"normal"},{"id":9215,"moment":1,"momentIndex":1,"momentTitle":"invincible"}]}},{"id":8364,"title":"Still
-      Alive","duration":180,"bpm":120,"zgg":1.5,"minigame":true,"stage":{"id":8385,"title":"Quizz","hasScore":true,"stageMoments":[]}},{"id":8365,"title":"Ultimate","duration":150,"bpm":160,"zgg":5.0,"minigame":false,"stage":{"id":9227,"title":"Intro","hasScore":false,"stageMoments":[{"id":9228,"moment":0,"momentIndex":0,"momentTitle":"Vide"},{"id":9229,"moment":1,"momentIndex":1,"momentTitle":"Apparition"},{"id":9230,"moment":2,"momentIndex":2,"momentTitle":"Accent"},{"id":9231,"moment":3,"momentIndex":3,"momentTitle":"Idle"}]}},{"id":8366,"title":"Vampire
-      Killer","duration":210,"bpm":128,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8431,"title":"Rock
-      N Stone","duration":210,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8961,"title":"Fall
-      Guys","duration":210,"bpm":148,"zgg":80.0,"minigame":false,"stage":{"id":8371,"title":"MovingLogo","hasScore":false,"stageMoments":[]}},{"id":9298,"title":"Dernier
-      morceau","duration":0,"bpm":0,"zgg":0.0,"minigame":false,"stage":{"id":9297,"title":"Outro","hasScore":false,"stageMoments":[]}},{"id":9307,"title":"Mise
-      en place","duration":0,"bpm":0,"zgg":0.0,"minigame":false,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}}]'
+    responseBody: "[{\"id\":15,\"title\":\"Bamboo Boogaloo\",\"duration\":210,\"bpm\":170,\"zgg\":4.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":18,\"title\":\"Danse
+      Macabre\",\"duration\":210,\"bpm\":100,\"zgg\":4.0,\"minigame\":true,\"stage\":{\"id\":6,\"title\":\"ShovelKnight\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":19,\"title\":\"DK\",\"duration\":180,\"bpm\":125,\"zgg\":3.0,\"minigame\":true,\"stage\":{\"id\":7,\"title\":\"DonkeyKong\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":20,\"title\":\"Gourmet\",\"duration\":150,\"bpm\":180,\"zgg\":5.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":21,\"title\":\"Halo\",\"duration\":170,\"bpm\":120,\"zgg\":2.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":22,\"title\":\"Floral
+      Fury\",\"duration\":240,\"bpm\":130,\"zgg\":3.0,\"minigame\":true,\"stage\":{\"id\":8,\"title\":\"FloralFury\",\"hasScore\":true,\"stageMoments\":[{\"id\":48,\"moment\":0,\"momentIndex\":0,\"momentTitle\":\"pluie
+      pi\xE8ces\"},{\"id\":49,\"moment\":1,\"momentIndex\":1,\"momentTitle\":\"choix
+      solo\"},{\"id\":50,\"moment\":2,\"momentIndex\":2,\"momentTitle\":\"solo !!\"},{\"id\":51,\"moment\":0,\"momentIndex\":3,\"momentTitle\":\"pluie
+      pi\xE8ces\"},{\"id\":52,\"moment\":1,\"momentIndex\":4,\"momentTitle\":\"choix
+      solo\"},{\"id\":53,\"moment\":2,\"momentIndex\":5,\"momentTitle\":\"solo !!\"},{\"id\":54,\"moment\":0,\"momentIndex\":6,\"momentTitle\":\"pluie
+      pi\xE8ces\"}]}},{\"id\":23,\"title\":\"In the Blood\",\"duration\":240,\"bpm\":80,\"zgg\":1.5,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":24,\"title\":\"Kass
+      theme\",\"duration\":210,\"bpm\":180,\"zgg\":4.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":25,\"title\":\"Luigi's\",\"duration\":150,\"bpm\":110,\"zgg\":3.0,\"minigame\":true,\"stage\":{\"id\":9,\"title\":\"LuigisMansion\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":26,\"title\":\"Megalovania\",\"duration\":300,\"bpm\":240,\"zgg\":5.0,\"minigame\":true,\"stage\":{\"id\":14,\"title\":\"Megalovania\",\"hasScore\":true,\"stageMoments\":[{\"id\":60,\"moment\":0,\"momentIndex\":0,\"momentTitle\":\"bullet
+      hell\"},{\"id\":61,\"moment\":1,\"momentIndex\":1,\"momentTitle\":\"solo !!\"},{\"id\":62,\"moment\":0,\"momentIndex\":2,\"momentTitle\":\"bullet
+      hell\"}]}},{\"id\":28,\"title\":\"The Great Escape\",\"duration\":210,\"bpm\":160,\"zgg\":4.0,\"minigame\":true,\"stage\":{\"id\":11,\"title\":\"Rayman\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":29,\"title\":\"the
+      Man with the machine gun\",\"duration\":205,\"bpm\":140,\"zgg\":0.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":30,\"title\":\"Resurrections\",\"duration\":420,\"bpm\":70,\"zgg\":1.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":32,\"title\":\"Still
+      Alive\",\"duration\":180,\"bpm\":120,\"zgg\":1.5,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":34,\"title\":\"Vampire
+      Killer\",\"duration\":210,\"bpm\":128,\"zgg\":5.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":35,\"title\":\"Rock
+      N Stone\",\"duration\":210,\"bpm\":180,\"zgg\":0.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":37,\"title\":\"Pokemon\",\"duration\":240,\"bpm\":180,\"zgg\":0.0,\"minigame\":false,\"stage\":{\"id\":4,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":39,\"title\":\"Fall
+      Guys\",\"duration\":210,\"bpm\":148,\"zgg\":80.0,\"minigame\":false,\"stage\":{\"id\":1,\"title\":\"MovingLogo\",\"hasScore\":false,\"stageMoments\":[]}}]"
   socketClient: {fileID: 11400000, guid: 334956e2833778442be8a34651c0bb35, type: 2}
   cartContentMessagePrefix: 'Panier : '
   buyingMessage: Achat en cours...
@@ -2634,7 +2355,6 @@ MonoBehaviour:
   - {fileID: 3733272301206932415}
   buttonConfiguration:
     inputType: 1
-    scaleWithPlayerCount: 0
     maxValue: 10
     clampZeroMax: 1
     enableAutoPress: 0
@@ -2643,7 +2363,7 @@ MonoBehaviour:
   applyButtonConfiguration: 1
   disableLosers: 0
   autoPress: 2
-  autoPressDelay: 10
+  autoPressDelay: 3
   autoPressBaseSpeed: 1
   autoPressAcceleration: 0
   buttonAnimations: []
@@ -3008,7 +2728,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x 5
+  m_text: x 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6eb65c8f8f6b01540b312919a8dc0dfa, type: 2}
   m_sharedMaterial: {fileID: -4822564077284020679, guid: 6eb65c8f8f6b01540b312919a8dc0dfa, type: 2}
@@ -3769,14 +3489,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelfI_button_B
       objectReference: {fileID: 0}
-    - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
-      propertyPath: configuration.maxValue
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
-      propertyPath: configuration.scaleWithPlayerCount
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
 --- !u!224 &307806710102791603 stripped
@@ -3889,14 +3601,6 @@ PrefabInstance:
     - target: {fileID: 471105730586910662, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
       propertyPath: m_Name
       value: shelf_button_A
-      objectReference: {fileID: 0}
-    - target: {fileID: 3531675159423714150, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
-      propertyPath: configuration.maxValue
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3531675159423714150, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
-      propertyPath: configuration.scaleWithPlayerCount
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
@@ -4011,14 +3715,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelf_button_Y
       objectReference: {fileID: 0}
-    - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
-      propertyPath: configuration.maxValue
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
-      propertyPath: configuration.scaleWithPlayerCount
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
 --- !u!224 &307806708841027356 stripped
@@ -4132,14 +3828,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelf_button_X
       objectReference: {fileID: 0}
-    - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
-      propertyPath: configuration.maxValue
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
-      propertyPath: configuration.scaleWithPlayerCount
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
 --- !u!224 &307806708565563192 stripped
@@ -4168,14 +3856,14 @@ PrefabInstance:
     - target: {fileID: 3206691491608823968, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_Animation
       value: 
-      objectReference: {fileID: 7400000, guid: 74324c40cef488d4fa84c7a6f5169dbe, type: 2}
+      objectReference: {fileID: 7400000, guid: 4825a84264a5b614694d2de58362bfa6, type: 2}
     - target: {fileID: 6579725067420259649, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_text
-      value: 
+      value: "Bien le bonjour, les \xE9trangers !"
       objectReference: {fileID: 0}
     - target: {fileID: 6579725067420259655, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: text
-      value: 
+      value: "Bien le bonjour, les \xE9trangers !"
       objectReference: {fileID: 0}
     - target: {fileID: 6579725067473962905, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_LocalScale.y
@@ -4237,10 +3925,6 @@ PrefabInstance:
       propertyPath: dialog
       value: 
       objectReference: {fileID: 11400000, guid: b4929226b69548e46831fed3bd953506, type: 2}
-    - target: {fileID: 6579725069437532582, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
-      propertyPath: lineIndex
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 6579725069437532582, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: reactionIndex
       value: -1

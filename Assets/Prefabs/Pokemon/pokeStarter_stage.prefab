@@ -57,7 +57,7 @@ MonoBehaviour:
   introDialog: {fileID: 11400000, guid: 0905c5f4315312c4dbc03b703f60d3df, type: 2}
   outroDialog: {fileID: 11400000, guid: 8c2609393e79f3546a64f08f16d30515, type: 2}
   config: {fileID: 11400000, guid: bc672a51a1768414384fe903e3ebcc94, type: 2}
-  playerInventory: {fileID: 11400000, guid: 31b23efdc81714b47b4b9d6f58d7cf71, type: 2}
+  playerInventory: {fileID: 0}
   selectionMessage: 'Curseur : '
   validationMessage: 'VALIDE : '
 --- !u!1 &6179586511707778082
@@ -1240,7 +1240,6 @@ MonoBehaviour:
   - {fileID: 7260166441444533964}
   buttonConfiguration:
     inputType: 1
-    scaleWithPlayerCount: 0
     maxValue: 10
     clampZeroMax: 1
     enableAutoPress: 0
@@ -1250,7 +1249,7 @@ MonoBehaviour:
   disableLosers: 1
   autoPress: 2
   autoPressDelay: 10
-  autoPressBaseSpeed: 0.5
+  autoPressBaseSpeed: 1
   autoPressAcceleration: 0
   buttonAnimations:
   - {fileID: 4750093919187207863}
@@ -1469,10 +1468,6 @@ PrefabInstance:
       propertyPath: configuration.autoPressSpeed
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
-      propertyPath: configuration.scaleWithPlayerCount
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
 --- !u!224 &6002164824510724719 stripped
@@ -1578,10 +1573,6 @@ PrefabInstance:
       propertyPath: dialog
       value: 
       objectReference: {fileID: 11400000, guid: 0905c5f4315312c4dbc03b703f60d3df, type: 2}
-    - target: {fileID: 6579725069437532582, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
-      propertyPath: reactionIndex
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 7659750839756637531, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1743,10 +1734,6 @@ PrefabInstance:
       propertyPath: configuration.autoPressSpeed
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
-      propertyPath: configuration.scaleWithPlayerCount
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
 --- !u!224 &6002164824150118752 stripped
@@ -1891,10 +1878,6 @@ PrefabInstance:
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.autoPressSpeed
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
-      propertyPath: configuration.scaleWithPlayerCount
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
