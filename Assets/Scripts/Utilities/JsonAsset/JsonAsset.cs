@@ -2,15 +2,16 @@ using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
-public interface JsonAsset
+public abstract class JsonAsset : ScriptableObject
 {
     public abstract void Save();
     public abstract void Load();
 }
 
-public abstract class JsonAsset<T> : ScriptableObject, JsonAsset where T : struct
+public abstract class JsonAsset<T> : JsonAsset where T : struct
 {
     public string savePath;
 
@@ -48,13 +49,13 @@ public abstract class JsonAsset<T> : ScriptableObject, JsonAsset where T : struc
         Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
     };
 
-    public void Save()
+    public override void Save()
     {
         string dataString = JsonSerializer.Serialize(Data, JsonOptions);
         File.WriteAllText(CompletePath, dataString);
     }
 
-    public void Load()
+    public override void Load()
     {
         if (File.Exists(CompletePath))
         {
