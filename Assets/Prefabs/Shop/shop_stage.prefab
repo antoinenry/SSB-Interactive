@@ -2499,6 +2499,17 @@ MonoBehaviour:
       moments: []
       databaseID: 9297
     databaseID: 9298
+  - title: Mise en place
+    duration: 0
+    bpm: 0
+    partyLevel: 0
+    hasMinigame: 0
+    linkedStage:
+      name: BlackScreen
+      hasScore: 0
+      moments: []
+      databaseID: 8375
+    databaseID: 9307
   inventory:
   - song:
       title: 
@@ -2556,7 +2567,7 @@ MonoBehaviour:
   cartCapacity: 6
   budget: 10
   canBuyMinigames: 0
-  minimumPartyLevel: 0
+  minimumPartyLevel: 1
   emptySetlistSlotTitle: AUDIENCE_CHOICE
   skipSlotsAfterTitle: Mii
   songPoolRequest:
@@ -2577,7 +2588,7 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0.2613814
+    responseTime: 0.4946022
     loopCount: 0
     responseBody: '[{"id":8345,"title":"Bamboo Boogaloo","duration":210,"bpm":170,"zgg":4.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8347,"title":"Corneria","duration":180,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8348,"title":"Crypteque","duration":180,"bpm":132,"zgg":4.5,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8349,"title":"Danse
       Macabre","duration":210,"bpm":100,"zgg":4.0,"minigame":true,"stage":{"id":8378,"title":"ShovelKnight","hasScore":true,"stageMoments":[]}},{"id":8350,"title":"DK","duration":180,"bpm":125,"zgg":3.0,"minigame":true,"stage":{"id":8379,"title":"DonkeyKong","hasScore":true,"stageMoments":[]}},{"id":8352,"title":"Gourmet","duration":150,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8353,"title":"Halo","duration":170,"bpm":120,"zgg":2.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8354,"title":"Floral
@@ -2590,7 +2601,8 @@ MonoBehaviour:
       Killer","duration":210,"bpm":128,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8431,"title":"Rock
       N Stone","duration":210,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8692,"title":"Pokemon","duration":240,"bpm":180,"zgg":5.0,"minigame":false,"stage":{"id":8376,"title":"Logo","hasScore":null,"stageMoments":[]}},{"id":8961,"title":"Fall
       Guys","duration":210,"bpm":148,"zgg":80.0,"minigame":false,"stage":{"id":8371,"title":"MovingLogo","hasScore":false,"stageMoments":[]}},{"id":9298,"title":"Dernier
-      morceau","duration":0,"bpm":0,"zgg":0.0,"minigame":false,"stage":{"id":9297,"title":"Outro","hasScore":false,"stageMoments":[]}}]'
+      morceau","duration":0,"bpm":0,"zgg":0.0,"minigame":false,"stage":{"id":9297,"title":"Outro","hasScore":false,"stageMoments":[]}},{"id":9307,"title":"Mise
+      en place","duration":0,"bpm":0,"zgg":0.0,"minigame":false,"stage":{"id":8375,"title":"BlackScreen","hasScore":false,"stageMoments":[]}}]'
   socketClient: {fileID: 11400000, guid: 334956e2833778442be8a34651c0bb35, type: 2}
   cartContentMessagePrefix: 'Panier : '
   buyingMessage: Achat en cours...
@@ -2996,7 +3008,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x 2062112842
+  m_text: x 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6eb65c8f8f6b01540b312919a8dc0dfa, type: 2}
   m_sharedMaterial: {fileID: -4822564077284020679, guid: 6eb65c8f8f6b01540b312919a8dc0dfa, type: 2}
@@ -3023,7 +3035,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.85
+  m_fontSize: 50
   m_fontSizeBase: 62.43
   m_fontWeight: 400
   m_enableAutoSizing: 1
