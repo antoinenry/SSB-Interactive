@@ -13,19 +13,25 @@ MonoBehaviour:
   m_Name: TrainerDialog_intro
   m_EditorClassIdentifier: 
   savePath: Config/Poke/poke_trainer_1.json
-  data:
+  isUserData: 0
+  Data:
     lines:
     - text: "J\u2019ai tout entendu! Quelle setliste incroyable!"
       answers: []
-    - text: "\u2026 <ins\xE9rer nom du public>, c\u2019est bien \xE7a?"
+      hideNextButton: 0
+    - text: "\u2026 Vous \xEAtes nom_du_public, c\u2019est bien \xE7a?"
       answers: []
-    - text: "Bien jou\xE9. Vous \xEAtes sur la bonne voie vers la Set Liste Ultime...
-        mais la route est longue et sem\xE9e d\u2019emb\xFBches! "
+      hideNextButton: 0
+    - text: "Bien jou\xE9 ! Vous \xEAtes sur la bonne voie vers... LA SET LISTE ULTIME
+        !"
       answers: []
-    - text: "Ce qu\u2019il vous faudrait c\u2019est un compagnon de route qui vous
-        aidera en cas de coup dur."
+      hideNextButton: 0
+    - text: "Mais faites attention ! A partir d'ici, la route devient bien plus dangereuse
+        ! Hum... ce qu\u2019il vous faudrait c\u2019est un compagnon de route..."
       answers: []
-    - text: "Je sais! Prenez un fanfaron de poche! Je vous l\u2019offre, il vous
-        sera utile."
+      hideNextButton: 0
+    - text: "... Ah, je sais ! Prenez un fanfaron de poche ! Allez-y, je vous l\u2019offre.
+        Il vous sera tr\xE8s utile."
       answers: []
+      hideNextButton: 0
     reactions: []

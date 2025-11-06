@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: TrainerDialog_outro
   m_EditorClassIdentifier: 
   savePath: Config/Poke/poke_trainer_2.json
-  data:
+  isUserData: 0
+  Data:
     lines:
-    - text: "Un <ins\xE9rer nom du pok\xE9 fanfaron> ! C\u2019est mon pr\xE9f\xE9r\xE9
+    - text: "Oh, vous avez choisi un pokefanfaron_gentil ! C\u2019est mon pr\xE9f\xE9r\xE9
         ! "
       answers: []
-    - text: "Il vous sera utile, je vous le garantie. Il est temps de continuer votre
-        route \xE0 pr\xE9sent."
+      hideNextButton: 0
+    - text: Il vous sera utile, je vous le garantie ! Allez, voyageurs, il est temps
+        de continuer votre route. Bonne chance !
       answers: []
+      hideNextButton: 0
     reactions: []

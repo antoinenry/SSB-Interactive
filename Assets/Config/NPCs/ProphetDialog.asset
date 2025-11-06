@@ -13,36 +13,47 @@ MonoBehaviour:
   m_Name: ProphetDialog
   m_EditorClassIdentifier: 
   savePath: Config/prophet.json
-  data:
+  isUserData: 0
+  Data:
     lines:
     - text: "Oyez la l\xE9gende transmise de fanfaron en fanfaron !"
       answers: []
-    - text: "Depuis la nuit des temps, toutes les fanfares gal\xE8rent \xE0 savoir
-        dans quel ordre interpr\xE9ter leurs morceaux."
+      hideNextButton: 0
+    - text: "Depuis la nuit des temps, toutes les fanfares peinent \xE0 savoir dans
+        quel ordre interpr\xE9ter leurs morceaux."
       answers: []
+      hideNextButton: 0
     - text: "Faut-il mettre le morceau le plus rapide au d\xE9but? Le plus fort au
         milieu ? Le plus beau \xE0 la fin ?"
       answers: []
+      hideNextButton: 0
     - text: "Beaucoup ont sombr\xE9 dans la folie en tentant de r\xE9pondre \xE0
         ces questions."
       answers: []
+      hideNextButton: 0
     - text: "Mais la l\xE9gende raconte qu\u2019il existe quelque part un public
-        extraordinaire qui poss\xE8de la cl\xE9 de cette \xE9nigme."
+        extraordinaire... Un public qui poss\xE8de la cl\xE9 de cette \xE9nigme..."
       answers: []
+      hideNextButton: 0
     - text: "Un public comme vous, voyageurs ! Un public qui trouvera\u2026 LA SET
         LISTE ULTIME !"
       answers: []
-    - text: "Etes-vous pr\xEAt, <ins\xE9rer nom du public>, \xE0 vous lancer dans
-        cette qu\xEAte ?"
+      hideNextButton: 0
+    - text: "Etes-vous pr\xEAt, nom_du_public, \xE0 vous lancer dans cette qu\xEAte
+        ?"
       answers:
       - Oui
       - "Bien s\xFBr"
-      - On y va
-      - Le public est d'accord
-    - text: Je savais que SSB pouvait compter sur vous.
+      - Let's gooo
+      - D'accord
+      hideNextButton: 0
+    - text: "Je savais que Super Smash Brass (la premi\xE8re fanfare de jeux vid\xE9o
+        du MONDE) pouvait compter sur vous."
       answers: []
+      hideNextButton: 0
     - text: En route, voyageurs ! Soyez un public extraordinaire et guidez nos amis
-        vers la SET LISTE ULTIME !
+        vers... LA SET LISTE ULTIME !
       answers:
       - START
+      hideNextButton: 0
     reactions: []

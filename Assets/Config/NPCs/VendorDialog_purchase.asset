@@ -13,8 +13,20 @@ MonoBehaviour:
   m_Name: VendorDialog_purchase
   m_EditorClassIdentifier: 
   savePath: Config/vendeur_2.json
-  data:
+  isUserData: 0
+  Data:
     lines:
     - text: "Oh, excellent choix ! J'ai le m\xEAme \xE0 la maison."
       answers: []
+      hideNextButton: 0
+    - text: "Eh, un grand classique ! Vous \xEAtes un connaisseur !"
+      answers: []
+      hideNextButton: 0
+    - text: Vous avez de la chance, il est en promotion.
+      answers: []
+      hideNextButton: 0
+    - text: "Ah, il est pas facile celui-l\xE0. Bah, je suis certain que Super Smash
+        Brass s'en sortira !         ...probablement."
+      answers: []
+      hideNextButton: 0
     reactions: []

@@ -1,6 +1,6 @@
 {
   "LineCount": 5,
-  "ReactionCount": 0,
+  "ReactionCount": 1,
   "lines": [
     {
       "AnswerCount": 0,
@@ -9,14 +9,17 @@
       "hideNextButton": false
     },
     {
-      "AnswerCount": 0,
-      "text": "… nom_du_public, c’est bien ça?",
-      "answers": [],
+      "AnswerCount": 2,
+      "text": "… Vous êtes nom_du_public, c’est bien ça?",
+      "answers": [
+        "Eh oui, c\u0027est bien nous !",
+        "Vous devez confondre avec un autre public."
+      ],
       "hideNextButton": false
     },
     {
       "AnswerCount": 0,
-      "text": "Bien joué ! Vous êtes sur la bonne voie vers... LA SET LISTE ULTIME !",
+      "text": "Vous êtes sur la bonne voie vers... LA SET LISTE ULTIME !",
       "answers": [],
       "hideNextButton": false
     },
@@ -33,5 +36,14 @@
       "hideNextButton": false
     }
   ],
-  "reactions": []
+  "reactions": [
+    {
+      "ResponseCount": 2,
+      "fromLine": 1,
+      "responses": [
+        "Je le savais ! Je suis votre plus grand fan !",
+        "Aha, vous voulez restez incognito ? Je comprends... on est jamais trop prudent !"
+      ]
+    }
+  ]
 }

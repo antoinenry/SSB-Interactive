@@ -123,10 +123,6 @@ namespace Pokefanf
             enemyPoke = enemy;
             if (allyPanelGUI) allyPanelGUI.pokefanf = allyPoke;
             if (enemyPanelGUI) enemyPanelGUI.pokefanf = enemyPoke;
-            NPCDialogInjector_Pokefanf injector = NPCDialogInjectorConfig.Current.pokeFanf;
-            if (injector == null) return;
-            injector.UpdateDictionary(injector.key_AllyPoke, allyPoke.pokeName);
-            injector.UpdateDictionary(injector.key_EnemyPoke, enemyPoke.pokeName);
         }
 
         private void SetHealths(float allyHealth, float enemyHealth)
@@ -145,7 +141,7 @@ namespace Pokefanf
         private void SetCurrentAttack(string attackName)
         {
             currentAttack = attackName;
-            NPCDialogInjector_Pokefanf injector = NPCDialogInjectorConfig.Current.pokeFanf;
+            NPCDialogInjector_Pokefanf injector = NPCDialogInjectorConfig.Current.pokefanf;
             if (injector == null) return;
             injector.UpdateDictionary(injector.key_CurrentAttack, currentAttack);
         }

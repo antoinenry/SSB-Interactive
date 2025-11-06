@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: VendorDialog_outro
   m_EditorClassIdentifier: 
   savePath: Config/vendeur_3.json
-  data:
+  isUserData: 0
+  Data:
     lines:
-    - text: "H\xE9 h\xE9 ! Un plaisir de faire affaire avec vous. Bonne route, \xE9trangers
+    - text: "H\xE9 h\xE9 ! Un plaisir de faire affaire avec vous. Bonne route, voyageurs
         !"
       answers: []
+      hideNextButton: 0
     reactions: []

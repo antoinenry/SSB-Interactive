@@ -52,10 +52,8 @@ namespace Pokefanf
         private void OnValidateSelection(Pokefanf selected)
         {
             MessengerAdmin.Send(validationMessage + selected.musicianName);
-            if (playerInventory != null)
-            {
-                playerInventory.SetStarter(selected.musicianName);
-            }
+            if (playerInventory != null) playerInventory.SetStarter(selected.musicianName);
+            UpdateNPCDialogs(selected);
         }
 
         private void ShowIntroDialog()
@@ -91,6 +89,14 @@ namespace Pokefanf
             selector.onRankingChange.RemoveListener(OnChangeSelection);
             selector.onSelectorMaxed.RemoveListener(OnValidateSelection);
             selector.gameObject.SetActive(false);
+        }
+
+        private void UpdateNPCDialogs(Pokefanf allyPoke)
+        {
+            NPCDialogInjector_Pokefanf injector = NPCDialogInjectorConfig.Current.pokefanf;
+            if (injector == null) return;
+            injector.UpdateDictionary(injector.key_AllyPoke, allyPoke.pokeName);
+            injector.UpdateDictionary(injector.key_EnemyPoke, config.GetEnemyMusician(allyPoke.musicianName).pokeName);
         }
     }
 }

@@ -13,16 +13,25 @@ MonoBehaviour:
   m_Name: VendorDialog_intro_1
   m_EditorClassIdentifier: 
   savePath: Config/vendeur_1.json
-  data:
+  isUserData: 0
+  Data:
     lines:
-    - text: "Bien le bonjour, les \xE9trangers !"
+    - text: Bien le bonjour, voyageurs !
       answers: []
-    - text: "Bienvenue dans ma modeste \xE9choppe \u201CLA SSBRASSERIE\u201D, uniquement
-        des morceaux de qualit\xE9 !"
+      hideNextButton: 0
+    - text: "Bienvenue dans ma modeste \xE9choppe \"Au Prochain Morceau\u201D. Uniquement
+        des musiques de qualit\xE9 !"
       answers: []
-    - text: "Dites-donc, vous \xEAtes un peu nombreux pour mon petit magasin. Encore
-        un public qui cherche la setliste parfaite?"
-      answers: []
-    - text: "Vous \xEAtes au bon endroit. Jetez un \u0153il \xE0 mon inventaire !"
-      answers: []
-    reactions: []
+      hideNextButton: 0
+    - text: "Hum, vous \xEAtes un peu nombreux pour mon petit magasin. Ah, laissez-moi
+        deviner ! Vous cherchez... LA SET LISTE ULTIME ?"
+      answers:
+      - "Tout \xE0 fait !"
+      - C'est pas vos oignons.
+      hideNextButton: 0
+    reactions:
+    - fromLine: 2
+      responses:
+      - "J'en \xE9tais s\xFBr ! Vous \xEAtes au bon endroit. Jetez un oeil \xE0 mon
+        inventaire !"
+      - "Bon, bon. Jetez tout de m\xEAme un oeil \xE0 mon inventaire..."

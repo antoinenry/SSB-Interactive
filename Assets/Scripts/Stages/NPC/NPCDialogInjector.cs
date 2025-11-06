@@ -44,13 +44,13 @@ namespace NPC
     public struct NPCDialogInjectorConfig
     {
         public NPCDialogInjector_ConcertAdmin concertAdmin;
-        public NPCDialogInjector_Pokefanf pokeFanf;
+        public NPCDialogInjector_Pokefanf pokefanf;
 
         public static NPCDialogInjectorConfig Current => NPCDialogConfigAsset.Current != null ? NPCDialogConfigAsset.Current.Data.injectors : new NPCDialogInjectorConfig();
 
         public NPCDialogInjector[] GetAllInjectors() => new NPCDialogInjector[]
         {
-            concertAdmin, pokeFanf
+            concertAdmin, pokefanf
         };
 
     }

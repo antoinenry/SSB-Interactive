@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: NPCDialogConfig
   m_EditorClassIdentifier: 
   savePath: Config/NPCs/dialogs_config.json
-  data:
+  isUserData: 0
+  Data:
     injectors:
       concertAdmin:
         key_ConcertName: nom_du_concert
         key_ConcertLocation: nom_du_public
-      pokeFanf:
+      pokefanf:
         key_AllyPoke: pokefanfaron_gentil
         key_EnemyPoke: pokefanfaron_mechant
         key_CurrentAttack: poke_attaque

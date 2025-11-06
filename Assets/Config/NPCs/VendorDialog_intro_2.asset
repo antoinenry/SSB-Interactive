@@ -12,17 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c175f6705eaf484b8014760745fd032, type: 3}
   m_Name: VendorDialog_intro_2
   m_EditorClassIdentifier: 
-  savePath: Config/vendeur_1.json
-  data:
+  savePath: Config/vendeur_4.json
+  isUserData: 0
+  Data:
     lines:
-    - text: "Bien le bonjour, les \xE9trangers !"
-      answers: []
-    - text: "Bienvenue dans ma modeste \xE9choppe \u201CLA SSBRASSERIE\u201D, uniquement
-        des morceaux de qualit\xE9 !"
-      answers: []
-    - text: "Dites-donc, vous \xEAtes un peu nombreux pour mon petit magasin. Encore
-        un public qui cherche la setliste parfaite?"
-      answers: []
-    - text: "Vous \xEAtes au bon endroit. Jetez un \u0153il \xE0 mon inventaire !"
-      answers: []
-    reactions: []
+    - text: "Tiens, tiens ! D\xE9j\xE0 de retour ? Comment se passe votre qu\xEAte
+        ?"
+      answers:
+      - Super bien !
+      - C'est toujours pas vos oignons.
+      hideNextButton: 0
+    reactions:
+    - fromLine: 0
+      responses:
+      - Vous m'avez tout l'air d'un public extraordinaire. J'ai des nouveaux morceaux
+        tout frais en stock. Regardez !
+      - Bon, bon ! Tant que vous payez...

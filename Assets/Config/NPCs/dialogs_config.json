@@ -4,7 +4,7 @@
       "key_ConcertName": "nom_du_concert",
       "key_ConcertLocation": "nom_du_public"
     },
-    "pokeFanf": {
+    "pokefanf": {
       "key_AllyPoke": "pokefanfaron_gentil",
       "key_EnemyPoke": "pokefanfaron_mechant",
       "key_CurrentAttack": "poke_attaque"
