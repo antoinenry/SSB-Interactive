@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d05c4296e14588f45a0f1127155365c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 0.5
   respawnDuration: 1
   respawnBlinkPeriod: 0.05
 --- !u!114 &170399712
@@ -1221,6 +1221,7 @@ MonoBehaviour:
   roundsField: {fileID: 4725074236623677456}
   roundsFieldPrefix: 'round '
   roundCounter: 0
+  soloText: SOLO !
 --- !u!1 &8198269193153677993
 GameObject:
   m_ObjectHideFlags: 0

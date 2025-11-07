@@ -19,9 +19,11 @@ public class HeartPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float xInput = AudienceInputSource.Current.GetHorizontalAxis().deltaPresses;
-        float yInput = AudienceInputSource.Current.GetVerticalAxis().deltaPresses;
-        body.velocity = moveSpeed * new Vector2(xInput, yInput);
+        AudienceInputSource inputSource = AudienceInputSource.Current;
+        if (inputSource == null) return;
+        float horizontalInput = inputSource.ScaleWithPlayerCount(inputSource.GetHorizontalAxis().velocity);
+        float verticalInput = inputSource.ScaleWithPlayerCount(inputSource.GetVerticalAxis().velocity);
+        body.velocity = moveSpeed * new Vector2(horizontalInput, verticalInput);
     }
 
     public void Die()
