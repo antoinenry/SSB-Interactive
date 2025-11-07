@@ -52,6 +52,8 @@ public class ClientButtonTracker : MonoBehaviour
             }
         }
 
+        static public MultipleButtonTimedCount None => new MultipleButtonTimedCount(0, null);
+
         static public int CompareByAge(MultipleButtonTimedCount a, MultipleButtonTimedCount b) => b.time.CompareTo(a.time);
 
         public void AddPresses(string buttonID, int presses)
@@ -75,6 +77,19 @@ public class ClientButtonTracker : MonoBehaviour
                 if (counts.ContainsKey(key)) counts[key] += presses[key];
                 else counts.Add(key, presses[key]);
             }
+        }
+
+        public bool ContainsButton(string buttonID)
+        {
+            if (counts == null) return false;
+            else return counts.ContainsKey(buttonID);
+        }
+
+        public bool TryGetPresses(string buttonID, out int presses)
+        {
+            presses = 0;
+            if (counts == null) return false;
+            else return counts.TryGetValue(buttonID, out presses);
         }
     }
     #endregion

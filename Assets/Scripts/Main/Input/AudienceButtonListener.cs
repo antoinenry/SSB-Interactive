@@ -9,7 +9,7 @@ public class AudienceButtonListener : MonoBehaviour
     public UnityEvent<float,float> onValueChange;
     public UnityEvent onValueMaxed;
 
-    public enum ValueType { Total, Counter, Delta }
+    public enum ValueType { Total, Counter, Delta, Velocity }
 
     [Serializable]
     public struct Configuration
@@ -69,13 +69,13 @@ public class AudienceButtonListener : MonoBehaviour
     {
         switch (configuration.inputType)
         {
+            case ValueType.Total:
+                AudienceInputValue = AudienceInputSource.Current.GetButton(buttonID).totalPresses; break;
             case ValueType.Counter:
             case ValueType.Delta:
                 AudienceInputValue = AudienceInputSource.Current.GetButton(buttonID).deltaPresses; break;
-            case ValueType.Total:
-                AudienceInputValue = AudienceInputSource.Current.GetButton(buttonID).totalPresses; break;
-            default:
-                AudienceInputValue = 0f; break;
+            case ValueType.Velocity:
+                AudienceInputValue = AudienceInputSource.Current.GetButton(buttonID).velocity; break;
         }
     }
 
@@ -107,6 +107,7 @@ public class AudienceButtonListener : MonoBehaviour
                 break;
             case ValueType.Counter:
             case ValueType.Delta:
+            case ValueType.Velocity:
                 AutopressValue = simulatedInputValue;
                 break;
         }
@@ -114,17 +115,19 @@ public class AudienceButtonListener : MonoBehaviour
 
     public void PressButton(float presses = 1f)
     {
-        // Different press behaviour depending on input type
-        switch (configuration.inputType)
-        {
-            case ValueType.Total:
-            case ValueType.Counter:
-                ExternalInputValue += presses;
-                break;
-            case ValueType.Delta:
-                ExternalInputValue = presses;
-                break;
-        }
+        //// Different press behaviour depending on input type
+        //switch (configuration.inputType)
+        //{
+        //    case ValueType.Total:
+        //    case ValueType.Counter:
+        //        ExternalInputValue += presses;
+        //        break;
+        //    case ValueType.Delta:
+        //    case ValueType.Velocity:
+        //        ExternalInputValue = presses;
+        //        break;
+        //}
+        ExternalInputValue += presses;
     }
 
     private void UpdateOutputValue()
@@ -137,6 +140,7 @@ public class AudienceButtonListener : MonoBehaviour
         {
             case ValueType.Total:
             case ValueType.Delta:
+            case ValueType.Velocity:
                 outputValueUpdate = outputValueScale * AudienceInputValue;
                 break;
             case ValueType.Counter:

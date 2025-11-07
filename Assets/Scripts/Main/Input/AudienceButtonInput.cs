@@ -23,4 +23,10 @@ public struct AudienceButtonInput
             positiveButton.deltaPresses - negativeButton.deltaPresses,
             positiveButton.velocity - negativeButton.velocity
         );
+
+    public void ClearDynamicValues()
+    {
+        deltaPresses = 0f;
+        velocity = 0f;
+    }
 }
