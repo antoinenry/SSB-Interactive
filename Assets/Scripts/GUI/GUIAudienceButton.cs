@@ -12,6 +12,7 @@ public class GUIAudienceButton : MonoBehaviour
     public float maxValue = 5;
     [Header("Aspect")]
     public bool showGauge = true;
+    public float smoothGaugeSpeed = 2f;
 
     private void Reset()
     {
@@ -45,8 +46,11 @@ public class GUIAudienceButton : MonoBehaviour
         if (showGauge)
         {
             gaugeFill.gameObject.SetActive(true);
-            if (maxValue <= 0) gaugeFill.fillAmount = 1;
-            else gaugeFill.fillAmount = value / maxValue;
+            float fillAmount = maxValue > 0f ? value / maxValue : 1f;
+            if (Application.isPlaying)
+                gaugeFill.fillAmount = Mathf.MoveTowards(gaugeFill.fillAmount, fillAmount, smoothGaugeSpeed * Time.deltaTime);
+            else
+                gaugeFill.fillAmount = fillAmount;
         }
         else
         {
