@@ -150,6 +150,8 @@ public class AudienceButtonListener : MonoBehaviour
         // Additional values
         outputValueUpdate += outputValueScale * (AutopressValue + ExternalInputValue);
         ExternalInputValue = 0f;
+        // Clamp ?
+        if (configuration.clampZeroMax) outputValueUpdate = Mathf.Clamp(outputValueUpdate, 0f, configuration.maxValue);
         // Update output and notify if value has changed
         if (outputValueUpdate != OutputValue)
         {
