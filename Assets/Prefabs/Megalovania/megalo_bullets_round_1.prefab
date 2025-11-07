@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7409169624477233456
+--- !u!1 &2789115267056634232
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7409169624477233457}
-  - component: {fileID: 7409169624477233459}
+  - component: {fileID: 150861718647473384}
+  - component: {fileID: 150861718647473385}
   m_Layer: 0
-  m_Name: megalo_round5
+  m_Name: megalo_bullets_round_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7409169624477233457
+--- !u!4 &150861718647473384
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7409169624477233456}
+  m_GameObject: {fileID: 2789115267056634232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,40 +32,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7409169624477233459
+--- !u!114 &150861718647473385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7409169624477233456}
+  m_GameObject: {fileID: 2789115267056634232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37af3900a38ce23428897fb213523027, type: 3}
+  m_Script: {fileID: 11500000, guid: 3be8e4d57cecc384b938c5e28fa3e15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: 270193844563961517, guid: f1ce38011396b2140b5ebade3adb40d2, type: 3}
+  onEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onKillsPlayer:
+    m_PersistentCalls:
+      m_Calls: []
+  bulletPrefab: {fileID: -94311243864468959, guid: 5be0ca3d2e5bd3449a972e13f9b85298, type: 3}
   bursts:
   - startTime: 0
-    duration: 15
-    laserDuration: 4
-    timeBetweenLasers: 2
-    edge: 0
-    linearOffset: 0
-    linearMovement: 12
-    linearSpeed: 2
-    angularOffset: 0
-    angularMovement: 0
-    angularSpeed: 0
-  - startTime: 0
-    duration: 15
-    laserDuration: 3
-    timeBetweenLasers: 2
-    edge: 2
-    linearOffset: 0
-    linearMovement: 6
-    linearSpeed: 0.5
-    angularOffset: 0
-    angularMovement: 0
-    angularSpeed: 0
+    duration: 5
+    timeBetweenBursts: 7
+    angle: 0
+    bulletCount: 7
+    bulletSize: 0.5
+    bulletSpeed: 1
+    timeBetweenBullets: 0.2
+    linearSpread: 0
+    angularSpread: 120
+  - startTime: 3
+    duration: 5
+    timeBetweenBursts: 7
+    angle: 180
+    bulletCount: 8
+    bulletSize: 0.5
+    bulletSpeed: 1
+    timeBetweenBullets: 0.2
+    linearSpread: 0
+    angularSpread: 120
   distanceFromFrame: 1

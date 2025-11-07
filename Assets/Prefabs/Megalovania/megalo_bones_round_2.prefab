@@ -146,8 +146,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbec4390edcc1f4f84b163bea106971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onKillsPlayer:
+    m_PersistentCalls:
+      m_Calls: []
   speed: 1.5
   lifeDistance: 15
+  spriteHeightOffset: 0.5
 --- !u!1 &6963639588104474657
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +163,7 @@ GameObject:
   - component: {fileID: 6963639588104474656}
   - component: {fileID: 6963639588104474671}
   m_Layer: 0
-  m_Name: megalo_round2
+  m_Name: megalo_bones_round_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,6 +202,9 @@ MonoBehaviour:
   onEnd:
     m_PersistentCalls:
       m_Calls: []
+  onKillsPlayer:
+    m_PersistentCalls:
+      m_Calls: []
   bonePrefab: {fileID: -4947604366680539009, guid: 6720cf54861dbd240bdaeab82a9be358, type: 3}
   bursts:
   - startTime: 0
@@ -205,7 +212,7 @@ MonoBehaviour:
     timeBetweenBursts: 0
     edge: 0
     boneCount: 2
-    boneSize: 2
+    boneSize: 2.4
     boneSpeed: 1.5
     boneSpacing: 1.5
     sizeVariationAmplitude: 2
@@ -215,7 +222,7 @@ MonoBehaviour:
     timeBetweenBursts: 0
     edge: 1
     boneCount: 2
-    boneSize: 2
+    boneSize: 2.4
     boneSpeed: 1.5
     boneSpacing: 1.5
     sizeVariationAmplitude: 1.8
@@ -366,8 +373,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbec4390edcc1f4f84b163bea106971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onKillsPlayer:
+    m_PersistentCalls:
+      m_Calls: []
   speed: 1.5
   lifeDistance: 15
+  spriteHeightOffset: 0.5
 --- !u!1 &9074527252334166779
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,5 +525,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbec4390edcc1f4f84b163bea106971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onKillsPlayer:
+    m_PersistentCalls:
+      m_Calls: []
   speed: 1.5
   lifeDistance: 15
+  spriteHeightOffset: 0.5

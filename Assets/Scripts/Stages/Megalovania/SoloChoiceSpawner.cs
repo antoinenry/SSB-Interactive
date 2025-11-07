@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Megalovania
 {
-    public class SoloChoiceSpawner : MonoBehaviour
+    public class SoloChoiceSpawner : MegalovaniaPhase
     {
         public SoloChoice choicePrefab;
         public string[] choices;

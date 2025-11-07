@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2325945777106970448}
   - component: {fileID: 2325945777106970449}
   m_Layer: 0
-  m_Name: megalo_round11
+  m_Name: megalo_bullets_round_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3be8e4d57cecc384b938c5e28fa3e15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onKillsPlayer:
+    m_PersistentCalls:
+      m_Calls: []
   bulletPrefab: {fileID: -94311243864468959, guid: 5be0ca3d2e5bd3449a972e13f9b85298, type: 3}
   bursts:
   - startTime: 0
@@ -51,7 +57,7 @@ MonoBehaviour:
     timeBetweenBursts: 6
     angle: 45
     bulletCount: 6
-    bulletSize: 0.3
+    bulletSize: 0.5
     bulletSpeed: 1
     timeBetweenBullets: 0
     linearSpread: 0
@@ -61,7 +67,7 @@ MonoBehaviour:
     timeBetweenBursts: 6
     angle: 45
     bulletCount: 5
-    bulletSize: 0.3
+    bulletSize: 0.5
     bulletSpeed: 1
     timeBetweenBullets: 0
     linearSpread: 0

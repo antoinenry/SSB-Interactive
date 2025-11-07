@@ -16,8 +16,8 @@ MonoBehaviour:
   isUserData: 0
   Data:
     donkeyKong:
-      horizontalSpeed: 1
-      rotateSpeed: 90
+      horizontalSpeed: 0.3
+      rotateSpeed: 30
       difficulty:
       - floorHeight: 4
         floorWidth: 6

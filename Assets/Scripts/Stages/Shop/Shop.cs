@@ -138,6 +138,7 @@ namespace Shop
                 {
                     SongInfo[] getSongs = songPoolRequest.DeserializeResponse<SongInfo[]>();
                     songPool = getSongs != null ? new(getSongs) : new();
+                    songPool.RemoveAll(s => s.partyLevel < minimumPartyLevel);
                 }
             }
         }

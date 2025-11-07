@@ -1,44 +1,74 @@
+using TMPro;
+
 namespace Megalovania
 {
     public class MegalovaniaStage : Stage
     {
-        public enum Phase { BulletHell, Solo }
-        public Phase currentPhase;
-        public Phase[] phases;
+        public MegalovaniaPhase[] phases;
+        public GUIAnimatedText roundsField;
+        public string roundsFieldPrefix = "round ";
+        public int roundCounter;
+        public string soloText = "SOLO !";
 
         public override int MomentCount => phases.Length;
 
-        private RoundManager bulletHellRounds;
-        private SoloChoiceSpawner soloChoices;
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            if (roundsField) roundsField.text = "";
+            if (phases != null)
+                foreach (MegalovaniaPhase phase in phases)
+                    if (phase != null && phase is RoundManager)
+                        (phase as RoundManager).onFinishRound.AddListener(OnFinishRound);
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            if (phases != null)
+                foreach (MegalovaniaPhase phase in phases)
+                    if (phase != null && phase is RoundManager)
+                        (phase as RoundManager).onFinishRound.RemoveListener(OnFinishRound);
+        }
 
         protected override void OnMomentChange(int momentValue)
         {
             base.OnMomentChange(momentValue);
-            if (momentValue < MomentCount) SwitchToPhase(phases[momentValue]);
+            if (momentValue >= 0 && momentValue < MomentCount) SwitchToPhase(momentValue);
         }
 
-        protected override bool HasAllComponents()
+        private void OnFinishRound()
         {
-            if (base.HasAllComponents() && bulletHellRounds && soloChoices) return true;
-            bulletHellRounds = GetComponentInChildren<RoundManager>(true);
-            soloChoices = GetComponentInChildren<SoloChoiceSpawner>(true);
-            return base.HasAllComponents() && bulletHellRounds && soloChoices;
+            roundCounter++;
+            if (roundsField) roundsField.text = roundsFieldPrefix + roundCounter;
         }
 
-        private void SwitchToPhase(Phase phase)
+        private void SwitchToPhase(int phaseIndex)
         {
-            if (!HasAllComponents()) return;
-            currentPhase = phase;
-            switch (phase)
+            for (int i = 0, iend = phases != null ? phases.Length : 0; i < iend; i++)
             {
-                case Phase.BulletHell:
-                    bulletHellRounds.enabled = true;
-                    soloChoices.enabled = false;
-                    break;
-                case Phase.Solo:
-                    bulletHellRounds.enabled = false;
-                    soloChoices.enabled = true;
-                    break;
+                if (phases[i] == null) continue;
+                else if (i == phaseIndex)
+                {
+                    phases[i].SetActive(true);
+                    if (phases[i] is RoundManager)
+                    {
+                        roundCounter++;
+                        if (roundsField) roundsField.text = roundsFieldPrefix + roundCounter;
+                    }
+                    else if (phases[i] is SoloChoiceSpawner)
+                    {
+                        if (roundsField) roundsField.text = soloText;
+                    }
+                    else
+                    {
+                        if (roundsField) roundsField.text = "";
+                    }
+                }
+                else
+                {
+                    phases[i].SetActive(false);
+                }
             }
         }
     }

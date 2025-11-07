@@ -31,6 +31,7 @@ namespace Megalovania
             {
                 get
                 {
+                    if (SpeedScale == 0f) return this;
                     Burst scaled = this;
                     scaled.startTime = startTime / SpeedScale;
                     scaled.duration = duration / SpeedScale;
@@ -59,7 +60,7 @@ namespace Megalovania
                 for (int i = 0; i < burst.boneCount; i++)
                 {
                     SpawnBone(burst.edge, burst.GetBoneSize(boneCount++), burst.boneSpeed);
-                    if (burst.boneSpacing > 0f) yield return new WaitForSeconds(Mathf.Abs(burst.boneSpacing / burst.boneSpeed));
+                    if (burst.boneSpacing > 0f && burst.boneSpeed != 0f) yield return new WaitForSeconds(Mathf.Abs(burst.boneSpacing / burst.boneSpeed));
                     else break;
                 }
                 yield return new WaitForSeconds(burst.timeBetweenBursts);

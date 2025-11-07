@@ -25,6 +25,7 @@ namespace Megalovania
             {
                 get
                 {
+                    if (SpeedScale == 0f) return this;
                     Burst scaled = this;
                     scaled.startTime = startTime / SpeedScale;
                     scaled.duration = duration / SpeedScale;
