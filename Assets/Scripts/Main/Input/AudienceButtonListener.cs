@@ -134,7 +134,7 @@ public class AudienceButtonListener : MonoBehaviour
     {
         float outputValueUpdate = 0f;
         float outputValueScale = 1f;
-        if (configuration.scaleWithPlayerCount && AudienceInputSource.Current.PlayerCount > 1) outputValueUpdate = 1f / AudienceInputSource.Current.PlayerCount;
+        if (configuration.scaleWithPlayerCount && AudienceInputSource.Current.PlayerCount > 1) outputValueScale = 1f / AudienceInputSource.Current.PlayerCount;
         // Different output behaviour depending on input type
         switch (configuration.inputType)
         {

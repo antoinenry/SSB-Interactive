@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-
 using static ClientButtonTracker;
 
 public class AudienceInputSource : MonoBehaviourSingleton<AudienceInputSource>
@@ -202,4 +201,21 @@ public class AudienceInputSource : MonoBehaviourSingleton<AudienceInputSource>
     public AudienceButtonInput GetAxis(AxisConfiguration axis) => GetAxis(axis.negativeButtonID, axis.positiveButtonID);
     public AudienceButtonInput GetHorizontalAxis() => GetAxis(horizontalAxis);
     public AudienceButtonInput GetVerticalAxis() => GetAxis(verticalAxis);
+
+    public float ScaleWithPlayerCount(float value)
+    {
+        if (PlayerCount > 1) return value / PlayerCount;
+        else return value;
+    }
+
+    public AudienceButtonInput ScaleWithPlayerCount(AudienceButtonInput input)
+    {
+        return new AudienceButtonInput()
+        {
+            totalPresses = Mathf.RoundToInt(ScaleWithPlayerCount(input.totalPresses)),
+            deltaPresses = ScaleWithPlayerCount(input.deltaPresses),
+            velocity = ScaleWithPlayerCount(input.velocity)
+        };
+    }
 }
+

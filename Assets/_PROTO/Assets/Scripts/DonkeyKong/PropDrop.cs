@@ -56,8 +56,8 @@ public class PropDrop : MonoBehaviour
         {
             AudienceInputSource inputSource = AudienceInputSource.Current;
             if (inputSource == null) return;
-            float horizontalInput = inputSource.GetHorizontalAxis().velocity;
-            float rotationInput = inputSource.GetButton(inputSource.verticalAxis.positiveButtonID).velocity;
+            float horizontalInput = inputSource.ScaleWithPlayerCount(inputSource.GetHorizontalAxis().velocity);
+            float rotationInput = inputSource.ScaleWithPlayerCount(inputSource.GetButton(inputSource.verticalAxis.positiveButtonID).velocity);
             if (horizontalInput != 0f) transform.position += horizontalInput * deltaTime * horizontalSpeed * Vector3.right;
             if (rotationInput > 0f) loadedProp.transform.rotation *= Quaternion.AngleAxis(rotationInput * rotateSpeed * Time.fixedDeltaTime, Vector3.forward);
         }
