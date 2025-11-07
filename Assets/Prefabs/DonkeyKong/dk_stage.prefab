@@ -1110,14 +1110,14 @@ MonoBehaviour:
   - {fileID: 1319812632689565437}
   - {fileID: 1183906510229456495}
   buttonConfiguration:
-    inputType: 2
+    inputType: 3
     scaleWithPlayerCount: 1
     maxValue: 1
     clampZeroMax: 1
     enableAutoPress: 0
     autoPressSpeed: 0
     autoPressDelay: 0
-  applyButtonConfiguration: 1
+  applyButtonConfiguration: 0
   disableLosers: 0
   autoPress: 0
   autoPressDelay: 5
@@ -1151,7 +1151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 471105730586910660, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
       propertyPath: maxValue
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 471105730586910661, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
       propertyPath: m_Pivot.x
@@ -1243,11 +1243,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
       propertyPath: configuration.maxValue
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
       propertyPath: configuration.inputType
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531675159423714150, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
+      propertyPath: configuration.autoPressSpeed
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531675159423714150, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
+      propertyPath: configuration.enableAutoPress
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b69ea1135a834abdfbd4cb988cba7, type: 3}
@@ -1284,7 +1292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 471105730586910660, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: maxValue
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 471105730586910661, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: m_Pivot.x
@@ -1376,11 +1384,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.maxValue
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.inputType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
@@ -1417,7 +1425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 471105730586910660, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: maxValue
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 471105730586910661, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: m_Pivot.x
@@ -1509,11 +1517,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: configuration.maxValue
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: configuration.inputType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
@@ -1550,7 +1558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 471105730586910660, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: maxValue
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 471105730586910661, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: m_Pivot.x
@@ -1642,11 +1650,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: configuration.maxValue
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: configuration.inputType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
