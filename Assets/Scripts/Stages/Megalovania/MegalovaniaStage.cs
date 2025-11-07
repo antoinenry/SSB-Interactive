@@ -10,7 +10,16 @@ namespace Megalovania
         public int roundCounter;
         public string soloText = "SOLO !";
 
+        private MiniGameScore miniScore;
+
         public override int MomentCount => phases.Length;
+
+        protected override bool HasAllComponents()
+        {
+            if (base.HasAllComponents() && miniScore) return true;
+            miniScore = GetComponentInChildren<MiniGameScore>(true);
+            return base.HasAllComponents() && miniScore;
+        }
 
         protected override void OnEnable()
         {
@@ -39,8 +48,7 @@ namespace Megalovania
 
         private void OnFinishRound()
         {
-            roundCounter++;
-            if (roundsField) roundsField.text = roundsFieldPrefix + roundCounter;
+            AddRound();
         }
 
         private void SwitchToPhase(int phaseIndex)
@@ -53,8 +61,7 @@ namespace Megalovania
                     phases[i].SetActive(true);
                     if (phases[i] is RoundManager)
                     {
-                        roundCounter++;
-                        if (roundsField) roundsField.text = roundsFieldPrefix + roundCounter;
+                        AddRound();
                     }
                     else if (phases[i] is SoloChoiceSpawner)
                     {
@@ -70,6 +77,13 @@ namespace Megalovania
                     phases[i].SetActive(false);
                 }
             }
+        }
+
+        private void AddRound()
+        {
+            roundCounter++;
+            if (roundsField) roundsField.text = roundsFieldPrefix + roundCounter;
+            if (miniScore) miniScore.unitValue = roundCounter;
         }
     }
 }
