@@ -1240,8 +1240,8 @@ MonoBehaviour:
   - {fileID: 7260166441444533964}
   buttonConfiguration:
     inputType: 1
-    scaleWithPlayerCount: 0
-    maxValue: 10
+    scaleWithPlayerCount: 1
+    maxValue: 20
     clampZeroMax: 1
     enableAutoPress: 0
     autoPressSpeed: 1
@@ -1455,7 +1455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: configuration.maxValue
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: configuration.inputType
@@ -1471,7 +1471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
       propertyPath: configuration.scaleWithPlayerCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4c194a977c8f545bcbb30d1a27e84e, type: 3}
@@ -1498,6 +1498,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6093147530031307753}
     m_Modifications:
+    - target: {fileID: 6579725067420259649, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_text
+      value: "J\u2019ai tout entendu! Quelle setliste incroyable!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579725067420259655, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: text
+      value: "J\u2019ai tout entendu! Quelle setliste incroyable!"
+      objectReference: {fileID: 0}
     - target: {fileID: 6579725069437532576, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_Name
       value: pokeStarter_dialog
@@ -1546,6 +1554,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6579725069437532582, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: dialog
+      value: 
+      objectReference: {fileID: 11400000, guid: 0905c5f4315312c4dbc03b703f60d3df, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
 --- !u!114 &1048683575754537827 stripped
@@ -1677,7 +1689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: configuration.maxValue
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: configuration.inputType
@@ -1693,7 +1705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
       propertyPath: configuration.scaleWithPlayerCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5795d773f3f2e134ab78b8034c48ff31, type: 3}
@@ -1826,7 +1838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.maxValue
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.inputType
@@ -1842,7 +1854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531675159423714150, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}
       propertyPath: configuration.scaleWithPlayerCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edf7879a8a7ce6e4e9df673dcc8b79f4, type: 3}

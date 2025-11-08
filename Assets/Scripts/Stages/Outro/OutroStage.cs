@@ -72,7 +72,7 @@ public class OutroStage : Stage
     private string GetScoreText()
     {
         if (scoreTextField == null) return string.Empty;
-        string scoreString = mainScoreGUI != null ? mainScoreGUI.totalScore.ToString() : "plein de ";
+        string scoreString = mainScoreGUI != null ? ((int)mainScoreGUI.totalScore).ToString("N0") : "plein de ";
         scoreString += scoreSuffix;
         return scoreString;
     }
@@ -80,7 +80,7 @@ public class OutroStage : Stage
     private string GetLeaderboardText()
     {
         if (leaderBoardTextField == null) return string.Empty;
-        string scoreString = mainScoreGUI != null ? mainScoreGUI.totalScore.ToString() : "plein";
+        string scoreString = mainScoreGUI != null ? ((int)mainScoreGUI.totalScore).ToString("N0") : "plein";
         string audienceName = ConcertAdmin.Current != null ? ConcertAdmin.Current.info.location : "vous";
         scoreString = audienceName + leaderBoardMiddlix + scoreString;
         return scoreString;

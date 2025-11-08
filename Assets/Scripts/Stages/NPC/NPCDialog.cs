@@ -17,7 +17,8 @@ namespace NPC
         [SerializeField] bool isReacting = false;
         [SerializeField] int reactionIndex = -1;
         [Header("Sequence")]
-        public bool messageDialogToAdmin = true;
+        public bool messageLinesToAdmin = true;
+        public bool messageEndToAdmin = false;
         public string messageOnDialogEnd = "(fin du dialogue)";
         public AnimationClip showAnimation;
         public AnimationClip hideAnimation;
@@ -127,7 +128,7 @@ namespace NPC
         public void ShowText(string text)
         {
             text = NPCDialogInjector.InjectAll(text);
-            if (messageDialogToAdmin && text != "" && Application.isPlaying)
+            if (messageLinesToAdmin && text != "" && Application.isPlaying)
                 MessengerAdmin.Send(text);
             if (animatedText == null) return;
             animatedText.text = text;
@@ -218,7 +219,7 @@ namespace NPC
 
         public void EndDialog()
         {
-            if (messageDialogToAdmin && messageOnDialogEnd != "" && Application.isPlaying)
+            if (messageEndToAdmin && messageOnDialogEnd != "" && Application.isPlaying)
                 MessengerAdmin.Send(messageOnDialogEnd);
             HideDialog();
             lineIndex = dialog != null ? dialog.LineCount : -1;

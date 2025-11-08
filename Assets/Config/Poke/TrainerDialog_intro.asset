@@ -22,7 +22,7 @@ MonoBehaviour:
     - text: "\u2026 Vous \xEAtes nom_du_public, c\u2019est bien \xE7a?"
       answers:
       - Eh oui, c'est bien nous !
-      - Vous devez confondre avec un autre public.
+      - Vous vous trompez de public.
       hideNextButton: 0
     - text: "Vous \xEAtes sur la bonne voie vers... LA SET LISTE ULTIME !"
       answers: []
