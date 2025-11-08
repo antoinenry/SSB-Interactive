@@ -39,6 +39,7 @@ namespace Map
 
         [Header("Components")]
         public GUIAnimatedText label;
+        public SpriteRenderer icon;
         public SpriteRenderer checkMark;
         [Header("Configuration")]
         public string nodeName = "Node";
@@ -53,6 +54,7 @@ namespace Map
         private void OnValidate()
         {
             if (label) label.text = nodeName;
+            if (icon) icon.enabled = canBeSelected;
             if (checkMark) checkMark.enabled = !canBeSelected;
         }
 
@@ -60,6 +62,7 @@ namespace Map
         {
             FindSongInfo();
             canBeSelected = ConcertAdmin.Current.state.setlist.FindSong(s => s.title == song.title) == SongInfo.None;
+            if (icon) icon.enabled = canBeSelected;
             if (checkMark) checkMark.enabled = !canBeSelected;
         }
 
