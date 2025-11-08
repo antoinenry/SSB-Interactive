@@ -282,6 +282,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 201598446836050397}
+  - {fileID: 8623544507324864310}
   m_Father: {fileID: 1847034741476047796}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -773,6 +774,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 201598447702399440}
+  - {fileID: 5407371452093537252}
   m_Father: {fileID: 201598447481401410}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1198,6 +1200,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 201598446686650492}
+  - {fileID: 2785382406280894033}
   m_Father: {fileID: 201598446663018279}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2130,6 +2133,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 201598447196374918}
+  - {fileID: 3551954021384500619}
   m_Father: {fileID: 201598447841641035}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2313,7 +2317,28 @@ MonoBehaviour:
     linkedStage:
       name: FloralFury
       hasScore: 1
-      moments: []
+      moments:
+      - name: 
+        moment: 0
+        index: 0
+      - name: 
+        moment: 1
+        index: 0
+      - name: 
+        moment: 2
+        index: 0
+      - name: 
+        moment: 0
+        index: 0
+      - name: 
+        moment: 1
+        index: 0
+      - name: 
+        moment: 2
+        index: 0
+      - name: 
+        moment: 0
+        index: 0
       databaseID: 8380
     databaseID: 8354
   - title: In the Blood
@@ -2359,9 +2384,6 @@ MonoBehaviour:
       hasScore: 1
       moments:
       - name: 
-        moment: 0
-        index: 0
-      - name: 
         moment: 1
         index: 0
       - name: 
@@ -2374,10 +2396,19 @@ MonoBehaviour:
         moment: 4
         index: 0
       - name: 
-        moment: 5
+        moment: 6
         index: 0
       - name: 
-        moment: 6
+        moment: 1
+        index: 0
+      - name: 
+        moment: 2
+        index: 0
+      - name: 
+        moment: 3
+        index: 0
+      - name: 
+        moment: 5
         index: 0
       databaseID: 8649
     databaseID: 8358
@@ -2560,13 +2591,17 @@ MonoBehaviour:
         m_Calls: []
     status: 2
     failureInfo: 0
-    responseTime: 0
+    responseTime: 0.33333588
     loopCount: 0
     responseBody: "[{\"id\":8345,\"title\":\"Bamboo Boogaloo\",\"duration\":210,\"bpm\":170,\"zgg\":4.0,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":8347,\"title\":\"Corneria\",\"duration\":180,\"bpm\":180,\"zgg\":5.0,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":8348,\"title\":\"Crypteque\",\"duration\":180,\"bpm\":132,\"zgg\":4.5,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":8349,\"title\":\"Danse
       Macabre\",\"duration\":210,\"bpm\":100,\"zgg\":4.0,\"minigame\":true,\"stage\":{\"id\":8378,\"title\":\"ShovelKnight\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":8350,\"title\":\"DK\",\"duration\":180,\"bpm\":125,\"zgg\":3.0,\"minigame\":true,\"stage\":{\"id\":8379,\"title\":\"DonkeyKong\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":8352,\"title\":\"Gourmet\",\"duration\":150,\"bpm\":180,\"zgg\":5.0,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":8353,\"title\":\"Halo\",\"duration\":170,\"bpm\":120,\"zgg\":2.0,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":8354,\"title\":\"Floral
-      Fury\",\"duration\":240,\"bpm\":130,\"zgg\":3.0,\"minigame\":true,\"stage\":{\"id\":8380,\"title\":\"FloralFury\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":8355,\"title\":\"In
-      the Blood\",\"duration\":240,\"bpm\":80,\"zgg\":1.5,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":8356,\"title\":\"Kass
-      theme\",\"duration\":210,\"bpm\":180,\"zgg\":4.0,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":8357,\"title\":\"Luigi's\",\"duration\":150,\"bpm\":110,\"zgg\":3.0,\"minigame\":true,\"stage\":{\"id\":8381,\"title\":\"LuigisMansion\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":8358,\"title\":\"Megalovania\",\"duration\":300,\"bpm\":240,\"zgg\":5.0,\"minigame\":true,\"stage\":{\"id\":8649,\"title\":\"Megalovania\",\"hasScore\":true,\"stageMoments\":[{\"id\":9308,\"moment\":0,\"momentIndex\":0,\"momentTitle\":\"vide\"},{\"id\":9363,\"moment\":1,\"momentIndex\":1,\"momentTitle\":\"pi\xE8ces\"},{\"id\":9309,\"moment\":2,\"momentIndex\":2,\"momentTitle\":\"projectiles\"},{\"id\":9332,\"moment\":3,\"momentIndex\":3,\"momentTitle\":\"os\"},{\"id\":9334,\"moment\":4,\"momentIndex\":4,\"momentTitle\":\"lasers\"},{\"id\":9335,\"moment\":5,\"momentIndex\":5,\"momentTitle\":\"mix\"},{\"id\":9336,\"moment\":6,\"momentIndex\":6,\"momentTitle\":\"solo\"}]}},{\"id\":8360,\"title\":\"The
+      Fury\",\"duration\":240,\"bpm\":130,\"zgg\":3.0,\"minigame\":true,\"stage\":{\"id\":8380,\"title\":\"FloralFury\",\"hasScore\":true,\"stageMoments\":[{\"id\":9398,\"moment\":0,\"momentIndex\":0,\"momentTitle\":\"jeu
+      1\"},{\"id\":9399,\"moment\":1,\"momentIndex\":1,\"momentTitle\":\"choix solo
+      1\"},{\"id\":9400,\"moment\":2,\"momentIndex\":2,\"momentTitle\":\"solo 1\"},{\"id\":9401,\"moment\":0,\"momentIndex\":3,\"momentTitle\":\"jeu
+      2\"},{\"id\":9402,\"moment\":1,\"momentIndex\":4,\"momentTitle\":\"choix solo
+      2\"},{\"id\":9403,\"moment\":2,\"momentIndex\":5,\"momentTitle\":\"solo 2\"},{\"id\":9404,\"moment\":0,\"momentIndex\":6,\"momentTitle\":\"jeu
+      3\"}]}},{\"id\":8355,\"title\":\"In the Blood\",\"duration\":240,\"bpm\":80,\"zgg\":1.5,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":8356,\"title\":\"Kass
+      theme\",\"duration\":210,\"bpm\":180,\"zgg\":4.0,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":8357,\"title\":\"Luigi's\",\"duration\":150,\"bpm\":110,\"zgg\":3.0,\"minigame\":true,\"stage\":{\"id\":8381,\"title\":\"LuigisMansion\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":8358,\"title\":\"Megalovania\",\"duration\":300,\"bpm\":240,\"zgg\":5.0,\"minigame\":true,\"stage\":{\"id\":8649,\"title\":\"Megalovania\",\"hasScore\":true,\"stageMoments\":[{\"id\":9363,\"moment\":1,\"momentIndex\":0,\"momentTitle\":\"pi\xE8ces\"},{\"id\":9309,\"moment\":2,\"momentIndex\":1,\"momentTitle\":\"projectiles\"},{\"id\":9332,\"moment\":3,\"momentIndex\":2,\"momentTitle\":\"os\"},{\"id\":9334,\"moment\":4,\"momentIndex\":3,\"momentTitle\":\"lasers\"},{\"id\":9387,\"moment\":6,\"momentIndex\":4,\"momentTitle\":\"solo\"},{\"id\":9388,\"moment\":1,\"momentIndex\":5,\"momentTitle\":\"pi\xE8ces\"},{\"id\":9335,\"moment\":2,\"momentIndex\":6,\"momentTitle\":\"projectiles\"},{\"id\":9336,\"moment\":3,\"momentIndex\":7,\"momentTitle\":\"os\"},{\"id\":9389,\"moment\":5,\"momentIndex\":8,\"momentTitle\":\"mix\"}]}},{\"id\":8360,\"title\":\"The
       Great Escape\",\"duration\":210,\"bpm\":160,\"zgg\":4.0,\"minigame\":true,\"stage\":{\"id\":8383,\"title\":\"Rayman\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":8361,\"title\":\"the
       Man with the machine gun\",\"duration\":205,\"bpm\":140,\"zgg\":0.0,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":8362,\"title\":\"Resurrections\",\"duration\":420,\"bpm\":70,\"zgg\":1.0,\"minigame\":false,\"stage\":{\"id\":8376,\"title\":\"Logo\",\"hasScore\":null,\"stageMoments\":[]}},{\"id\":8363,\"title\":\"Sonex\",\"duration\":210,\"bpm\":140,\"zgg\":3.0,\"minigame\":true,\"stage\":{\"id\":8384,\"title\":\"Sonic\",\"hasScore\":true,\"stageMoments\":[{\"id\":9214,\"moment\":0,\"momentIndex\":0,\"momentTitle\":\"normal\"},{\"id\":9215,\"moment\":1,\"momentIndex\":1,\"momentTitle\":\"invincible\"},{\"id\":9329,\"moment\":0,\"momentIndex\":2,\"momentTitle\":\"normal\"},{\"id\":9330,\"moment\":1,\"momentIndex\":3,\"momentTitle\":\"invincible\"}]}},{\"id\":8364,\"title\":\"Still
       Alive\",\"duration\":180,\"bpm\":120,\"zgg\":1.5,\"minigame\":true,\"stage\":{\"id\":8385,\"title\":\"Quizz\",\"hasScore\":true,\"stageMoments\":[]}},{\"id\":8365,\"title\":\"Ultimate\",\"duration\":150,\"bpm\":160,\"zgg\":5.0,\"minigame\":false,\"stage\":{\"id\":9227,\"title\":\"Intro\",\"hasScore\":false,\"stageMoments\":[{\"id\":9228,\"moment\":0,\"momentIndex\":0,\"momentTitle\":\"Vide\"},{\"id\":9229,\"moment\":1,\"momentIndex\":1,\"momentTitle\":\"Apparition\"},{\"id\":9230,\"moment\":2,\"momentIndex\":2,\"momentTitle\":\"Accent\"},{\"id\":9231,\"moment\":3,\"momentIndex\":3,\"momentTitle\":\"Idle\"}]}},{\"id\":8366,\"title\":\"Vampire
@@ -2850,6 +2885,82 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 96545454, guid: 3e664c7d851eec64192c94e47ca78e9e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &849109831050732687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5407371452093537252}
+  - component: {fileID: 7223463564112466819}
+  - component: {fileID: 1678869452581139305}
+  m_Layer: 0
+  m_Name: song_token
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5407371452093537252
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849109831050732687}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 201598446912058507}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: 0, y: -200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7223463564112466819
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849109831050732687}
+  m_CullTransparentMesh: 1
+--- !u!114 &1678869452581139305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849109831050732687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 790d151ddbdc6a2e6a9a96916b0c8bf7, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3648,6 +3759,234 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &3919052382793218614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2785382406280894033}
+  - component: {fileID: 6168476061786148036}
+  - component: {fileID: 5704828436278183126}
+  m_Layer: 0
+  m_Name: song_token
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2785382406280894033
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3919052382793218614}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 201598447183765378}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -19.999996}
+  m_SizeDelta: {x: 0, y: -200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6168476061786148036
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3919052382793218614}
+  m_CullTransparentMesh: 1
+--- !u!114 &5704828436278183126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3919052382793218614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 281590db3ae8a78d09cb277d8b26ff39, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3960580529726454675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8623544507324864310}
+  - component: {fileID: 1375313167000080050}
+  - component: {fileID: 1821439094787279157}
+  m_Layer: 0
+  m_Name: song_token
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8623544507324864310
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3960580529726454675}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 201598446610057081}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: 0, y: -200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1375313167000080050
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3960580529726454675}
+  m_CullTransparentMesh: 1
+--- !u!114 &1821439094787279157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3960580529726454675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 674a5aaec89f69e0593c929449ce5409, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6999330073426601993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3551954021384500619}
+  - component: {fileID: 8223316307083224502}
+  - component: {fileID: 6226042846882641745}
+  m_Layer: 0
+  m_Name: song_token
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3551954021384500619
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999330073426601993}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 201598447863277775}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: 0, y: -200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8223316307083224502
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999330073426601993}
+  m_CullTransparentMesh: 1
+--- !u!114 &6226042846882641745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999330073426601993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 8e373619ea2d1b40b99f4f6164aa31d8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1001 &201598446591806070
 PrefabInstance:
   m_ObjectHideFlags: 0
