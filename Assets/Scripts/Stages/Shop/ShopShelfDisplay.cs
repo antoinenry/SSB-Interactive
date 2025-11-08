@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Shop
 {
@@ -11,6 +12,7 @@ namespace Shop
         public TMP_Text labelField;
         public TMP_Text priceField;
         public AudienceButtonListener button;
+        public Image songToken;
         [Header("Content")]
         public ShopItem item;
 

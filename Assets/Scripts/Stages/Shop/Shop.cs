@@ -25,6 +25,7 @@ namespace Shop
         [Header("Contents")]
         public List<SongInfo> songPool;
         public ShopItem[] inventory;
+        public Sprite[] songTokens;
         public TMP_Text moneyField;
         [Header("Patron")]
         public int cartCapacity;
@@ -235,7 +236,12 @@ namespace Shop
             foreach (ShopShelfDisplay shelf in shelfDisplays)
             {
                 if (shelf == null) continue;
-                if (inventory_index < inventoryCount) shelf.item = inventory[inventory_index];
+                if (inventory_index < inventoryCount) {
+                    ShopItem item = inventory[inventory_index];
+                    shelf.item = item;
+                    Sprite songSprite = Array.Find<Sprite>(songTokens, elem => String.Equals(elem.name, item.song.title, StringComparison.OrdinalIgnoreCase));
+                    shelf.songToken.sprite = songSprite;
+                }
                 else shelf.EmptyShelf();
                 inventory_index++;
             }
