@@ -15,8 +15,8 @@ public class OutroStage : Stage
     public GameObject setlistPanel;
     public GUIAnimatedText setlistTextField;
     [Header("Contents")]
-    public string replacedWithAudienceName = "nom_du_public";
-    public string replacedWithScore = "score_du_public";
+    public string scoreSuffix = " points";
+    public string leaderBoardMiddlix = " ................... ";
     public string[] ignoredSetlistTitles;
     public float delayBetweenAppartions = 1f;
 
@@ -72,20 +72,18 @@ public class OutroStage : Stage
     private string GetScoreText()
     {
         if (scoreTextField == null) return string.Empty;
-        string text = scoreTextField.text;
-        string scoreString = mainScoreGUI != null ? mainScoreGUI.totalScore.ToString("000") : "plein de ";
-        return text.Replace(replacedWithScore, scoreString);
+        string scoreString = mainScoreGUI != null ? mainScoreGUI.totalScore.ToString() : "plein de ";
+        scoreString += scoreSuffix;
+        return scoreString;
     }
 
     private string GetLeaderboardText()
     {
         if (leaderBoardTextField == null) return string.Empty;
-        string text = leaderBoardTextField.text;
-        string scoreString = mainScoreGUI != null ? mainScoreGUI.totalScore.ToString("000") : "plein de ";
+        string scoreString = mainScoreGUI != null ? mainScoreGUI.totalScore.ToString() : "plein";
         string audienceName = ConcertAdmin.Current != null ? ConcertAdmin.Current.info.location : "vous";
-        text = text.Replace(replacedWithScore, scoreString);
-        text = text.Replace(replacedWithAudienceName, audienceName);
-        return text;
+        scoreString = audienceName + leaderBoardMiddlix + scoreString;
+        return scoreString;
     }
 
     private string GetSetlistText()

@@ -2,6 +2,7 @@ Shader "Unlit/round_cut"
 {
     Properties
     {
+        _MainTex ("Texture", 2D) = "white" {}
         _Color ("Color", Color) = (1,1,1,1)
         _Radius ("Radius", float) = 100
         _CenterX ("CenterX", float) = 960

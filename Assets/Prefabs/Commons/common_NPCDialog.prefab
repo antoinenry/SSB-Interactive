@@ -1674,6 +1674,7 @@ MonoBehaviour:
   value: 0
   maxValue: 10
   showGauge: 1
+  smoothGaugeSpeed: 2
 --- !u!1 &6579725069097335211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,6 +2007,9 @@ MonoBehaviour:
   messageOnDialogEnd: (fin du dialogue)
   showAnimation: {fileID: 7400000, guid: 4825a84264a5b614694d2de58362bfa6, type: 2}
   hideAnimation: {fileID: 7400000, guid: 74324c40cef488d4fa84c7a6f5169dbe, type: 2}
+  onPressNext:
+    m_PersistentCalls:
+      m_Calls: []
   onDialogEnd:
     m_PersistentCalls:
       m_Calls: []

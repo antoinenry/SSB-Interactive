@@ -594,7 +594,7 @@ MonoBehaviour:
   buttonID: a
   configuration:
     inputType: 1
-    scaleWithPlayerCount: 0
+    scaleWithPlayerCount: 1
     maxValue: 10
     clampZeroMax: 0
     enableAutoPress: 1
@@ -623,6 +623,7 @@ MonoBehaviour:
   value: 0
   maxValue: 10
   showGauge: 1
+  smoothGaugeSpeed: 2
 --- !u!1 &8257269750466102623
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,8 +726,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8257269750494965402}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.77, y: 1.243, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0.087, y: -0.744, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8257269749621669662}
@@ -744,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a1c2cf381218a47a6e74bcd3a26c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLocation: {fileID: 7335698411316427568}
+  currentLocation: {fileID: 8257269750752239628}
   travelProgress: 1
   travelDirection: 0
   travelSpeed: 5
@@ -797,7 +798,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1792453, g: 0.1792453, b: 0.1792453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1167,7 +1168,7 @@ MonoBehaviour:
   - {fileID: 4264490782875194946}
   - {fileID: 4264490781914655756}
   - {fileID: 4264490783247202796}
-  currentNode: {fileID: 7335698411316427568}
+  currentNode: {fileID: 8257269750752239628}
   addSongChoiceRequest:
     requestType: 1
     requestUri: setlists/songs/{setlist_id}/chosen/{song_id}
@@ -1317,13 +1318,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8257269751117024067}
     m_Modifications:
+    - target: {fileID: 533111684818171072, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 533111684819799352, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 533111684819799354, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: value
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 533111684819799354, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: maxValue
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 533111684819799355, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1471,15 +1480,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4600270109034147157, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: visible
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5127905783105799364, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5127905783107321148, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5127905783107321150, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: value
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5127905783107321150, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: maxValue
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5127905783107321151, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1493,6 +1510,10 @@ PrefabInstance:
       propertyPath: value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7851267771087602488, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: maxValue
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7851267771087602489, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 1.833
@@ -1503,6 +1524,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7851267771087602490, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7851267771091352258, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: m_FillAmount
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1559,7 +1584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326479242974, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_text
-      value: Luigi's Mansion
+      value: Floral Fury
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326479242974, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_VerticalAlignment
@@ -1579,7 +1604,7 @@ PrefabInstance:
       objectReference: {fileID: 5566667242161513072}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: nodeName
-      value: Luigi's Mansion
+      value: Floral Fury
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: showLabel
@@ -1587,7 +1612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: song.title
-      value: Luigi's
+      value: Floral Fury
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: songInfoRequest.requestType
@@ -1675,7 +1700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4600270109034147157, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: text
-      value: Luigi's Mansion
+      value: Floral Fury
       objectReference: {fileID: 0}
     - target: {fileID: 5127905783107321148, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_IsActive
@@ -1878,6 +1903,10 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 533111684819799352, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 533111684819799354, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: value
       value: 0
@@ -1896,7 +1925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326479242974, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_text
-      value: The Great Escape
+      value: DK Country
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326479242974, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -1916,11 +1945,11 @@ PrefabInstance:
       objectReference: {fileID: 5566667241841374633}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: nodeName
-      value: The Great Escape
+      value: DK Country
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: song.title
-      value: The Great Escape
+      value: DK
       objectReference: {fileID: 0}
     - target: {fileID: 1682681326680433612, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: connectedRoads.Array.size
@@ -2012,11 +2041,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4600270109034147157, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: text
-      value: The Great Escape
+      value: DK Country
       objectReference: {fileID: 0}
     - target: {fileID: 4600270109034147157, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: visible
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5127905783107321148, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_IsActive
@@ -2037,6 +2066,10 @@ PrefabInstance:
     - target: {fileID: 7851267771087602489, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 7851267771087602490, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7851267771091352258, guid: ef86cfe188a78c441a70fad879ae7eda, type: 3}
       propertyPath: m_FillAmount
