@@ -2003,7 +2003,8 @@ MonoBehaviour:
   lineIndex: 0
   isReacting: 0
   reactionIndex: 0
-  messageDialogToAdmin: 1
+  messageLinesToAdmin: 1
+  messageEndToAdmin: 0
   messageOnDialogEnd: (fin du dialogue)
   showAnimation: {fileID: 7400000, guid: 4825a84264a5b614694d2de58362bfa6, type: 2}
   hideAnimation: {fileID: 7400000, guid: 74324c40cef488d4fa84c7a6f5169dbe, type: 2}
