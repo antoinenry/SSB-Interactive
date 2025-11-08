@@ -4981,6 +4981,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6579725069080461616, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: maxValue
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6579725069097335211, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4988,6 +4992,10 @@ PrefabInstance:
     - target: {fileID: 6579725069437532576, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_Name
       value: NPCDialog
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579725069437532576, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6579725069437532577, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: m_RootOrder
@@ -5036,6 +5044,10 @@ PrefabInstance:
     - target: {fileID: 6579725069437532582, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
       propertyPath: lineIndex
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579725069437532582, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
+      propertyPath: messageEndToAdmin
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a9b6ea94f8b5674482996476d79afa6, type: 3}
