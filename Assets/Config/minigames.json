@@ -404,12 +404,12 @@
       {
         "checkpointDistance": 10,
         "carSpeed": {
-          "RandomValue": 2.4356885,
+          "RandomValue": 2.74249291,
           "min": 2,
           "max": 3
         },
         "carSpacing": {
-          "RandomValue": 17.0870285,
+          "RandomValue": 17.249836,
           "min": 8,
           "max": 20
         },
@@ -420,12 +420,12 @@
       {
         "checkpointDistance": 10,
         "carSpeed": {
-          "RandomValue": 3.22038293,
+          "RandomValue": 3.76967096,
           "min": 3,
           "max": 4
         },
         "carSpacing": {
-          "RandomValue": 15.1799688,
+          "RandomValue": 10.0324669,
           "min": 7,
           "max": 19
         },
@@ -436,12 +436,12 @@
       {
         "checkpointDistance": 10,
         "carSpeed": {
-          "RandomValue": 4.26186466,
+          "RandomValue": 4.87000227,
           "min": 4,
           "max": 5
         },
         "carSpacing": {
-          "RandomValue": 10.1522179,
+          "RandomValue": 13.774148,
           "min": 6,
           "max": 18
         },
@@ -452,12 +452,12 @@
       {
         "checkpointDistance": 10,
         "carSpeed": {
-          "RandomValue": 5.16214275,
+          "RandomValue": 5.35688114,
           "min": 5,
           "max": 6
         },
         "carSpacing": {
-          "RandomValue": 9.46419525,
+          "RandomValue": 6.4849205,
           "min": 6,
           "max": 16
         },
@@ -468,12 +468,12 @@
       {
         "checkpointDistance": 10,
         "carSpeed": {
-          "RandomValue": 6.12520504,
+          "RandomValue": 6.98488951,
           "min": 6,
           "max": 7
         },
         "carSpacing": {
-          "RandomValue": 9.72841835,
+          "RandomValue": 11.844244,
           "min": 6,
           "max": 14
         },
@@ -484,12 +484,12 @@
       {
         "checkpointDistance": 10,
         "carSpeed": {
-          "RandomValue": 7.48675394,
+          "RandomValue": 7.66191101,
           "min": 7,
           "max": 8
         },
         "carSpacing": {
-          "RandomValue": 7.37570715,
+          "RandomValue": 8.3328228,
           "min": 6,
           "max": 12
         },
@@ -500,12 +500,12 @@
       {
         "checkpointDistance": 10,
         "carSpeed": {
-          "RandomValue": 8.67067146,
+          "RandomValue": 8.45669079,
           "min": 8,
           "max": 9
         },
         "carSpacing": {
-          "RandomValue": 7.74212646,
+          "RandomValue": 6.40791321,
           "min": 6,
           "max": 10
         },
@@ -516,12 +516,12 @@
       {
         "checkpointDistance": 10,
         "carSpeed": {
-          "RandomValue": 9.41482067,
+          "RandomValue": 9.93561172,
           "min": 9,
           "max": 10
         },
         "carSpacing": {
-          "RandomValue": 5.95372629,
+          "RandomValue": 8.43946171,
           "min": 5,
           "max": 9
         },
